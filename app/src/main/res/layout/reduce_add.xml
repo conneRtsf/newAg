@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".mvp.ui.nourishFragment"
+    android:background="@color/white">
+
+    <FrameLayout
+        android:layout_marginTop="@dimen/dp_131"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/newBlue">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/backcolor">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginStart="@dimen/dp_300">
+
+            <CheckBox
+                android:id="@+id/checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:text="全选"
+                android:visibility="gone"
+                android:textColor="#969696"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/selected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:visibility="gone"
+                android:gravity="center_vertical"
+                android:text="已选0项" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="@dimen/dp_85"
+            android:layout_height="@dimen/dp_65"
+            android:layout_marginStart="@dimen/dp_148"
+            android:layout_marginTop="@dimen/dp_65"
+            android:gravity="center"
+            android:text="菜地\n0个"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dp_15" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="@dimen/dp_125"
+            android:layout_height="@dimen/dp_65"
+            android:layout_marginStart="@dimen/dp_248"
+            android:layout_marginTop="@dimen/dp_65"
+            android:gravity="center"
+            android:background="@color/green"
+            android:text="鱼池\n0个"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dp_15" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_65"
+            android:layout_marginStart="@dimen/dp_120"
+            android:layout_marginTop="@dimen/dp_65"
+            android:background="@drawable/line2" />
+
+
+
+        <Button
+            android:id="@+id/btn_Date"
+            android:layout_width="@dimen/dp_105"
+            android:layout_height="@dimen/dp_65"
+            android:layout_marginTop="@dimen/dp_65"
+            android:background="@color/green"
+            android:gravity="center"
+            android:text="time"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dp_15"
+            tools:ignore="SpUsage" />
+
+        <Button
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="@dimen/sp_30"
+            android:background="@color/newnewBlue"
+            android:text="删除"
+            android:visibility="gone"
+            android:textColor="@color/black"
+            tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:layout_width="@dimen/dp_200"
+            android:layout_height="@dimen/dp_50"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="生产单元添加"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_15"
+            tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+
+    </FrameLayout>
+    <Button
+        android:id="@+id/ib1"
+        android:layout_width="36dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="@dimen/dp_303"
+        android:layout_marginTop="@dimen/dp_16"
+        android:background="@drawable/ic_baseline_notes_24" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_86"
+        android:layout_marginStart="@dimen/dp_86"
+        android:background="@drawable/ic_baseline_keyboard_arrow_down_24"/>
+
+</FrameLayout>
+
+

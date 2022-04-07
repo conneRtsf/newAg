@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">newAg</string>
+    <string name="submit">提交</string>
+    <string name="no">序号</string>
+    <string name="name">名称</string>
+    <string name="cost">投入费用</string>
+    <string name="time">日期 如2022.2.2</string>
+    <string name="energyCost">能源开销</string>
+    <string name="other">备注</string>
+    <string name="yuan">元</string>
+    <string name="fishCost">鱼苗成本</string>
+    <string name="oneCost">单价</string>
+    <string name="weight">重量</string>
+    <string name="vegetableCost">菜苗成本</string>
+    <string name="other_cost">其他成本</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="share">共享田园</string>
+    <string name="woman">女生</string>
+    <string name="man">男生</string>
+    <string name="cultvation">农场养殖</string>
+    <string name="my">我的</string>
+    <string name="生产单元添加">农场养殖</string>
+</resources>

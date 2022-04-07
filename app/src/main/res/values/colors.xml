@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="blue">#327BBA</color>
+    <color name="newBlue">#ACC8E1</color>
+    <color name="newnewBlue">#5797CF</color>
+    <color name="yellow">#FFC107</color>
+    <color name="背景色">#c6dafc</color>
+    <color name="生产单元添加">#fc9e43</color>
+    <color name="投入成本记录">#01c39d</color>
+    <color name="销售记账">#6270da</color>
+    <color name="投入品模板定义">#55d2d8</color>
+    <color name="生产投入期">#fd8062</color>
+    <color name="grey">#676767</color>
+    <color name="press">#669ffe</color>
+    <color name="green">#3CB573</color>
+    <color name="green_new">#01C29B</color>
+</resources>

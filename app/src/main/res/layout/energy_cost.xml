@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_45"
+        android:layout_marginStart="@dimen/dp_310"
+        android:background="@color/blue"
+        android:text="@string/submit"
+        android:textSize="@dimen/sp_20"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="@dimen/dp_45"
+        android:layout_height="@dimen/dp_45"
+        android:background="@color/blue"
+        android:foreground="@drawable/back"
+        tools:ignore="UnusedAttribute" />
+
+
+    <EditText
+        android:id="@+id/enter1"
+        android:background="@drawable/border"
+        android:layout_width="@dimen/dp_260"
+        android:layout_height="@dimen/dp_45"
+        android:textColor="@color/black"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_130"
+        android:hint="@string/no"
+        android:numeric="integer"
+        android:textColorHint="#95a1aa"
+        tools:ignore="Deprecated,LabelFor" />
+
+    <EditText
+        android:id="@+id/enter2"
+        android:background="@drawable/border"
+        android:layout_width="@dimen/dp_260"
+        android:layout_height="@dimen/dp_45"
+        android:textColor="@color/black"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_200"
+        android:hint="@string/name"
+        android:textColorHint="#95a1aa"
+        tools:ignore="Deprecated,LabelFor" />
+
+    <EditText
+        android:id="@+id/enter3"
+        android:background="@drawable/border"
+        android:layout_width="@dimen/dp_260"
+        android:textColor="@color/black"
+        android:layout_height="@dimen/dp_45"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_270"
+        android:hint="@string/cost"
+        android:numeric="integer"
+        android:textColorHint="#95a1aa"
+        tools:ignore="Deprecated,LabelFor" />
+
+    <EditText
+        android:id="@+id/enter4"
+        android:background="@drawable/border"
+        android:textColor="@color/black"
+        android:layout_width="@dimen/dp_260"
+        android:layout_height="@dimen/dp_45"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_330"
+        android:hint="@string/time"
+        android:textColorHint="#95a1aa"
+        tools:ignore="Deprecated,LabelFor" />
+
+    <EditText
+        android:id="@+id/enter5"
+        android:layout_width="@dimen/dp_260"
+        android:layout_height="@dimen/dp_220"
+        android:textColor="@color/black"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_400"
+        android:background="@drawable/border"
+        android:hint="@string/other"
+        android:gravity="top"
+        android:lines="20"
+        android:textColorHint="#95a1aa"
+        tools:ignore="Deprecated,LabelFor" />
+
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="@dimen/dp_270"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/dp_250"
+        android:text="@string/yuan"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_20"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="@dimen/dp_275"
+        android:layout_height="@dimen/dp_45"
+        android:background="@color/blue"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/energyCost"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_24"
+        app:layout_constraintEnd_toStartOf="@+id/button" />
+
+</FrameLayout>

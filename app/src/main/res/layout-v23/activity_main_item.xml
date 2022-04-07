@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="@drawable/listback">
+
+    <RelativeLayout
+        android:id="@+id/rl_app"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="80dp">
+
+        <ImageView
+            android:id="@+id/iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/rl_app"
+        android:gravity="center"
+        android:text="name"
+        android:textColor="#1B5787" />
+
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_name"
+        android:layout_toRightOf="@+id/rl_app"
+        android:gravity="center"
+        android:text="haah"
+        android:textColor="#750C0C"
+        android:textSize="19sp"
+        tools:ignore="SmallSp" />
+
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:background="@color/newBlue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sp_10"
+        android:layout_marginLeft="@dimen/dp_40"
+        android:button="@drawable/checkbox_selector" />
+</RelativeLayout>

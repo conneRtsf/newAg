@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".mvp.ui.MyFragment"
+    android:background="@color/背景色">
+
+    <FrameLayout
+        android:layout_width="@dimen/dp_340"
+        android:layout_height="@dimen/dp_120"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/bordernew">
+
+
+        <ImageView
+            android:layout_width="@dimen/dp_70"
+            android:layout_height="@dimen/dp_70"
+            android:layout_marginStart="@dimen/dp_25"
+            android:layout_marginTop="@dimen/dp_20"
+            android:background="@drawable/circle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_105"
+            android:layout_marginTop="@dimen/dp_25"
+            android:text="哦豁~~"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_20"
+            tools:ignore="SpUsage" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_105"
+            android:layout_marginTop="@dimen/dp_55"
+            android:text="用一句话介绍自己~"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_15"
+            tools:ignore="SpUsage" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="@dimen/dp_340"
+        android:layout_height="@dimen/dp_350"
+        android:layout_marginTop="@dimen/dp_180"
+        android:paddingRight="@dimen/dp_30"
+        android:paddingTop="@dimen/dp_5"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/bordernew">
+
+        <Button
+            android:id="@+id/bt1"
+            android:outlineProvider="none"
+            android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:paddingStart="@dimen/sp_20"
+            android:layout_width="@dimen/dp_220"
+            android:layout_height="@dimen/dp_60"
+            android:gravity="center_vertical"
+            android:drawableBottom="@drawable/blackline"
+            android:layout_gravity="right"
+            android:textSize="@dimen/sp_18"
+            android:background="@color/white"
+            android:text="账号与安全"
+            android:textColor="@color/black" />
+
+        <ImageView
+            android:layout_width="@dimen/dp_40"
+            android:layout_marginTop="@dimen/dp_12"
+            android:layout_marginStart="@dimen/dp_30"
+            android:layout_height="@dimen/dp_40"
+            android:background="@drawable/safe"/>
+
+        <Button
+            android:id="@+id/bt2"
+            android:paddingStart="@dimen/sp_20"
+            android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:layout_width="@dimen/dp_220"
+            android:outlineProvider="none"
+            android:drawableBottom="@drawable/blackline"
+            android:layout_height="@dimen/dp_60"
+            android:gravity="center_vertical"
+            android:layout_gravity="right"
+            android:textSize="@dimen/sp_18"
+            android:layout_marginTop="@dimen/dp_60"
+            android:background="@color/white"
+            android:text="农场更名"
+            android:textColor="@color/black" />
+
+        <ImageView
+            android:layout_width="@dimen/dp_40"
+            android:layout_marginTop="@dimen/dp_72"
+            android:layout_marginStart="@dimen/dp_30"
+            android:layout_height="@dimen/dp_40"
+            android:background="@drawable/change"/>
+
+        <Button
+            android:id="@+id/bt3"
+            android:paddingStart="@dimen/sp_20"
+            android:layout_width="@dimen/dp_220"
+            android:gravity="center_vertical"
+            android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:outlineProvider="none"
+            android:drawableBottom="@drawable/blackline"
+            android:layout_gravity="right"
+            android:textSize="@dimen/sp_18"
+            android:layout_marginTop="@dimen/dp_120"
+            android:background="@color/white"
+            android:text="帮助中心"
+            android:textColor="@color/black"
+            android:layout_height="@dimen/dp_60"/>
+        <ImageView
+            android:layout_width="@dimen/dp_40"
+            android:layout_marginTop="@dimen/dp_132"
+            android:layout_marginStart="@dimen/dp_30"
+            android:layout_height="@dimen/dp_40"
+            android:background="@drawable/question_mark"/>
+        <Button
+            android:id="@+id/bt4"
+            android:paddingStart="@dimen/sp_20"
+            android:layout_width="@dimen/dp_220"
+            android:gravity="center_vertical"
+            android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:outlineProvider="none"
+            android:drawableBottom="@drawable/blackline"
+            android:layout_gravity="right"
+            android:textSize="@dimen/sp_18"
+            android:layout_marginTop="@dimen/dp_180"
+            android:background="@color/white"
+            android:text="其他"
+            android:textColor="@color/black"
+            android:layout_height="@dimen/dp_60"/>
+        <ImageView
+            android:layout_width="@dimen/dp_40"
+            android:layout_marginTop="@dimen/dp_192"
+            android:layout_marginStart="@dimen/dp_30"
+            android:layout_height="@dimen/dp_40"
+            android:background="@drawable/more"/>
+
+        <Button
+            android:id="@+id/bt5"
+            android:paddingStart="@dimen/sp_20"
+            android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:outlineProvider="none"
+            android:layout_width="@dimen/dp_220"
+            android:layout_height="@dimen/dp_60"
+            android:gravity="center_vertical"
+            android:drawableBottom="@drawable/blackline"
+            android:textSize="@dimen/sp_18"
+            android:layout_gravity="right"
+            android:layout_marginTop="@dimen/dp_240"
+            android:background="@color/white"
+            android:text="退出登录"
+            android:textColor="@color/black" />
+        <ImageView
+            android:layout_width="@dimen/dp_40"
+            android:layout_marginTop="@dimen/dp_252"
+            android:layout_marginStart="@dimen/dp_30"
+            android:layout_height="@dimen/dp_40"
+            android:background="@drawable/exit"/>
+    </FrameLayout>
+</FrameLayout>
