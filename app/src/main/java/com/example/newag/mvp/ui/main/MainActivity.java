@@ -1,4 +1,4 @@
-package com.example.newag.mvp.ui;
+package com.example.newag.mvp.ui.main;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;

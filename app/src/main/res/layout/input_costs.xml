@@ -85,7 +85,7 @@
             android:layout_width="@dimen/dp_140"
             android:layout_height="@dimen/dp_35"
             android:layout_marginTop="@dimen/dp_20"
-            android:drawableLeft="@drawable/product"
+            android:drawableLeft="@drawable/people_cost"
             android:drawableTint="@color/投入成本记录"
             android:background="@drawable/backnew"
             android:layout_gravity="center_horizontal"
@@ -137,57 +137,84 @@
         android:background="#ffffff"
         android:orientation="vertical">
 
-       <Button
-           android:layout_width="match_parent"
-           android:layout_height="@dimen/dp_60"
-           android:text="人工成本"
-           android:textColor="@color/black"
-           android:background="@color/white"
-           />
         <Button
+            android:id="@+id/ce1"
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/dp_60"
             android:layout_height="@dimen/dp_60"
-            android:text="饲料购入"
-            android:textColor="@color/black"
             android:background="@color/white"
-            />
+            android:drawableLeft="@drawable/people_cost"
+            android:drawableTint="@color/black"
+            android:gravity="center"
+            android:text="人工成本"
+            android:textColor="@color/black" />
+
         <Button
+            android:id="@+id/ce2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_60"
+            android:layout_marginTop="@dimen/dp_60"
+            android:background="@color/white"
+            android:drawableLeft="@drawable/feed"
+            android:drawableTint="@color/black"
+            android:gravity="center"
+            android:text="饲料购入"
+            android:textColor="@color/black" />
+        <Button
+            android:id="@+id/ce3"
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/dp_120"
             android:layout_height="@dimen/dp_60"
             android:text="能源开销"
+            android:drawableLeft="@drawable/energy_cost"
+            android:drawableTint="@color/black"
+            android:gravity="center"
             android:textColor="@color/black"
             android:background="@color/white"
             />
         <Button
+            android:id="@+id/ce4"
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/dp_180"
             android:layout_height="@dimen/dp_60"
             android:text="鱼苗成本"
+            android:drawableLeft="@drawable/fish"
+            android:drawableTint="@color/black"
+            android:gravity="center"
             android:textColor="@color/black"
             android:background="@color/white"
             />
         <Button
+            android:id="@+id/ce5"
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/dp_240"
             android:layout_height="@dimen/dp_60"
             android:text="菜苗成本"
+            android:drawableLeft="@drawable/paid"
+            android:drawableTint="@color/black"
+            android:gravity="center"
             android:textColor="@color/black"
             android:background="@color/white"/>
         <Button
+            android:id="@+id/ce6"
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/dp_300"
             android:layout_height="@dimen/dp_60"
             android:text="其他成本"
+            android:drawableLeft="@drawable/other"
+            android:drawableTint="@color/black"
+            android:gravity="center"
             android:textColor="@color/black"
             android:background="@color/white"
             />
         <Button
+            android:id="@+id/ce7"
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/dp_360"
             android:layout_height="@dimen/dp_60"
             android:text="总成本"
+            android:drawableLeft="@drawable/all"
+            android:drawableTint="@color/black"
+            android:gravity="center"
             android:textColor="@color/black"
             android:background="@color/white"
             />

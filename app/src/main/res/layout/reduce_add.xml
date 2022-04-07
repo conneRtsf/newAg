@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".mvp.ui.nourishFragment"
+    tools:context=".mvp.ui.main.nourishFragment"
     android:background="@color/white">
 
     <FrameLayout

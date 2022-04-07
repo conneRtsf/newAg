@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".mvp.ui.MainActivity"
+    tools:context=".mvp.ui.main.MainActivity"
     android:background="@color/背景色">
 
     <FrameLayout

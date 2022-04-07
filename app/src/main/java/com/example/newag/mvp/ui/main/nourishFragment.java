@@ -1,4 +1,4 @@
-package com.example.newag.mvp.ui;
+package com.example.newag.mvp.ui.main;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.widget.Button;
 import androidx.fragment.app.Fragment;
 
 import com.example.newag.R;
+import com.example.newag.mvp.ui.costs.Input_class;
+import com.example.newag.mvp.ui.reduce_add;
 
 public class nourishFragment extends Fragment {
     Button bt1;
@@ -22,7 +24,7 @@ public class nourishFragment extends Fragment {
         bt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),reduce_add.class);
+                Intent intent = new Intent(getActivity(), reduce_add.class);
                 startActivity(intent);
             }
         });
@@ -30,7 +32,7 @@ public class nourishFragment extends Fragment {
         bt7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),Input_class.class);
+                Intent intent = new Intent(getActivity(), Input_class.class);
                 startActivity(intent);
             }
         });
