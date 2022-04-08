@@ -106,16 +106,17 @@
             android:id="@+id/right"
             android:layout_width="@dimen/dp_40"
             android:layout_height="@dimen/dp_29"
-            android:layout_marginStart="@dimen/dp_320"
+            android:layout_gravity="right"
             android:layout_marginTop="@dimen/dp_20"
             android:background="@drawable/more_left" />
         <Button
             android:id="@+id/left"
             android:layout_width="@dimen/dp_40"
             android:layout_height="@dimen/dp_30"
-            android:layout_marginStart="@dimen/dp_280"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/dp_40"
             android:layout_marginTop="@dimen/dp_20"
-            android:background="@drawable/more_right" />
+            android:background="@drawable/more_right"/>
         <FrameLayout
             android:background="@color/背景色"
             android:layout_width="match_parent"
@@ -129,6 +130,15 @@
             android:layout_marginTop="@dimen/dp_150"
             android:layout_gravity="center_horizontal"
             />
+        <Button
+            android:id="@+id/plus"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_60"
+            android:layout_marginTop="@dimen/dp_500"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/dp_40"
+            android:background="@drawable/plus"/>
+
     </FrameLayout>
     <RelativeLayout
         android:layout_width="250dp"
@@ -212,7 +222,7 @@
             android:layout_marginTop="@dimen/dp_360"
             android:layout_height="@dimen/dp_60"
             android:text="总成本"
-            android:drawableLeft="@drawable/all"
+            android:drawableStart="@drawable/all"
             android:drawableTint="@color/black"
             android:gravity="center"
             android:textColor="@color/black"

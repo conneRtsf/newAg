@@ -27,6 +27,7 @@ public class vegetable_cost extends AppCompatActivity {
     Button ce5;
     Button ce6;
     Button ce7;
+    Button plus;
     public Button btnDate;
     @Subscribe
     @Override
@@ -41,6 +42,7 @@ public class vegetable_cost extends AppCompatActivity {
         ce5=findViewById(R.id.ce5);
         ce6=findViewById(R.id.ce6);
         ce7=findViewById(R.id.ce7);
+        plus=findViewById(R.id.plus);
         btnDate=findViewById(R.id.btn_Date);
 
         ce1.setOnClickListener(new View.OnClickListener() {
