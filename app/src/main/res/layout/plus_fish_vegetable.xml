@@ -86,6 +86,66 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:layout_weight="1">
+            <TextView
+                android:drawableTop="@drawable/price"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="wrap_content"
+                android:text="单价"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_10"
+                android:layout_gravity="center_vertical"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/dp_40"
+                android:hint="price"
+                android:paddingLeft="@dimen/dp_3"
+                android:paddingRight="@dimen/dp_3"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:textColorHint="@color/grey"/>
+        </FrameLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:layout_weight="1">
+            <TextView
+                android:drawableTop="@drawable/weight"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="wrap_content"
+                android:text="重量"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_10"
+                android:layout_gravity="center_vertical"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/dp_40"
+                android:hint="weight"
+                android:paddingLeft="@dimen/dp_3"
+                android:paddingRight="@dimen/dp_3"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:textColorHint="@color/grey"/>
+        </FrameLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <FrameLayout
             android:layout_width="match_parent"

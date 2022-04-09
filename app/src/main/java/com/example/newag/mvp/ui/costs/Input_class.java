@@ -16,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.newag.R;
-import com.example.newag.mvp.ui.main.nourishFragment;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -158,10 +157,7 @@ public class Input_class extends AppCompatActivity {
         mCameraDialog.show();
     }
 
-    public void onBackPressed() {
-        Intent intent = new Intent();
-        intent.setClass(Input_class.this, nourishFragment.class);
-        startActivity(intent);
-        finish();
-    }
+//    public void onBackPressed() {
+//        return true;
+//    }
 }

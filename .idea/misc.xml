@@ -42,11 +42,13 @@
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/my.xml" value="0.167" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/my_press.xml" value="0.167" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/paid.xml" value="0.1" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/paid2.xml" value="0.123" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/pending.xml" value="0.1" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/people_cost.xml" value="0.173" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/plan.xml" value="0.1905" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/plus.xml" value="0.1445" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/plus_border.xml" value="0.123" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/price.xml" value="0.158" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/product.xml" value="0.1905" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/quantity.xml" value="0.1" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/rename.xml" value="0.123" />
@@ -59,6 +61,7 @@
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/time.xml" value="0.1" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/view_list.xml" value="0.159" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/warning.xml" value="0.1905" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/weight.xml" value="0.158" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/yuan.xml" value="0.123" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout-v23/activity_main_item.xml" value="0.4" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout-v23/fragment_my.xml" value="0.4" />
@@ -79,7 +82,8 @@
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/input_costs.xml" value="0.2" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/my.xml" value="0.24974358974358973" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/other_cost.xml" value="0.17708333333333334" />
-        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/plus_people.xml" value="0.264" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/plus_fish_vegetable.xml" value="0.19927536231884058" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/plus_people.xml" value="0.27672955974842767" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/reduce_add.xml" value="0.264" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/vegetable_cost.xml" value="0.24974358974358973" />
       </map>
