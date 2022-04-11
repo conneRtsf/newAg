@@ -66,7 +66,7 @@
             android:layout_marginStart="@dimen/dp_248"
             android:layout_marginTop="@dimen/dp_65"
             android:gravity="center"
-            android:background="@color/green"
+            android:background="@color/green_new"
             android:text="鱼池\n0个"
             android:textColor="@color/white"
             android:textSize="@dimen/dp_15" />
@@ -85,7 +85,7 @@
             android:layout_width="@dimen/dp_105"
             android:layout_height="@dimen/dp_65"
             android:layout_marginTop="@dimen/dp_65"
-            android:background="@color/green"
+            android:background="@color/green_new"
             android:gravity="center"
             android:text="time"
             android:textColor="@color/white"
@@ -116,12 +116,28 @@
 
     </FrameLayout>
     <Button
-        android:id="@+id/ib1"
-        android:layout_width="36dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="@dimen/dp_303"
-        android:layout_marginTop="@dimen/dp_16"
-        android:background="@drawable/ic_baseline_notes_24" />
+        android:id="@+id/right"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_29"
+        android:layout_gravity="right"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@drawable/more_left" />
+    <Button
+        android:id="@+id/left"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_30"
+        android:layout_gravity="right"
+        android:layout_marginRight="@dimen/dp_40"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@drawable/more_right"/>
+    <Button
+        android:id="@+id/plus"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginTop="@dimen/dp_500"
+        android:layout_gravity="right"
+        android:layout_marginRight="@dimen/dp_10"
+        android:background="@drawable/plus"/>
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

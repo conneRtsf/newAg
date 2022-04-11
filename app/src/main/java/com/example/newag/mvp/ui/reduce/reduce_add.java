@@ -1,4 +1,4 @@
-package com.example.newag.mvp.ui;
+package com.example.newag.mvp.ui.reduce;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;

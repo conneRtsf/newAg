@@ -1,4 +1,4 @@
-package com.example.newag.mvp.ui.costs.plus;
+package com.example.newag.mvp.ui.plus;
 
 import android.os.Bundle;
 

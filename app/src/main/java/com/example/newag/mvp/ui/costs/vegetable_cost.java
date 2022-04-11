@@ -118,6 +118,7 @@ public class vegetable_cost extends AppCompatActivity {
         Date curDate =  new Date(System.currentTimeMillis());
         String   str   =   formatter.format(curDate);
         btnDate.setText(str);
+
         tb1=findViewById(R.id.tb1);
         final View contentView = findViewById(R.id.content);
         tb1.setOnClickListener(new View.OnClickListener() {
