@@ -11,9 +11,10 @@ import androidx.fragment.app.Fragment;
 
 import com.example.newag.R;
 import com.example.newag.mvp.ui.accounting.Sales_accounting;
-import com.example.newag.mvp.ui.costs.Input_class;
+import com.example.newag.mvp.ui.costs.Input_cost;
 import com.example.newag.mvp.ui.input_period.fish_period;
 import com.example.newag.mvp.ui.reduce.reduce_add;
+import com.example.newag.mvp.ui.template.drug_template;
 
 public class nourishFragment extends Fragment {
     Button bt1;
@@ -41,14 +42,14 @@ public class nourishFragment extends Fragment {
                 startActivity(intent);
             }
         });
-//        bt4=view.findViewById(R.id.bt4);
-//        bt4.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getActivity(), fish_period.class);
-//                startActivity(intent);
-//            }
-//        });
+        bt4=view.findViewById(R.id.bt4);
+        bt4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), drug_template.class);
+                startActivity(intent);
+            }
+        });
         bt5=view.findViewById(R.id.bt5);
         bt5.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +62,7 @@ public class nourishFragment extends Fragment {
         bt7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), Input_class.class);
+                Intent intent = new Intent(getActivity(), Input_cost.class);
                 startActivity(intent);
             }
         });

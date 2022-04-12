@@ -37,7 +37,7 @@ public class energy_cost extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.energy_cost);
+        setContentView(R.layout.cost_energy);
         DrawerLayout root = findViewById(R.id.root);
         ce1=findViewById(R.id.ce1);
         ce2=findViewById(R.id.ce2);
@@ -59,7 +59,7 @@ public class energy_cost extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(energy_cost.this, Input_class.class);
+                intent.setClass(energy_cost.this, Input_cost.class);
                 startActivity(intent);
                 finish();
             }

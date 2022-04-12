@@ -37,7 +37,7 @@ public class vegetable_cost extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vegetable_cost);
+        setContentView(R.layout.cost_vegetable);
         DrawerLayout root = findViewById(R.id.root);
         ce1=findViewById(R.id.ce1);
         ce2=findViewById(R.id.ce2);
@@ -58,7 +58,7 @@ public class vegetable_cost extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(vegetable_cost.this, Input_class.class);
+                intent.setClass(vegetable_cost.this, Input_cost.class);
                 startActivity(intent);
                 finish();
             }

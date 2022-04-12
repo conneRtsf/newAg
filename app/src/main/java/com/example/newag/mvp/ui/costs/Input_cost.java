@@ -22,7 +22,7 @@ import org.greenrobot.eventbus.Subscribe;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Input_class extends AppCompatActivity {
+public class Input_cost extends AppCompatActivity {
     Button tb1;
     Button ce1;
     Button ce2;
@@ -37,7 +37,7 @@ public class Input_class extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.input_costs);
+        setContentView(R.layout.cost_input);
         DrawerLayout root = findViewById(R.id.root);
         ce1=findViewById(R.id.ce1);
         ce2=findViewById(R.id.ce2);
@@ -57,7 +57,7 @@ public class Input_class extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(Input_class.this, feed_cost.class);
+                intent.setClass(Input_cost.this, feed_cost.class);
                 startActivity(intent);
                 finish();
             }
@@ -67,7 +67,7 @@ public class Input_class extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(Input_class.this, energy_cost.class);
+                intent.setClass(Input_cost.this, energy_cost.class);
                 startActivity(intent);
                 finish();
             }
@@ -77,7 +77,7 @@ public class Input_class extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(Input_class.this, fish_cost.class);
+                intent.setClass(Input_cost.this, fish_cost.class);
                 startActivity(intent);
                 finish();
             }
@@ -87,7 +87,7 @@ public class Input_class extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(Input_class.this, vegetable_cost.class);
+                intent.setClass(Input_cost.this, vegetable_cost.class);
                 startActivity(intent);
                 finish();
             }
@@ -97,7 +97,7 @@ public class Input_class extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(Input_class.this, other_cost.class);
+                intent.setClass(Input_cost.this, other_cost.class);
                 startActivity(intent);
                 finish();
             }
@@ -107,7 +107,7 @@ public class Input_class extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(Input_class.this, all_cost.class);
+                intent.setClass(Input_cost.this, all_cost.class);
                 startActivity(intent);
                 finish();
             }

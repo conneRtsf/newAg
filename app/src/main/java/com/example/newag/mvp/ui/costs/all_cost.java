@@ -37,7 +37,7 @@ public class all_cost extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.all_cost);
+        setContentView(R.layout.cost_all);
         DrawerLayout root = findViewById(R.id.root);
         ce1=findViewById(R.id.ce1);
         ce2=findViewById(R.id.ce2);
@@ -63,7 +63,7 @@ public class all_cost extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(all_cost.this, Input_class.class);
+                intent.setClass(all_cost.this, Input_cost.class);
                 startActivity(intent);
                 finish();
             }

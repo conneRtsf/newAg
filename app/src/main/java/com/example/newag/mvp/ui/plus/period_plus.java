@@ -19,7 +19,7 @@ public class period_plus extends AppCompatActivity {
     private static final String[] vegetable_info={"菜地1号","菜地2号","菜地10号","菜地666号"};
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.period_plus);
+        setContentView(R.layout.plus_period);
         //动态实现的下拉框，数据在程序中获得，实际项目可能来自数据库等
         this.spCity = (Spinner) super.findViewById(R.id.spinner_name);
         this.adapterCity = new ArrayAdapter<CharSequence>(this,

@@ -21,7 +21,7 @@ public class vegetable_period extends AppCompatActivity {
     Button tb1;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vegetable_period);
+        setContentView(R.layout.period_vegetable);
         ce1=findViewById(R.id.ce1);
         ce2=findViewById(R.id.ce2);
         DrawerLayout root = findViewById(R.id.root);
