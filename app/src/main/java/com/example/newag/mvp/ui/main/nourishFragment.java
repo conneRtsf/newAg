@@ -22,6 +22,7 @@ public class nourishFragment extends Fragment {
     Button bt3;
     Button bt4;
     Button bt5;
+    Button bt6;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -55,6 +56,14 @@ public class nourishFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), fish_period.class);
+                startActivity(intent);
+            }
+        });
+        bt6=view.findViewById(R.id.bt6);
+        bt6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), MainActivity4.class);
                 startActivity(intent);
             }
         });

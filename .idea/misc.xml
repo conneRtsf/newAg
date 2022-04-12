@@ -36,6 +36,9 @@
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/ic_baseline_keyboard_arrow_down_24.xml" value="0.1" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/ic_baseline_notes_24.xml" value="0.1745" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/ic_baseline_play_arrow_24.xml" value="0.1" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/ic_baseline_test_1.xml" value="0.148" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/ic_baseline_test_3.xml" value="0.148" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/ic_baseline_text_2.xml" value="0.117" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/id.xml" value="0.243" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/information.xml" value="0.1315" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/line.xml" value="0.177" />
@@ -70,17 +73,17 @@
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/warning.xml" value="0.1905" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/weight.xml" value="0.158" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/yuan.xml" value="0.123" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/yuanbiankuang3.xml" value="0.148" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout-v23/activity_main_item.xml" value="0.4" />
-        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout-v23/biankuang_test.xml" value="0.23802083333333332" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout-v23/fragment_my.xml" value="0.4" />
-        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout-v23/item_text.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/accounting.xml" value="0.19927536231884058" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_main.xml" value="0.16" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/all_cost.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/biankuang_test.xml" value="0.1157548125633232" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/bottom_tab.xml" value="0.24974358974358973" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/bottombar.xml" value="0.2" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/cost_all.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/cost_fish.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/cost_input.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/cost_other.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/cost_vegetable.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/energy_cost.xml" value="0.17708333333333334" />
@@ -95,6 +98,7 @@
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/fragment_screen_slide_pager_activity.xml" value="0.21933085501858737" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/fragment_share.xml" value="0.24974358974358973" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/input_costs.xml" value="0.2" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/item_text.xml" value="0.23802083333333332" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/my.xml" value="0.24974358974358973" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/other_cost.xml" value="0.17708333333333334" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/other_period.xml" value="0.25364583333333335" />
@@ -113,8 +117,11 @@
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/template_other.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/template_plus.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/template_vegetable.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/test_popupwindow.xml" value="0.12284701114488349" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/title4.xml" value="0.23802083333333332" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/vegetable_cost.xml" value="0.24974358974358973" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/vegetable_period.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/yuanbiankuang3.xml" value="0.23802083333333332" />
         <entry key="..\:/Users/86166/AppData/Local/Android/Sdk/platforms/android-32/data/res/layout/simple_spinner_dropdown_item.xml" value="0.25364583333333335" />
       </map>
     </option>

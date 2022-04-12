@@ -83,6 +83,9 @@
         <activity android:name=".mvp.ui.plus.template_plus"
             android:exported="true">
         </activity>
+        <activity android:name=".mvp.ui.main.MainActivity4"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>
