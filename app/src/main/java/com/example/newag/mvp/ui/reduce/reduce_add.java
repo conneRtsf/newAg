@@ -1,66 +1,96 @@
 package com.example.newag.mvp.ui.reduce;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.example.newag.mvp.model.Book;
 import com.example.newag.R;
-import com.example.newag.mvp.adapter.ListAdapter;
+import com.example.newag.mvp.adapter.AllTextMasterAdapter;
+import com.example.newag.mvp.model.bean.AllText;
+import com.example.newag.mvp.model.bean.AllTextMaster;
 
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 public class reduce_add extends AppCompatActivity implements View.OnClickListener{
     public Button btnDate;
-    private RecyclerView recyclerView;
-    private CheckBox checkbox;
-    private TextView selected;
-    private ListAdapter adapter;
-    private EventBus event;
-    private boolean isChange = false;
-    private final ArrayList<Book> list = new ArrayList<>();
     Calendar calendar= Calendar.getInstance(Locale.CHINA);
-
+    Button plus;
+    private final List<AllText> allTextList11=new ArrayList<>();
+    private final List<AllText> allTextList22=new ArrayList<>();
+    private final List<AllText> allTextList1=new ArrayList<>();
+    private final List<AllText> allTextList2=new ArrayList<>();//定义一个新的arraylist,数据类型为自定义的AllText，基础数据
+    private final List<AllTextMaster> data_1=new ArrayList<>();//定义数据1,原始数据
+    private final List<AllTextMaster> data_2=new ArrayList<>();//定义数据2,模拟修改后的数据
+    private PopupWindow popupWindow;//定义一个新的popupWindow 主
+    private PopupWindow newPopWindow;//副
+    private AllTextMasterAdapter adapter;
     @Subscribe
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reduce_add);
-        btnDate= (Button) findViewById(R.id.btn_Date);
+        btnDate= findViewById(R.id.btn_Date);
         btnDate.setOnClickListener(this);
         SimpleDateFormat   formatter   =   new   SimpleDateFormat   ("yyyy年\nM月 ");
         Date curDate =  new Date(System.currentTimeMillis());
         String   str   =   formatter.format(curDate);
         btnDate.setText(str);
-//        Button bt3=findViewById(R.id.ib1);
-//        bt3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                CheckBox ch= LayoutInflater.from(reduce_add.this).inflate(R.layout.activity_main_item, null).findViewById(R.id.checkbox);
-//                ch.setVisibility(View.GONE);
-//            }
-//        });
-        initView();
-        initData();
+        plus=findViewById(R.id.plus);
+        plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setDialog();
+            }
+        });
+        initText();//为原始数据添加数据
+        RecyclerView recyclerView=findViewById(R.id.view_one);//找到布局中的recycleview控件
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);//设置布局管理器，cv工程
+        recyclerView.setLayoutManager(linearLayoutManager);//为recycleview添加布局管理器，cv
+         /*adapter=new AllTextAdapter(allTextList);//定义一个新的自定义适配器（AllTextAdapter），并且把数据传进去
+        recyclerView.setAdapter(adapter);//为recycleview传入定义好的适配器，并展示*/
+        adapter=new AllTextMasterAdapter(this,data_1);//定义一个新的大适配器（AllTextMasterAdapter），并且把数据传进去
+        recyclerView.setAdapter(adapter);//设置适配器
+        Button Button=findViewById(R.id.left);
+        Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopWindow();//展示popwindow的方法
+            }
+        });
+        //
+        SwipeRefreshLayout refreshLayout=findViewById(R.id.refresh);//找到下拉刷新
+        refreshLayout.setColorSchemeResources(R.color.blue,R.color.blue);//设置下拉刷新主题（最多支持三种颜色变换，这里两种）
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                adapter.setNewData(data_2);//模拟数据变换,以后这里就写从后端获取数据的逻辑
+                refreshLayout.setRefreshing(false);
+            }
+        });
     }
 
     public static void showDatePickerDialog(Activity activity, int themeResId, Button bt, Calendar calendar) {
@@ -79,80 +109,98 @@ public class reduce_add extends AppCompatActivity implements View.OnClickListene
                 , calendar.get(Calendar.MONTH)
                 , calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
-    @Override
-    public void onClick(View view) {
-        showDatePickerDialog(this,  2, btnDate, calendar);;
-        }
-
-    @Subscribe
-    public void initView() {
-        event = EventBus.getDefault();
-        event.register(this);
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        checkbox = (CheckBox) findViewById(R.id.checkbox);
-        selected = (TextView) findViewById(R.id.selected);
+    private void showPopWindow() {
+        //定义一个view，其中包含popwindow的布局文件
+        View view1= LayoutInflater.from(reduce_add.this).inflate(R.layout.test_popupwindow,null);
+        popupWindow =new PopupWindow(view1, RecyclerView.LayoutParams.MATCH_PARENT,
+                RecyclerView.LayoutParams.WRAP_CONTENT,true);//设置popwindow的属性（布局，x，y，true）
+        TextView make_text=(TextView)view1.findViewById(R.id.make_text);
+        TextView back_test=(TextView)view1.findViewById(R.id.back_test);
+        make_text.setOnClickListener(this);
+        back_test.setOnClickListener(this);
+        //定义一个view，其中包含main4的布局文件
+        View rootView=LayoutInflater.from(reduce_add.this).inflate(R.layout.reduce_add,null);
+        popupWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);//展示自定义的popwindow，（放哪个布局里，放布局里的位置，x，y），cv工程
+        View view2=LayoutInflater.from(reduce_add.this).inflate(R.layout.popwindowdelete,null);
+        newPopWindow=new PopupWindow(view2,RecyclerView.LayoutParams.MATCH_PARENT,
+                RecyclerView.LayoutParams.WRAP_CONTENT,false);
+        Button button_delete=(Button) view2.findViewById(R.id.delete);
+        button_delete.setOnClickListener(this);
     }
-
-    public void initData() {
-        for (int i = 0; i < 20; i++) {
-            Book model = new Book();
-            model.setId(i);
-            model.setName("商品" + i);
-            model.setDesc("描述" + i);
-            list.add(model);
-        }
-        adapter = new ListAdapter(list, event);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
-        checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                try {
-                    HashMap<Integer, Boolean> map = new HashMap<Integer, Boolean>();
-                    int count = 0;
-                    if (isChecked) {
-                        isChange = false;
-                    }
-                    for (int i = 0, p = list.size(); i < p; i++) {
-                        if (isChecked) {
-                            map.put(i, true);
-                            count++;
-                        } else {
-                            if (!isChange) {
-                                map.put(i, false);
-                                count = 0;
-                            } else {
-                                map = adapter.getMap();
-                                count = map.size();
-                            }
-                        }
-                    }
-                    selected.setText("已选" + count + "项");
-                    adapter.setMap(map);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        adapter.setOnItemClickListener(new ListAdapter.ItemClickListener() {
-            @Override
-            public void onItemClick(RecyclerView.ViewHolder holder, int position) {
-                Log.e("onItemClick", "" + position);
-            }
-
-            @Override
-            public void onItemLongClick(final RecyclerView.ViewHolder holder, final int position) {
-                Log.e("onItemLongClick", "" + position);
-            }
-        });
+    //添加数据相关方法
+    private void initText() {
+        AllText one=new AllText("one");
+        allTextList1.add(one);
+        AllText two=new AllText("two");
+        allTextList1.add(two);
+        AllText three=new AllText("three");
+        allTextList1.add(three);
+        AllTextMaster add1=new AllTextMaster("0",allTextList1);
+        data_1.add(add1);
+        allTextList2.add(one);
+        allTextList2.add(two);
+        AllTextMaster add2=new AllTextMaster("1",allTextList2);
+        data_1.add(add2);
+        //
+        AllText one1=new AllText("菜地1\n50m^2/40m^2");
+        allTextList11.add(one1);
+        AllText two2=new AllText("菜地2\n60m^2/40m^2");
+        allTextList11.add(two2);
+        AllText three3=new AllText("菜地3\n40m^2/40m^2");
+        allTextList11.add(three3);
+        AllTextMaster add11=new AllTextMaster("4月10日",allTextList11);
+        data_2.add(add11);
+        allTextList22.clear();
+        AllText one2=new AllText("鱼池1\n40m^3/40m^3");
+        allTextList22.add(one2);
+        AllTextMaster add22=new AllTextMaster("4月9日",allTextList22);
+        data_2.add(add22);
     }
-
+    @SuppressLint("NotifyDataSetChanged")
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        event.unregister(this);
+    public void onClick(View v) {
+        int id=v.getId();
+        switch (id){
+            case R.id.make_text:{
+                adapter.setCheckbox(true);
+                adapter.notifyDataSetChanged();
+                popupWindow.dismiss();//销毁popwindow
+                View rootView= LayoutInflater.from(reduce_add.this).inflate(R.layout.reduce_add,null);
+                newPopWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);
+            }
+            break;
+            case R.id.btn_Date:{
+                showDatePickerDialog(this,  2, btnDate, calendar);;
+                break;
+            }
+            case R.id.back_test:
+                popupWindow.dismiss();
+                break;
+            case R.id.delete:
+                adapter.setCheckbox(false);
+                adapter.notifyDataSetChanged();
+                newPopWindow.dismiss();
+        }
+    }
+    private void setDialog() {
+        Dialog mCameraDialog = new Dialog(this, R.style.BottomDialog);
+        LinearLayout root = (LinearLayout) LayoutInflater.from(this).inflate(
+                R.layout.plus_reduce, null);
+        //初始化视图
+        mCameraDialog.setContentView(root);
+        Window dialogWindow = mCameraDialog.getWindow();
+        dialogWindow.setGravity(Gravity.BOTTOM);
+//        dialogWindow.setWindowAnimations(R.style.dialogstyle); // 添加动画
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes(); // 获取对话框当前的参数值
+        lp.x = 0; // 新位置X坐标
+        lp.y = 0; // 新位置Y坐标
+        lp.width = (int) getResources().getDisplayMetrics().widthPixels; // 宽度
+        root.measure(0, 0);
+        lp.height = root.getMeasuredHeight();
+
+        lp.alpha = 9f; // 透明度
+        dialogWindow.setAttributes(lp);
+        mCameraDialog.show();
     }
 }
 

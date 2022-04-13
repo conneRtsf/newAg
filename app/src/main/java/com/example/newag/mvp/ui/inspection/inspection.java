@@ -1,97 +1,50 @@
-package com.example.newag.mvp.ui.input_period;
+package com.example.newag.mvp.ui.inspection;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.newag.R;
-import com.example.newag.mvp.ui.plus.period_plus;
+import com.example.newag.mvp.ui.plus.inspection_plus;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class fish_period extends AppCompatActivity {
-    Button ce1;
-    Button ce2;
-    Button ce3;
+public class inspection extends AppCompatActivity {
     Button plus;
-    Button tb1;
     Calendar calendar= Calendar.getInstance(Locale.CHINA);
     public Button btnDate;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.period_fish);
-        ce1=findViewById(R.id.ce1);
-        ce2=findViewById(R.id.ce2);
-        ce3=findViewById(R.id.ce3);
+        setContentView(R.layout.inspection);
         plus=findViewById(R.id.plus);
         btnDate=findViewById(R.id.btn_Date);
         SimpleDateFormat formatter   =   new   SimpleDateFormat   ("yyyy年\nM月 ");
         Date curDate =  new Date(System.currentTimeMillis());
         String   str   =   formatter.format(curDate);
         btnDate.setText(str);
-        DrawerLayout root = findViewById(R.id.root);
         btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDatePickerDialog(fish_period.this,  2, btnDate, calendar);;
-            }
-        });
-        ce2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(fish_period.this, vegetable_period.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        ce3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(fish_period.this, other_period.class);
-                startActivity(intent);
-                finish();
+                showDatePickerDialog(inspection.this,  2, btnDate, calendar);;
             }
         });
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(fish_period.this, period_plus.class);
+                intent.setClass(inspection.this, inspection_plus.class);
                 startActivity(intent);
             }
         });
-        tb1=findViewById(R.id.tb1);
-        final View contentView = findViewById(R.id.content);
-        tb1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                root.openDrawer(Gravity.LEFT);
-            }
-        });
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, root, android.R.string.yes, android.R.string.cancel) {
-            @Override
-            public void onDrawerSlide(View drawerView, float slideOffset) {
-                super.onDrawerSlide(drawerView, slideOffset);
-                float slideX = drawerView.getWidth() * slideOffset;
-                contentView.setTranslationX(slideX);
-            }
-        };
-        root.addDrawerListener(actionBarDrawerToggle);
     }
     public static void showDatePickerDialog(Activity activity, int themeResId, Button bt, Calendar calendar) {
         // 直接创建一个DatePickerDialog对话框实例，并将它显示出来

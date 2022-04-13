@@ -3,8 +3,8 @@ package com.example.newag.mvp.model.bean;
 public class AllText {
     private String name;
     private int imageId;
-    public AllText(String name,int imageId){
-        this.imageId=imageId;
+    public AllText(String name){
+//        this.imageId=imageId;
         this.name=name;
     }
     public String getName(){

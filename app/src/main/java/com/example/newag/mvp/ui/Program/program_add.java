@@ -1,4 +1,4 @@
-package com.example.newag.mvp.ui.input_period;
+package com.example.newag.mvp.ui.Program;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -14,55 +14,43 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.newag.R;
-import com.example.newag.mvp.ui.plus.period_plus;
+import com.example.newag.mvp.ui.plus.program_plus;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class fish_period extends AppCompatActivity {
+public class program_add extends AppCompatActivity {
     Button ce1;
     Button ce2;
-    Button ce3;
     Button plus;
     Button tb1;
     Calendar calendar= Calendar.getInstance(Locale.CHINA);
     public Button btnDate;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.period_fish);
+        setContentView(R.layout.program_add);
         ce1=findViewById(R.id.ce1);
         ce2=findViewById(R.id.ce2);
-        ce3=findViewById(R.id.ce3);
         plus=findViewById(R.id.plus);
+        DrawerLayout root = findViewById(R.id.root);
         btnDate=findViewById(R.id.btn_Date);
         SimpleDateFormat formatter   =   new   SimpleDateFormat   ("yyyy年\nM月 ");
         Date curDate =  new Date(System.currentTimeMillis());
         String   str   =   formatter.format(curDate);
         btnDate.setText(str);
-        DrawerLayout root = findViewById(R.id.root);
         btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDatePickerDialog(fish_period.this,  2, btnDate, calendar);;
+                showDatePickerDialog(program_add.this,  2, btnDate, calendar);;
             }
         });
         ce2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(fish_period.this, vegetable_period.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        ce3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(fish_period.this, other_period.class);
+                intent.setClass(program_add.this, Feeding_record.class);
                 startActivity(intent);
                 finish();
             }
@@ -71,7 +59,7 @@ public class fish_period extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(fish_period.this, period_plus.class);
+                intent.setClass(program_add.this, program_plus.class);
                 startActivity(intent);
             }
         });

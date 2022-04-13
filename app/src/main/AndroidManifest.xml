@@ -34,7 +34,7 @@
         <activity android:name=".mvp.ui.reduce.reduce_add"
             android:exported="true">
         </activity>
-        <activity android:name=".mvp.ui.costs.Input_cost"
+        <activity android:name=".mvp.ui.costs.people_cost"
             android:exported="true">
         </activity>
         <activity android:name=".mvp.ui.costs.all_cost"
@@ -83,7 +83,25 @@
         <activity android:name=".mvp.ui.plus.template_plus"
             android:exported="true">
         </activity>
-        <activity android:name=".mvp.ui.main.MainActivity4"
+        <activity android:name=".mvp.ui.Program.Feeding_record"
+            android:exported="true">
+        </activity>
+        <activity android:name=".mvp.ui.Program.program_add"
+            android:exported="true">
+        </activity>
+        <activity android:name=".mvp.ui.plus.program_plus"
+            android:exported="true">
+        </activity>
+        <activity android:name=".mvp.ui.plus.record_plus"
+            android:exported="true">
+        </activity>
+        <activity android:name=".mvp.ui.plus.inspection_plus"
+            android:exported="true">
+        </activity>
+        <activity android:name=".mvp.ui.inspection.inspection"
+            android:exported="true">
+        </activity>
+        <activity android:name=".mvp.ui.plus.reduce_plus"
             android:exported="true">
         </activity>
     </application>

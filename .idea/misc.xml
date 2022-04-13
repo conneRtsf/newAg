@@ -29,6 +29,7 @@
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/farm_press.xml" value="0.167" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/feed.xml" value="0.123" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/fish.xml" value="0.123" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/grow.xml" value="0.1685" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/ic_android_black_24dp.xml" value="0.1" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.1" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24.xml" value="0.249" />
@@ -41,6 +42,7 @@
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/ic_baseline_text_2.xml" value="0.117" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/id.xml" value="0.243" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/information.xml" value="0.1315" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/item_back.xml" value="0.157" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/line.xml" value="0.177" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/line2.xml" value="0.177" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/list_view.xml" value="0.123" />
@@ -78,11 +80,15 @@
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout-v23/fragment_my.xml" value="0.4" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/accounting.xml" value="0.19927536231884058" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_main.xml" value="0.16" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_main4.xml" value="0.2" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/all_cost.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/biankuang_test.xml" value="0.1157548125633232" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/biankuang_test.xml" value="0.264" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/bottom_tab.xml" value="0.24974358974358973" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/bottombar.xml" value="0.2" />
-        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/cost_all.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/cost_all.xml" value="0.24817518248175183" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/cost_energy.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/cost_feed.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/cost_fish.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/cost_input.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/cost_other.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/cost_vegetable.xml" value="0.25364583333333335" />
@@ -98,6 +104,8 @@
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/fragment_screen_slide_pager_activity.xml" value="0.21933085501858737" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/fragment_share.xml" value="0.24974358974358973" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/input_costs.xml" value="0.2" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/inspection.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/inspection_plus.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/item_text.xml" value="0.23802083333333332" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/my.xml" value="0.24974358974358973" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/other_cost.xml" value="0.17708333333333334" />
@@ -109,8 +117,14 @@
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/plus_fish_vegetable.xml" value="0.19927536231884058" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/plus_people.xml" value="0.27672955974842767" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/plus_period.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/plus_program.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/plus_record.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/plus_template.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/popwindowdelete.xml" value="0.1" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/program_add.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/program_record.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/reduce_add.xml" value="0.264" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/reduce_plus.xml" value="0.23697916666666666" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/template_drug.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/template_feed.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/template_fish.xml" value="0.2962287104622871" />
@@ -118,7 +132,7 @@
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/template_plus.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/template_vegetable.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/test_popupwindow.xml" value="0.12284701114488349" />
-        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/title4.xml" value="0.23802083333333332" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/title4.xml" value="0.1" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/vegetable_cost.xml" value="0.24974358974358973" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/vegetable_period.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/yuanbiankuang3.xml" value="0.23802083333333332" />

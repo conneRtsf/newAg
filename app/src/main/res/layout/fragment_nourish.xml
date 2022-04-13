@@ -114,6 +114,7 @@
                 android:layout_height="@dimen/dp_40"/>
 
             <Button
+                android:id="@+id/bt9"
                 android:layout_width="@dimen/dp_300"
                 android:background="@drawable/backnew"
                 android:textColor="@color/black"
@@ -128,6 +129,7 @@
                 android:layout_height="@dimen/dp_40"/>
 
             <Button
+                android:id="@+id/bt8"
                 android:layout_width="@dimen/dp_300"
                 android:background="@drawable/backnew"
                 android:drawableStart="@drawable/sensor"

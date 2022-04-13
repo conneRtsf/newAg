@@ -10,9 +10,11 @@ import android.widget.Button;
 import androidx.fragment.app.Fragment;
 
 import com.example.newag.R;
+import com.example.newag.mvp.ui.Program.program_add;
 import com.example.newag.mvp.ui.accounting.Sales_accounting;
-import com.example.newag.mvp.ui.costs.Input_cost;
+import com.example.newag.mvp.ui.costs.people_cost;
 import com.example.newag.mvp.ui.input_period.fish_period;
+import com.example.newag.mvp.ui.inspection.inspection;
 import com.example.newag.mvp.ui.reduce.reduce_add;
 import com.example.newag.mvp.ui.template.drug_template;
 
@@ -23,6 +25,8 @@ public class nourishFragment extends Fragment {
     Button bt4;
     Button bt5;
     Button bt6;
+    Button bt8;
+    Button bt9;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -63,7 +67,7 @@ public class nourishFragment extends Fragment {
         bt6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), MainActivity4.class);
+                Intent intent = new Intent(getActivity(), program_add.class);
                 startActivity(intent);
             }
         });
@@ -71,7 +75,23 @@ public class nourishFragment extends Fragment {
         bt7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), Input_cost.class);
+                Intent intent = new Intent(getActivity(), people_cost.class);
+                startActivity(intent);
+            }
+        });
+//        bt8=view.findViewById(R.id.bt8);
+//        bt8.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getActivity(), MainActivity4.class);
+//                startActivity(intent);
+//            }
+//        });
+        bt9=view.findViewById(R.id.bt9);
+        bt9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), inspection.class);
                 startActivity(intent);
             }
         });

@@ -17,6 +17,7 @@ import java.util.List;
 
 //基于BaseQuickAdapter
 public class AllTextMasterAdapter extends BaseQuickAdapter<AllTextMaster,BaseViewHolder> {
+    Boolean flag=false;
     private List<AllText> allTextList=new ArrayList<>();//用来传入数据
     public AllTextMasterAdapter(Context context, @Nullable List<AllTextMaster> data) {
         super(R.layout.biankuang_test, data);//传入边框布局，数据
@@ -36,6 +37,12 @@ public class AllTextMasterAdapter extends BaseQuickAdapter<AllTextMaster,BaseVie
         ((RecyclerView)helper.getView(R.id.recyclerview)).setLayoutManager(new LinearLayoutManager(mContext,RecyclerView.VERTICAL,false));//传入布局
         /*((RecyclerView)helper.getView(R.id.recyclerview)).addItemDecoration(new HomeSpaceItemDecoration(1,Screen));*/
         ((RecyclerView) helper.getView(R.id.recyclerview)).setAdapter(allTextAdapter);//设置适配器
+        if (flag==true){
+            allTextAdapter.setCheckbox(true);
+        }
         allTextAdapter.notifyDataSetChanged();//提醒数据发生改变
+    }
+    public void setCheckbox(Boolean flag){
+        this.flag=flag;
     }
 }

@@ -3,6 +3,7 @@ package com.example.newag.mvp.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,16 +16,22 @@ import com.example.newag.mvp.model.bean.AllText;
 import java.util.List;
 
 public class AllTextAdapter extends RecyclerView.Adapter<AllTextAdapter.ViewHolder> {
+    Boolean flag=false;
     private List<AllText> mAllTextList;//定义一个新的arraylist,数据类型为自定义的AllText
     //写获取布局中相关控件的方法
     static class ViewHolder extends RecyclerView.ViewHolder{
+        CheckBox checkBox;
         ImageView testImage;
         TextView textName;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            checkBox= (CheckBox) itemView.findViewById(R.id.cb);
             testImage=(ImageView) itemView.findViewById(R.id.test_image);
             textName=(TextView) itemView.findViewById(R.id.test_text);
         }
+    }
+    public void setCheckbox(Boolean flag){
+        this.flag=flag;
     }
     public AllTextAdapter(List<AllText> allTextList){
         mAllTextList=allTextList;
@@ -47,6 +54,9 @@ public class AllTextAdapter extends RecyclerView.Adapter<AllTextAdapter.ViewHold
         //为控件添加数据
         holder.textName.setText(allText.getName());
         holder.testImage.setImageResource(allText.getImageId());
+        if (flag==false){
+            holder.checkBox.setVisibility(View.INVISIBLE);
+        }else holder.checkBox.setVisibility(View.VISIBLE);
     }
     //返回recycleview的行数，这里返回mAllTextList数据个数
     @Override
