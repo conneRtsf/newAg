@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 nourish.setCompoundDrawablesWithIntrinsicBounds(0,
                         R.drawable.farm_press,0,0);
                 if(nourishFragment == null){
-                    nourishFragment = new nourishFragment();
+                    nourishFragment = new NourishFragment();
                     mTransaction.add(R.id.container, nourishFragment,
                             "clothes_fragment");
                 }else {
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 share.setCompoundDrawablesWithIntrinsicBounds(0,
                         R.drawable.share_press,0,0);
                 if(shareFragment == null){
-                    shareFragment = new shareFragment();
+                    shareFragment = new ShareFragment();
                     mTransaction.add(R.id.container, shareFragment,
                             "food_fragment");
                 }else {

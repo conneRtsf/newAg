@@ -14,7 +14,7 @@ import com.example.newag.R;
  * Use the {@link ShareFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MyFragment extends Fragment {
+public class ShareFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,7 +25,7 @@ public class MyFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public MyFragment() {
+    public ShareFragment() {
         // Required empty public constructor
     }
 
@@ -60,6 +60,6 @@ public class MyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my, container, false);
+        return inflater.inflate(R.layout.fragment_share, container, false);
     }
 }
