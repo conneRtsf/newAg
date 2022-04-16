@@ -87,7 +87,7 @@ public class AllCost extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cost_all);
+        setContentView(R.layout.activity_costAll);
 
         SimpleDateFormat formatter   =   new   SimpleDateFormat   ("yyyy年\nM月 ");
         Date curDate =  new Date(System.currentTimeMillis());
@@ -225,7 +225,7 @@ public class AllCost extends AppCompatActivity {
     private void setDialog() {
         Dialog mCameraDialog = new Dialog(this, R.style.BottomDialog);
         LinearLayout root = (LinearLayout) LayoutInflater.from(this).inflate(
-                R.layout.plus_people, null);
+                R.layout.activity_pluspeople, null);
         //初始化视图
         mCameraDialog.setContentView(root);
         Window dialogWindow = mCameraDialog.getWindow();
@@ -244,7 +244,7 @@ public class AllCost extends AppCompatActivity {
     }
     private void showPopWindow() {
         //定义一个view，其中包含popwindow的布局文件
-        View view1= LayoutInflater.from(AllCost.this).inflate(R.layout.test_popupwindow,null);
+        View view1= LayoutInflater.from(AllCost.this).inflate(R.layout.footer_batch,null);
         popupWindow =new PopupWindow(view1, RecyclerView.LayoutParams.MATCH_PARENT,
                 RecyclerView.LayoutParams.WRAP_CONTENT,true);//设置popwindow的属性（布局，x，y，true）
         TextView make_text=(TextView)view1.findViewById(R.id.make_text);
@@ -255,7 +255,7 @@ public class AllCost extends AppCompatActivity {
                 adapter.setCheckbox(true);
                 adapter.notifyDataSetChanged();
                 popupWindow.dismiss();//销毁popwindow
-                View rootView= LayoutInflater.from(AllCost.this).inflate(R.layout.cost_all,null);
+                View rootView= LayoutInflater.from(AllCost.this).inflate(R.layout.activity_costAll,null);
                 newPopWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);
             }
         });
@@ -266,9 +266,9 @@ public class AllCost extends AppCompatActivity {
             }
         });
         //定义一个view，其中包含main4的布局文件
-        View rootView=LayoutInflater.from(AllCost.this).inflate(R.layout.cost_all,null);
+        View rootView=LayoutInflater.from(AllCost.this).inflate(R.layout.activity_costAll,null);
         popupWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);//展示自定义的popwindow，（放哪个布局里，放布局里的位置，x，y），cv工程
-        View view2=LayoutInflater.from(AllCost.this).inflate(R.layout.popwindowdelete,null);
+        View view2=LayoutInflater.from(AllCost.this).inflate(R.layout.ppw_delete,null);
         newPopWindow=new PopupWindow(view2,RecyclerView.LayoutParams.MATCH_PARENT,
                 RecyclerView.LayoutParams.WRAP_CONTENT,false);
         Button button_delete=(Button) view2.findViewById(R.id.delete);

@@ -42,7 +42,7 @@ public class AllTextAdapter extends RecyclerView.Adapter<AllTextAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //获取具体布局
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_text,parent,false);
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_small_list,parent,false);
         //LayoutInflater.from(parent.getContext()).inflate(R.layout.xxx,parent,false);重复
         ViewHolder holder=new ViewHolder(view);//获取具体布局中的具体控件
         return holder;

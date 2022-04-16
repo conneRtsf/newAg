@@ -84,7 +84,7 @@ public class PeopleCost extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cost_input);
+        setContentView(R.layout.activity_costinput);
         initText();//为原始数据添加数据
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);//设置布局管理器，cv工程
         recyclerView.setLayoutManager(linearLayoutManager);//为recycleview添加布局管理器，cv
@@ -223,7 +223,7 @@ public class PeopleCost extends AppCompatActivity {
     private void setDialog() {
         Dialog mCameraDialog = new Dialog(this, R.style.BottomDialog);
         LinearLayout root = (LinearLayout) LayoutInflater.from(this).inflate(
-                R.layout.plus_people, null);
+                R.layout.activity_pluspeople, null);
         //初始化视图
         mCameraDialog.setContentView(root);
         Window dialogWindow = mCameraDialog.getWindow();
@@ -243,7 +243,7 @@ public class PeopleCost extends AppCompatActivity {
 
     private void showPopWindow() {
         //定义一个view，其中包含popwindow的布局文件
-        View view1= LayoutInflater.from(PeopleCost.this).inflate(R.layout.test_popupwindow,null);
+        View view1= LayoutInflater.from(PeopleCost.this).inflate(R.layout.footer_batch,null);
         popupWindow =new PopupWindow(view1, RecyclerView.LayoutParams.MATCH_PARENT,
                 RecyclerView.LayoutParams.WRAP_CONTENT,true);//设置popwindow的属性（布局，x，y，true）
         TextView make_text=(TextView)view1.findViewById(R.id.make_text);
@@ -254,7 +254,7 @@ public class PeopleCost extends AppCompatActivity {
                 adapter.setCheckbox(true);
                 adapter.notifyDataSetChanged();
                 popupWindow.dismiss();//销毁popwindow
-                View rootView= LayoutInflater.from(PeopleCost.this).inflate(R.layout.cost_input,null);
+                View rootView= LayoutInflater.from(PeopleCost.this).inflate(R.layout.activity_costinput,null);
                 newPopWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);
             }
         });
@@ -265,9 +265,9 @@ public class PeopleCost extends AppCompatActivity {
             }
         });
         //定义一个view，其中包含main4的布局文件
-        View rootView=LayoutInflater.from(PeopleCost.this).inflate(R.layout.cost_input,null);
+        View rootView=LayoutInflater.from(PeopleCost.this).inflate(R.layout.activity_costinput,null);
         popupWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);//展示自定义的popwindow，（放哪个布局里，放布局里的位置，x，y），cv工程
-        View view2=LayoutInflater.from(PeopleCost.this).inflate(R.layout.popwindowdelete,null);
+        View view2=LayoutInflater.from(PeopleCost.this).inflate(R.layout.ppw_delete,null);
         newPopWindow=new PopupWindow(view2,RecyclerView.LayoutParams.MATCH_PARENT,
                 RecyclerView.LayoutParams.WRAP_CONTENT,false);
         Button button_delete=(Button) view2.findViewById(R.id.delete);
