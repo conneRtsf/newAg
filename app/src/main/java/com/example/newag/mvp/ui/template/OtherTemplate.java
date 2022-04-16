@@ -26,14 +26,35 @@ import com.example.newag.mvp.ui.plus.TemplatePlus;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+
 public class OtherTemplate extends AppCompatActivity {
-    Button ce1;
-    Button ce2;
-    Button ce3;
-    Button ce4;
-    Button ce5;
-    Button plus;
+    @BindView(R.id.tb1)
     Button tb1;
+    @BindView(R.id.ce1)
+    Button ce1;
+    @BindView(R.id.ce2)
+    Button ce2;
+    @BindView(R.id.ce3)
+    Button ce3;
+    @BindView(R.id.ce4)
+    Button ce4;
+    @BindView(R.id.ce5)
+    Button ce5;
+    @BindView(R.id.plus)
+    Button plus;
+    @BindView(R.id.btn_Date)
+    Button btnDate;
+    @BindView(R.id.root)
+    DrawerLayout root;
+    @BindView(R.id.left)
+    Button Button;
+    @BindView(R.id.view_one)
+    RecyclerView recyclerView;
+    @BindView(R.id.refresh)
+    SwipeRefreshLayout refreshLayout;
+    @BindView(R.id.content)
+    View contentView;
     private final List<AllText> allTextList11=new ArrayList<>();
     private final List<AllText> allTextList22=new ArrayList<>();
     private final List<AllText> allTextList1=new ArrayList<>();
@@ -46,22 +67,13 @@ public class OtherTemplate extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.template_other);
-        ce1=findViewById(R.id.ce1);
-        ce2=findViewById(R.id.ce2);
-        ce3=findViewById(R.id.ce3);
-        ce4=findViewById(R.id.ce4);
-        ce5=findViewById(R.id.ce5);
-        plus=findViewById(R.id.plus);
-        DrawerLayout root = findViewById(R.id.root);
         initText();//为原始数据添加数据
-        RecyclerView recyclerView=findViewById(R.id.view_one);//找到布局中的recycleview控件
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);//设置布局管理器，cv工程
         recyclerView.setLayoutManager(linearLayoutManager);//为recycleview添加布局管理器，cv
          /*adapter=new AllTextAdapter(allTextList);//定义一个新的自定义适配器（AllTextAdapter），并且把数据传进去
         recyclerView.setAdapter(adapter);//为recycleview传入定义好的适配器，并展示*/
         adapter=new AllTextMasterAdapter(this,data_1);//定义一个新的大适配器（AllTextMasterAdapter），并且把数据传进去
         recyclerView.setAdapter(adapter);//设置适配器
-        Button Button=findViewById(R.id.left);
         Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,7 +81,6 @@ public class OtherTemplate extends AppCompatActivity {
             }
         });
         //
-        SwipeRefreshLayout refreshLayout=findViewById(R.id.refresh);//找到下拉刷新
         refreshLayout.setColorSchemeResources(R.color.blue,R.color.blue);//设置下拉刷新主题（最多支持三种颜色变换，这里两种）
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -123,8 +134,6 @@ public class OtherTemplate extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        tb1=findViewById(R.id.tb1);
-        final View contentView = findViewById(R.id.content);
         tb1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

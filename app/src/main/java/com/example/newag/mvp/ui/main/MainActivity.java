@@ -12,9 +12,14 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.newag.R;
 
+import butterknife.BindView;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+    @BindView(R.id.nourish)
     private TextView nourish;
+    @BindView(R.id.share)
     private TextView share;
+    @BindView(R.id.my)
     private TextView my;
 
     private Fragment nourishFragment;
@@ -48,10 +53,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void init(){
-        nourish = (TextView)findViewById(R.id.nourish);
-        share = (TextView)findViewById(R.id.share);
-        my = (TextView)findViewById(R.id.my);
-
         nourish.setOnClickListener(this);
         share.setOnClickListener(this);
         my.setOnClickListener(this);
