@@ -34,14 +34,27 @@ import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class FeedingRecord extends AppCompatActivity {
-    @BindView(R.id.tb1)
-    Button tb1;
-    @BindView(R.id.ce1)
-    Button ce1;
-    @BindView(R.id.plus)
-    Button plus;
+    @OnClick(R.id.tb1)
+    void onClick(View view) {
+        root.openDrawer(Gravity.LEFT);
+    }
+    @OnClick(R.id.ce1)
+    void onClick1(View view) {
+        Intent intent = new Intent();
+        intent.setClass(FeedingRecord.this, ProgramAdd.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.plus)
+    void onClick11(View view) {
+        Intent intent = new Intent();
+        intent.setClass(FeedingRecord.this, RecordPlus.class);
+        startActivity(intent);
+    }
     @BindView(R.id.btn_Date)
     Button btnDate;
     @BindView(R.id.root)
@@ -67,6 +80,7 @@ public class FeedingRecord extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_programrecord);
+        ButterKnife.bind(this);
         SimpleDateFormat formatter   =   new   SimpleDateFormat   ("yyyy年\nM月 ");
         Date curDate =  new Date(System.currentTimeMillis());
         String   str   =   formatter.format(curDate);
@@ -99,29 +113,7 @@ public class FeedingRecord extends AppCompatActivity {
                 showDatePickerDialog(FeedingRecord.this,  2, btnDate, calendar);;
             }
         });
-        ce1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(FeedingRecord.this, ProgramAdd.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-        plus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(FeedingRecord.this, RecordPlus.class);
-                startActivity(intent);
-            }
-        });
-        tb1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                root.openDrawer(Gravity.LEFT);
-            }
-        });
+
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, root, android.R.string.yes, android.R.string.cancel) {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {

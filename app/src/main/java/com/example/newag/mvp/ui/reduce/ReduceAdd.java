@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -26,8 +27,7 @@ import com.example.newag.R;
 import com.example.newag.mvp.adapter.AllTextMasterAdapter;
 import com.example.newag.mvp.model.bean.AllText;
 import com.example.newag.mvp.model.bean.AllTextMaster;
-
-import org.greenrobot.eventbus.Subscribe;
+import com.example.newag.mvp.ui.plus.ReducePlus;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,10 +37,16 @@ import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ReduceAdd extends AppCompatActivity implements View.OnClickListener{
-    @BindView(R.id.plus)
-    Button plus;
+    @OnClick(R.id.plus)
+    void onClick11(View view) {
+        Intent intent = new Intent();
+        intent.setClass(ReduceAdd.this, ReducePlus.class);
+        startActivity(intent);
+    }
     @BindView(R.id.root)
     DrawerLayout root;
     @BindView(R.id.left)
@@ -61,20 +67,19 @@ public class ReduceAdd extends AppCompatActivity implements View.OnClickListener
     private PopupWindow popupWindow;//定义一个新的popupWindow 主
     private PopupWindow newPopWindow;//副
     private AllTextMasterAdapter adapter;
-    @Subscribe
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reduceadd);
-        btnDate.setOnClickListener(this);
+        ButterKnife.bind(this);
         SimpleDateFormat   formatter   =   new   SimpleDateFormat   ("yyyy年\nM月 ");
         Date curDate =  new Date(System.currentTimeMillis());
         String   str   =   formatter.format(curDate);
         btnDate.setText(str);
-        plus.setOnClickListener(new View.OnClickListener() {
+        btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setDialog();
+                showDatePickerDialog(ReduceAdd.this,  2, btnDate, calendar);;
             }
         });
         initText();//为原始数据添加数据

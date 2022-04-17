@@ -27,14 +27,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ProgramAdd extends AppCompatActivity {
-    @BindView(R.id.tb1)
-    Button tb1;
-    @BindView(R.id.ce2)
-    Button ce2;
-    @BindView(R.id.plus)
-    Button plus;
+    @OnClick(R.id.tb1)
+    void onClick(View view) {
+        root.openDrawer(Gravity.LEFT);
+    }
+    @OnClick(R.id.ce2)
+    void onClick1(View view) {
+        Intent intent = new Intent();
+        intent.setClass(ProgramAdd.this, FeedingRecord.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.plus)
+    void onClick11(View view) {
+        Intent intent = new Intent();
+        intent.setClass(ProgramAdd.this, ProgramPlus.class);
+        startActivity(intent);
+    }
     @BindView(R.id.root)
     DrawerLayout root;
     @BindView(R.id.left)
@@ -57,6 +70,7 @@ public class ProgramAdd extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_programadd);
+        ButterKnife.bind(this);
         initText();//为原始数据添加数据
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);//设置布局管理器，cv工程
         recyclerView.setLayoutManager(linearLayoutManager);//为recycleview添加布局管理器，cv
@@ -79,29 +93,7 @@ public class ProgramAdd extends AppCompatActivity {
                 refreshLayout.setRefreshing(false);
             }
         });
-        ce2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(ProgramAdd.this, FeedingRecord.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-        plus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(ProgramAdd.this, ProgramPlus.class);
-                startActivity(intent);
-            }
-        });
-        tb1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                root.openDrawer(Gravity.LEFT);
-            }
-        });
+
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, root, android.R.string.yes, android.R.string.cancel) {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {

@@ -33,10 +33,16 @@ import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class Inspection extends AppCompatActivity {
-    @BindView(R.id.plus)
-    Button plus;
+    @OnClick(R.id.plus)
+    void onClick11(View view) {
+        Intent intent = new Intent();
+        intent.setClass(Inspection.this, InspectionPlus.class);
+        startActivity(intent);
+    }
     @BindView(R.id.btn_Date)
     Button btnDate;
     @BindView(R.id.root)
@@ -60,7 +66,7 @@ public class Inspection extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inspection);
-
+        ButterKnife.bind(this);
         initText();//为原始数据添加数据
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);//设置布局管理器，cv工程
         recyclerView.setLayoutManager(linearLayoutManager);//为recycleview添加布局管理器，cv
@@ -91,14 +97,6 @@ public class Inspection extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showDatePickerDialog(Inspection.this,  2, btnDate, calendar);;
-            }
-        });
-        plus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(Inspection.this, InspectionPlus.class);
-                startActivity(intent);
             }
         });
     }

@@ -35,10 +35,13 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class SalesAccounting extends AppCompatActivity {
-    @BindView(R.id.plus)
-    Button plus;
+    @OnClick(R.id.plus)
+    void onClick1(View view) {
+        setDialog();
+    }
     @BindView(R.id.btn_Date)
     Button btnDate;
     @BindView(R.id.view_one)
@@ -70,12 +73,6 @@ public class SalesAccounting extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showDatePickerDialog(SalesAccounting.this,  2, btnDate, calendar);;
-            }
-        });
-        plus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setDialog();
             }
         });
         initText();//为原始数据添加数据

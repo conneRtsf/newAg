@@ -34,18 +34,41 @@ import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class FishPeriod extends AppCompatActivity {
-    @BindView(R.id.tb1)
-    Button tb1;
-    @BindView(R.id.ce1)
-    Button ce1;
-    @BindView(R.id.ce2)
-    Button ce2;
-    @BindView(R.id.ce3)
-    Button ce3;
-    @BindView(R.id.plus)
-    Button plus;
+    @OnClick(R.id.tb1)
+    void onClick(View view) {
+        root.openDrawer(Gravity.LEFT);
+    }
+    @OnClick(R.id.ce1)
+    void onClick1(View view) {
+        Intent intent = new Intent();
+        intent.setClass(FishPeriod.this, FishPeriod.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce2)
+    void onClick2(View view) {
+        Intent intent = new Intent();
+        intent.setClass(FishPeriod.this, VegetablePeriod.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce3)
+    void onClick3(View view) {
+        Intent intent = new Intent();
+        intent.setClass(FishPeriod.this, OtherPeriod.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.plus)
+    void onClick11(View view) {
+        Intent intent = new Intent();
+        intent.setClass(FishPeriod.this, PeriodPlus.class);
+        startActivity(intent);
+    }
     @BindView(R.id.btn_Date)
     Button btnDate;
     @BindView(R.id.root)
@@ -71,6 +94,7 @@ public class FishPeriod extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_periodfish);
+        ButterKnife.bind(this);
         SimpleDateFormat formatter   =   new   SimpleDateFormat   ("yyyy年\nM月 ");
         Date curDate =  new Date(System.currentTimeMillis());
         String   str   =   formatter.format(curDate);
@@ -101,39 +125,6 @@ public class FishPeriod extends AppCompatActivity {
             public void onRefresh() {
                 adapter.setNewData(data_2);//模拟数据变换,以后这里就写从后端获取数据的逻辑
                 refreshLayout.setRefreshing(false);
-            }
-        });
-        ce2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(FishPeriod.this, VegetablePeriod.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        ce3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(FishPeriod.this, OtherPeriod.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-        plus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(FishPeriod.this, PeriodPlus.class);
-                startActivity(intent);
-            }
-        });
-        tb1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                root.openDrawer(Gravity.LEFT);
             }
         });
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, root, android.R.string.yes, android.R.string.cancel) {

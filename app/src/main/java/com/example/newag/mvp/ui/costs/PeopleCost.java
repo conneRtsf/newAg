@@ -38,26 +38,67 @@ import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class PeopleCost extends AppCompatActivity {
-    @BindView(R.id.tb1)
-    Button tb1;
-    @BindView(R.id.ce1)
-    Button ce1;
-    @BindView(R.id.ce2)
-    Button ce2;
-    @BindView(R.id.ce3)
-    Button ce3;
-    @BindView(R.id.ce4)
-    Button ce4;
-    @BindView(R.id.ce5)
-    Button ce5;
-    @BindView(R.id.ce6)
-    Button ce6;
-    @BindView(R.id.ce7)
-    Button ce7;
-    @BindView(R.id.plus)
-    Button plus;
+    @OnClick(R.id.tb1)
+    void onClick(View view) {
+        root.openDrawer(Gravity.LEFT);
+    }
+    @OnClick(R.id.ce1)
+    void onClick1(View view) {
+        Intent intent = new Intent();
+        intent.setClass(PeopleCost.this, PeopleCost.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce2)
+    void onClick2(View view) {
+        Intent intent = new Intent();
+        intent.setClass(PeopleCost.this, FeedCost.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce3)
+    void onClick3(View view) {
+        Intent intent = new Intent();
+        intent.setClass(PeopleCost.this, FeedCost.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce4)
+    void onClick4(View view) {
+        Intent intent = new Intent();
+        intent.setClass(PeopleCost.this, FishCost.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce5)
+    void onClick5(View view) {
+        Intent intent = new Intent();
+        intent.setClass(PeopleCost.this, VegetableCost.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce6)
+    void onClick6(View view) {
+        Intent intent = new Intent();
+        intent.setClass(PeopleCost.this, OtherCost.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce7)
+    void onClick7(View view) {
+        Intent intent = new Intent();
+        intent.setClass(PeopleCost.this, AllCost.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.plus)
+    void onClick11(View view) {
+        setDialog();
+    }
     @BindView(R.id.btn_Date)
     Button btnDate;
     @BindView(R.id.root)
@@ -85,6 +126,7 @@ public class PeopleCost extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_costinput);
+        ButterKnife.bind(this);
         initText();//为原始数据添加数据
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);//设置布局管理器，cv工程
         recyclerView.setLayoutManager(linearLayoutManager);//为recycleview添加布局管理器，cv
@@ -117,83 +159,14 @@ public class PeopleCost extends AppCompatActivity {
                 showDatePickerDialog(PeopleCost.this,  2, btnDate, calendar);
             }
         });
-        plus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setDialog();
-            }
-        });
-        ce2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(PeopleCost.this, FeedCost.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+
         btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDatePickerDialog(PeopleCost.this,  2, btnDate, calendar);;
             }
         });
-        ce3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(PeopleCost.this, EnergyCost.class);
-                startActivity(intent);
-                finish();
-            }
-        });
 
-        ce4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(PeopleCost.this, FishCost.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        ce5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(PeopleCost.this, VegetableCost.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        ce6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(PeopleCost.this, OtherCost.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        ce7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(PeopleCost.this, AllCost.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        tb1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                root.openDrawer(Gravity.LEFT);
-            }
-        });
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, root, android.R.string.yes, android.R.string.cancel) {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {

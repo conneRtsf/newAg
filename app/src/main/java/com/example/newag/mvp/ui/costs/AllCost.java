@@ -39,32 +39,75 @@ import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class AllCost extends AppCompatActivity {
-    @BindView(R.id.tb1)
-    Button tb1;
-    @BindView(R.id.ce1)
-    Button ce1;
-    @BindView(R.id.ce2)
-    Button ce2;
-    @BindView(R.id.ce3)
-    Button ce3;
-    @BindView(R.id.ce4)
-    Button ce4;
-    @BindView(R.id.ce5)
-    Button ce5;
-    @BindView(R.id.ce6)
-    Button ce6;
-    @BindView(R.id.ce7)
-    Button ce7;
-    @BindView(R.id.plus)
-    Button plus;
+    @OnClick(R.id.tb1)
+    void onClick(View view) {
+        root.openDrawer(Gravity.LEFT);
+    }
+    @OnClick(R.id.ce1)
+    void onClick1(View view) {
+        Intent intent = new Intent();
+        intent.setClass(AllCost.this, PeopleCost.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce2)
+    void onClick2(View view) {
+        Intent intent = new Intent();
+        intent.setClass(AllCost.this, FeedCost.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce3)
+    void onClick3(View view) {
+        Intent intent = new Intent();
+        intent.setClass(AllCost.this, FeedCost.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce4)
+    void onClick4(View view) {
+        Intent intent = new Intent();
+        intent.setClass(AllCost.this, FishCost.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce5)
+    void onClick5(View view) {
+        Intent intent = new Intent();
+        intent.setClass(AllCost.this, VegetableCost.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce6)
+    void onClick6(View view) {
+        Intent intent = new Intent();
+        intent.setClass(AllCost.this, OtherCost.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce7)
+    void onClick7(View view) {
+        Intent intent = new Intent();
+        intent.setClass(AllCost.this, AllCost.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.plus)
+    void onClick11(View view) {
+        setDialog();
+    }
+    @BindView(R.id.left)
+    Button Button;
+
     @BindView(R.id.btn_Date)
     Button btnDate;
     @BindView(R.id.root)
     DrawerLayout root;
-    @BindView(R.id.left)
-    Button Button;
+
     @BindView(R.id.view_one)
     RecyclerView recyclerView;
     @BindView(R.id.refresh)
@@ -87,8 +130,8 @@ public class AllCost extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_costAll);
-
+        setContentView(R.layout.activity_costall);
+        ButterKnife.bind(this);
         SimpleDateFormat formatter   =   new   SimpleDateFormat   ("yyyy年\nM月 ");
         Date curDate =  new Date(System.currentTimeMillis());
         String   str   =   formatter.format(curDate);
@@ -119,81 +162,10 @@ public class AllCost extends AppCompatActivity {
                 refreshLayout.setRefreshing(false);
             }
         });
-        plus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setDialog();
-            }
-        });
-        ce1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(AllCost.this, PeopleCost.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        ce2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(AllCost.this, FeedCost.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        ce3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(AllCost.this, EnergyCost.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        ce4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(AllCost.this, FishCost.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        ce5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(AllCost.this, VegetableCost.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        ce6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(AllCost.this, OtherCost.class);
-                startActivity(intent);
-                finish();
-            }
-        });
         btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDatePickerDialog(AllCost.this,  2, btnDate, calendar);;
-            }
-        });
-        tb1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                root.openDrawer(Gravity.LEFT);
             }
         });
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, root, android.R.string.yes, android.R.string.cancel) {
@@ -255,7 +227,7 @@ public class AllCost extends AppCompatActivity {
                 adapter.setCheckbox(true);
                 adapter.notifyDataSetChanged();
                 popupWindow.dismiss();//销毁popwindow
-                View rootView= LayoutInflater.from(AllCost.this).inflate(R.layout.activity_costAll,null);
+                View rootView= LayoutInflater.from(AllCost.this).inflate(R.layout.activity_costall,null);
                 newPopWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);
             }
         });
@@ -266,7 +238,7 @@ public class AllCost extends AppCompatActivity {
             }
         });
         //定义一个view，其中包含main4的布局文件
-        View rootView=LayoutInflater.from(AllCost.this).inflate(R.layout.activity_costAll,null);
+        View rootView=LayoutInflater.from(AllCost.this).inflate(R.layout.activity_costall,null);
         popupWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);//展示自定义的popwindow，（放哪个布局里，放布局里的位置，x，y），cv工程
         View view2=LayoutInflater.from(AllCost.this).inflate(R.layout.ppw_delete,null);
         newPopWindow=new PopupWindow(view2,RecyclerView.LayoutParams.MATCH_PARENT,

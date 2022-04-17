@@ -27,24 +27,55 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class VegetableTemplate extends AppCompatActivity {
-    @BindView(R.id.tb1)
-    Button tb1;
-    @BindView(R.id.ce1)
-    Button ce1;
-    @BindView(R.id.ce2)
-    Button ce2;
-    @BindView(R.id.ce3)
-    Button ce3;
-    @BindView(R.id.ce4)
-    Button ce4;
-    @BindView(R.id.ce5)
-    Button ce5;
-    @BindView(R.id.plus)
-    Button plus;
-    @BindView(R.id.btn_Date)
-    Button btnDate;
+    @OnClick(R.id.tb1)
+    void onClick(View view) {
+        root.openDrawer(Gravity.LEFT);
+    }
+    @OnClick(R.id.ce1)
+    void onClick1(View view) {
+        Intent intent = new Intent();
+        intent.setClass(VegetableTemplate.this, DrugTemplate.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce2)
+    void onClick2(View view) {
+        Intent intent = new Intent();
+        intent.setClass(VegetableTemplate.this, FeedTemplate.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce3)
+    void onClick3(View view) {
+        Intent intent = new Intent();
+        intent.setClass(VegetableTemplate.this, FishTemplate.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce4)
+    void onClick4(View view) {
+        Intent intent = new Intent();
+        intent.setClass(VegetableTemplate.this, VegetableTemplate.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce5)
+    void onClick5(View view) {
+        Intent intent = new Intent();
+        intent.setClass(VegetableTemplate.this, OtherTemplate.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.plus)
+    void onClick11(View view) {
+        Intent intent = new Intent();
+        intent.setClass(VegetableTemplate.this, TemplatePlus.class);
+        startActivity(intent);
+    }
     @BindView(R.id.root)
     DrawerLayout root;
     @BindView(R.id.left)
@@ -67,6 +98,7 @@ public class VegetableTemplate extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_templatevegetable);
+        ButterKnife.bind(this);
         initText();//为原始数据添加数据
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);//设置布局管理器，cv工程
         recyclerView.setLayoutManager(linearLayoutManager);//为recycleview添加布局管理器，cv
@@ -89,57 +121,7 @@ public class VegetableTemplate extends AppCompatActivity {
                 refreshLayout.setRefreshing(false);
             }
         });
-        ce1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(VegetableTemplate.this, DrugTemplate.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-        ce2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(VegetableTemplate.this, FeedTemplate.class);
-                startActivity(intent);
-                finish();
-            }
-        });
 
-        ce3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(VegetableTemplate.this, FishTemplate.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-        ce5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(VegetableTemplate.this, OtherTemplate.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-        plus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(VegetableTemplate.this, TemplatePlus.class);
-                startActivity(intent);
-            }
-        });
-        tb1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                root.openDrawer(Gravity.LEFT);
-            }
-        });
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, root, android.R.string.yes, android.R.string.cancel) {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {

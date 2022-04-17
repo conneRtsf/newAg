@@ -1,35 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".mvp.ui.main.NourishFragment"
-    android:background="@color/white">
+    android:background="#C8C8C8"
+    android:id="@+id/root"
+    android:layout_height="match_parent">
 
     <FrameLayout
-        android:layout_marginTop="@dimen/dp_131"
+        android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/newBlue">
-
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/refresh"
-            android:layout_width="@dimen/dp_320"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/view_one"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/backcolor">
-
-
+        android:layout_height="match_parent"
+        android:background="@drawable/backcolor"
+        tools:ignore="MissingConstraints">
 
         <TextView
             android:id="@+id/textView2"
@@ -80,54 +62,63 @@
             android:background="@color/newnewBlue"
             android:text="删除"
             android:visibility="gone"
-            android:textColor="@color/black"
-            tools:ignore="RtlHardcoded" />
+            android:textColor="@color/black" />
 
         <TextView
-            android:drawableStart="@drawable/ic_baseline_notes_24"
+            android:layout_width="@dimen/dp_140"
+            android:layout_height="@dimen/dp_35"
+            android:layout_marginTop="@dimen/dp_20"
+            android:drawableLeft="@drawable/money"
+            android:drawableTint="@color/生产单元添加"
             android:background="@drawable/backnew"
-            android:layout_marginTop="@dimen/dp_10"
-            android:layout_width="@dimen/dp_150"
-            android:layout_height="@dimen/dp_40"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:text="生产单元添加"
             android:textColor="@color/black"
-            android:textSize="@dimen/sp_15"
-            tools:ignore="RtlHardcoded,RtlSymmetry" />
+            android:textSize="@dimen/sp_15" />
 
+        <Button
+            android:id="@+id/right"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_29"
+            android:layout_gravity="right"
+            android:layout_marginTop="@dimen/dp_20"
+            android:background="@drawable/more_left" />
+        <Button
+            android:id="@+id/left"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_30"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/dp_40"
+            android:layout_marginTop="@dimen/dp_20"
+            android:background="@drawable/more_right"/>
+        <FrameLayout
+            android:background="@color/背景色"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dp_180">
 
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/refresh"
+                android:layout_width="@dimen/dp_320"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/view_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            <Button
+                android:id="@+id/plus"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="@dimen/dp_60"
+                android:layout_marginTop="@dimen/dp_300"
+                android:layout_gravity="right"
+                android:layout_marginRight="@dimen/dp_40"
+                android:background="@drawable/plus"/>
+        </FrameLayout>
     </FrameLayout>
-    <Button
-        android:id="@+id/right"
-        android:layout_width="@dimen/dp_40"
-        android:layout_height="@dimen/dp_29"
-        android:layout_gravity="right"
-        android:layout_marginTop="@dimen/dp_20"
-        android:background="@drawable/more_left" />
-    <Button
-        android:id="@+id/left"
-        android:layout_width="@dimen/dp_40"
-        android:layout_height="@dimen/dp_30"
-        android:layout_gravity="right"
-        android:layout_marginRight="@dimen/dp_40"
-        android:layout_marginTop="@dimen/dp_20"
-        android:background="@drawable/more_right"/>
-    <Button
-        android:id="@+id/plus"
-        android:layout_width="@dimen/dp_60"
-        android:layout_height="@dimen/dp_60"
-        android:layout_marginTop="@dimen/dp_500"
-        android:layout_gravity="right"
-        android:layout_marginRight="@dimen/dp_10"
-        android:background="@drawable/plus"/>
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_86"
-        android:layout_marginStart="@dimen/dp_86"
-        android:background="@drawable/ic_baseline_keyboard_arrow_down_24"/>
-
-</FrameLayout>
 
 
+
+</androidx.drawerlayout.widget.DrawerLayout>

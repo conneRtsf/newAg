@@ -24,6 +24,8 @@ import com.example.newag.R;
 import com.example.newag.mvp.adapter.AllTextMasterAdapter;
 import com.example.newag.mvp.model.bean.AllText;
 import com.example.newag.mvp.model.bean.AllTextMaster;
+import com.example.newag.mvp.ui.costs.FeedCost;
+import com.example.newag.mvp.ui.costs.PeopleCost;
 import com.example.newag.mvp.ui.plus.PeriodPlus;
 
 import java.text.SimpleDateFormat;
@@ -34,18 +36,41 @@ import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class OtherPeriod extends AppCompatActivity {
-    @BindView(R.id.tb1)
-    Button tb1;
-    @BindView(R.id.ce1)
-    Button ce1;
-    @BindView(R.id.ce2)
-    Button ce2;
-    @BindView(R.id.ce3)
-    Button ce3;
-    @BindView(R.id.plus)
-    Button plus;
+    @OnClick(R.id.tb1)
+    void onClick(View view) {
+        root.openDrawer(Gravity.LEFT);
+    }
+    @OnClick(R.id.ce1)
+    void onClick1(View view) {
+        Intent intent = new Intent();
+        intent.setClass(OtherPeriod.this, FishPeriod.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce2)
+    void onClick2(View view) {
+        Intent intent = new Intent();
+        intent.setClass(OtherPeriod.this, VegetablePeriod.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce3)
+    void onClick3(View view) {
+        Intent intent = new Intent();
+        intent.setClass(OtherPeriod.this, OtherPeriod.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.plus)
+    void onClick11(View view) {
+        Intent intent = new Intent();
+        intent.setClass(OtherPeriod.this, PeriodPlus.class);
+        startActivity(intent);
+    }
     @BindView(R.id.btn_Date)
     Button btnDate;
     @BindView(R.id.root)
@@ -71,6 +96,7 @@ public class OtherPeriod extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_periodother);
+        ButterKnife.bind(this);
         SimpleDateFormat formatter   =   new   SimpleDateFormat   ("yyyy年\nM月 ");
         Date curDate =  new Date(System.currentTimeMillis());
         String   str   =   formatter.format(curDate);
@@ -103,39 +129,7 @@ public class OtherPeriod extends AppCompatActivity {
                 refreshLayout.setRefreshing(false);
             }
         });
-        ce1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(OtherPeriod.this, FishPeriod.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        ce2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(OtherPeriod.this, VegetablePeriod.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-        plus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(OtherPeriod.this, PeriodPlus.class);
-                startActivity(intent);
-            }
-        });
-        tb1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                root.openDrawer(Gravity.LEFT);
-            }
-        });
+        
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, root, android.R.string.yes, android.R.string.cancel) {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
