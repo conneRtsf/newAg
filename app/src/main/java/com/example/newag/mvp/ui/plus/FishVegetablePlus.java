@@ -9,6 +9,6 @@ import com.example.newag.R;
 public class FishVegetablePlus extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.plus_fish_vegetable);
+        setContentView(R.layout.activity_plusfishvegetable);
     }
 }

@@ -9,6 +9,6 @@ import com.example.newag.R;
 public class ProgramPlus extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.plus_program);
+        setContentView(R.layout.activity_plusprogram);
     }
 }

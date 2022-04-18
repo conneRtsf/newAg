@@ -9,6 +9,6 @@ import com.example.newag.R;
 public class PeoplePlus extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.plus_people);
+        setContentView(R.layout.activity_pluspeople);
     }
 }

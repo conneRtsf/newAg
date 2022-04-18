@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -25,8 +27,7 @@ import com.example.newag.R;
 import com.example.newag.mvp.adapter.AllTextMasterAdapter;
 import com.example.newag.mvp.model.bean.AllText;
 import com.example.newag.mvp.model.bean.AllTextMaster;
-
-import org.greenrobot.eventbus.Subscribe;
+import com.example.newag.mvp.ui.plus.ReducePlus;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,10 +36,28 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class ReduceAdd extends AppCompatActivity implements View.OnClickListener{
-    public Button btnDate;
+    @OnClick(R.id.plus)
+    void onClick11(View view) {
+        Intent intent = new Intent();
+        intent.setClass(ReduceAdd.this, ReducePlus.class);
+        startActivity(intent);
+    }
+    @BindView(R.id.root)
+    DrawerLayout root;
+    @BindView(R.id.left)
+    Button Button;
+    @BindView(R.id.view_one)
+    RecyclerView recyclerView;
+    @BindView(R.id.refresh)
+    SwipeRefreshLayout refreshLayout;
+    @BindView(R.id.btn_Date)
+    Button btnDate;
     Calendar calendar= Calendar.getInstance(Locale.CHINA);
-    Button plus;
     private final List<AllText> allTextList11=new ArrayList<>();
     private final List<AllText> allTextList22=new ArrayList<>();
     private final List<AllText> allTextList1=new ArrayList<>();
@@ -48,33 +67,28 @@ public class ReduceAdd extends AppCompatActivity implements View.OnClickListener
     private PopupWindow popupWindow;//定义一个新的popupWindow 主
     private PopupWindow newPopWindow;//副
     private AllTextMasterAdapter adapter;
-    @Subscribe
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.reduce_add);
-        btnDate= findViewById(R.id.btn_Date);
-        btnDate.setOnClickListener(this);
+        setContentView(R.layout.activity_reduceadd);
+        ButterKnife.bind(this);
         SimpleDateFormat   formatter   =   new   SimpleDateFormat   ("yyyy年\nM月 ");
         Date curDate =  new Date(System.currentTimeMillis());
         String   str   =   formatter.format(curDate);
         btnDate.setText(str);
-        plus=findViewById(R.id.plus);
-        plus.setOnClickListener(new View.OnClickListener() {
+        btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setDialog();
+                showDatePickerDialog(ReduceAdd.this,  2, btnDate, calendar);;
             }
         });
         initText();//为原始数据添加数据
-        RecyclerView recyclerView=findViewById(R.id.view_one);//找到布局中的recycleview控件
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);//设置布局管理器，cv工程
         recyclerView.setLayoutManager(linearLayoutManager);//为recycleview添加布局管理器，cv
          /*adapter=new AllTextAdapter(allTextList);//定义一个新的自定义适配器（AllTextAdapter），并且把数据传进去
         recyclerView.setAdapter(adapter);//为recycleview传入定义好的适配器，并展示*/
         adapter=new AllTextMasterAdapter(this,data_1);//定义一个新的大适配器（AllTextMasterAdapter），并且把数据传进去
         recyclerView.setAdapter(adapter);//设置适配器
-        Button Button=findViewById(R.id.left);
         Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,7 +96,6 @@ public class ReduceAdd extends AppCompatActivity implements View.OnClickListener
             }
         });
         //
-        SwipeRefreshLayout refreshLayout=findViewById(R.id.refresh);//找到下拉刷新
         refreshLayout.setColorSchemeResources(R.color.blue,R.color.blue);//设置下拉刷新主题（最多支持三种颜色变换，这里两种）
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -111,7 +124,7 @@ public class ReduceAdd extends AppCompatActivity implements View.OnClickListener
     }
     private void showPopWindow() {
         //定义一个view，其中包含popwindow的布局文件
-        View view1= LayoutInflater.from(ReduceAdd.this).inflate(R.layout.test_popupwindow,null);
+        View view1= LayoutInflater.from(ReduceAdd.this).inflate(R.layout.footer_batch,null);
         popupWindow =new PopupWindow(view1, RecyclerView.LayoutParams.MATCH_PARENT,
                 RecyclerView.LayoutParams.WRAP_CONTENT,true);//设置popwindow的属性（布局，x，y，true）
         TextView make_text=(TextView)view1.findViewById(R.id.make_text);
@@ -119,9 +132,9 @@ public class ReduceAdd extends AppCompatActivity implements View.OnClickListener
         make_text.setOnClickListener(this);
         back_test.setOnClickListener(this);
         //定义一个view，其中包含main4的布局文件
-        View rootView=LayoutInflater.from(ReduceAdd.this).inflate(R.layout.reduce_add,null);
+        View rootView=LayoutInflater.from(ReduceAdd.this).inflate(R.layout.activity_reduceadd,null);
         popupWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);//展示自定义的popwindow，（放哪个布局里，放布局里的位置，x，y），cv工程
-        View view2=LayoutInflater.from(ReduceAdd.this).inflate(R.layout.popwindowdelete,null);
+        View view2=LayoutInflater.from(ReduceAdd.this).inflate(R.layout.ppw_delete,null);
         newPopWindow=new PopupWindow(view2,RecyclerView.LayoutParams.MATCH_PARENT,
                 RecyclerView.LayoutParams.WRAP_CONTENT,false);
         Button button_delete=(Button) view2.findViewById(R.id.delete);
@@ -165,7 +178,7 @@ public class ReduceAdd extends AppCompatActivity implements View.OnClickListener
                 adapter.setCheckbox(true);
                 adapter.notifyDataSetChanged();
                 popupWindow.dismiss();//销毁popwindow
-                View rootView= LayoutInflater.from(ReduceAdd.this).inflate(R.layout.reduce_add,null);
+                View rootView= LayoutInflater.from(ReduceAdd.this).inflate(R.layout.activity_reduceadd,null);
                 newPopWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);
             }
             break;
@@ -185,7 +198,7 @@ public class ReduceAdd extends AppCompatActivity implements View.OnClickListener
     private void setDialog() {
         Dialog mCameraDialog = new Dialog(this, R.style.BottomDialog);
         LinearLayout root = (LinearLayout) LayoutInflater.from(this).inflate(
-                R.layout.plus_reduce, null);
+                R.layout.activity_plusreduce, null);
         //初始化视图
         mCameraDialog.setContentView(root);
         Window dialogWindow = mCameraDialog.getWindow();

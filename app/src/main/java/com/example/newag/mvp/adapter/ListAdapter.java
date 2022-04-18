@@ -10,8 +10,8 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.newag.R;
-import com.example.newag.mvp.model.SelectEvent;
-import com.example.newag.mvp.model.Book;
+import com.example.newag.mvp.model.bean.SelectEvent;
+import com.example.newag.mvp.model.bean.Book;
 
 import org.greenrobot.eventbus.EventBus;
 

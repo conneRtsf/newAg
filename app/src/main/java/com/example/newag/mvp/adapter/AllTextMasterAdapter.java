@@ -20,7 +20,7 @@ public class AllTextMasterAdapter extends BaseQuickAdapter<AllTextMaster,BaseVie
     Boolean flag=false;
     private List<AllText> allTextList=new ArrayList<>();//用来传入数据
     public AllTextMasterAdapter(Context context, @Nullable List<AllTextMaster> data) {
-        super(R.layout.biankuang_test, data);//传入边框布局，数据
+        super(R.layout.ltem_big_list, data);//传入边框布局，数据
         this.mContext=context;//传入上下文
     }
     @Override

@@ -26,11 +26,38 @@ import com.example.newag.mvp.ui.plus.ProgramPlus;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class ProgramAdd extends AppCompatActivity {
-    Button ce1;
-    Button ce2;
-    Button plus;
-    Button tb1;
+    @OnClick(R.id.tb1)
+    void onClick(View view) {
+        root.openDrawer(Gravity.LEFT);
+    }
+    @OnClick(R.id.ce2)
+    void onClick1(View view) {
+        Intent intent = new Intent();
+        intent.setClass(ProgramAdd.this, FeedingRecord.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.plus)
+    void onClick11(View view) {
+        Intent intent = new Intent();
+        intent.setClass(ProgramAdd.this, ProgramPlus.class);
+        startActivity(intent);
+    }
+    @BindView(R.id.root)
+    DrawerLayout root;
+    @BindView(R.id.left)
+    Button Button;
+    @BindView(R.id.view_one)
+    RecyclerView recyclerView;
+    @BindView(R.id.refresh)
+    SwipeRefreshLayout refreshLayout;
+    @BindView(R.id.content)
+    View contentView;
     private final List<AllText> allTextList11=new ArrayList<>();
     private final List<AllText> allTextList22=new ArrayList<>();
     private final List<AllText> allTextList1=new ArrayList<>();
@@ -42,20 +69,15 @@ public class ProgramAdd extends AppCompatActivity {
     private AllTextMasterAdapter adapter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.program_add);
-        ce1=findViewById(R.id.ce1);
-        ce2=findViewById(R.id.ce2);
-        plus=findViewById(R.id.plus);
-        DrawerLayout root = findViewById(R.id.root);
+        setContentView(R.layout.activity_programadd);
+        ButterKnife.bind(this);
         initText();//为原始数据添加数据
-        RecyclerView recyclerView=findViewById(R.id.view_one);//找到布局中的recycleview控件
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);//设置布局管理器，cv工程
         recyclerView.setLayoutManager(linearLayoutManager);//为recycleview添加布局管理器，cv
          /*adapter=new AllTextAdapter(allTextList);//定义一个新的自定义适配器（AllTextAdapter），并且把数据传进去
         recyclerView.setAdapter(adapter);//为recycleview传入定义好的适配器，并展示*/
         adapter=new AllTextMasterAdapter(this,data_1);//定义一个新的大适配器（AllTextMasterAdapter），并且把数据传进去
         recyclerView.setAdapter(adapter);//设置适配器
-        Button Button=findViewById(R.id.left);
         Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +85,6 @@ public class ProgramAdd extends AppCompatActivity {
             }
         });
         //
-        SwipeRefreshLayout refreshLayout=findViewById(R.id.refresh);//找到下拉刷新
         refreshLayout.setColorSchemeResources(R.color.blue,R.color.blue);//设置下拉刷新主题（最多支持三种颜色变换，这里两种）
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -72,31 +93,7 @@ public class ProgramAdd extends AppCompatActivity {
                 refreshLayout.setRefreshing(false);
             }
         });
-        ce2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(ProgramAdd.this, FeedingRecord.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-        plus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(ProgramAdd.this, ProgramPlus.class);
-                startActivity(intent);
-            }
-        });
-        tb1=findViewById(R.id.tb1);
-        final View contentView = findViewById(R.id.content);
-        tb1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                root.openDrawer(Gravity.LEFT);
-            }
-        });
+
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, root, android.R.string.yes, android.R.string.cancel) {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
@@ -109,7 +106,7 @@ public class ProgramAdd extends AppCompatActivity {
     }
     private void showPopWindow() {
         //定义一个view，其中包含popwindow的布局文件
-        View view1= LayoutInflater.from(ProgramAdd.this).inflate(R.layout.test_popupwindow,null);
+        View view1= LayoutInflater.from(ProgramAdd.this).inflate(R.layout.footer_batch,null);
         popupWindow =new PopupWindow(view1, RecyclerView.LayoutParams.MATCH_PARENT,
                 RecyclerView.LayoutParams.WRAP_CONTENT,true);//设置popwindow的属性（布局，x，y，true）
         TextView make_text=(TextView)view1.findViewById(R.id.make_text);
@@ -120,7 +117,7 @@ public class ProgramAdd extends AppCompatActivity {
                 adapter.setCheckbox(true);
                 adapter.notifyDataSetChanged();
                 popupWindow.dismiss();//销毁popwindow
-                View rootView= LayoutInflater.from(ProgramAdd.this).inflate(R.layout.program_add,null);
+                View rootView= LayoutInflater.from(ProgramAdd.this).inflate(R.layout.activity_programadd,null);
                 newPopWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);
             }
         });
@@ -131,9 +128,9 @@ public class ProgramAdd extends AppCompatActivity {
             }
         });
         //定义一个view，其中包含main4的布局文件
-        View rootView=LayoutInflater.from(ProgramAdd.this).inflate(R.layout.program_add,null);
+        View rootView=LayoutInflater.from(ProgramAdd.this).inflate(R.layout.activity_programadd,null);
         popupWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);//展示自定义的popwindow，（放哪个布局里，放布局里的位置，x，y），cv工程
-        View view2=LayoutInflater.from(ProgramAdd.this).inflate(R.layout.popwindowdelete,null);
+        View view2=LayoutInflater.from(ProgramAdd.this).inflate(R.layout.ppw_delete,null);
         newPopWindow=new PopupWindow(view2,RecyclerView.LayoutParams.MATCH_PARENT,
                 RecyclerView.LayoutParams.WRAP_CONTENT,false);
         Button button_delete=(Button) view2.findViewById(R.id.delete);

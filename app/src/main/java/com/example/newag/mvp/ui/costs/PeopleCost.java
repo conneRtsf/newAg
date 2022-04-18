@@ -37,18 +37,81 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class PeopleCost extends AppCompatActivity {
-    Button tb1;
-    Button ce1;
-    Button ce2;
-    Button ce3;
-    Button ce4;
-    Button ce5;
-    Button ce6;
-    Button ce7;
-    Button plus;
+    @OnClick(R.id.tb1)
+    void onClick(View view) {
+        root.openDrawer(Gravity.LEFT);
+    }
+    @OnClick(R.id.ce1)
+    void onClick1(View view) {
+        Intent intent = new Intent();
+        intent.setClass(PeopleCost.this, PeopleCost.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce2)
+    void onClick2(View view) {
+        Intent intent = new Intent();
+        intent.setClass(PeopleCost.this, FeedCost.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce3)
+    void onClick3(View view) {
+        Intent intent = new Intent();
+        intent.setClass(PeopleCost.this, FeedCost.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce4)
+    void onClick4(View view) {
+        Intent intent = new Intent();
+        intent.setClass(PeopleCost.this, FishCost.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce5)
+    void onClick5(View view) {
+        Intent intent = new Intent();
+        intent.setClass(PeopleCost.this, VegetableCost.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce6)
+    void onClick6(View view) {
+        Intent intent = new Intent();
+        intent.setClass(PeopleCost.this, OtherCost.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce7)
+    void onClick7(View view) {
+        Intent intent = new Intent();
+        intent.setClass(PeopleCost.this, AllCost.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.plus)
+    void onClick11(View view) {
+        setDialog();
+    }
+    @BindView(R.id.btn_Date)
+    Button btnDate;
+    @BindView(R.id.root)
+    DrawerLayout root;
+    @BindView(R.id.left)
+    Button Button;
+    @BindView(R.id.view_one)
+    RecyclerView recyclerView;
+    @BindView(R.id.refresh)
+    SwipeRefreshLayout refreshLayout;
+    @BindView(R.id.content)
+    View contentView;
     Calendar calendar= Calendar.getInstance(Locale.CHINA);
-    public Button btnDate;
     private final List<AllText> allTextList11=new ArrayList<>();
     private final List<AllText> allTextList22=new ArrayList<>();
     private final List<AllText> allTextList1=new ArrayList<>();
@@ -62,26 +125,15 @@ public class PeopleCost extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cost_input);
-        DrawerLayout root = findViewById(R.id.root);
-        ce1=findViewById(R.id.ce1);
-        ce2=findViewById(R.id.ce2);
-        ce3=findViewById(R.id.ce3);
-        ce4=findViewById(R.id.ce4);
-        ce5=findViewById(R.id.ce5);
-        ce6=findViewById(R.id.ce6);
-        ce7=findViewById(R.id.ce7);
-        plus=findViewById(R.id.plus);
-        btnDate=findViewById(R.id.btn_Date);
+        setContentView(R.layout.activity_costinput);
+        ButterKnife.bind(this);
         initText();//为原始数据添加数据
-        RecyclerView recyclerView=findViewById(R.id.view_one);//找到布局中的recycleview控件
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);//设置布局管理器，cv工程
         recyclerView.setLayoutManager(linearLayoutManager);//为recycleview添加布局管理器，cv
          /*adapter=new AllTextAdapter(allTextList);//定义一个新的自定义适配器（AllTextAdapter），并且把数据传进去
         recyclerView.setAdapter(adapter);//为recycleview传入定义好的适配器，并展示*/
         adapter=new AllTextMasterAdapter(this,data_1);//定义一个新的大适配器（AllTextMasterAdapter），并且把数据传进去
         recyclerView.setAdapter(adapter);//设置适配器
-        Button Button=findViewById(R.id.left);
         Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,7 +141,6 @@ public class PeopleCost extends AppCompatActivity {
             }
         });
         //
-        SwipeRefreshLayout refreshLayout=findViewById(R.id.refresh);//找到下拉刷新
         refreshLayout.setColorSchemeResources(R.color.blue,R.color.blue);//设置下拉刷新主题（最多支持三种颜色变换，这里两种）
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -108,85 +159,14 @@ public class PeopleCost extends AppCompatActivity {
                 showDatePickerDialog(PeopleCost.this,  2, btnDate, calendar);
             }
         });
-        plus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setDialog();
-            }
-        });
-        ce2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(PeopleCost.this, FeedCost.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+
         btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDatePickerDialog(PeopleCost.this,  2, btnDate, calendar);;
             }
         });
-        ce3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(PeopleCost.this, EnergyCost.class);
-                startActivity(intent);
-                finish();
-            }
-        });
 
-        ce4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(PeopleCost.this, FishCost.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        ce5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(PeopleCost.this, VegetableCost.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        ce6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(PeopleCost.this, OtherCost.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        ce7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(PeopleCost.this, AllCost.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        tb1=findViewById(R.id.tb1);
-        final View contentView = findViewById(R.id.content);
-        tb1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                root.openDrawer(Gravity.LEFT);
-            }
-        });
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, root, android.R.string.yes, android.R.string.cancel) {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
@@ -216,7 +196,7 @@ public class PeopleCost extends AppCompatActivity {
     private void setDialog() {
         Dialog mCameraDialog = new Dialog(this, R.style.BottomDialog);
         LinearLayout root = (LinearLayout) LayoutInflater.from(this).inflate(
-                R.layout.plus_people, null);
+                R.layout.activity_pluspeople, null);
         //初始化视图
         mCameraDialog.setContentView(root);
         Window dialogWindow = mCameraDialog.getWindow();
@@ -236,7 +216,7 @@ public class PeopleCost extends AppCompatActivity {
 
     private void showPopWindow() {
         //定义一个view，其中包含popwindow的布局文件
-        View view1= LayoutInflater.from(PeopleCost.this).inflate(R.layout.test_popupwindow,null);
+        View view1= LayoutInflater.from(PeopleCost.this).inflate(R.layout.footer_batch,null);
         popupWindow =new PopupWindow(view1, RecyclerView.LayoutParams.MATCH_PARENT,
                 RecyclerView.LayoutParams.WRAP_CONTENT,true);//设置popwindow的属性（布局，x，y，true）
         TextView make_text=(TextView)view1.findViewById(R.id.make_text);
@@ -247,7 +227,7 @@ public class PeopleCost extends AppCompatActivity {
                 adapter.setCheckbox(true);
                 adapter.notifyDataSetChanged();
                 popupWindow.dismiss();//销毁popwindow
-                View rootView= LayoutInflater.from(PeopleCost.this).inflate(R.layout.cost_input,null);
+                View rootView= LayoutInflater.from(PeopleCost.this).inflate(R.layout.activity_costinput,null);
                 newPopWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);
             }
         });
@@ -258,9 +238,9 @@ public class PeopleCost extends AppCompatActivity {
             }
         });
         //定义一个view，其中包含main4的布局文件
-        View rootView=LayoutInflater.from(PeopleCost.this).inflate(R.layout.cost_input,null);
+        View rootView=LayoutInflater.from(PeopleCost.this).inflate(R.layout.activity_costinput,null);
         popupWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);//展示自定义的popwindow，（放哪个布局里，放布局里的位置，x，y），cv工程
-        View view2=LayoutInflater.from(PeopleCost.this).inflate(R.layout.popwindowdelete,null);
+        View view2=LayoutInflater.from(PeopleCost.this).inflate(R.layout.ppw_delete,null);
         newPopWindow=new PopupWindow(view2,RecyclerView.LayoutParams.MATCH_PARENT,
                 RecyclerView.LayoutParams.WRAP_CONTENT,false);
         Button button_delete=(Button) view2.findViewById(R.id.delete);

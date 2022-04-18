@@ -9,6 +9,6 @@ import com.example.newag.R;
 public class InspectionPlus extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.plus_inspection);
+        setContentView(R.layout.activity_plusinspection);
     }
 }

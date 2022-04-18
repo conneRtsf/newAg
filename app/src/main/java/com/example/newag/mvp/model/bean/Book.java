@@ -1,4 +1,4 @@
-package com.example.newag.mvp.model;
+package com.example.newag.mvp.model.bean;
 
 public class Book {
 
