@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <FrameLayout
+        android:id="@+id/base_contentView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
+
+    <ViewStub
+        android:id="@+id/base_loading_viewstub"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inflatedId="@+id/base_loading_inflaterId"
+        android:layout="@layout/base_loading_view" />
+
+    <ViewStub
+        android:id="@+id/base_nonet_viewstub"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inflatedId="@+id/base_loading_inflaterId"
+        android:layout="@layout/base_nonet_view" />
+
+    <ViewStub
+        android:id="@+id/base_loading_error_viewstub"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inflatedId="@+id/base_loading_error_inflaterId"
+        android:layout="@layout/base_loading_error_view" />
+
+    <ViewStub
+        android:id="@+id/base_network_error_viewstub"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inflatedId="@+id/base_network_error_inflaterId"
+        android:layout="@layout/base_network_error__view" />
+
+
+</RelativeLayout>
