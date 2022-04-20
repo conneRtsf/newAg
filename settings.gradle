@@ -3,3 +3,5 @@ rootProject.name = "newAg"
 include ':app'
 include ':lib_basequickadapter'
 //include ':lib'
+include ':lib_ucrop'
+include ':lib_selector'
