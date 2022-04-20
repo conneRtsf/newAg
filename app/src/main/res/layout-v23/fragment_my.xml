@@ -14,7 +14,8 @@
         android:background="@drawable/bordernew">
 
 
-        <ImageView
+        <Button
+            android:id="@+id/changeMy"
             android:layout_width="@dimen/dp_70"
             android:layout_height="@dimen/dp_70"
             android:layout_marginStart="@dimen/dp_25"
@@ -37,6 +38,15 @@
             android:layout_marginTop="@dimen/dp_55"
             android:text="用一句话介绍自己~"
             android:textColor="@color/black"
+            android:textSize="@dimen/sp_15"
+            tools:ignore="SpUsage" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_105"
+            android:layout_marginTop="@dimen/dp_85"
+            android:text="点击头像修改信息"
+            android:textColor="@color/grey"
             android:textSize="@dimen/sp_15"
             tools:ignore="SpUsage" />
     </FrameLayout>

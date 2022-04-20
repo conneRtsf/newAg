@@ -1,0 +1,55 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_w"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:background="@color/white"
+        android:layout_marginBottom="@dimen/dp_10">
+        <Button
+            android:id="@+id/back"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_30"
+            android:layout_weight="1"
+            android:background="@drawable/arrowback" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="农场改名"
+            android:paddingLeft="@dimen/dp_10"
+            android:textSize="@dimen/sp_15"
+            android:layout_weight="10"
+            android:textColor="@color/black"
+            android:gravity="center_vertical"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <Button
+            android:layout_width="0dp"
+            android:background="@color/white"
+            android:layout_weight="15"
+            android:layout_height="match_parent"
+            android:text="农场名"
+            android:paddingLeft="@dimen/dp_10"
+            android:textSize="@dimen/sp_15"
+            android:gravity="center_vertical"
+            android:textColor="@color/black" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="飞飞飞飞飞"
+            android:layout_weight="5"
+            android:singleLine="true"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:textColor="@color/grey_new"/>
+        </LinearLayout>
+</LinearLayout>

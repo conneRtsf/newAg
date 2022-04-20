@@ -14,7 +14,8 @@
         android:background="@drawable/bordernew">
 
 
-        <ImageView
+        <Button
+            android:id="@+id/changeMy"
             android:layout_width="@dimen/dp_70"
             android:layout_height="@dimen/dp_70"
             android:layout_marginStart="@dimen/dp_25"
@@ -39,8 +40,17 @@
             android:textColor="@color/black"
             android:textSize="@dimen/sp_15"
             tools:ignore="SpUsage" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_105"
+            android:layout_marginTop="@dimen/dp_85"
+            android:text="点击头像修改信息"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/sp_15"
+            tools:ignore="SpUsage" />
     </FrameLayout>
-    
+
     <FrameLayout
         android:layout_width="@dimen/dp_340"
         android:layout_height="@dimen/dp_350"
@@ -52,6 +62,8 @@
 
         <Button
             android:id="@+id/bt1"
+            android:outlineProvider="none"
+            android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
             android:paddingStart="@dimen/sp_20"
             android:layout_width="@dimen/dp_220"
             android:layout_height="@dimen/dp_60"
@@ -63,10 +75,19 @@
             android:text="账号与安全"
             android:textColor="@color/black" />
 
+        <ImageView
+            android:layout_width="@dimen/dp_40"
+            android:layout_marginTop="@dimen/dp_12"
+            android:layout_marginStart="@dimen/dp_30"
+            android:layout_height="@dimen/dp_40"
+            android:background="@drawable/safe"/>
+
         <Button
             android:id="@+id/bt2"
             android:paddingStart="@dimen/sp_20"
+            android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
             android:layout_width="@dimen/dp_220"
+            android:outlineProvider="none"
             android:drawableBottom="@drawable/blackline"
             android:layout_height="@dimen/dp_60"
             android:gravity="center_vertical"
@@ -77,11 +98,20 @@
             android:text="农场更名"
             android:textColor="@color/black" />
 
+        <ImageView
+            android:layout_width="@dimen/dp_40"
+            android:layout_marginTop="@dimen/dp_72"
+            android:layout_marginStart="@dimen/dp_30"
+            android:layout_height="@dimen/dp_40"
+            android:background="@drawable/change"/>
+
         <Button
             android:id="@+id/bt3"
             android:paddingStart="@dimen/sp_20"
             android:layout_width="@dimen/dp_220"
             android:gravity="center_vertical"
+            android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:outlineProvider="none"
             android:drawableBottom="@drawable/blackline"
             android:layout_gravity="right"
             android:textSize="@dimen/sp_18"
@@ -90,12 +120,19 @@
             android:text="帮助中心"
             android:textColor="@color/black"
             android:layout_height="@dimen/dp_60"/>
-
+        <ImageView
+            android:layout_width="@dimen/dp_40"
+            android:layout_marginTop="@dimen/dp_132"
+            android:layout_marginStart="@dimen/dp_30"
+            android:layout_height="@dimen/dp_40"
+            android:background="@drawable/question_mark"/>
         <Button
             android:id="@+id/bt4"
             android:paddingStart="@dimen/sp_20"
             android:layout_width="@dimen/dp_220"
             android:gravity="center_vertical"
+            android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:outlineProvider="none"
             android:drawableBottom="@drawable/blackline"
             android:layout_gravity="right"
             android:textSize="@dimen/sp_18"
@@ -104,10 +141,18 @@
             android:text="其他"
             android:textColor="@color/black"
             android:layout_height="@dimen/dp_60"/>
+        <ImageView
+            android:layout_width="@dimen/dp_40"
+            android:layout_marginTop="@dimen/dp_192"
+            android:layout_marginStart="@dimen/dp_30"
+            android:layout_height="@dimen/dp_40"
+            android:background="@drawable/more"/>
 
         <Button
             android:id="@+id/bt5"
             android:paddingStart="@dimen/sp_20"
+            android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:outlineProvider="none"
             android:layout_width="@dimen/dp_220"
             android:layout_height="@dimen/dp_60"
             android:gravity="center_vertical"
@@ -118,5 +163,11 @@
             android:background="@color/white"
             android:text="退出登录"
             android:textColor="@color/black" />
+        <ImageView
+            android:layout_width="@dimen/dp_40"
+            android:layout_marginTop="@dimen/dp_252"
+            android:layout_marginStart="@dimen/dp_30"
+            android:layout_height="@dimen/dp_40"
+            android:background="@drawable/exit"/>
     </FrameLayout>
 </FrameLayout>

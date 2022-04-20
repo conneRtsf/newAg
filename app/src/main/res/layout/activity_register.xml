@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/pic"
+        android:layout_width="@dimen/dp_150"
+        android:layout_height="@dimen/dp_150"
+        android:layout_marginTop="@dimen/dp_50"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/icon" />
+
+    <EditText
+        android:id="@+id/enter1"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:autofillHints=""
+        android:textColor="@color/black"
+        android:layout_gravity="center_horizontal"
+        android:hint="账号"
+        android:inputType=""
+        android:textColorHint="#95a1aa" />
+
+    <EditText
+        android:id="@+id/enter2"
+        android:layout_width="300dp"
+        android:textColor="@color/black"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:autofillHints=""
+        android:hint="密码"
+        android:inputType=""
+        android:textColorHint="#95a1aa" />
+    <EditText
+        android:id="@+id/enter3"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:textColor="@color/black"
+        android:layout_gravity="center_horizontal"
+        android:autofillHints=""
+        android:hint="邀请码"
+        android:inputType=""
+        android:textColorHint="#95a1aa" />
+
+    <Button
+        android:id="@+id/btn1"
+        android:background="@color/white"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="@dimen/dp_50"
+        android:layout_gravity="center_horizontal"
+        android:text="注册"
+        android:textColor="@color/black" />
+
+</LinearLayout>
