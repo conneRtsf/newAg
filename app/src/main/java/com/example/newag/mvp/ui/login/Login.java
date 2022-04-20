@@ -94,35 +94,30 @@ public class Login extends AppCompatActivity {
             builder.add(key, Objects.requireNonNull(paramsMap.get(key)));
         }
 
-//        //步骤4:创建Retrofit对象
 //        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("http://ctos17.free.idcfengye.com/") // 设置网络请求baseUrl
-//                .addConverterFactory(GsonConverterFactory.create()) //设置使用Gson解析
+//                .baseUrl("http://ctos17.free.idcfengye.com/")
+//                .addConverterFactory(GsonConverterFactory.create())
 //                .build();
 //
-//        // 步骤5:创建网络请求接口的实例
 //        LoginApiService request = retrofit.create(LoginApiService.class);
 //
-//        //步骤6：对发送请求进行封装:
 //        Call<Translation> call = request.postDataCall("JSON");
 //
-//        //步骤7:发送网络请求(异步)
 //        call.enqueue(new Callback<Translation>() {
-//            //请求成功时回调
+
 //            @Override
 //            public void onResponse(Call<Translation> call, Response<Translation> response) {
-//                //步骤8：请求处理,输出结果
 //                Object body = response.body();
 //                if (body == null) return;
-//                mTextView.setText("返回的数据：" + "\n\n" + response.body().toString());
-//                Toast.makeText(Login.this, "post回调成功:异步执行", Toast.LENGTH_SHORT).show();
+//                mTextView.setText("info：" + "\n\n" + response.body().toString());
+//                Toast.makeText(Login.this, "success", Toast.LENGTH_SHORT).show();
+
 //            }
 //
-//            //请求失败时回调
 //            @Override
 //            public void onFailure(Call<Translation> call, Throwable throwable) {
-//                Log.e(TAG, "post回调失败：" + throwable.getMessage() + "," + throwable.toString());
-//                Toast.makeText(Login.this, "post回调失败", Toast.LENGTH_SHORT).show();
+//                Log.e(TAG, "info：" + throwable.getMessage() + "," + throwable.toString());
+//                Toast.makeText(Login.this, "error", Toast.LENGTH_SHORT).show();
 //            }
 //        });
 //

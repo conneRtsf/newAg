@@ -25,10 +25,10 @@ public interface LoginApiService {
 
         @FormUrlEncoded
         @POST("basic/user/login")
-        Call<ResponseBody> getPostData3(@FieldMap Map<String, String> map);
+        Call<ResponseBody> getPostData1(@FieldMap Map<String, String> map);
 
         @FormUrlEncoded
         @POST("basic/user/login")
-        Call<ReqBackData<IDNA.Info>> getPostData4(@FieldMap Map<String, String> map);
+        Call<ReqBackData<IDNA.Info>> getPostData2(@FieldMap Map<String, String> map);
 
 }
