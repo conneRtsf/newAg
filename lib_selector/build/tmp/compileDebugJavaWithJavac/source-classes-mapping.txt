@@ -6,10 +6,10 @@ com/luck/picture/lib/utils/DateUtils.java
  com.luck.picture.lib.utils.DateUtils
 com/luck/picture/lib/photoview/OnViewDragListener.java
  com.luck.picture.lib.photoview.OnViewDragListener
-com/luck/picture/lib/config/InjectResourceSource.java
- com.luck.picture.lib.config.InjectResourceSource
 com/luck/picture/lib/adapter/holder/ImageViewHolder.java
  com.luck.picture.lib.adapter.holder.ImageViewHolder
+com/luck/picture/lib/config/InjectResourceSource.java
+ com.luck.picture.lib.config.InjectResourceSource
 com/luck/picture/lib/PictureSelectorFragment.java
  com.luck.picture.lib.PictureSelectorFragment
  com.luck.picture.lib.PictureSelectorFragment$1
@@ -77,20 +77,20 @@ com/luck/picture/lib/config/SelectMimeType.java
  com.luck.picture.lib.config.SelectMimeType
 com/luck/picture/lib/interfaces/OnRequestPermissionListener.java
  com.luck.picture.lib.interfaces.OnRequestPermissionListener
-com/luck/picture/lib/decoration/WrapContentLinearLayoutManager.java
- com.luck.picture.lib.decoration.WrapContentLinearLayoutManager
 com/luck/picture/lib/widget/RecyclerPreloadView.java
  com.luck.picture.lib.widget.RecyclerPreloadView
+com/luck/picture/lib/decoration/WrapContentLinearLayoutManager.java
+ com.luck.picture.lib.decoration.WrapContentLinearLayoutManager
 com/luck/picture/lib/utils/StyleUtils.java
  com.luck.picture.lib.utils.StyleUtils
 com/luck/picture/lib/magical/MagicalViewWrapper.java
  com.luck.picture.lib.magical.MagicalViewWrapper
 com/luck/picture/lib/interfaces/OnRecordAudioInterceptListener.java
  com.luck.picture.lib.interfaces.OnRecordAudioInterceptListener
-com/luck/picture/lib/utils/ValueOf.java
- com.luck.picture.lib.utils.ValueOf
 com/luck/picture/lib/adapter/holder/PreviewImageHolder.java
  com.luck.picture.lib.adapter.holder.PreviewImageHolder
+com/luck/picture/lib/utils/ValueOf.java
+ com.luck.picture.lib.utils.ValueOf
 com/luck/picture/lib/photoview/PhotoView.java
  com.luck.picture.lib.photoview.PhotoView
 com/luck/picture/lib/loader/LocalMediaPageLoader.java
@@ -98,16 +98,16 @@ com/luck/picture/lib/loader/LocalMediaPageLoader.java
  com.luck.picture.lib.loader.LocalMediaPageLoader$1
  com.luck.picture.lib.loader.LocalMediaPageLoader$2
  com.luck.picture.lib.loader.LocalMediaPageLoader$3
-com/luck/picture/lib/magical/OnMagicalViewCallback.java
- com.luck.picture.lib.magical.OnMagicalViewCallback
 com/luck/picture/lib/loader/SandboxFileLoader.java
  com.luck.picture.lib.loader.SandboxFileLoader
  com.luck.picture.lib.loader.SandboxFileLoader$1
-com/luck/picture/lib/interfaces/OnCallbackListener.java
- com.luck.picture.lib.interfaces.OnCallbackListener
+com/luck/picture/lib/magical/OnMagicalViewCallback.java
+ com.luck.picture.lib.magical.OnMagicalViewCallback
 com/luck/picture/lib/config/PictureSelectionConfig.java
  com.luck.picture.lib.config.PictureSelectionConfig
  com.luck.picture.lib.config.PictureSelectionConfig$1
+com/luck/picture/lib/interfaces/OnCallbackListener.java
+ com.luck.picture.lib.interfaces.OnCallbackListener
 com/luck/picture/lib/widget/BottomNavBar.java
  com.luck.picture.lib.widget.BottomNavBar
  com.luck.picture.lib.widget.BottomNavBar$1
@@ -137,27 +137,27 @@ com/luck/picture/lib/interfaces/OnQueryAlbumListener.java
  com.luck.picture.lib.interfaces.OnQueryAlbumListener
 com/luck/picture/lib/interfaces/OnCameraInterceptListener.java
  com.luck.picture.lib.interfaces.OnCameraInterceptListener
+com/luck/picture/lib/adapter/holder/CameraViewHolder.java
+ com.luck.picture.lib.adapter.holder.CameraViewHolder
 com/luck/picture/lib/interfaces/OnRecyclerViewScrollStateListener.java
  com.luck.picture.lib.interfaces.OnRecyclerViewScrollStateListener
 com/luck/picture/lib/language/LanguageConfig.java
  com.luck.picture.lib.language.LanguageConfig
-com/luck/picture/lib/adapter/holder/CameraViewHolder.java
- com.luck.picture.lib.adapter.holder.CameraViewHolder
 com/luck/picture/lib/loader/IBridgeMediaLoader.java
  com.luck.picture.lib.loader.IBridgeMediaLoader
-com/luck/picture/lib/utils/SortUtils.java
- com.luck.picture.lib.utils.SortUtils
 com/luck/picture/lib/dialog/PhotoItemSelectedDialog.java
  com.luck.picture.lib.dialog.PhotoItemSelectedDialog
  com.luck.picture.lib.dialog.PhotoItemSelectedDialog$OnDismissListener
-com/luck/picture/lib/style/PictureWindowAnimationStyle.java
- com.luck.picture.lib.style.PictureWindowAnimationStyle
- com.luck.picture.lib.style.PictureWindowAnimationStyle$1
+com/luck/picture/lib/utils/SortUtils.java
+ com.luck.picture.lib.utils.SortUtils
+com/luck/picture/lib/photoview/OnViewTapListener.java
+ com.luck.picture.lib.photoview.OnViewTapListener
 com/luck/picture/lib/photoview/CustomGestureDetector.java
  com.luck.picture.lib.photoview.CustomGestureDetector
  com.luck.picture.lib.photoview.CustomGestureDetector$1
-com/luck/picture/lib/photoview/OnViewTapListener.java
- com.luck.picture.lib.photoview.OnViewTapListener
+com/luck/picture/lib/style/PictureWindowAnimationStyle.java
+ com.luck.picture.lib.style.PictureWindowAnimationStyle
+ com.luck.picture.lib.style.PictureWindowAnimationStyle$1
 com/luck/picture/lib/config/Crop.java
  com.luck.picture.lib.config.Crop
 com/luck/picture/lib/photoview/Util.java
@@ -244,10 +244,10 @@ com/luck/picture/lib/photoview/OnScaleChangedListener.java
  com.luck.picture.lib.photoview.OnScaleChangedListener
 com/luck/picture/lib/config/PictureConfig.java
  com.luck.picture.lib.config.PictureConfig
-com/luck/picture/lib/magical/BuildRecycleItemViewParams.java
- com.luck.picture.lib.magical.BuildRecycleItemViewParams
 com/luck/picture/lib/adapter/PicturePreviewAdapter.java
  com.luck.picture.lib.adapter.PicturePreviewAdapter
+com/luck/picture/lib/magical/BuildRecycleItemViewParams.java
+ com.luck.picture.lib.magical.BuildRecycleItemViewParams
 com/luck/picture/lib/BuildConfig.java
  com.luck.picture.lib.BuildConfig
 com/luck/picture/lib/photoview/OnSingleFlingListener.java
@@ -258,13 +258,13 @@ com/luck/picture/lib/PictureOnlyCameraFragment.java
 com/luck/picture/lib/immersive/RomUtils.java
  com.luck.picture.lib.immersive.RomUtils
  com.luck.picture.lib.immersive.RomUtils$AvailableRomType
+com/luck/picture/lib/basic/IPictureSelectorEvent.java
+ com.luck.picture.lib.basic.IPictureSelectorEvent
 com/luck/picture/lib/widget/SlideSelectTouchListener.java
  com.luck.picture.lib.widget.SlideSelectTouchListener
  com.luck.picture.lib.widget.SlideSelectTouchListener$1
  com.luck.picture.lib.widget.SlideSelectTouchListener$OnAdvancedSlideSelectListener
  com.luck.picture.lib.widget.SlideSelectTouchListener$OnSlideSelectListener
-com/luck/picture/lib/basic/IPictureSelectorEvent.java
- com.luck.picture.lib.basic.IPictureSelectorEvent
 com/luck/picture/lib/entity/LocalMediaFolder.java
  com.luck.picture.lib.entity.LocalMediaFolder
  com.luck.picture.lib.entity.LocalMediaFolder$1
@@ -290,12 +290,12 @@ com/luck/picture/lib/basic/PictureContentResolver.java
 com/luck/picture/lib/widget/TitleBar.java
  com.luck.picture.lib.widget.TitleBar
  com.luck.picture.lib.widget.TitleBar$OnTitleBarListener
+com/luck/picture/lib/photoview/OnPhotoTapListener.java
+ com.luck.picture.lib.photoview.OnPhotoTapListener
 com/luck/picture/lib/adapter/PictureImageGridAdapter.java
  com.luck.picture.lib.adapter.PictureImageGridAdapter
  com.luck.picture.lib.adapter.PictureImageGridAdapter$1
  com.luck.picture.lib.adapter.PictureImageGridAdapter$OnItemClickListener
-com/luck/picture/lib/photoview/OnPhotoTapListener.java
- com.luck.picture.lib.photoview.OnPhotoTapListener
 com/luck/picture/lib/photoview/OnMatrixChangedListener.java
  com.luck.picture.lib.photoview.OnMatrixChangedListener
 com/luck/picture/lib/utils/MediaStoreUtils.java
@@ -363,10 +363,10 @@ com/luck/picture/lib/service/ForegroundService.java
  com.luck.picture.lib.service.ForegroundService
 com/luck/picture/lib/widget/MediumBoldTextView.java
  com.luck.picture.lib.widget.MediumBoldTextView
-com/luck/picture/lib/app/IApp.java
- com.luck.picture.lib.app.IApp
 com/luck/picture/lib/animators/ViewHelper.java
  com.luck.picture.lib.animators.ViewHelper
+com/luck/picture/lib/app/IApp.java
+ com.luck.picture.lib.app.IApp
 com/luck/picture/lib/config/SelectLimitType.java
  com.luck.picture.lib.config.SelectLimitType
 com/luck/picture/lib/basic/PictureFileProvider.java
@@ -385,23 +385,23 @@ com/luck/picture/lib/interfaces/OnCallbackIndexListener.java
  com.luck.picture.lib.interfaces.OnCallbackIndexListener
 com/luck/picture/lib/interfaces/OnMediaEditInterceptListener.java
  com.luck.picture.lib.interfaces.OnMediaEditInterceptListener
+com/luck/picture/lib/widget/CompleteSelectView.java
+ com.luck.picture.lib.widget.CompleteSelectView
 com/luck/picture/lib/widget/SlideSelectionHandler.java
  com.luck.picture.lib.widget.SlideSelectionHandler
  com.luck.picture.lib.widget.SlideSelectionHandler$ISelectionHandler
  com.luck.picture.lib.widget.SlideSelectionHandler$ISelectionStartFinishedListener
-com/luck/picture/lib/widget/CompleteSelectView.java
- com.luck.picture.lib.widget.CompleteSelectView
 com/luck/picture/lib/adapter/holder/BaseRecyclerMediaHolder.java
  com.luck.picture.lib.adapter.holder.BaseRecyclerMediaHolder
  com.luck.picture.lib.adapter.holder.BaseRecyclerMediaHolder$1
  com.luck.picture.lib.adapter.holder.BaseRecyclerMediaHolder$2
  com.luck.picture.lib.adapter.holder.BaseRecyclerMediaHolder$3
  com.luck.picture.lib.adapter.holder.BaseRecyclerMediaHolder$4
+com/luck/picture/lib/engine/ExtendLoaderEngine.java
+ com.luck.picture.lib.engine.ExtendLoaderEngine
 com/luck/picture/lib/magical/ViewParams.java
  com.luck.picture.lib.magical.ViewParams
  com.luck.picture.lib.magical.ViewParams$1
-com/luck/picture/lib/engine/ExtendLoaderEngine.java
- com.luck.picture.lib.engine.ExtendLoaderEngine
 com/luck/picture/lib/basic/PictureSelectionPreviewModel.java
  com.luck.picture.lib.basic.PictureSelectionPreviewModel
 com/luck/picture/lib/style/BottomNavBarStyle.java
@@ -446,10 +446,10 @@ com/luck/picture/lib/magical/MagicalView.java
  com.luck.picture.lib.magical.MagicalView$6
 com/luck/picture/lib/app/PictureAppMaster.java
  com.luck.picture.lib.app.PictureAppMaster
-com/luck/picture/lib/utils/SdkVersionUtils.java
- com.luck.picture.lib.utils.SdkVersionUtils
 com/luck/picture/lib/immersive/ImmersiveManager.java
  com.luck.picture.lib.immersive.ImmersiveManager
+com/luck/picture/lib/utils/SdkVersionUtils.java
+ com.luck.picture.lib.utils.SdkVersionUtils
 com/luck/picture/lib/widget/PreviewTitleBar.java
  com.luck.picture.lib.widget.PreviewTitleBar
 com/luck/picture/lib/manager/SelectedManager.java
@@ -478,10 +478,6 @@ com/luck/picture/lib/permissions/PermissionConfig.java
  com.luck.picture.lib.permissions.PermissionConfig
 com/luck/picture/lib/config/PictureMimeType.java
  com.luck.picture.lib.config.PictureMimeType
-com/luck/picture/lib/engine/SandboxFileEngine.java
- com.luck.picture.lib.engine.SandboxFileEngine
-com/luck/picture/lib/interfaces/OnResultCallbackListener.java
- com.luck.picture.lib.interfaces.OnResultCallbackListener
 com/luck/picture/lib/adapter/holder/BasePreviewHolder.java
  com.luck.picture.lib.adapter.holder.BasePreviewHolder
  com.luck.picture.lib.adapter.holder.BasePreviewHolder$1
@@ -489,5 +485,9 @@ com/luck/picture/lib/adapter/holder/BasePreviewHolder.java
  com.luck.picture.lib.adapter.holder.BasePreviewHolder$3
  com.luck.picture.lib.adapter.holder.BasePreviewHolder$4
  com.luck.picture.lib.adapter.holder.BasePreviewHolder$OnPreviewEventListener
+com/luck/picture/lib/engine/SandboxFileEngine.java
+ com.luck.picture.lib.engine.SandboxFileEngine
+com/luck/picture/lib/interfaces/OnResultCallbackListener.java
+ com.luck.picture.lib.interfaces.OnResultCallbackListener
 com/luck/picture/lib/style/PictureSelectorStyle.java
  com.luck.picture.lib.style.PictureSelectorStyle
