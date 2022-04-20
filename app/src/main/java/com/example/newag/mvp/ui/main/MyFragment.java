@@ -1,5 +1,6 @@
 package com.example.newag.mvp.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,58 +9,47 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
 import com.example.newag.R;
+import com.example.newag.mvp.ui.my.AgreementPrivacy;
+import com.example.newag.mvp.ui.my.ChangeMy;
+import com.example.newag.mvp.ui.my.FarmChangeName;
+import com.example.newag.mvp.ui.my.SafeMe;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ShareFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
+
 public class MyFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public MyFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment shareFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ShareFragment newInstance(String param1, String param2) {
-        ShareFragment fragment = new ShareFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
+    private Unbinder unbinder;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my, container, false);
+        View view = inflater.inflate(R.layout.fragment_my, container, false);
+        unbinder = ButterKnife.bind(this, view);
+        return view;
+    }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+    @OnClick(R.id.changeMy)
+    void onClick1(View view) {
+        Intent intent = new Intent(getActivity(), ChangeMy.class);
+        startActivity(intent);
+    }
+    @OnClick(R.id.bt1)
+    void onClick2(View view) {
+        Intent intent = new Intent(getActivity(), SafeMe.class);
+        startActivity(intent);
+    }
+    @OnClick(R.id.bt2)
+    void onClick3(View view) {
+        Intent intent = new Intent(getActivity(), FarmChangeName.class);
+        startActivity(intent);
+    }
+    @OnClick(R.id.bt4)
+    void onClick4(View view) {
+        Intent intent = new Intent(getActivity(), AgreementPrivacy.class);
+        startActivity(intent);
     }
 }
