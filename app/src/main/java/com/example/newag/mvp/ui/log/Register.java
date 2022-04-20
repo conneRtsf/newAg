@@ -1,7 +1,6 @@
 package com.example.newag.mvp.ui.log;
 
 import android.os.Bundle;
-import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -59,7 +58,7 @@ public class Register extends AppCompatActivity {
         }
 
         RequestBody formBody = builder.build();
-        Request request = new Request.Builder().url("http://124.222.59.40:7000/user/register")
+        Request request = new Request.Builder().url("http://ctos17.free.idcfengye.com/basic/user/register")
                 .post(formBody)
                 .addHeader("Connection", "close")
                 .addHeader("content-type", "application/json;charset:utf-8")
@@ -76,21 +75,25 @@ public class Register extends AppCompatActivity {
                 assert response.body() != null;
                 String ResponseData = response.body().string();
                 Log.e("onResponse: ", ResponseData);
-                new Thread(() -> {
-                    try {
-                        Looper.prepare();
-                        JSONObject jsonObject1 = new JSONObject(ResponseData);
-                        AlertDialog.Builder builder1 = new AlertDialog.Builder(Register.this);
-                        builder1.setMessage(jsonObject1.getString("msg"));
-                        builder1. setPositiveButton("确定", (dialog, which) -> {
-                        });
-                        AlertDialog alert = builder1.create();
-                        alert.show();
-                        Looper.loop();
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                Register.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            JSONObject jsonObject1 = new JSONObject(ResponseData);
+                            AlertDialog.Builder builder1 = new AlertDialog.Builder(Register.this);
+                            builder1.setMessage(jsonObject1.getString("msg"));
+                            builder1. setPositiveButton("确定", (dialog, which) -> {
+                            });
+                            AlertDialog alert = builder1.create();
+                            alert.show();
+                            if(jsonObject1.getString("msg").equals("注册成功")){
+                                Register.this.finish();
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
-                }).start();
+                });
             }
         });
     }

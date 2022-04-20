@@ -2,7 +2,6 @@ package com.example.newag.mvp.ui.log;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +11,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.newag.R;
+import com.example.newag.mvp.ui.main.MainActivity;
 
 import org.json.JSONObject;
 
@@ -69,7 +69,7 @@ public class Log extends AppCompatActivity {
         }
 
         RequestBody formBody = builder.build();
-        Request request = new Request.Builder().url("http://124.222.59.40:7000/user/login")
+        Request request = new Request.Builder().url("http://ctos17.free.idcfengye.com/basic/user/login")
                 .post(formBody)
                 .addHeader("Connection", "close")
                 .addHeader("content-type", "application/json;charset:utf-8")
@@ -86,21 +86,29 @@ public class Log extends AppCompatActivity {
                 assert response.body() != null;
                 String ResponseData = response.body().string();
                 android.util.Log.e("onResponse: ", ResponseData);
-                new Thread(() -> {
-                    try {
-                        Looper.prepare();
-                        JSONObject jsonObject1 = new JSONObject(ResponseData);
-                        AlertDialog.Builder builder1 = new AlertDialog.Builder(Log.this);
-                        builder1.setMessage(jsonObject1.getString("msg"));
-                        builder1. setPositiveButton("确定", (dialog, which) -> {
-                        });
-                        AlertDialog alert = builder1.create();
-                        alert.show();
-                        Looper.loop();
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                Log.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            JSONObject jsonObject1 = new JSONObject(ResponseData);
+                            AlertDialog.Builder builder1 = new AlertDialog.Builder(Log.this);
+                            builder1.setMessage(jsonObject1.getString("msg"));
+                            builder1. setPositiveButton("确定", (dialog, which) -> {
+                            });
+                            AlertDialog alert = builder1.create();
+                            alert.show();
+                            if(jsonObject1.getString("msg").equals("登录成功")){
+                                Thread.sleep(1500);
+                                Intent intent = new Intent();
+                                intent.setClass(Log.this, MainActivity.class);
+                                startActivity(intent);
+                                Log.this.finish();
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
-                }).start();
+                });
             }
         });
     }
