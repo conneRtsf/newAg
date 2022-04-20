@@ -9,14 +9,14 @@ import com.example.newag.R;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ChangeMy extends AppCompatActivity {
+public class FarmChangeName extends AppCompatActivity {
     @OnClick(R.id.back)
     void Click1(){
-        ChangeMy.this.finish();
+        FarmChangeName.this.finish();
     }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_changemy);
+        setContentView(R.layout.activity_farmnamechange);
         ButterKnife.bind(this);
     }
 }

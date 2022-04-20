@@ -82,9 +82,12 @@
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout-v23/fragment_my.xml" value="0.2622549019607843" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/accounting.xml" value="0.19927536231884058" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_accounting.xml" value="0.19375" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_agreement_privacy.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_changemy.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_costAll.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_costall.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_farmnamechange.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_log.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_main.xml" value="0.16" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_main4.xml" value="0.2" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_plusprogram.xml" value="0.17119565217391305" />
@@ -93,7 +96,10 @@
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_programadd.xml" value="0.19375" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_programrecord.xml" value="0.16485507246376813" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_reduceadd.xml" value="0.1859375" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_register.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_safe.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_templatedrug.xml" value="0.19375" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_templatevegetable.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/all_cost.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/biankuang_test.xml" value="0.264" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/bottom_tab.xml" value="0.24974358974358973" />
@@ -155,7 +161,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

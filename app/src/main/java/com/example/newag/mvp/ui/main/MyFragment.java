@@ -9,7 +9,10 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
 import com.example.newag.R;
+import com.example.newag.mvp.ui.my.AgreementPrivacy;
 import com.example.newag.mvp.ui.my.ChangeMy;
+import com.example.newag.mvp.ui.my.FarmChangeName;
+import com.example.newag.mvp.ui.my.SafeMe;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -32,6 +35,21 @@ public class MyFragment extends Fragment {
     @OnClick(R.id.changeMy)
     void onClick1(View view) {
         Intent intent = new Intent(getActivity(), ChangeMy.class);
+        startActivity(intent);
+    }
+    @OnClick(R.id.bt1)
+    void onClick2(View view) {
+        Intent intent = new Intent(getActivity(), SafeMe.class);
+        startActivity(intent);
+    }
+    @OnClick(R.id.bt2)
+    void onClick3(View view) {
+        Intent intent = new Intent(getActivity(), FarmChangeName.class);
+        startActivity(intent);
+    }
+    @OnClick(R.id.bt4)
+    void onClick4(View view) {
+        Intent intent = new Intent(getActivity(), AgreementPrivacy.class);
         startActivity(intent);
     }
 }
