@@ -104,6 +104,9 @@
         <activity android:name=".mvp.ui.plus.ReducePlus"
             android:exported="true">
         </activity>
+        <activity android:name=".mvp.ui.my.ChangeMy"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>

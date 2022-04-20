@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/all.xml" value="0.123" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/arrowback.xml" value="0.1695" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/ask.xml" value="0.249" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/back.xml" value="0.1365" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/backcolor.xml" value="0.1945" />
@@ -45,6 +46,7 @@
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/item_back.xml" value="0.157" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/line.xml" value="0.177" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/line2.xml" value="0.177" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/line3.xml" value="0.1695" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/list_view.xml" value="0.123" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/listback.xml" value="0.2325" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/listback2.xml" value="0.135" />
@@ -77,12 +79,17 @@
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/yuan.xml" value="0.123" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/drawable/yuanbiankuang3.xml" value="0.148" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout-v23/activity_main_item.xml" value="0.4" />
-        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout-v23/fragment_my.xml" value="0.4" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout-v23/fragment_my.xml" value="0.2622549019607843" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/accounting.xml" value="0.19927536231884058" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_accounting.xml" value="0.19375" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_changemy.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_costAll.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_costall.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_main.xml" value="0.16" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_main4.xml" value="0.2" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_plusprogram.xml" value="0.17119565217391305" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_plusrecord.xml" value="0.17119565217391305" />
+        <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_plusreduce.xml" value="0.17119565217391305" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_programadd.xml" value="0.19375" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_programrecord.xml" value="0.16485507246376813" />
         <entry key="..\:/Users/86166/AndroidStudioProjects/newAg/app/src/main/res/layout/activity_reduceadd.xml" value="0.1859375" />
