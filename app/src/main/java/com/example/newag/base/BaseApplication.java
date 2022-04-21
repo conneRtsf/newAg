@@ -7,6 +7,7 @@ import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 
 import com.example.newag.mvp.model.api.ExceptionHandle;
+import com.example.newag.utils.AppUtils;
 import com.example.newag.utils.RxCrashUtils;
 
 import io.reactivex.functions.Consumer;
@@ -28,6 +29,7 @@ public class BaseApplication extends MultiDexApplication {
         super.onCreate();
         sInstance = this;
         RxCrashUtils.getInstance(this).init();
+        AppUtils.init(this);
         RxJavaPlugins.setErrorHandler(new Consumer<Throwable>() {
             @Override
             public void accept(Throwable throwable) {
