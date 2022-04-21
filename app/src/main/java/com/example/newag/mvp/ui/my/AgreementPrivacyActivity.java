@@ -9,14 +9,14 @@ import com.example.newag.R;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SafeMe extends AppCompatActivity {
+public class AgreementPrivacyActivity extends AppCompatActivity {
     @OnClick(R.id.back)
     void Click1(){
-        SafeMe.this.finish();
+        AgreementPrivacyActivity.this.finish();
     }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_safe);
+        setContentView(R.layout.activity_agreement_privacy);
         ButterKnife.bind(this);
     }
 }

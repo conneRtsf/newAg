@@ -1,6 +1,5 @@
-package com.example.newag.mvp.ui.reduce;
+package com.example.newag.mvp.ui.costs;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -17,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,7 +27,8 @@ import com.example.newag.R;
 import com.example.newag.mvp.adapter.AllTextMasterAdapter;
 import com.example.newag.mvp.model.bean.AllText;
 import com.example.newag.mvp.model.bean.AllTextMaster;
-import com.example.newag.mvp.ui.plus.ReducePlus;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -40,13 +41,66 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ReduceAdd extends AppCompatActivity implements View.OnClickListener{
+public class PeopleCostActivity extends AppCompatActivity {
+    @OnClick(R.id.tb1)
+    void onClick(View view) {
+        root.openDrawer(Gravity.LEFT);
+    }
+    @OnClick(R.id.ce1)
+    void onClick1(View view) {
+        Intent intent = new Intent();
+        intent.setClass(PeopleCostActivity.this, PeopleCostActivity.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce2)
+    void onClick2(View view) {
+        Intent intent = new Intent();
+        intent.setClass(PeopleCostActivity.this, FeedCostActivity.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce3)
+    void onClick3(View view) {
+        Intent intent = new Intent();
+        intent.setClass(PeopleCostActivity.this, FeedCostActivity.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce4)
+    void onClick4(View view) {
+        Intent intent = new Intent();
+        intent.setClass(PeopleCostActivity.this, FishCostActivity.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce5)
+    void onClick5(View view) {
+        Intent intent = new Intent();
+        intent.setClass(PeopleCostActivity.this, VegetableCostActivity.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce6)
+    void onClick6(View view) {
+        Intent intent = new Intent();
+        intent.setClass(PeopleCostActivity.this, OtherCostActivity.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce7)
+    void onClick7(View view) {
+        Intent intent = new Intent();
+        intent.setClass(PeopleCostActivity.this, AllCostActivity.class);
+        startActivity(intent);
+        finish();
+    }
     @OnClick(R.id.plus)
     void onClick11(View view) {
-        Intent intent = new Intent();
-        intent.setClass(ReduceAdd.this, ReducePlus.class);
-        startActivity(intent);
+        setDialog();
     }
+    @BindView(R.id.btn_Date)
+    Button btnDate;
     @BindView(R.id.root)
     DrawerLayout root;
     @BindView(R.id.left)
@@ -55,8 +109,8 @@ public class ReduceAdd extends AppCompatActivity implements View.OnClickListener
     RecyclerView recyclerView;
     @BindView(R.id.refresh)
     SwipeRefreshLayout refreshLayout;
-    @BindView(R.id.btn_Date)
-    Button btnDate;
+    @BindView(R.id.content)
+    View contentView;
     Calendar calendar= Calendar.getInstance(Locale.CHINA);
     private final List<AllText> allTextList11=new ArrayList<>();
     private final List<AllText> allTextList22=new ArrayList<>();
@@ -67,21 +121,12 @@ public class ReduceAdd extends AppCompatActivity implements View.OnClickListener
     private PopupWindow popupWindow;//定义一个新的popupWindow 主
     private PopupWindow newPopWindow;//副
     private AllTextMasterAdapter adapter;
+    @Subscribe
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reduceadd);
+        setContentView(R.layout.activity_costinput);
         ButterKnife.bind(this);
-        SimpleDateFormat   formatter   =   new   SimpleDateFormat   ("yyyy年\nM月 ");
-        Date curDate =  new Date(System.currentTimeMillis());
-        String   str   =   formatter.format(curDate);
-        btnDate.setText(str);
-        btnDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDatePickerDialog(ReduceAdd.this,  2, btnDate, calendar);;
-            }
-        });
         initText();//为原始数据添加数据
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);//设置布局管理器，cv工程
         recyclerView.setLayoutManager(linearLayoutManager);//为recycleview添加布局管理器，cv
@@ -104,8 +149,34 @@ public class ReduceAdd extends AppCompatActivity implements View.OnClickListener
                 refreshLayout.setRefreshing(false);
             }
         });
-    }
+        SimpleDateFormat   formatter   =   new   SimpleDateFormat   ("yyyy年\nM月 ");
+        Date curDate =  new Date(System.currentTimeMillis());
+        String   str   =   formatter.format(curDate);
+        btnDate.setText(str);
+        btnDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDatePickerDialog(PeopleCostActivity.this,  2, btnDate, calendar);
+            }
+        });
 
+        btnDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDatePickerDialog(PeopleCostActivity.this,  2, btnDate, calendar);;
+            }
+        });
+
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, root, android.R.string.yes, android.R.string.cancel) {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                super.onDrawerSlide(drawerView, slideOffset);
+                float slideX = drawerView.getWidth() * slideOffset;
+                contentView.setTranslationX(slideX);
+            }
+        };
+        root.addDrawerListener(actionBarDrawerToggle);
+    }
     public static void showDatePickerDialog(Activity activity, int themeResId, Button bt, Calendar calendar) {
         // 直接创建一个DatePickerDialog对话框实例，并将它显示出来
         new DatePickerDialog(activity, themeResId, new DatePickerDialog.OnDateSetListener() {
@@ -122,83 +193,10 @@ public class ReduceAdd extends AppCompatActivity implements View.OnClickListener
                 , calendar.get(Calendar.MONTH)
                 , calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
-    private void showPopWindow() {
-        //定义一个view，其中包含popwindow的布局文件
-        View view1= LayoutInflater.from(ReduceAdd.this).inflate(R.layout.footer_batch,null);
-        popupWindow =new PopupWindow(view1, RecyclerView.LayoutParams.MATCH_PARENT,
-                RecyclerView.LayoutParams.WRAP_CONTENT,true);//设置popwindow的属性（布局，x，y，true）
-        TextView make_text=(TextView)view1.findViewById(R.id.make_text);
-        TextView back_test=(TextView)view1.findViewById(R.id.back_test);
-        make_text.setOnClickListener(this);
-        back_test.setOnClickListener(this);
-        //定义一个view，其中包含main4的布局文件
-        View rootView=LayoutInflater.from(ReduceAdd.this).inflate(R.layout.activity_reduceadd,null);
-        popupWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);//展示自定义的popwindow，（放哪个布局里，放布局里的位置，x，y），cv工程
-        View view2=LayoutInflater.from(ReduceAdd.this).inflate(R.layout.ppw_delete,null);
-        newPopWindow=new PopupWindow(view2,RecyclerView.LayoutParams.MATCH_PARENT,
-                RecyclerView.LayoutParams.WRAP_CONTENT,false);
-        Button button_delete=(Button) view2.findViewById(R.id.delete);
-        button_delete.setOnClickListener(this);
-    }
-    //添加数据相关方法
-    private void initText() {
-        AllText one=new AllText("one");
-        allTextList1.add(one);
-        AllText two=new AllText("two");
-        allTextList1.add(two);
-        AllText three=new AllText("three");
-        allTextList1.add(three);
-        AllTextMaster add1=new AllTextMaster("0",allTextList1);
-        data_1.add(add1);
-        allTextList2.add(one);
-        allTextList2.add(two);
-        AllTextMaster add2=new AllTextMaster("1",allTextList2);
-        data_1.add(add2);
-        //
-        AllText one1=new AllText("菜地1\n50m^2/40m^2");
-        allTextList11.add(one1);
-        AllText two2=new AllText("菜地2\n60m^2/40m^2");
-        allTextList11.add(two2);
-        AllText three3=new AllText("菜地3\n40m^2/40m^2");
-        allTextList11.add(three3);
-        AllTextMaster add11=new AllTextMaster("4月10日",allTextList11);
-        data_2.add(add11);
-        allTextList22.clear();
-        AllText one2=new AllText("鱼池1\n40m^3/40m^3");
-        allTextList22.add(one2);
-        AllTextMaster add22=new AllTextMaster("4月9日",allTextList22);
-        data_2.add(add22);
-    }
-    @SuppressLint("NotifyDataSetChanged")
-    @Override
-    public void onClick(View v) {
-        int id=v.getId();
-        switch (id){
-            case R.id.make_text:{
-                adapter.setCheckbox(true);
-                adapter.notifyDataSetChanged();
-                popupWindow.dismiss();//销毁popwindow
-                View rootView= LayoutInflater.from(ReduceAdd.this).inflate(R.layout.activity_reduceadd,null);
-                newPopWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);
-            }
-            break;
-            case R.id.btn_Date:{
-                showDatePickerDialog(this,  2, btnDate, calendar);;
-                break;
-            }
-            case R.id.back_test:
-                popupWindow.dismiss();
-                break;
-            case R.id.delete:
-                adapter.setCheckbox(false);
-                adapter.notifyDataSetChanged();
-                newPopWindow.dismiss();
-        }
-    }
     private void setDialog() {
         Dialog mCameraDialog = new Dialog(this, R.style.BottomDialog);
         LinearLayout root = (LinearLayout) LayoutInflater.from(this).inflate(
-                R.layout.activity_plusreduce, null);
+                R.layout.activity_pluspeople, null);
         //初始化视图
         mCameraDialog.setContentView(root);
         Window dialogWindow = mCameraDialog.getWindow();
@@ -215,6 +213,73 @@ public class ReduceAdd extends AppCompatActivity implements View.OnClickListener
         dialogWindow.setAttributes(lp);
         mCameraDialog.show();
     }
+
+    private void showPopWindow() {
+        //定义一个view，其中包含popwindow的布局文件
+        View view1= LayoutInflater.from(PeopleCostActivity.this).inflate(R.layout.footer_batch,null);
+        popupWindow =new PopupWindow(view1, RecyclerView.LayoutParams.MATCH_PARENT,
+                RecyclerView.LayoutParams.WRAP_CONTENT,true);//设置popwindow的属性（布局，x，y，true）
+        TextView make_text=(TextView)view1.findViewById(R.id.make_text);
+        TextView back_test=(TextView)view1.findViewById(R.id.back_test);
+        make_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                adapter.setCheckbox(true);
+                adapter.notifyDataSetChanged();
+                popupWindow.dismiss();//销毁popwindow
+                View rootView= LayoutInflater.from(PeopleCostActivity.this).inflate(R.layout.activity_costinput,null);
+                newPopWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);
+            }
+        });
+        back_test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popupWindow.dismiss();
+            }
+        });
+        //定义一个view，其中包含main4的布局文件
+        View rootView=LayoutInflater.from(PeopleCostActivity.this).inflate(R.layout.activity_costinput,null);
+        popupWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);//展示自定义的popwindow，（放哪个布局里，放布局里的位置，x，y），cv工程
+        View view2=LayoutInflater.from(PeopleCostActivity.this).inflate(R.layout.ppw_delete,null);
+        newPopWindow=new PopupWindow(view2,RecyclerView.LayoutParams.MATCH_PARENT,
+                RecyclerView.LayoutParams.WRAP_CONTENT,false);
+        Button button_delete=(Button) view2.findViewById(R.id.delete);
+        button_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                adapter.setCheckbox(false);
+                adapter.notifyDataSetChanged();
+                newPopWindow.dismiss();
+            }
+        });
+    }
+    //添加数据相关方法
+    private void initText() {
+        AllText one=new AllText("one");
+        allTextList1.add(one);
+        AllText two=new AllText("two");
+        allTextList1.add(two);
+        AllText three=new AllText("three");
+        allTextList1.add(three);
+        AllTextMaster add1=new AllTextMaster("0",allTextList1);
+        data_1.add(add1);
+        allTextList2.add(one);
+        allTextList2.add(two);
+        AllTextMaster add2=new AllTextMaster("1",allTextList2);
+        data_1.add(add2);
+        //
+        AllText one1=new AllText("1.工资1\n2000元");
+        allTextList11.add(one1);
+        AllText two2=new AllText("1.工资2\n3000元");
+        allTextList11.add(two2);
+        AllText three3=new AllText("1.工资3\n4000元");
+        allTextList11.add(three3);
+        AllTextMaster add11=new AllTextMaster("4月10日",allTextList11);
+        data_2.add(add11);
+        allTextList22.clear();
+        AllText one2=new AllText("1.工资4\n9000元");
+        allTextList22.add(one2);
+        AllTextMaster add22=new AllTextMaster("4月9日",allTextList22);
+        data_2.add(add22);
+    }
 }
-
-

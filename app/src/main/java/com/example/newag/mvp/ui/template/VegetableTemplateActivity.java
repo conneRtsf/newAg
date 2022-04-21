@@ -1,19 +1,12 @@
-package com.example.newag.mvp.ui.costs;
+package com.example.newag.mvp.ui.template;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -28,21 +21,16 @@ import com.example.newag.R;
 import com.example.newag.mvp.adapter.AllTextMasterAdapter;
 import com.example.newag.mvp.model.bean.AllText;
 import com.example.newag.mvp.model.bean.AllTextMaster;
+import com.example.newag.mvp.ui.plus.TemplatePlus;
 
-import org.greenrobot.eventbus.Subscribe;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class FishCost extends AppCompatActivity {
+public class VegetableTemplateActivity extends AppCompatActivity {
     @OnClick(R.id.tb1)
     void onClick(View view) {
         root.openDrawer(Gravity.LEFT);
@@ -50,58 +38,44 @@ public class FishCost extends AppCompatActivity {
     @OnClick(R.id.ce1)
     void onClick1(View view) {
         Intent intent = new Intent();
-        intent.setClass(FishCost.this, PeopleCost.class);
+        intent.setClass(VegetableTemplateActivity.this, DrugTemplateActivity.class);
         startActivity(intent);
         finish();
     }
     @OnClick(R.id.ce2)
     void onClick2(View view) {
         Intent intent = new Intent();
-        intent.setClass(FishCost.this, FeedCost.class);
+        intent.setClass(VegetableTemplateActivity.this, FeedTemplateActivity.class);
         startActivity(intent);
         finish();
     }
     @OnClick(R.id.ce3)
     void onClick3(View view) {
         Intent intent = new Intent();
-        intent.setClass(FishCost.this, FeedCost.class);
+        intent.setClass(VegetableTemplateActivity.this, FishTemplateActivity.class);
         startActivity(intent);
         finish();
     }
     @OnClick(R.id.ce4)
     void onClick4(View view) {
         Intent intent = new Intent();
-        intent.setClass(FishCost.this, FishCost.class);
+        intent.setClass(VegetableTemplateActivity.this, VegetableTemplateActivity.class);
         startActivity(intent);
         finish();
     }
     @OnClick(R.id.ce5)
     void onClick5(View view) {
         Intent intent = new Intent();
-        intent.setClass(FishCost.this, VegetableCost.class);
-        startActivity(intent);
-        finish();
-    }
-    @OnClick(R.id.ce6)
-    void onClick6(View view) {
-        Intent intent = new Intent();
-        intent.setClass(FishCost.this, OtherCost.class);
-        startActivity(intent);
-        finish();
-    }
-    @OnClick(R.id.ce7)
-    void onClick7(View view) {
-        Intent intent = new Intent();
-        intent.setClass(FishCost.this, AllCost.class);
+        intent.setClass(VegetableTemplateActivity.this, OtherTemplateActivity.class);
         startActivity(intent);
         finish();
     }
     @OnClick(R.id.plus)
     void onClick11(View view) {
-        setDialog();
+        Intent intent = new Intent();
+        intent.setClass(VegetableTemplateActivity.this, TemplatePlus.class);
+        startActivity(intent);
     }
-    @BindView(R.id.btn_Date)
-    Button btnDate;
     @BindView(R.id.root)
     DrawerLayout root;
     @BindView(R.id.left)
@@ -112,7 +86,6 @@ public class FishCost extends AppCompatActivity {
     SwipeRefreshLayout refreshLayout;
     @BindView(R.id.content)
     View contentView;
-    Calendar calendar= Calendar.getInstance(Locale.CHINA);
     private final List<AllText> allTextList11=new ArrayList<>();
     private final List<AllText> allTextList22=new ArrayList<>();
     private final List<AllText> allTextList1=new ArrayList<>();
@@ -122,18 +95,10 @@ public class FishCost extends AppCompatActivity {
     private PopupWindow popupWindow;//定义一个新的popupWindow 主
     private PopupWindow newPopWindow;//副
     private AllTextMasterAdapter adapter;
-    @Subscribe
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_costfish);
+        setContentView(R.layout.activity_templatevegetable);
         ButterKnife.bind(this);
-        btnDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDatePickerDialog(FishCost.this,  2, btnDate, calendar);
-            }
-        });
         initText();//为原始数据添加数据
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);//设置布局管理器，cv工程
         recyclerView.setLayoutManager(linearLayoutManager);//为recycleview添加布局管理器，cv
@@ -156,17 +121,6 @@ public class FishCost extends AppCompatActivity {
                 refreshLayout.setRefreshing(false);
             }
         });
-        SimpleDateFormat formatter   =   new   SimpleDateFormat   ("yyyy年\nM月 ");
-        Date curDate =  new Date(System.currentTimeMillis());
-        String   str   =   formatter.format(curDate);
-        btnDate.setText(str);
-
-        btnDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDatePickerDialog(FishCost.this,  2, btnDate, calendar);;
-            }
-        });
 
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, root, android.R.string.yes, android.R.string.cancel) {
             @Override
@@ -178,45 +132,9 @@ public class FishCost extends AppCompatActivity {
         };
         root.addDrawerListener(actionBarDrawerToggle);
     }
-    public static void showDatePickerDialog(Activity activity, int themeResId, Button bt, Calendar calendar) {
-        // 直接创建一个DatePickerDialog对话框实例，并将它显示出来
-        new DatePickerDialog(activity, themeResId, new DatePickerDialog.OnDateSetListener() {
-            // 绑定监听器(How the parent is notified that the date is set.)
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                // 此处得到选择的时间，可以进行你想要的操作
-
-                bt.setText(year + "年\n" + (monthOfYear + 1) + "月" );
-            }
-        }
-                // 设置初始日期
-                , calendar.get(Calendar.YEAR)
-                , calendar.get(Calendar.MONTH)
-                , calendar.get(Calendar.DAY_OF_MONTH)).show();
-    }
-    private void setDialog() {
-        Dialog mCameraDialog = new Dialog(this, R.style.BottomDialog);
-        LinearLayout root = (LinearLayout) LayoutInflater.from(this).inflate(
-                R.layout.activity_plusfishvegetable, null);
-        //初始化视图
-        mCameraDialog.setContentView(root);
-        Window dialogWindow = mCameraDialog.getWindow();
-        dialogWindow.setGravity(Gravity.BOTTOM);
-//        dialogWindow.setWindowAnimations(R.style.dialogstyle); // 添加动画
-        WindowManager.LayoutParams lp = dialogWindow.getAttributes(); // 获取对话框当前的参数值
-        lp.x = 0; // 新位置X坐标
-        lp.y = 0; // 新位置Y坐标
-        lp.width = (int) getResources().getDisplayMetrics().widthPixels; // 宽度
-        root.measure(0, 0);
-        lp.height = root.getMeasuredHeight();
-
-        lp.alpha = 9f; // 透明度
-        dialogWindow.setAttributes(lp);
-        mCameraDialog.show();
-    }
     private void showPopWindow() {
         //定义一个view，其中包含popwindow的布局文件
-        View view1= LayoutInflater.from(FishCost.this).inflate(R.layout.footer_batch,null);
+        View view1= LayoutInflater.from(VegetableTemplateActivity.this).inflate(R.layout.footer_batch,null);
         popupWindow =new PopupWindow(view1, RecyclerView.LayoutParams.MATCH_PARENT,
                 RecyclerView.LayoutParams.WRAP_CONTENT,true);//设置popwindow的属性（布局，x，y，true）
         TextView make_text=(TextView)view1.findViewById(R.id.make_text);
@@ -227,7 +145,7 @@ public class FishCost extends AppCompatActivity {
                 adapter.setCheckbox(true);
                 adapter.notifyDataSetChanged();
                 popupWindow.dismiss();//销毁popwindow
-                View rootView= LayoutInflater.from(FishCost.this).inflate(R.layout.activity_costfish,null);
+                View rootView= LayoutInflater.from(VegetableTemplateActivity.this).inflate(R.layout.activity_templatevegetable,null);
                 newPopWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);
             }
         });
@@ -238,9 +156,9 @@ public class FishCost extends AppCompatActivity {
             }
         });
         //定义一个view，其中包含main4的布局文件
-        View rootView=LayoutInflater.from(FishCost.this).inflate(R.layout.activity_costfish,null);
+        View rootView=LayoutInflater.from(VegetableTemplateActivity.this).inflate(R.layout.activity_templatevegetable,null);
         popupWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);//展示自定义的popwindow，（放哪个布局里，放布局里的位置，x，y），cv工程
-        View view2=LayoutInflater.from(FishCost.this).inflate(R.layout.ppw_delete,null);
+        View view2=LayoutInflater.from(VegetableTemplateActivity.this).inflate(R.layout.ppw_delete,null);
         newPopWindow=new PopupWindow(view2,RecyclerView.LayoutParams.MATCH_PARENT,
                 RecyclerView.LayoutParams.WRAP_CONTENT,false);
         Button button_delete=(Button) view2.findViewById(R.id.delete);
@@ -269,18 +187,15 @@ public class FishCost extends AppCompatActivity {
         AllTextMaster add2=new AllTextMaster("1",allTextList2);
         data_1.add(add2);
         //
-        AllText one1=new AllText("1.鱼支出1\n200元");
+        AllText one1=new AllText("1.蔬菜投入1 a厂商");
         allTextList11.add(one1);
-        AllText two2=new AllText("2.鱼支出2\n300元");
+        AllText two2=new AllText("2.蔬菜投入2 b厂商");
         allTextList11.add(two2);
-        AllText three3=new AllText("3.鱼支出3\n400元");
+        AllText three3=new AllText("3.蔬菜投入3 c厂商");
         allTextList11.add(three3);
-        AllTextMaster add11=new AllTextMaster("4月10日",allTextList11);
+        AllTextMaster add11=new AllTextMaster("蔬菜模板",allTextList11);
+        AllText one2=new AllText("4.蔬菜投入4 d厂商");
+        allTextList11.add(one2);
         data_2.add(add11);
-        allTextList22.clear();
-        AllText one2=new AllText("4.鱼支出4\n900元");
-        allTextList22.add(one2);
-        AllTextMaster add22=new AllTextMaster("4月9日",allTextList22);
-        data_2.add(add22);
     }
 }

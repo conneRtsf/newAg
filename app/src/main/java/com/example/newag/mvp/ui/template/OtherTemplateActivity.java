@@ -30,7 +30,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class VegetableTemplate extends AppCompatActivity {
+public class OtherTemplateActivity extends AppCompatActivity {
     @OnClick(R.id.tb1)
     void onClick(View view) {
         root.openDrawer(Gravity.LEFT);
@@ -38,42 +38,42 @@ public class VegetableTemplate extends AppCompatActivity {
     @OnClick(R.id.ce1)
     void onClick1(View view) {
         Intent intent = new Intent();
-        intent.setClass(VegetableTemplate.this, DrugTemplate.class);
+        intent.setClass(OtherTemplateActivity.this, DrugTemplateActivity.class);
         startActivity(intent);
         finish();
     }
     @OnClick(R.id.ce2)
     void onClick2(View view) {
         Intent intent = new Intent();
-        intent.setClass(VegetableTemplate.this, FeedTemplate.class);
+        intent.setClass(OtherTemplateActivity.this, FeedTemplateActivity.class);
         startActivity(intent);
         finish();
     }
     @OnClick(R.id.ce3)
     void onClick3(View view) {
         Intent intent = new Intent();
-        intent.setClass(VegetableTemplate.this, FishTemplate.class);
+        intent.setClass(OtherTemplateActivity.this, FishTemplateActivity.class);
         startActivity(intent);
         finish();
     }
     @OnClick(R.id.ce4)
     void onClick4(View view) {
         Intent intent = new Intent();
-        intent.setClass(VegetableTemplate.this, VegetableTemplate.class);
+        intent.setClass(OtherTemplateActivity.this, VegetableTemplateActivity.class);
         startActivity(intent);
         finish();
     }
     @OnClick(R.id.ce5)
     void onClick5(View view) {
         Intent intent = new Intent();
-        intent.setClass(VegetableTemplate.this, OtherTemplate.class);
+        intent.setClass(OtherTemplateActivity.this, OtherTemplateActivity.class);
         startActivity(intent);
         finish();
     }
     @OnClick(R.id.plus)
     void onClick11(View view) {
         Intent intent = new Intent();
-        intent.setClass(VegetableTemplate.this, TemplatePlus.class);
+        intent.setClass(OtherTemplateActivity.this, TemplatePlus.class);
         startActivity(intent);
     }
     @BindView(R.id.root)
@@ -97,7 +97,7 @@ public class VegetableTemplate extends AppCompatActivity {
     private AllTextMasterAdapter adapter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_templatevegetable);
+        setContentView(R.layout.activity_templateother);
         ButterKnife.bind(this);
         initText();//为原始数据添加数据
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);//设置布局管理器，cv工程
@@ -121,7 +121,6 @@ public class VegetableTemplate extends AppCompatActivity {
                 refreshLayout.setRefreshing(false);
             }
         });
-
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, root, android.R.string.yes, android.R.string.cancel) {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
@@ -134,7 +133,7 @@ public class VegetableTemplate extends AppCompatActivity {
     }
     private void showPopWindow() {
         //定义一个view，其中包含popwindow的布局文件
-        View view1= LayoutInflater.from(VegetableTemplate.this).inflate(R.layout.footer_batch,null);
+        View view1= LayoutInflater.from(OtherTemplateActivity.this).inflate(R.layout.footer_batch,null);
         popupWindow =new PopupWindow(view1, RecyclerView.LayoutParams.MATCH_PARENT,
                 RecyclerView.LayoutParams.WRAP_CONTENT,true);//设置popwindow的属性（布局，x，y，true）
         TextView make_text=(TextView)view1.findViewById(R.id.make_text);
@@ -145,7 +144,7 @@ public class VegetableTemplate extends AppCompatActivity {
                 adapter.setCheckbox(true);
                 adapter.notifyDataSetChanged();
                 popupWindow.dismiss();//销毁popwindow
-                View rootView= LayoutInflater.from(VegetableTemplate.this).inflate(R.layout.activity_templatevegetable,null);
+                View rootView= LayoutInflater.from(OtherTemplateActivity.this).inflate(R.layout.activity_templateother,null);
                 newPopWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);
             }
         });
@@ -156,9 +155,9 @@ public class VegetableTemplate extends AppCompatActivity {
             }
         });
         //定义一个view，其中包含main4的布局文件
-        View rootView=LayoutInflater.from(VegetableTemplate.this).inflate(R.layout.activity_templatevegetable,null);
+        View rootView=LayoutInflater.from(OtherTemplateActivity.this).inflate(R.layout.activity_templateother,null);
         popupWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);//展示自定义的popwindow，（放哪个布局里，放布局里的位置，x，y），cv工程
-        View view2=LayoutInflater.from(VegetableTemplate.this).inflate(R.layout.ppw_delete,null);
+        View view2=LayoutInflater.from(OtherTemplateActivity.this).inflate(R.layout.ppw_delete,null);
         newPopWindow=new PopupWindow(view2,RecyclerView.LayoutParams.MATCH_PARENT,
                 RecyclerView.LayoutParams.WRAP_CONTENT,false);
         Button button_delete=(Button) view2.findViewById(R.id.delete);
@@ -187,14 +186,14 @@ public class VegetableTemplate extends AppCompatActivity {
         AllTextMaster add2=new AllTextMaster("1",allTextList2);
         data_1.add(add2);
         //
-        AllText one1=new AllText("1.蔬菜投入1 a厂商");
+        AllText one1=new AllText("1.其他投入1 a厂商");
         allTextList11.add(one1);
-        AllText two2=new AllText("2.蔬菜投入2 b厂商");
+        AllText two2=new AllText("2.其他投入2 b厂商");
         allTextList11.add(two2);
-        AllText three3=new AllText("3.蔬菜投入3 c厂商");
+        AllText three3=new AllText("3.其他投入3 c厂商");
         allTextList11.add(three3);
-        AllTextMaster add11=new AllTextMaster("蔬菜模板",allTextList11);
-        AllText one2=new AllText("4.蔬菜投入4 d厂商");
+        AllTextMaster add11=new AllTextMaster("药品模板",allTextList11);
+        AllText one2=new AllText("4.其他投入4 d厂商");
         allTextList11.add(one2);
         data_2.add(add11);
     }

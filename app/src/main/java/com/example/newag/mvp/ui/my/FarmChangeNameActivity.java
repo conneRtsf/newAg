@@ -9,10 +9,10 @@ import com.example.newag.R;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class FarmChangeName extends AppCompatActivity {
+public class FarmChangeNameActivity extends AppCompatActivity {
     @OnClick(R.id.back)
     void Click1(){
-        FarmChangeName.this.finish();
+        FarmChangeNameActivity.this.finish();
     }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

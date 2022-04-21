@@ -1,4 +1,4 @@
-package com.example.newag.mvp.ui.template;
+package com.example.newag.mvp.ui.program;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -21,7 +21,7 @@ import com.example.newag.R;
 import com.example.newag.mvp.adapter.AllTextMasterAdapter;
 import com.example.newag.mvp.model.bean.AllText;
 import com.example.newag.mvp.model.bean.AllTextMaster;
-import com.example.newag.mvp.ui.plus.TemplatePlus;
+import com.example.newag.mvp.ui.plus.ProgramPlus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,50 +30,22 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class DrugTemplate extends AppCompatActivity {
+public class ProgramAddActivity extends AppCompatActivity {
     @OnClick(R.id.tb1)
     void onClick(View view) {
         root.openDrawer(Gravity.LEFT);
     }
-    @OnClick(R.id.ce1)
+    @OnClick(R.id.ce2)
     void onClick1(View view) {
         Intent intent = new Intent();
-        intent.setClass(DrugTemplate.this, DrugTemplate.class);
-        startActivity(intent);
-        finish();
-    }
-    @OnClick(R.id.ce2)
-    void onClick2(View view) {
-        Intent intent = new Intent();
-        intent.setClass(DrugTemplate.this, FeedTemplate.class);
-        startActivity(intent);
-        finish();
-    }
-    @OnClick(R.id.ce3)
-    void onClick3(View view) {
-        Intent intent = new Intent();
-        intent.setClass(DrugTemplate.this, FishTemplate.class);
-        startActivity(intent);
-        finish();
-    }
-    @OnClick(R.id.ce4)
-    void onClick4(View view) {
-        Intent intent = new Intent();
-        intent.setClass(DrugTemplate.this, VegetableTemplate.class);
-        startActivity(intent);
-        finish();
-    }
-    @OnClick(R.id.ce5)
-    void onClick5(View view) {
-        Intent intent = new Intent();
-        intent.setClass(DrugTemplate.this, OtherTemplate.class);
+        intent.setClass(ProgramAddActivity.this, FeedingRecordActivity.class);
         startActivity(intent);
         finish();
     }
     @OnClick(R.id.plus)
     void onClick11(View view) {
         Intent intent = new Intent();
-        intent.setClass(DrugTemplate.this, TemplatePlus.class);
+        intent.setClass(ProgramAddActivity.this, ProgramPlus.class);
         startActivity(intent);
     }
     @BindView(R.id.root)
@@ -97,7 +69,7 @@ public class DrugTemplate extends AppCompatActivity {
     private AllTextMasterAdapter adapter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_templatedrug);
+        setContentView(R.layout.activity_programadd);
         ButterKnife.bind(this);
         initText();//为原始数据添加数据
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);//设置布局管理器，cv工程
@@ -121,6 +93,7 @@ public class DrugTemplate extends AppCompatActivity {
                 refreshLayout.setRefreshing(false);
             }
         });
+
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, root, android.R.string.yes, android.R.string.cancel) {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
@@ -133,7 +106,7 @@ public class DrugTemplate extends AppCompatActivity {
     }
     private void showPopWindow() {
         //定义一个view，其中包含popwindow的布局文件
-        View view1= LayoutInflater.from(DrugTemplate.this).inflate(R.layout.footer_batch,null);
+        View view1= LayoutInflater.from(ProgramAddActivity.this).inflate(R.layout.footer_batch,null);
         popupWindow =new PopupWindow(view1, RecyclerView.LayoutParams.MATCH_PARENT,
                 RecyclerView.LayoutParams.WRAP_CONTENT,true);//设置popwindow的属性（布局，x，y，true）
         TextView make_text=(TextView)view1.findViewById(R.id.make_text);
@@ -144,7 +117,7 @@ public class DrugTemplate extends AppCompatActivity {
                 adapter.setCheckbox(true);
                 adapter.notifyDataSetChanged();
                 popupWindow.dismiss();//销毁popwindow
-                View rootView= LayoutInflater.from(DrugTemplate.this).inflate(R.layout.activity_templatedrug,null);
+                View rootView= LayoutInflater.from(ProgramAddActivity.this).inflate(R.layout.activity_programadd,null);
                 newPopWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);
             }
         });
@@ -155,9 +128,9 @@ public class DrugTemplate extends AppCompatActivity {
             }
         });
         //定义一个view，其中包含main4的布局文件
-        View rootView=LayoutInflater.from(DrugTemplate.this).inflate(R.layout.activity_templatedrug,null);
+        View rootView=LayoutInflater.from(ProgramAddActivity.this).inflate(R.layout.activity_programadd,null);
         popupWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);//展示自定义的popwindow，（放哪个布局里，放布局里的位置，x，y），cv工程
-        View view2=LayoutInflater.from(DrugTemplate.this).inflate(R.layout.ppw_delete,null);
+        View view2=LayoutInflater.from(ProgramAddActivity.this).inflate(R.layout.ppw_delete,null);
         newPopWindow=new PopupWindow(view2,RecyclerView.LayoutParams.MATCH_PARENT,
                 RecyclerView.LayoutParams.WRAP_CONTENT,false);
         Button button_delete=(Button) view2.findViewById(R.id.delete);
@@ -186,15 +159,9 @@ public class DrugTemplate extends AppCompatActivity {
         AllTextMaster add2=new AllTextMaster("1",allTextList2);
         data_1.add(add2);
         //
-        AllText one1=new AllText("1.药品投入1 a厂商");
+        AllText one1=new AllText("1.鱼类投喂模板1\n阶段1:1月-5月 阶段2:5月-8月 id:鱼池3号 1号饲料 500g");
         allTextList11.add(one1);
-        AllText two2=new AllText("2.药品投入2 b厂商");
-        allTextList11.add(two2);
-        AllText three3=new AllText("3.药品投入3 c厂商");
-        allTextList11.add(three3);
-        AllTextMaster add11=new AllTextMaster("药品模板",allTextList11);
-        AllText one2=new AllText("4.药品投入4 d厂商");
-        allTextList11.add(one2);
+        AllTextMaster add11=new AllTextMaster("4月10日",allTextList11);
         data_2.add(add11);
     }
 }

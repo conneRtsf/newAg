@@ -1,12 +1,15 @@
-package com.example.newag.mvp.ui.template;
+package com.example.newag.mvp.ui.program;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -21,16 +24,20 @@ import com.example.newag.R;
 import com.example.newag.mvp.adapter.AllTextMasterAdapter;
 import com.example.newag.mvp.model.bean.AllText;
 import com.example.newag.mvp.model.bean.AllTextMaster;
-import com.example.newag.mvp.ui.plus.TemplatePlus;
+import com.example.newag.mvp.ui.plus.RecordPlus;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class OtherTemplate extends AppCompatActivity {
+public class FeedingRecordActivity extends AppCompatActivity {
     @OnClick(R.id.tb1)
     void onClick(View view) {
         root.openDrawer(Gravity.LEFT);
@@ -38,44 +45,18 @@ public class OtherTemplate extends AppCompatActivity {
     @OnClick(R.id.ce1)
     void onClick1(View view) {
         Intent intent = new Intent();
-        intent.setClass(OtherTemplate.this, DrugTemplate.class);
-        startActivity(intent);
-        finish();
-    }
-    @OnClick(R.id.ce2)
-    void onClick2(View view) {
-        Intent intent = new Intent();
-        intent.setClass(OtherTemplate.this, FeedTemplate.class);
-        startActivity(intent);
-        finish();
-    }
-    @OnClick(R.id.ce3)
-    void onClick3(View view) {
-        Intent intent = new Intent();
-        intent.setClass(OtherTemplate.this, FishTemplate.class);
-        startActivity(intent);
-        finish();
-    }
-    @OnClick(R.id.ce4)
-    void onClick4(View view) {
-        Intent intent = new Intent();
-        intent.setClass(OtherTemplate.this, VegetableTemplate.class);
-        startActivity(intent);
-        finish();
-    }
-    @OnClick(R.id.ce5)
-    void onClick5(View view) {
-        Intent intent = new Intent();
-        intent.setClass(OtherTemplate.this, OtherTemplate.class);
+        intent.setClass(FeedingRecordActivity.this, ProgramAddActivity.class);
         startActivity(intent);
         finish();
     }
     @OnClick(R.id.plus)
     void onClick11(View view) {
         Intent intent = new Intent();
-        intent.setClass(OtherTemplate.this, TemplatePlus.class);
+        intent.setClass(FeedingRecordActivity.this, RecordPlus.class);
         startActivity(intent);
     }
+    @BindView(R.id.btn_Date)
+    Button btnDate;
     @BindView(R.id.root)
     DrawerLayout root;
     @BindView(R.id.left)
@@ -95,10 +76,15 @@ public class OtherTemplate extends AppCompatActivity {
     private PopupWindow popupWindow;//定义一个新的popupWindow 主
     private PopupWindow newPopWindow;//副
     private AllTextMasterAdapter adapter;
+    Calendar calendar= Calendar.getInstance(Locale.CHINA);
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_templateother);
+        setContentView(R.layout.activity_programrecord);
         ButterKnife.bind(this);
+        SimpleDateFormat formatter   =   new   SimpleDateFormat   ("yyyy年\nM月 ");
+        Date curDate =  new Date(System.currentTimeMillis());
+        String   str   =   formatter.format(curDate);
+        btnDate.setText(str);
         initText();//为原始数据添加数据
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);//设置布局管理器，cv工程
         recyclerView.setLayoutManager(linearLayoutManager);//为recycleview添加布局管理器，cv
@@ -121,6 +107,13 @@ public class OtherTemplate extends AppCompatActivity {
                 refreshLayout.setRefreshing(false);
             }
         });
+        btnDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDatePickerDialog(FeedingRecordActivity.this,  2, btnDate, calendar);;
+            }
+        });
+
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, root, android.R.string.yes, android.R.string.cancel) {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
@@ -131,9 +124,25 @@ public class OtherTemplate extends AppCompatActivity {
         };
         root.addDrawerListener(actionBarDrawerToggle);
     }
+    public static void showDatePickerDialog(Activity activity, int themeResId, Button bt, Calendar calendar) {
+        // 直接创建一个DatePickerDialog对话框实例，并将它显示出来
+        new DatePickerDialog(activity, themeResId, new DatePickerDialog.OnDateSetListener() {
+            // 绑定监听器(How the parent is notified that the date is set.)
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                // 此处得到选择的时间，可以进行你想要的操作
+
+                bt.setText(year + "年\n" + (monthOfYear + 1) + "月" );
+            }
+        }
+                // 设置初始日期
+                , calendar.get(Calendar.YEAR)
+                , calendar.get(Calendar.MONTH)
+                , calendar.get(Calendar.DAY_OF_MONTH)).show();
+    }
     private void showPopWindow() {
         //定义一个view，其中包含popwindow的布局文件
-        View view1= LayoutInflater.from(OtherTemplate.this).inflate(R.layout.footer_batch,null);
+        View view1= LayoutInflater.from(FeedingRecordActivity.this).inflate(R.layout.footer_batch,null);
         popupWindow =new PopupWindow(view1, RecyclerView.LayoutParams.MATCH_PARENT,
                 RecyclerView.LayoutParams.WRAP_CONTENT,true);//设置popwindow的属性（布局，x，y，true）
         TextView make_text=(TextView)view1.findViewById(R.id.make_text);
@@ -144,7 +153,7 @@ public class OtherTemplate extends AppCompatActivity {
                 adapter.setCheckbox(true);
                 adapter.notifyDataSetChanged();
                 popupWindow.dismiss();//销毁popwindow
-                View rootView= LayoutInflater.from(OtherTemplate.this).inflate(R.layout.activity_templateother,null);
+                View rootView= LayoutInflater.from(FeedingRecordActivity.this).inflate(R.layout.activity_programrecord,null);
                 newPopWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);
             }
         });
@@ -155,9 +164,9 @@ public class OtherTemplate extends AppCompatActivity {
             }
         });
         //定义一个view，其中包含main4的布局文件
-        View rootView=LayoutInflater.from(OtherTemplate.this).inflate(R.layout.activity_templateother,null);
+        View rootView=LayoutInflater.from(FeedingRecordActivity.this).inflate(R.layout.activity_programrecord,null);
         popupWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);//展示自定义的popwindow，（放哪个布局里，放布局里的位置，x，y），cv工程
-        View view2=LayoutInflater.from(OtherTemplate.this).inflate(R.layout.ppw_delete,null);
+        View view2=LayoutInflater.from(FeedingRecordActivity.this).inflate(R.layout.ppw_delete,null);
         newPopWindow=new PopupWindow(view2,RecyclerView.LayoutParams.MATCH_PARENT,
                 RecyclerView.LayoutParams.WRAP_CONTENT,false);
         Button button_delete=(Button) view2.findViewById(R.id.delete);
@@ -186,15 +195,14 @@ public class OtherTemplate extends AppCompatActivity {
         AllTextMaster add2=new AllTextMaster("1",allTextList2);
         data_1.add(add2);
         //
-        AllText one1=new AllText("1.其他投入1 a厂商");
+        AllText one1=new AllText("1.鱼类投喂模板1 第二次");
         allTextList11.add(one1);
-        AllText two2=new AllText("2.其他投入2 b厂商");
-        allTextList11.add(two2);
-        AllText three3=new AllText("3.其他投入3 c厂商");
-        allTextList11.add(three3);
-        AllTextMaster add11=new AllTextMaster("药品模板",allTextList11);
-        AllText one2=new AllText("4.其他投入4 d厂商");
-        allTextList11.add(one2);
+        AllTextMaster add11=new AllTextMaster("4月10日",allTextList11);
         data_2.add(add11);
+        allTextList22.clear();
+        AllText one2=new AllText("1.鱼类投喂模板1 第一次");
+        allTextList22.add(one2);
+        AllTextMaster add22=new AllTextMaster("4月9日",allTextList22);
+        data_2.add(add22);
     }
 }

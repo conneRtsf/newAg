@@ -1,15 +1,19 @@
-package com.example.newag.mvp.ui.inputperiod;
+package com.example.newag.mvp.ui.costs;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -24,9 +28,8 @@ import com.example.newag.R;
 import com.example.newag.mvp.adapter.AllTextMasterAdapter;
 import com.example.newag.mvp.model.bean.AllText;
 import com.example.newag.mvp.model.bean.AllTextMaster;
-import com.example.newag.mvp.ui.costs.FeedCost;
-import com.example.newag.mvp.ui.costs.PeopleCost;
-import com.example.newag.mvp.ui.plus.PeriodPlus;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -39,7 +42,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class OtherPeriod extends AppCompatActivity {
+public class AllCostActivity extends AppCompatActivity {
     @OnClick(R.id.tb1)
     void onClick(View view) {
         root.openDrawer(Gravity.LEFT);
@@ -47,43 +50,73 @@ public class OtherPeriod extends AppCompatActivity {
     @OnClick(R.id.ce1)
     void onClick1(View view) {
         Intent intent = new Intent();
-        intent.setClass(OtherPeriod.this, FishPeriod.class);
+        intent.setClass(AllCostActivity.this, PeopleCostActivity.class);
         startActivity(intent);
         finish();
     }
     @OnClick(R.id.ce2)
     void onClick2(View view) {
         Intent intent = new Intent();
-        intent.setClass(OtherPeriod.this, VegetablePeriod.class);
+        intent.setClass(AllCostActivity.this, FeedCostActivity.class);
         startActivity(intent);
         finish();
     }
     @OnClick(R.id.ce3)
     void onClick3(View view) {
         Intent intent = new Intent();
-        intent.setClass(OtherPeriod.this, OtherPeriod.class);
+        intent.setClass(AllCostActivity.this, FeedCostActivity.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce4)
+    void onClick4(View view) {
+        Intent intent = new Intent();
+        intent.setClass(AllCostActivity.this, FishCostActivity.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce5)
+    void onClick5(View view) {
+        Intent intent = new Intent();
+        intent.setClass(AllCostActivity.this, VegetableCostActivity.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce6)
+    void onClick6(View view) {
+        Intent intent = new Intent();
+        intent.setClass(AllCostActivity.this, OtherCostActivity.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce7)
+    void onClick7(View view) {
+        Intent intent = new Intent();
+        intent.setClass(AllCostActivity.this, AllCostActivity.class);
         startActivity(intent);
         finish();
     }
     @OnClick(R.id.plus)
     void onClick11(View view) {
-        Intent intent = new Intent();
-        intent.setClass(OtherPeriod.this, PeriodPlus.class);
-        startActivity(intent);
+        setDialog();
     }
+    @BindView(R.id.left)
+    Button Button;
+
     @BindView(R.id.btn_Date)
     Button btnDate;
     @BindView(R.id.root)
     DrawerLayout root;
-    @BindView(R.id.left)
-    Button Button;
+
     @BindView(R.id.view_one)
     RecyclerView recyclerView;
     @BindView(R.id.refresh)
     SwipeRefreshLayout refreshLayout;
     @BindView(R.id.content)
     View contentView;
+
     Calendar calendar= Calendar.getInstance(Locale.CHINA);
+
     private final List<AllText> allTextList11=new ArrayList<>();
     private final List<AllText> allTextList22=new ArrayList<>();
     private final List<AllText> allTextList1=new ArrayList<>();
@@ -93,9 +126,11 @@ public class OtherPeriod extends AppCompatActivity {
     private PopupWindow popupWindow;//定义一个新的popupWindow 主
     private PopupWindow newPopWindow;//副
     private AllTextMasterAdapter adapter;
+    @Subscribe
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_periodother);
+        setContentView(R.layout.activity_costall);
         ButterKnife.bind(this);
         SimpleDateFormat formatter   =   new   SimpleDateFormat   ("yyyy年\nM月 ");
         Date curDate =  new Date(System.currentTimeMillis());
@@ -104,15 +139,13 @@ public class OtherPeriod extends AppCompatActivity {
         btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDatePickerDialog(OtherPeriod.this,  2, btnDate, calendar);;
+                showDatePickerDialog(AllCostActivity.this,  2, btnDate, calendar);
             }
         });
         initText();//为原始数据添加数据
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);//设置布局管理器，cv工程
-        recyclerView.setLayoutManager(linearLayoutManager);//为recycleview添加布局管理器，cv
-         /*adapter=new AllTextAdapter(allTextList);//定义一个新的自定义适配器（AllTextAdapter），并且把数据传进去
-        recyclerView.setAdapter(adapter);//为recycleview传入定义好的适配器，并展示*/
-        adapter=new AllTextMasterAdapter(this,data_1);//定义一个新的大适配器（AllTextMasterAdapter），并且把数据传进去
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        adapter=new AllTextMasterAdapter(this,data_1);
         recyclerView.setAdapter(adapter);//设置适配器
         Button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,7 +162,12 @@ public class OtherPeriod extends AppCompatActivity {
                 refreshLayout.setRefreshing(false);
             }
         });
-        
+        btnDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDatePickerDialog(AllCostActivity.this,  2, btnDate, calendar);;
+            }
+        });
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, root, android.R.string.yes, android.R.string.cancel) {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
@@ -156,9 +194,29 @@ public class OtherPeriod extends AppCompatActivity {
                 , calendar.get(Calendar.MONTH)
                 , calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
+    private void setDialog() {
+        Dialog mCameraDialog = new Dialog(this, R.style.BottomDialog);
+        LinearLayout root = (LinearLayout) LayoutInflater.from(this).inflate(
+                R.layout.activity_pluspeople, null);
+        //初始化视图
+        mCameraDialog.setContentView(root);
+        Window dialogWindow = mCameraDialog.getWindow();
+        dialogWindow.setGravity(Gravity.BOTTOM);
+//        dialogWindow.setWindowAnimations(R.style.dialogstyle); // 添加动画
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes(); // 获取对话框当前的参数值
+        lp.x = 0; // 新位置X坐标
+        lp.y = 0; // 新位置Y坐标
+        lp.width = (int) getResources().getDisplayMetrics().widthPixels; // 宽度
+        root.measure(0, 0);
+        lp.height = root.getMeasuredHeight();
+
+        lp.alpha = 9f; // 透明度
+        dialogWindow.setAttributes(lp);
+        mCameraDialog.show();
+    }
     private void showPopWindow() {
         //定义一个view，其中包含popwindow的布局文件
-        View view1= LayoutInflater.from(OtherPeriod.this).inflate(R.layout.footer_batch,null);
+        View view1= LayoutInflater.from(AllCostActivity.this).inflate(R.layout.footer_batch,null);
         popupWindow =new PopupWindow(view1, RecyclerView.LayoutParams.MATCH_PARENT,
                 RecyclerView.LayoutParams.WRAP_CONTENT,true);//设置popwindow的属性（布局，x，y，true）
         TextView make_text=(TextView)view1.findViewById(R.id.make_text);
@@ -169,7 +227,7 @@ public class OtherPeriod extends AppCompatActivity {
                 adapter.setCheckbox(true);
                 adapter.notifyDataSetChanged();
                 popupWindow.dismiss();//销毁popwindow
-                View rootView= LayoutInflater.from(OtherPeriod.this).inflate(R.layout.activity_periodother,null);
+                View rootView= LayoutInflater.from(AllCostActivity.this).inflate(R.layout.activity_costall,null);
                 newPopWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);
             }
         });
@@ -180,9 +238,9 @@ public class OtherPeriod extends AppCompatActivity {
             }
         });
         //定义一个view，其中包含main4的布局文件
-        View rootView=LayoutInflater.from(OtherPeriod.this).inflate(R.layout.activity_periodother,null);
+        View rootView=LayoutInflater.from(AllCostActivity.this).inflate(R.layout.activity_costall,null);
         popupWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);//展示自定义的popwindow，（放哪个布局里，放布局里的位置，x，y），cv工程
-        View view2=LayoutInflater.from(OtherPeriod.this).inflate(R.layout.ppw_delete,null);
+        View view2=LayoutInflater.from(AllCostActivity.this).inflate(R.layout.ppw_delete,null);
         newPopWindow=new PopupWindow(view2,RecyclerView.LayoutParams.MATCH_PARENT,
                 RecyclerView.LayoutParams.WRAP_CONTENT,false);
         Button button_delete=(Button) view2.findViewById(R.id.delete);
@@ -198,6 +256,7 @@ public class OtherPeriod extends AppCompatActivity {
     }
     //添加数据相关方法
     private void initText() {
+
         AllText one=new AllText("one");
         allTextList1.add(one);
         AllText two=new AllText("two");
@@ -211,16 +270,61 @@ public class OtherPeriod extends AppCompatActivity {
         AllTextMaster add2=new AllTextMaster("1",allTextList2);
         data_1.add(add2);
         //
-        AllText one1=new AllText("1.其他1\n");
+        allTextList22.clear();
+        AllText vegetable1=new AllText("1.蔬菜支出1\n200元");
+        allTextList11.add(vegetable1);
+        AllText vegetable2=new AllText("2.蔬菜支出2\n300元");
+        allTextList11.add(vegetable2);
+        AllText vegetable3=new AllText("3.蔬菜支出3\n400元");
+        allTextList11.add(vegetable3);
+        AllText vegetable4=new AllText("1.蔬菜支出4\n900元");
+        allTextList22.add(vegetable4);
+
+        AllText other1=new AllText("4.其他支出1\n200元");
+        allTextList11.add(other1);
+        AllText other2=new AllText("5.其他支出2\n300元");
+        allTextList11.add(other2);
+        AllText other3=new AllText("6.其他支出3\n400元");
+        allTextList11.add(other3);
+        AllText other4=new AllText("2.其他支出4\n900元");
+        allTextList22.add(other4);
+
+        AllText fish1=new AllText("7.鱼支出1\n200元");
+        allTextList11.add(fish1);
+        AllText fish2=new AllText("8.鱼支出2\n300元");
+        allTextList11.add(fish2);
+        AllText fish3=new AllText("9.鱼支出3\n400元");
+        allTextList11.add(fish3);
+        AllText fish4=new AllText("3.鱼支出4\n900元");
+        allTextList22.add(fish4);
+
+        AllText feed1=new AllText("10.饲料支出1\n200元");
+        allTextList11.add(feed1);
+        AllText feed2=new AllText("11.饲料支出2\n300元");
+        allTextList11.add(feed2);
+        AllText feed3=new AllText("12.饲料支出3\n400元");
+        allTextList11.add(feed3);
+        AllText feed4=new AllText("4.饲料支出4\n900元");
+        allTextList22.add(feed4);
+
+        AllText energy1=new AllText("13.能源支出1\n200元");
+        allTextList11.add(energy1);
+        AllText energy2=new AllText("14.能源支出2\n300元");
+        allTextList11.add(energy2);
+        AllText energy3=new AllText("15.能源支出3\n400元");
+        allTextList11.add(energy3);
+        AllText energy4=new AllText("5.能源支出4\n900元");
+        allTextList22.add(energy4);
+
+        AllText one1=new AllText("16.工资1\n2000元");
         allTextList11.add(one1);
-        AllText two2=new AllText("2.其他2\n");
+        AllText two2=new AllText("17.工资2\n3000元");
         allTextList11.add(two2);
-        AllText three3=new AllText("3.其他3\n");
+        AllText three3=new AllText("18.工资3\n4000元");
         allTextList11.add(three3);
         AllTextMaster add11=new AllTextMaster("4月10日",allTextList11);
         data_2.add(add11);
-        allTextList22.clear();
-        AllText one2=new AllText("4.其他4\n");
+        AllText one2=new AllText("6.工资4\n9000元");
         allTextList22.add(one2);
         AllTextMaster add22=new AllTextMaster("4月9日",allTextList22);
         data_2.add(add22);

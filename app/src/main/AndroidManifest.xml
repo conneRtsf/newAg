@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Design.NoActionBar"
         tools:targetApi="n">
         <activity
-            android:name=".mvp.ui.login.Login"
+            android:name=".mvp.ui.login.LoginActivity"
             android:launchMode="singleTask"
             android:exported="true">
             <intent-filter>
@@ -22,34 +22,34 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mvp.ui.login.Register"
+        <activity android:name=".mvp.ui.login.RegisterActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".mvp.ui.costs.FishCost"
+        <activity android:name=".mvp.ui.costs.FishCostActivity"
             android:exported="true">
         </activity>
         <activity android:name=".mvp.ui.main.MainActivity"
         android:exported="true">
     </activity>
-        <activity android:name=".mvp.ui.costs.VegetableCost"
+        <activity android:name=".mvp.ui.costs.VegetableCostActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".mvp.ui.costs.OtherCost"
+        <activity android:name=".mvp.ui.costs.OtherCostActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".mvp.ui.costs.EnergyCost"
+        <activity android:name=".mvp.ui.costs.EnergyCostActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".mvp.ui.reduce.ReduceAdd"
+        <activity android:name=".mvp.ui.reduce.ReduceAddActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".mvp.ui.costs.PeopleCost"
+        <activity android:name=".mvp.ui.costs.PeopleCostActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".mvp.ui.costs.AllCost"
+        <activity android:name=".mvp.ui.costs.AllCostActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".mvp.ui.costs.FeedCost"
+        <activity android:name=".mvp.ui.costs.FeedCostActivity"
             android:exported="true">
         </activity>
         <activity android:name=".mvp.ui.plus.PeoplePlus"
@@ -58,44 +58,44 @@
         <activity android:name=".mvp.ui.plus.FishVegetablePlus"
             android:exported="true">
         </activity>
-        <activity android:name=".mvp.ui.accounting.SalesAccounting"
+        <activity android:name=".mvp.ui.accounting.SalesAccountingActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".mvp.ui.inputperiod.FishPeriod"
+        <activity android:name=".mvp.ui.inputperiod.FishPeriodActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".mvp.ui.inputperiod.OtherPeriod"
+        <activity android:name=".mvp.ui.inputperiod.OtherPeriodActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".mvp.ui.inputperiod.VegetablePeriod"
+        <activity android:name=".mvp.ui.inputperiod.VegetablePeriodActivity"
             android:exported="true">
         </activity>
         <activity android:name=".mvp.ui.plus.PeriodPlus"
             android:exported="true">
         </activity>
 
-        <activity android:name=".mvp.ui.template.DrugTemplate"
+        <activity android:name=".mvp.ui.template.DrugTemplateActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".mvp.ui.template.FeedTemplate"
+        <activity android:name=".mvp.ui.template.FeedTemplateActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".mvp.ui.template.FishTemplate"
+        <activity android:name=".mvp.ui.template.FishTemplateActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".mvp.ui.template.OtherTemplate"
+        <activity android:name=".mvp.ui.template.OtherTemplateActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".mvp.ui.template.VegetableTemplate"
+        <activity android:name=".mvp.ui.template.VegetableTemplateActivity"
         android:exported="true">
     </activity>
         <activity android:name=".mvp.ui.plus.TemplatePlus"
             android:exported="true">
         </activity>
-        <activity android:name=".mvp.ui.program.FeedingRecord"
+        <activity android:name=".mvp.ui.program.FeedingRecordActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".mvp.ui.program.ProgramAdd"
+        <activity android:name=".mvp.ui.program.ProgramAddActivity"
             android:exported="true">
         </activity>
         <activity android:name=".mvp.ui.plus.ProgramPlus"
@@ -107,22 +107,22 @@
         <activity android:name=".mvp.ui.plus.InspectionPlus"
             android:exported="true">
         </activity>
-        <activity android:name=".mvp.ui.inspection.Inspection"
+        <activity android:name=".mvp.ui.inspection.InspectionActivity"
             android:exported="true">
         </activity>
         <activity android:name=".mvp.ui.plus.ReducePlus"
             android:exported="true">
         </activity>
-        <activity android:name=".mvp.ui.my.ChangeMy"
+        <activity android:name=".mvp.ui.my.ChangeMyActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".mvp.ui.my.SafeMe"
+        <activity android:name=".mvp.ui.my.SafeMeActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".mvp.ui.my.FarmChangeName"
+        <activity android:name=".mvp.ui.my.FarmChangeNameActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".mvp.ui.my.AgreementPrivacy"
+        <activity android:name=".mvp.ui.my.AgreementPrivacyActivity"
             android:exported="true">
         </activity>
     </application>

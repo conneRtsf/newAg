@@ -9,10 +9,10 @@ import com.example.newag.R;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ChangeMy extends AppCompatActivity {
+public class ChangeMyActivity extends AppCompatActivity {
     @OnClick(R.id.back)
     void Click1(){
-        ChangeMy.this.finish();
+        ChangeMyActivity.this.finish();
     }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

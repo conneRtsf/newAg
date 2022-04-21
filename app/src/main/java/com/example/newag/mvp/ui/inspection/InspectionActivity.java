@@ -1,16 +1,18 @@
-package com.example.newag.mvp.ui.program;
+package com.example.newag.mvp.ui.inspection;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,33 +23,28 @@ import com.example.newag.R;
 import com.example.newag.mvp.adapter.AllTextMasterAdapter;
 import com.example.newag.mvp.model.bean.AllText;
 import com.example.newag.mvp.model.bean.AllTextMaster;
-import com.example.newag.mvp.ui.plus.ProgramPlus;
+import com.example.newag.mvp.ui.plus.InspectionPlus;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ProgramAdd extends AppCompatActivity {
-    @OnClick(R.id.tb1)
-    void onClick(View view) {
-        root.openDrawer(Gravity.LEFT);
-    }
-    @OnClick(R.id.ce2)
-    void onClick1(View view) {
-        Intent intent = new Intent();
-        intent.setClass(ProgramAdd.this, FeedingRecord.class);
-        startActivity(intent);
-        finish();
-    }
+public class InspectionActivity extends AppCompatActivity {
     @OnClick(R.id.plus)
     void onClick11(View view) {
         Intent intent = new Intent();
-        intent.setClass(ProgramAdd.this, ProgramPlus.class);
+        intent.setClass(InspectionActivity.this, InspectionPlus.class);
         startActivity(intent);
     }
+    @BindView(R.id.btn_Date)
+    Button btnDate;
     @BindView(R.id.root)
     DrawerLayout root;
     @BindView(R.id.left)
@@ -56,8 +53,7 @@ public class ProgramAdd extends AppCompatActivity {
     RecyclerView recyclerView;
     @BindView(R.id.refresh)
     SwipeRefreshLayout refreshLayout;
-    @BindView(R.id.content)
-    View contentView;
+    Calendar calendar= Calendar.getInstance(Locale.CHINA);
     private final List<AllText> allTextList11=new ArrayList<>();
     private final List<AllText> allTextList22=new ArrayList<>();
     private final List<AllText> allTextList1=new ArrayList<>();
@@ -69,7 +65,7 @@ public class ProgramAdd extends AppCompatActivity {
     private AllTextMasterAdapter adapter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_programadd);
+        setContentView(R.layout.activity_inspection);
         ButterKnife.bind(this);
         initText();//为原始数据添加数据
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);//设置布局管理器，cv工程
@@ -93,20 +89,36 @@ public class ProgramAdd extends AppCompatActivity {
                 refreshLayout.setRefreshing(false);
             }
         });
-
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, root, android.R.string.yes, android.R.string.cancel) {
+        SimpleDateFormat formatter   =   new   SimpleDateFormat   ("yyyy年\nM月 ");
+        Date curDate =  new Date(System.currentTimeMillis());
+        String   str   =   formatter.format(curDate);
+        btnDate.setText(str);
+        btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDrawerSlide(View drawerView, float slideOffset) {
-                super.onDrawerSlide(drawerView, slideOffset);
-                float slideX = drawerView.getWidth() * slideOffset;
-                contentView.setTranslationX(slideX);
+            public void onClick(View view) {
+                showDatePickerDialog(InspectionActivity.this,  2, btnDate, calendar);;
             }
-        };
-        root.addDrawerListener(actionBarDrawerToggle);
+        });
+    }
+    public static void showDatePickerDialog(Activity activity, int themeResId, Button bt, Calendar calendar) {
+        // 直接创建一个DatePickerDialog对话框实例，并将它显示出来
+        new DatePickerDialog(activity, themeResId, new DatePickerDialog.OnDateSetListener() {
+            // 绑定监听器(How the parent is notified that the date is set.)
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                // 此处得到选择的时间，可以进行你想要的操作
+
+                bt.setText(year + "年\n" + (monthOfYear + 1) + "月" );
+            }
+        }
+                // 设置初始日期
+                , calendar.get(Calendar.YEAR)
+                , calendar.get(Calendar.MONTH)
+                , calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
     private void showPopWindow() {
         //定义一个view，其中包含popwindow的布局文件
-        View view1= LayoutInflater.from(ProgramAdd.this).inflate(R.layout.footer_batch,null);
+        View view1= LayoutInflater.from(InspectionActivity.this).inflate(R.layout.footer_batch,null);
         popupWindow =new PopupWindow(view1, RecyclerView.LayoutParams.MATCH_PARENT,
                 RecyclerView.LayoutParams.WRAP_CONTENT,true);//设置popwindow的属性（布局，x，y，true）
         TextView make_text=(TextView)view1.findViewById(R.id.make_text);
@@ -117,7 +129,7 @@ public class ProgramAdd extends AppCompatActivity {
                 adapter.setCheckbox(true);
                 adapter.notifyDataSetChanged();
                 popupWindow.dismiss();//销毁popwindow
-                View rootView= LayoutInflater.from(ProgramAdd.this).inflate(R.layout.activity_programadd,null);
+                View rootView= LayoutInflater.from(InspectionActivity.this).inflate(R.layout.activity_inspection,null);
                 newPopWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);
             }
         });
@@ -128,9 +140,9 @@ public class ProgramAdd extends AppCompatActivity {
             }
         });
         //定义一个view，其中包含main4的布局文件
-        View rootView=LayoutInflater.from(ProgramAdd.this).inflate(R.layout.activity_programadd,null);
+        View rootView=LayoutInflater.from(InspectionActivity.this).inflate(R.layout.activity_inspection,null);
         popupWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);//展示自定义的popwindow，（放哪个布局里，放布局里的位置，x，y），cv工程
-        View view2=LayoutInflater.from(ProgramAdd.this).inflate(R.layout.ppw_delete,null);
+        View view2= LayoutInflater.from(InspectionActivity.this).inflate(R.layout.ppw_delete,null);
         newPopWindow=new PopupWindow(view2,RecyclerView.LayoutParams.MATCH_PARENT,
                 RecyclerView.LayoutParams.WRAP_CONTENT,false);
         Button button_delete=(Button) view2.findViewById(R.id.delete);
@@ -159,7 +171,7 @@ public class ProgramAdd extends AppCompatActivity {
         AllTextMaster add2=new AllTextMaster("1",allTextList2);
         data_1.add(add2);
         //
-        AllText one1=new AllText("1.鱼类投喂模板1\n阶段1:1月-5月 阶段2:5月-8月 id:鱼池3号 1号饲料 500g");
+        AllText one1=new AllText("1.巡视1");
         allTextList11.add(one1);
         AllTextMaster add11=new AllTextMaster("4月10日",allTextList11);
         data_2.add(add11);
