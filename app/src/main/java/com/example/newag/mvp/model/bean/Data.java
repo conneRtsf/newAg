@@ -1,6 +1,6 @@
 package com.example.newag.mvp.model.bean;
 
-public class ReqBackData<T> {
+public class Data<T> {
     private int code;
     private String message;
     private T data;
