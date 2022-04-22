@@ -22,6 +22,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.newag.R;
+import com.example.newag.base.BaseActivity;
+import com.example.newag.di.component.AppComponent;
 import com.example.newag.mvp.adapter.AllTextMasterAdapter;
 import com.example.newag.mvp.model.bean.AllText;
 import com.example.newag.mvp.model.bean.AllTextMaster;
@@ -34,10 +36,9 @@ import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SalesAccountingActivity extends AppCompatActivity {
+public class SalesAccountingActivity extends BaseActivity {
     @OnClick(R.id.plus)
     void onClick1(View view) {
         setDialog();
@@ -61,10 +62,13 @@ public class SalesAccountingActivity extends AppCompatActivity {
     private AllTextMasterAdapter adapter;
     Calendar calendar= Calendar.getInstance(Locale.CHINA);
 
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_accounting);
-        ButterKnife.bind(this);
+    @Override
+    protected void initBaseData() {
+
+    }
+
+    @Override
+    protected void baseConfigView() {
         SimpleDateFormat formatter   =   new   SimpleDateFormat   ("yyyy年\nM月 ");
         Date curDate =  new Date(System.currentTimeMillis());
         String   str   =   formatter.format(curDate);
@@ -98,6 +102,17 @@ public class SalesAccountingActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected int layoutId() {
+        return R.layout.activity_accounting;
+    }
+
+    @Override
+    protected void setActivityComponent(AppComponent appComponent) {
+
+    }
+
     private void setDialog() {
         Dialog mCameraDialog = new Dialog(this, R.style.BottomDialog);
         LinearLayout root = (LinearLayout) LayoutInflater.from(this).inflate(

@@ -11,8 +11,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.newag.R;
+import com.example.newag.base.BaseActivity;
+import com.example.newag.di.component.AppComponent;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends BaseActivity implements View.OnClickListener{
     private TextView nourish;
     private TextView share;
     private TextView my;
@@ -22,11 +24,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Fragment myFragment;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected void initBaseData() {
+
+    }
+
+    @Override
+    protected void baseConfigView() {
         init();
         setFragment(0);
+    }
+
+    @Override
+    protected int layoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void setActivityComponent(AppComponent appComponent) {
+
     }
 
     @SuppressLint("NonConstantResourceId")

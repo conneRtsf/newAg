@@ -25,6 +25,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.newag.R;
+import com.example.newag.base.BaseActivity;
+import com.example.newag.di.component.AppComponent;
 import com.example.newag.mvp.adapter.AllTextMasterAdapter;
 import com.example.newag.mvp.model.bean.AllText;
 import com.example.newag.mvp.model.bean.AllTextMaster;
@@ -42,7 +44,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class AllCostActivity extends AppCompatActivity {
+public class AllCostActivity extends BaseActivity {
     @OnClick(R.id.tb1)
     void onClick(View view) {
         root.openDrawer(Gravity.LEFT);
@@ -126,12 +128,14 @@ public class AllCostActivity extends AppCompatActivity {
     private PopupWindow popupWindow;//定义一个新的popupWindow 主
     private PopupWindow newPopWindow;//副
     private AllTextMasterAdapter adapter;
-    @Subscribe
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_costall);
-        ButterKnife.bind(this);
+    protected void initBaseData() {
+
+    }
+
+    @Override
+    protected void baseConfigView() {
         SimpleDateFormat formatter   =   new   SimpleDateFormat   ("yyyy年\nM月 ");
         Date curDate =  new Date(System.currentTimeMillis());
         String   str   =   formatter.format(curDate);
@@ -178,6 +182,17 @@ public class AllCostActivity extends AppCompatActivity {
         };
         root.addDrawerListener(actionBarDrawerToggle);
     }
+
+    @Override
+    protected int layoutId() {
+        return R.layout.activity_costall;
+    }
+
+    @Override
+    protected void setActivityComponent(AppComponent appComponent) {
+
+    }
+
     public static void showDatePickerDialog(Activity activity, int themeResId, Button bt, Calendar calendar) {
         // 直接创建一个DatePickerDialog对话框实例，并将它显示出来
         new DatePickerDialog(activity, themeResId, new DatePickerDialog.OnDateSetListener() {

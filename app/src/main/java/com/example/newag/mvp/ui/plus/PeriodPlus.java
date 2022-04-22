@@ -11,19 +11,25 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.newag.R;
+import com.example.newag.base.BaseActivity;
+import com.example.newag.di.component.AppComponent;
 
-public class PeriodPlus extends AppCompatActivity {
+public class PeriodPlus extends BaseActivity {
     private Spinner spCity = null;
     private ArrayAdapter<CharSequence> adapterCity = null;
     private static final String[] fish_info={"鱼池1号","鱼池2号","鱼池10号","鱼池666号"};
     private static final String[] vegetable_info={"菜地1号","菜地2号","菜地10号","菜地666号"};
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_plusperiod);
-        //动态实现的下拉框，数据在程序中获得，实际项目可能来自数据库等
+
+    @Override
+    protected void initBaseData() {
+
+    }
+
+    @Override
+    protected void baseConfigView() {
         this.spCity = (Spinner) super.findViewById(R.id.spinner_name);
         this.adapterCity = new ArrayAdapter<CharSequence>(this,
-                    android.R.layout.simple_spinner_dropdown_item, fish_info);
+                android.R.layout.simple_spinner_dropdown_item, fish_info);
         this.spCity.setAdapter(adapterCity);
         this.spCity.setOnItemSelectedListener(new OnItemSelectedListenerImpl());
 
@@ -33,7 +39,18 @@ public class PeriodPlus extends AppCompatActivity {
         this.spCity.setAdapter(adapterCity);
         this.spCity.setOnItemSelectedListener(new OnItemSelectedListenerImpl());
     }
-        //下拉框选择事件
+
+    @Override
+    protected int layoutId() {
+        return R.layout.activity_plusperiod;
+    }
+
+    @Override
+    protected void setActivityComponent(AppComponent appComponent) {
+
+    }
+
+    //下拉框选择事件
     private static class OnItemSelectedListenerImpl implements AdapterView.OnItemSelectedListener {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view,

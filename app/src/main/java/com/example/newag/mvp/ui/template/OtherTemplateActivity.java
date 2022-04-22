@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.newag.R;
+import com.example.newag.base.BaseActivity;
+import com.example.newag.di.component.AppComponent;
 import com.example.newag.mvp.adapter.AllTextMasterAdapter;
 import com.example.newag.mvp.model.bean.AllText;
 import com.example.newag.mvp.model.bean.AllTextMaster;
@@ -30,7 +32,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class OtherTemplateActivity extends AppCompatActivity {
+public class OtherTemplateActivity extends BaseActivity {
     @OnClick(R.id.tb1)
     void onClick(View view) {
         root.openDrawer(Gravity.LEFT);
@@ -95,10 +97,14 @@ public class OtherTemplateActivity extends AppCompatActivity {
     private PopupWindow popupWindow;//定义一个新的popupWindow 主
     private PopupWindow newPopWindow;//副
     private AllTextMasterAdapter adapter;
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_templateother);
-        ButterKnife.bind(this);
+
+    @Override
+    protected void initBaseData() {
+
+    }
+
+    @Override
+    protected void baseConfigView() {
         initText();//为原始数据添加数据
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);//设置布局管理器，cv工程
         recyclerView.setLayoutManager(linearLayoutManager);//为recycleview添加布局管理器，cv
@@ -131,6 +137,17 @@ public class OtherTemplateActivity extends AppCompatActivity {
         };
         root.addDrawerListener(actionBarDrawerToggle);
     }
+
+    @Override
+    protected int layoutId() {
+        return R.layout.activity_templateother;
+    }
+
+    @Override
+    protected void setActivityComponent(AppComponent appComponent) {
+
+    }
+
     private void showPopWindow() {
         //定义一个view，其中包含popwindow的布局文件
         View view1= LayoutInflater.from(OtherTemplateActivity.this).inflate(R.layout.footer_batch,null);

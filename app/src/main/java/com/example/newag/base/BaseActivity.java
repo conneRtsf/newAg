@@ -61,7 +61,7 @@ public abstract class BaseActivity<T1 extends BaseContract.BasePresenter> extend
                 ImmersionBar.with(this).statusBarColor(R.color.gray).keyboardEnable(true).statusBarDarkFont(true).navigationBarEnable(false).init();
             }
             setContentView(view);
-            setActivityComponent(MyApplication.getMyApplication().getAppComponent());
+//            setActivityComponent(MyApplication.getMyApplication().getAppComponent());
             if (mPresenter != null) mPresenter.attachView(this);
             ButterKnife.bind(this);
             baseConfigView();

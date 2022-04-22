@@ -12,6 +12,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.newag.R;
+import com.example.newag.base.BaseActivity;
+import com.example.newag.di.component.AppComponent;
 
 import org.json.JSONObject;
 
@@ -29,15 +31,27 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends BaseActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
-        ButterKnife.bind(this);
+    protected void initBaseData() {
+
+    }
+
+    @Override
+    protected void baseConfigView() {
         Button register = findViewById(R.id.btn1);
         register.setOnClickListener(this::postSync);
+    }
+
+    @Override
+    protected int layoutId() {
+        return R.layout.activity_register;
+    }
+
+    @Override
+    protected void setActivityComponent(AppComponent appComponent) {
+
     }
 
     private OkHttpClient buildHttpClient() {

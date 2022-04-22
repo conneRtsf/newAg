@@ -9,8 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public abstract class BaseFragment extends Fragment {
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
+public abstract class BaseFragment extends Fragment {
+    private Unbinder unbinder;
     protected Activity mActivity;
 
     /**
@@ -31,7 +34,7 @@ public abstract class BaseFragment extends Fragment {
         View view = LayoutInflater.from(mActivity)
                 .inflate(getLayoutId(), container, false);
         initView(view, savedInstanceState);
-
+        unbinder = ButterKnife.bind(this, view);
         return view;
     }
 

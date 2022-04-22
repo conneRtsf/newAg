@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
 import com.example.newag.R;
+import com.example.newag.base.BaseFragment;
 import com.example.newag.mvp.ui.accounting.SalesAccountingActivity;
 import com.example.newag.mvp.ui.costs.PeopleCostActivity;
 import com.example.newag.mvp.ui.inputperiod.FishPeriodActivity;
@@ -21,16 +22,24 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-public class NourishFragment extends Fragment {
+public class NourishFragment extends BaseFragment {
     private Unbinder unbinder;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_nourish, container, false);
-        unbinder = ButterKnife.bind(this, view);
-        return view;
+    protected int getLayoutId() {
+        return R.layout.fragment_nourish;
     }
+
+    @Override
+    protected void initView(View view, Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

@@ -12,6 +12,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.newag.R;
+import com.example.newag.base.BaseActivity;
+import com.example.newag.di.component.AppComponent;
 import com.example.newag.mvp.ui.main.MainActivity;
 
 import org.json.JSONObject;
@@ -32,7 +34,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
     @BindView(R.id.enter1)
     EditText editText1;
     @BindView(R.id.enter2)
@@ -47,19 +49,29 @@ public class LoginActivity extends AppCompatActivity {
         intent.setClass(LoginActivity.this, MainActivity.class);
         startActivity(intent);
     }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void initBaseData() {
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_log);
-        ButterKnife.bind(this);
+    }
 
+    @Override
+    protected void baseConfigView() {
         log.setOnClickListener(this::postSync);
         Register.setOnClickListener(view -> {
             Intent intent = new Intent();
             intent.setClass(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
         });
+    }
+
+    @Override
+    protected int layoutId() {
+        return R.layout.activity_log;
+    }
+
+    @Override
+    protected void setActivityComponent(AppComponent appComponent) {
 
     }
 

@@ -5,10 +5,28 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.newag.R;
+import com.example.newag.base.BaseActivity;
+import com.example.newag.di.component.AppComponent;
 
-public class FishVegetablePlus extends AppCompatActivity {
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_plusfishvegetable);
+public class FishVegetablePlus extends BaseActivity {
+
+    @Override
+    protected void initBaseData() {
+
+    }
+
+    @Override
+    protected void baseConfigView() {
+
+    }
+
+    @Override
+    protected int layoutId() {
+        return R.layout.activity_plusfishvegetable;
+    }
+
+    @Override
+    protected void setActivityComponent(AppComponent appComponent) {
+
     }
 }
