@@ -10,6 +10,8 @@ public class Constant {
 
     public static String API_BASE_URL = "http://124.222.59.40:7000/";
 
+    public static final String PRIVACY_URL = API_BASE_URL + "question/{qid}.html";
+
     public static String getCrashFilePath() {
         String filePath;
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {

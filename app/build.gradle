@@ -25,9 +25,17 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    productFlavors {
+        pd {}
+    }
+    productFlavors.all {
+        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }
+    flavorDimensions "default"
 }
 
 dependencies {
+    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     implementation 'com.jakewharton:butterknife:10.0.0'
     implementation 'androidx.room:room-common:2.2.6'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
