@@ -23,7 +23,6 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 public class NourishFragment extends BaseFragment {
-    private Unbinder unbinder;
 
     @Override
     protected int getLayoutId() {
@@ -43,7 +42,6 @@ public class NourishFragment extends BaseFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
     }
     @OnClick(R.id.bt7)
     void onClick7(View view) {
