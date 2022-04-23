@@ -23,4 +23,16 @@
         <item name="android:windowEnterAnimation">@anim/dialog_in</item>
         <item name="android:windowExitAnimation">@anim/dialog_iout</item>
     </style>
+
+    <style name="pushStyle" parent="@android:style/Theme.Translucent.NoTitleBar">
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+
+    <style name="AppraiseDialog" parent="@android:style/Theme.Dialog">
+        <!-- dialog  宽度与屏幕比例-->
+        <item name="android:windowMinWidthMinor">80%</item>
+        <!-- dialog 背景颜色，默认是白色-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 </resources>

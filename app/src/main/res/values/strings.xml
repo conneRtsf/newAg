@@ -21,4 +21,10 @@
     <string name="cultvation">农场养殖</string>
     <string name="my">我的</string>
     <string name="生产单元添加">农场养殖</string>
+    <string name="imei">检验IMEI码，保证账号安全，防止账号被盗。</string>
+    <string name="tel_permiss">· 手机电话权限：</string>
+    <string name="down_permiss">下载文件，降低流量消耗。</string>
+    <string name="cache_permiss">· 存储权限：</string>
+    <string name="need_permiss">菜鱼共生需要以下权限才能正常使用</string>
+    <string name="refuse_permission">您拒绝了权限申请</string>
 </resources>

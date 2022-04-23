@@ -6,6 +6,9 @@ import com.example.newag.di.component.AppComponent;
 import com.example.newag.di.component.DaggerAppComponent;
 import com.example.newag.di.module.AppModule;
 import com.example.newag.di.module.AquApiModule;
+import com.example.newag.utils.SdkDelayInitUtil;
+import com.example.newag.utils.SharedPreferencesUtil;
+import com.example.newag.utils.UMInitUtil;
 
 public class MyApplication extends BaseApplication {
 
@@ -16,6 +19,7 @@ public class MyApplication extends BaseApplication {
     }
 
     private AppComponent appComponent;
+    public boolean welcomedialogshowed = false;
 
     private void initComponent() {
         appComponent = DaggerAppComponent.builder()
@@ -34,6 +38,9 @@ public class MyApplication extends BaseApplication {
     public void onCreate() {
         super.onCreate();
         myApplication = this;
+        SharedPreferencesUtil.init(this,"com.example.newag",MODE_PRIVATE);
+        UMInitUtil.init(this);
+        SdkDelayInitUtil.getInstance().init();
         initComponent();
     }
 }

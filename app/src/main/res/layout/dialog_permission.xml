@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <LinearLayout
+        android:id="@+id/permission_root"
+        android:layout_margin="35dp"
+        android:orientation="vertical"
+        android:background="@drawable/permission_dialog_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textColor="@color/black"
+            android:padding="15dp"
+            android:text="提示"
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:paddingLeft="15dp"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            android:text="@string/need_permiss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textColor="@color/black"
+            android:paddingLeft="15dp"
+            android:paddingTop="15dp"
+            android:textSize="14sp"
+            android:text="@string/cache_permiss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:paddingLeft="15dp"
+            android:textColor="@color/gray"
+            android:paddingTop="3dp"
+            android:textSize="14sp"
+            android:text="@string/down_permiss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textColor="@color/black"
+            android:paddingLeft="15dp"
+            android:paddingTop="15dp"
+            android:textSize="14sp"
+            android:text="@string/tel_permiss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:paddingLeft="15dp"
+            android:textColor="@color/gray"
+            android:paddingTop="3dp"
+            android:textSize="14sp"
+            android:text="@string/imei"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:text="知道了"
+                android:textColor="#ff9090"
+                android:id="@+id/dissmiss"
+                android:layout_alignParentRight="true"
+                android:paddingRight="25dp"
+                android:paddingLeft="25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp" />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+    </LinearLayout>
+
+</LinearLayout>
