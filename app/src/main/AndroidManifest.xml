@@ -42,7 +42,11 @@
             android:exported="true"></activity>
         <activity
             android:name=".mvp.ui.main.MainActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+            <intent-filter>
+                <data android:scheme="6263f0ff30a4f67780b3137e" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".mvp.ui.costs.VegetableCostActivity"
             android:exported="true"></activity>
@@ -142,7 +146,7 @@
             android:value="${UMENG_CHANNEL_VALUE}" />
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="6003cde06a2a470e8f7c1fec" />
+            android:value="6263f0ff30a4f67780b3137e" />
     </application>
 
 </manifest>

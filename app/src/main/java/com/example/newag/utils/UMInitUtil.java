@@ -23,6 +23,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.newag.BuildConfig;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
 import com.example.newag.MyApplication;
@@ -65,7 +66,7 @@ public final class UMInitUtil {
     public static void init(Application application) {
         // 运营统计数据调试运行时不初始化
         UMConfigure.setLogEnabled(false);
-        UMConfigure.preInit(application, "5746d6a667e58e1914000b14","");
+        UMConfigure.preInit(application, "6263f0ff30a4f67780b3137e","");
         Log.d("init umeng", "preInit");
         // 用户同意了隐私协议
         boolean welcomedialog = SharedPreferencesUtil.getInstance().getBoolean("welcomedialog", false);
@@ -79,7 +80,7 @@ public final class UMInitUtil {
      * 真实的初始化UmengSDK【进行设备信息的统计上报，必须在获得用户隐私同意后方可调用】
      */
     private static void realInit(Application application) {
-        UMConfigure.init(application, UMConfigure.DEVICE_TYPE_PHONE,"");
+        UMConfigure.init(application, "6263f0ff30a4f67780b3137e", BuildConfig.FLAVOR,  UMConfigure.DEVICE_TYPE_PHONE,"");
         Log.e("init umeng", "realInit");
         //统计SDK是否支持采集在子进程中打点的自定义事件，默认不支持
         //支持多进程打点
