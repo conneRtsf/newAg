@@ -100,9 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         try {
-//                            JSONObject jsonObject1 = new JSONObject(ResponseData);
                             AlertDialog.Builder builder1 = new AlertDialog.Builder(LoginActivity.this);
-//                            builder1.setMessage(jsonObject1.getString("msg"));
                             builder1.setMessage(msg);
                             builder1. setPositiveButton("确定", (dialog, which) -> {
                             });
@@ -121,7 +119,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
 
-                Toast.makeText(LoginActivity.this, "success", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(LoginActivity.this, "success", Toast.LENGTH_SHORT).show();
             }
 
             @Override

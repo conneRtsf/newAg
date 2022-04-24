@@ -105,8 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 });
 
-                Toast.makeText(RegisterActivity.this, "success", Toast.LENGTH_SHORT).show();
-
+//                Toast.makeText(RegisterActivity.this, "success", Toast.LENGTH_SHORT).show();
             }
 
             @Override
