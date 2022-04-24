@@ -10,23 +10,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.newag.R;
 import com.example.newag.mvp.model.api.service.LoginApiService;
-import com.example.newag.mvp.model.bean.Data;
-import com.example.newag.mvp.model.bean.Translation;
+import com.example.newag.mvp.model.bean.LoginTranslation;
 import com.example.newag.mvp.ui.main.MainActivity;
-
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -68,17 +58,10 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-//    private OkHttpClient buildHttpClient() {
-//
-//        return new OkHttpClient.Builder().retryOnConnectionFailure(true).connectTimeout(30, TimeUnit.SECONDS).build();
-//
-//    }
-
     public void postSync(View view) {
 
         android.util.Log.e("postSync: ", String.valueOf(editText1.getText()));
         android.util.Log.e("postSync: ", String.valueOf(editText2.getText()));
-//        OkHttpClient httpClient = buildHttpClient();
 
         final String username = editText1.getText().toString();
         final String password = editText2.getText().toString();
@@ -90,36 +73,6 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-//        HashMap<String, String> paramsMap = new HashMap<>();
-//        paramsMap.put("password", String.valueOf(editText2.getText()));
-//        paramsMap.put("username", String.valueOf(editText1.getText()));
-
-//        FormBody.Builder builder = new FormBody.Builder();
-//        for (String key : paramsMap.keySet()) {
-//            builder.add(key, Objects.requireNonNull(paramsMap.get(key)));
-//        }
-
-
-
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("https://api.example.com/")
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//        LoginApiService api = retrofit.create(LoginApiService.class);
-//        api.login(paramsMap).enqueue(new Callback<List<Data>>() {
-//            @Override
-//            public void onResponse(Call<User> call, Response<User> response) {
-//                // 处理结果
-//            }
-//
-//            @Override
-//            public void onFailure(Call<User> call, Throwable t) {
-//                // 处理异常
-//            }
-//        });
-
-
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://ctos17.free.idcfengye.com/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -127,71 +80,58 @@ public class LoginActivity extends AppCompatActivity {
 
         LoginApiService postRequest = retrofit.create(LoginApiService.class);
 
-        Call<Translation> call = postRequest.login(username, password);
+        Call<LoginTranslation> call = postRequest.login(username, password);
 
-        call.enqueue(new Callback<Translation>() {
+        call.enqueue(new Callback<LoginTranslation>() {
 
             @Override
-            public void onResponse(Call<Translation> call, Response<Translation> response) {
+            public void onResponse(Call<LoginTranslation> call, Response<LoginTranslation> response) {
+
+                LoginTranslation loginTranslation = response.body();
+                Integer code = loginTranslation.getCode();
+                String msg = loginTranslation.getMsg();
+
+                android.util.Log.e("ServerRet: ", code.toString()+" "+msg);
+
                 Object body = response.body();
                 if (body == null) return;
-//                mTextView.setText("info：" + "\n\n" + response.body().toString());
+
+                LoginActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+//                            JSONObject jsonObject1 = new JSONObject(ResponseData);
+                            AlertDialog.Builder builder1 = new AlertDialog.Builder(LoginActivity.this);
+//                            builder1.setMessage(jsonObject1.getString("msg"));
+                            builder1.setMessage(msg);
+                            builder1. setPositiveButton("确定", (dialog, which) -> {
+                            });
+                            AlertDialog alert = builder1.create();
+                            alert.show();
+                            if(msg.equals("登录成功")){
+                                Thread.sleep(1500);
+                                Intent intent = new Intent();
+                                intent.setClass(LoginActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                LoginActivity.this.finish();
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
                 Toast.makeText(LoginActivity.this, "success", Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onFailure(Call<Translation> call, Throwable throwable) {
+            public void onFailure(Call<LoginTranslation> call, Throwable throwable) {
                 Log.e(TAG, "info：" + throwable.getMessage() + "," + throwable.toString());
                 Toast.makeText(LoginActivity.this, "error", Toast.LENGTH_SHORT).show();
             }
 
         });
 
-
-
-//        RequestBody formBody = builder.build();
-//        Request request = new Request.Builder().url("http://ctos17.free.idcfengye.com/basic/user/login")
-//                .post(formBody)
-//                .addHeader("Connection", "close")
-//                .addHeader("content-type", "application/json;charset:utf-8")
-//                .build();
-//        Call call = httpClient.newCall(request);
-//        call.enqueue(new Callback() {
-//            @Override
-//            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//            @Override
-//            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-//                assert response.body() != null;
-//                String ResponseData = response.body().string();
-//                android.util.Log.e("onResponse: ", ResponseData);
-//                LoginActivity.this.runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        try {
-//                            JSONObject jsonObject1 = new JSONObject(ResponseData);
-//                            AlertDialog.Builder builder1 = new AlertDialog.Builder(LoginActivity.this);
-//                            builder1.setMessage(jsonObject1.getString("msg"));
-//                            builder1. setPositiveButton("确定", (dialog, which) -> {
-//                            });
-//                            AlertDialog alert = builder1.create();
-//                            alert.show();
-//                            if(jsonObject1.getString("msg").equals("登录成功")){
-//                                Thread.sleep(1500);
-//                                Intent intent = new Intent();
-//                                intent.setClass(LoginActivity.this, MainActivity.class);
-//                                startActivity(intent);
-//                                LoginActivity.this.finish();
-//                            }
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                });
-//            }
-//        });
     }
 
     public Boolean detailsCheck(String uname, String pwd) {
