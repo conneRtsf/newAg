@@ -6,6 +6,7 @@ import android.util.Log;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 
+
 import com.example.newag.mvp.model.api.ExceptionHandle;
 import com.example.newag.utils.AppUtils;
 import com.example.newag.utils.RxCrashUtils;

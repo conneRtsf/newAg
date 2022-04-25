@@ -12,6 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.example.newag.R;
 import com.example.newag.base.BaseActivity;
 import com.example.newag.di.component.AppComponent;
+import com.example.newag.mvp.adapter.AllTextAdapter;
 import com.example.newag.mvp.adapter.AllTextMasterAdapter;
 import com.example.newag.mvp.model.bean.AllText;
 import com.example.newag.mvp.model.bean.AllTextMaster;
@@ -180,6 +182,26 @@ public class PeopleCostActivity extends BaseActivity {
             }
         };
         root.addDrawerListener(actionBarDrawerToggle);
+        adapter.allTextAdapter.setOnItemListenerListener(new AllTextAdapter.OnItemListener() {
+            @Override
+            public void OnItemClickListener(View view, int position) {
+                //null
+            }
+
+            @Override
+            public void OnItemLongClickListener(View view, int position, AllText allText) {
+                showPopWindow(allText);
+            }
+        });
+    }
+
+    private void showPopWindow(AllText allText) {
+        View view = LayoutInflater.from(PeopleCostActivity.this).inflate(R.layout.pop_pluspeople, null);
+        EditText editText = view.findViewById(R.id.et_1);
+        editText.setText(allText.getName());
+        popupWindow = new PopupWindow(view, RecyclerView.LayoutParams.MATCH_PARENT,
+                RecyclerView.LayoutParams.WRAP_CONTENT, true);//设置popwindow的属性（布局，x，y，true）
+        popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);//展示自定义的popwindow，（放哪个布局里，放布局里的位置，x，y），cv工程
     }
 
     @Override
