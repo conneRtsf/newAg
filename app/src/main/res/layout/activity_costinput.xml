@@ -130,16 +130,16 @@
         android:layout_height="wrap_content"
         android:background="@color/newBlue">
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/refresh"
-            android:layout_width="@dimen/dp_320"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
+<!--        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
+<!--            android:id="@+id/refresh"-->
+<!--            android:layout_width="@dimen/dp_320"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_horizontal">-->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/view_one"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+<!--        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
         <Button
             android:id="@+id/plus"
             android:layout_width="@dimen/dp_60"

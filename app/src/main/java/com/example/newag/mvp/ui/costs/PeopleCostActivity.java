@@ -111,8 +111,8 @@ public class PeopleCostActivity extends BaseActivity {
     Button Button;
     @BindView(R.id.view_one)
     RecyclerView recyclerView;
-    @BindView(R.id.refresh)
-    SwipeRefreshLayout refreshLayout;
+//    @BindView(R.id.refresh)
+//    SwipeRefreshLayout refreshLayout;
     @BindView(R.id.content)
     View contentView;
     Calendar calendar= Calendar.getInstance(Locale.CHINA);
@@ -147,14 +147,14 @@ public class PeopleCostActivity extends BaseActivity {
             }
         });
         //
-        refreshLayout.setColorSchemeResources(R.color.blue,R.color.blue);//设置下拉刷新主题（最多支持三种颜色变换，这里两种）
-        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                adapter.setNewData(data_2);//模拟数据变换,以后这里就写从后端获取数据的逻辑
-                refreshLayout.setRefreshing(false);
-            }
-        });
+//        refreshLayout.setColorSchemeResources(R.color.blue,R.color.blue);//设置下拉刷新主题（最多支持三种颜色变换，这里两种）
+//        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                adapter.setNewData(data_2);//模拟数据变换,以后这里就写从后端获取数据的逻辑
+//                refreshLayout.setRefreshing(false);
+//            }
+//        });
         SimpleDateFormat   formatter   =   new   SimpleDateFormat   ("yyyy年\nM月 ");
         Date curDate =  new Date(System.currentTimeMillis());
         String   str   =   formatter.format(curDate);
@@ -182,7 +182,7 @@ public class PeopleCostActivity extends BaseActivity {
             }
         };
         root.addDrawerListener(actionBarDrawerToggle);
-        adapter.allTextAdapter.setOnItemListenerListener(new AllTextAdapter.OnItemListener() {
+        adapter.setMasterOnItemListener(new AllTextMasterAdapter.MasterOnItemListener() {
             @Override
             public void OnItemClickListener(View view, int position) {
                 //null
