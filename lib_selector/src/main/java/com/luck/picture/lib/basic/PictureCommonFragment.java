@@ -59,7 +59,7 @@ import com.luck.picture.lib.permissions.PermissionChecker;
 import com.luck.picture.lib.permissions.PermissionConfig;
 import com.luck.picture.lib.permissions.PermissionResultCallback;
 import com.luck.picture.lib.permissions.PermissionUtil;
-import com.luck.picture.lib.service.ForegroundService;
+
 import com.luck.picture.lib.style.PictureWindowAnimationStyle;
 import com.luck.picture.lib.style.SelectMainStyle;
 import com.luck.picture.lib.thread.PictureThreadUtils;
@@ -890,7 +890,7 @@ public abstract class PictureCommonFragment extends Fragment implements IPicture
             } else {
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 if (cameraIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-                    ForegroundService.startForegroundService(getContext());
+
                     Uri imageUri = MediaStoreUtils.createCameraOutImageUri(getContext(), config);
                     if (imageUri != null) {
                         if (config.isCameraAroundState) {
@@ -937,7 +937,7 @@ public abstract class PictureCommonFragment extends Fragment implements IPicture
             } else {
                 Intent cameraIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
                 if (cameraIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-                    ForegroundService.startForegroundService(getContext());
+
                     Uri videoUri = MediaStoreUtils.createCameraOutVideoUri(getContext(), config);
                     if (videoUri != null) {
                         cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, videoUri);
@@ -958,7 +958,7 @@ public abstract class PictureCommonFragment extends Fragment implements IPicture
     @Override
     public void openSoundRecording() {
         if (PictureSelectionConfig.onRecordAudioListener != null) {
-            ForegroundService.startForegroundService(getContext());
+
             PictureSelectionConfig.onRecordAudioListener.onRecordAudio(this, PictureConfig.REQUEST_CAMERA);
         } else {
             throw new NullPointerException(OnRecordAudioInterceptListener.class.getSimpleName() + " interface needs to be implemented for recording");
@@ -972,7 +972,7 @@ public abstract class PictureCommonFragment extends Fragment implements IPicture
      */
     @Override
     public void onInterceptCameraEvent(int cameraMode) {
-        ForegroundService.startForegroundService(getContext());
+
         PictureSelectionConfig.onCameraInterceptListener.openCamera(this, cameraMode, PictureConfig.REQUEST_CAMERA);
     }
 
@@ -1048,7 +1048,6 @@ public abstract class PictureCommonFragment extends Fragment implements IPicture
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        ForegroundService.stopService(getContext());
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == PictureConfig.REQUEST_CAMERA) {
                 dispatchHandleCamera(data);

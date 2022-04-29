@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -26,6 +27,8 @@ import com.example.newag.di.component.AppComponent;
 import com.example.newag.mvp.adapter.AllTextMasterAdapter;
 import com.example.newag.mvp.model.bean.AllText;
 import com.example.newag.mvp.model.bean.AllTextMaster;
+import com.example.newag.mvp.ui.change.FishPeriod;
+import com.example.newag.mvp.ui.change.OtherPeriod;
 import com.example.newag.mvp.ui.plus.PeriodPlus;
 
 import java.text.SimpleDateFormat;
@@ -143,6 +146,17 @@ public class OtherPeriodActivity extends BaseActivity {
             }
         };
         root.addDrawerListener(actionBarDrawerToggle);
+        adapter.setMasterOnItemListener(new AllTextMasterAdapter.MasterOnItemListener() {
+            @Override
+            public void OnItemClickListener(View view, int position) {
+                //null
+            }
+
+            @Override
+            public void OnItemLongClickListener(View view, int position, AllText allText) {
+                showPopWindow(allText,position);
+            }
+        });
     }
 
     @Override
@@ -170,6 +184,26 @@ public class OtherPeriodActivity extends BaseActivity {
                 , calendar.get(Calendar.YEAR)
                 , calendar.get(Calendar.MONTH)
                 , calendar.get(Calendar.DAY_OF_MONTH)).show();
+    }
+    private void showPopWindow(AllText allText,int position) {
+        View view = LayoutInflater.from(OtherPeriodActivity.this).inflate(R.layout.pop_plusperiod, null);
+        EditText editText = view.findViewById(R.id.et_id);
+        editText.setText(allText.getName());
+        Button button=view.findViewById(R.id.make_text);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(OtherPeriodActivity.this, OtherPeriod.class);
+                Bundle bundle=new Bundle();
+                bundle.putSerializable("data",allText);
+                bundle.putSerializable("position",position);
+                intent.putExtras(bundle);
+                startActivityForResult(intent,1);
+            }
+        });
+        popupWindow = new PopupWindow(view, RecyclerView.LayoutParams.MATCH_PARENT,
+                RecyclerView.LayoutParams.WRAP_CONTENT, true);//设置popwindow的属性（布局，x，y，true）
+        popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);//展示自定义的popwindow，（放哪个布局里，放布局里的位置，x，y），cv工程
     }
     private void showPopWindow() {
         //定义一个view，其中包含popwindow的布局文件

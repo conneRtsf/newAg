@@ -45,7 +45,7 @@ public class AllTextMasterAdapter extends BaseQuickAdapter<AllTextMaster, BaseVi
         }catch (Exception e){
             e.printStackTrace();
         }
-
+        int shu=helper.getLayoutPosition();
         allTextList.addAll(item.getAllTextList());//添加新数据
         allTextAdapter=new AllTextAdapter(allTextList);//创建小适配器，并传入数据
         allTextAdapter.setOnItemListenerListener(new AllTextAdapter.OnItemListener() {

@@ -155,6 +155,7 @@
         </FrameLayout>
     </LinearLayout>
     <Button
+        android:id="@+id/make_text"
         android:layout_width="320dp"
         android:layout_height="50dp"
         android:layout_gravity="center"

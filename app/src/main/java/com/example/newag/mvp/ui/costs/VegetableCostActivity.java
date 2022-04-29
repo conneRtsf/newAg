@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -30,6 +32,8 @@ import com.example.newag.di.component.AppComponent;
 import com.example.newag.mvp.adapter.AllTextMasterAdapter;
 import com.example.newag.mvp.model.bean.AllText;
 import com.example.newag.mvp.model.bean.AllTextMaster;
+import com.example.newag.mvp.ui.change.PeopleCost;
+import com.example.newag.mvp.ui.change.VegetableCost;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -182,6 +186,17 @@ public class VegetableCostActivity extends BaseActivity {
             }
         };
         root.addDrawerListener(actionBarDrawerToggle);
+        adapter.setMasterOnItemListener(new AllTextMasterAdapter.MasterOnItemListener() {
+            @Override
+            public void OnItemClickListener(View view, int position) {
+                //null
+            }
+
+            @Override
+            public void OnItemLongClickListener(View view, int position, AllText allText) {
+                showPopWindow(allText,position);
+            }
+        });
     }
 
     @Override
@@ -269,6 +284,26 @@ public class VegetableCostActivity extends BaseActivity {
             }
         });
     }
+    private void showPopWindow(AllText allText,int position) {
+        View view = LayoutInflater.from(VegetableCostActivity.this).inflate(R.layout.pop_pluspeople, null);
+        EditText editText = view.findViewById(R.id.et_1);
+        editText.setText(allText.getName());
+        Button button=view.findViewById(R.id.make_text);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(VegetableCostActivity.this, VegetableCost.class);
+                Bundle bundle=new Bundle();
+                bundle.putSerializable("data",allText);
+                bundle.putSerializable("position",position);
+                intent.putExtras(bundle);
+                startActivityForResult(intent,1);
+            }
+        });
+        popupWindow = new PopupWindow(view, RecyclerView.LayoutParams.MATCH_PARENT,
+                RecyclerView.LayoutParams.WRAP_CONTENT, true);//设置popwindow的属性（布局，x，y，true）
+        popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);//展示自定义的popwindow，（放哪个布局里，放布局里的位置，x，y），cv工程
+    }
     //添加数据相关方法
     private void initText() {
         AllText one=new AllText("one");
@@ -297,5 +332,21 @@ public class VegetableCostActivity extends BaseActivity {
         allTextList22.add(one2);
         AllTextMaster add22=new AllTextMaster("4月9日",allTextList22);
         data_2.add(add22);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+
+        super.onActivityResult(requestCode, resultCode, intent);
+        switch (requestCode){
+            case 1:
+                if (resultCode==2){
+                    Bundle bundle=new Bundle();
+                    bundle=intent.getExtras();
+                    AllText allText=(AllText) bundle.getSerializable("data");
+                    int position=(int)bundle.getSerializable("position");
+                    String name=allText.getName();
+                    Log.d("data","名称是"+name+"位置为"+position);
+                }
+        }
     }
 }

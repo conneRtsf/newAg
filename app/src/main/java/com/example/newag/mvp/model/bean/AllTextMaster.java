@@ -1,9 +1,10 @@
 package com.example.newag.mvp.model.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 //自定义大类
-public class AllTextMaster {
+public class AllTextMaster implements Serializable {
     private String item_Type;
     private List<AllText> allTextlist;
     public AllTextMaster(String item_Type,List<AllText> allTextlist){
