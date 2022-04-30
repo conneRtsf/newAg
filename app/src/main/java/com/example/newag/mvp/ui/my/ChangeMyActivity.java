@@ -37,6 +37,7 @@ import com.luck.picture.lib.entity.MediaExtraInfo;
 import com.luck.picture.lib.immersive.ImmersiveManager;
 import com.luck.picture.lib.interfaces.OnCallbackIndexListener;
 import com.luck.picture.lib.interfaces.OnResultCallbackListener;
+import com.luck.picture.lib.style.PictureSelectorStyle;
 import com.luck.picture.lib.utils.MediaUtils;
 import com.luck.picture.lib.utils.SandboxTransformUtils;
 
@@ -78,7 +79,9 @@ public class ChangeMyActivity extends BaseActivity {
         dialog.setmActivity(this);
         dialog.show();
     }
+
     public void openPhotoSelector(){
+<<<<<<< HEAD
            PictureSelectionModel selectionModel = PictureSelector.create(ChangeMyActivity.this)
                    .openGallery(SelectMimeType.TYPE_IMAGE)//0 TYPE ALL 1 Image
                    .setSelectorUIStyle(selectorStyle)
@@ -127,11 +130,48 @@ public class ChangeMyActivity extends BaseActivity {
                    .isGif(false);//是否显示gif false
 //                .setSelectedData(mAdapter.getData());
            selectionModel.forResult(PictureConfig.CHOOSE_REQUEST);
+=======
+       try {
+           PictureSelector.create(ChangeMyActivity.this)
+                   .openGallery(SelectMimeType.TYPE_IMAGE)
+                   .setImageEngine(GlideEngine.createGlideEngine())
+//                   .buildLaunch(R.id.fragment_container, new OnResultCallbackListener<LocalMedia>() {
+//                       @Override
+//                       public void onResult(ArrayList<LocalMedia> result) {
+//                           setTranslucentStatusBar();
+//                           analyticalSelectResults(result);
+//                       }
+//
+//                       @Override
+//                       public void onCancel() {
+//                           setTranslucentStatusBar();
+//                           Log.i(TAG, "PictureSelector Cancel");
+//                       }
+//                   })
+                   .forResult(PictureConfig.CHOOSE_REQUEST);
+           ;
+       }catch (Error error){
+           error.printStackTrace();
+       }
+>>>>>>> dd547c0ce89243f58b818ba2734d1a1b972c0c95
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        try {
+            if (resultCode == RESULT_OK) {
+                if (requestCode == PictureConfig.CHOOSE_REQUEST || requestCode == PictureConfig.REQUEST_CAMERA) {
+                    ArrayList<LocalMedia> result = PictureSelector.obtainSelectorList(data);
+                    analyticalSelectResults(result);
+                }
+            }
+        } catch (Exception e) {
+//            dismissUploadDialog();
+        }
     }
 
     private void analyticalSelectResults(ArrayList<LocalMedia> result) {
-        StringBuilder builder = new StringBuilder();
-        builder.append("Result").append("\n");
         for (LocalMedia media : result) {
             if (media.getWidth() == 0 || media.getHeight() == 0) {
                 if (PictureMimeType.isHasImage(media.getMimeType())) {
@@ -144,7 +184,6 @@ public class ChangeMyActivity extends BaseActivity {
                     media.setHeight(videoExtraInfo.getHeight());
                 }
             }
-            builder.append(media.getAvailablePath()).append("\n");
             Log.i(TAG, "文件名: " + media.getFileName());
             Log.i(TAG, "是否压缩:" + media.isCompressed());
             Log.i(TAG, "压缩:" + media.getCompressPath());
