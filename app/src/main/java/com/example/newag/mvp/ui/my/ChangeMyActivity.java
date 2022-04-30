@@ -1,8 +1,6 @@
 package com.example.newag.mvp.ui.my;
 
 
-import static com.luck.picture.lib.config.PictureSelectionConfig.selectorStyle;
-
 import android.content.Context;
 
 import android.content.Intent;
@@ -80,8 +78,9 @@ public class ChangeMyActivity extends BaseActivity {
         dialog.show();
     }
 
+    private PictureSelectorStyle selectorStyle;
     public void openPhotoSelector(){
-
+        selectorStyle = new PictureSelectorStyle();
            PictureSelectionModel selectionModel = PictureSelector.create(ChangeMyActivity.this)
                    .openGallery(SelectMimeType.TYPE_IMAGE)//0 TYPE ALL 1 Image
                    .setSelectorUIStyle(selectorStyle)
