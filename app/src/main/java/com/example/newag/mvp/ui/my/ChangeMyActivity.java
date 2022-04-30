@@ -79,26 +79,54 @@ public class ChangeMyActivity extends BaseActivity {
         dialog.show();
     }
     public void openPhotoSelector(){
-       try {
-           PictureSelector.create(ChangeMyActivity.this)
-                   .openGallery(SelectMimeType.ofAll())
-                   .setImageEngine(GlideEngine.createGlideEngine())
-                   .buildLaunch(R.id.fragment_container, new OnResultCallbackListener<LocalMedia>() {
-                       @Override
-                       public void onResult(ArrayList<LocalMedia> result) {
-                           setTranslucentStatusBar();
-                           analyticalSelectResults(result);
-                       }
-
-                       @Override
-                       public void onCancel() {
-                           setTranslucentStatusBar();
-                           Log.i(TAG, "PictureSelector Cancel");
-                       }
-                   });
-       }catch (Error error){
-           error.printStackTrace();
-       }
+           PictureSelectionModel selectionModel = PictureSelector.create(ChangeMyActivity.this)
+                   .openGallery(SelectMimeType.TYPE_IMAGE)//0 TYPE ALL 1 Image
+                   .setSelectorUIStyle(selectorStyle)
+                   .setImageEngine(GlideEngine.createGlideEngine())//Glide Picasso
+                   .setCropEngine(new ImageCropEngine(selectorStyle))//是否裁剪 null
+                   .setCompressEngine(null)//是否压缩
+                   .setSandboxFileEngine(new MeSandboxFileEngine())
+                   .setCameraInterceptListener(null)//自定义相机 null
+                   .setRecordAudioInterceptListener(null) //录音回调
+                   .setSelectLimitTipsListener(null)//拦截自定义提示
+                   .setEditMediaInterceptListener(null)//自定义编辑时间 null
+                   .setPermissionDescriptionListener(null)//权限说明 null
+                   .setPreviewInterceptListener(null)//预览 null
+                   .setPermissionDeniedListener(null)//权限说明null
+                   //.setExtendLoaderEngine(getExtendLoaderEngine())
+                   .setInjectLayoutResourceListener(null)//注入自定义布局 null
+                   .setSelectionMode(SelectModeConfig.SINGLE)//多选单选
+//                .setLanguage(Tools.getLanage().equals("zh") ? 0 : 1) //-2 简体0繁体1
+                   .setQuerySortOrder("")//降序 升序 查询
+//                .setOutputCameraDir(chooseMode == SelectMimeType.ofAudio()
+//                        ? getSandboxAudioOutputPath() : getSandboxCameraOutputPath())
+//                .setOutputAudioDir(chooseMode == SelectMimeType.ofAudio()
+//                        ? getSandboxAudioOutputPath() : getSandboxCameraOutputPath())
+//                .setQuerySandboxDir(chooseMode == SelectMimeType.ofAudio()
+//                        ? getSandboxAudioOutputPath() : getSandboxCameraOutputPath())
+                   .isDisplayTimeAxis(true)//显示资源时间轴
+//                .isOnlyObtainSandboxDir(cb_only_dir.isChecked())
+                   .isPageStrategy(false)//false 指定目录
+                   .isOriginalControl(false)//false开启原图
+                   .isDisplayCamera(false)//显示摄像 图标
+                   .isOpenClickSound(false)//是否开启点击声音 false
+                   .setSkipCropMimeType(getNotSupportCrop())
+                   .isFastSlidingSelect(true)//true 滑动选择
+                   //.setOutputCameraImageFileName("luck.jpeg")
+                   //.setOutputCameraVideoFileName("luck.mp4")
+                   .isWithSelectVideoImage(false)//图片视频同时选择选 true
+                   .isPreviewFullScreenMode(false)
+                   .isPreviewZoomEffect(false)
+                   .isPreviewImage(false)
+                   //.setQueryOnlyMimeType(PictureMimeType.ofGIF())
+//                .isMaxSelectEnabledMask(cbEnabledMask.isChecked())//达到最大可选 显示蒙层
+                   .isDirectReturnSingle(false) //单选模式直接返回
+                   .setMaxSelectNum(1)
+//                .setMaxVideoSelectNum(maxSelectVideoNum)
+                   .setRecyclerAnimationMode(AnimationType.DEFAULT_ANIMATION)
+                   .isGif(false);//是否显示gif false
+//                .setSelectedData(mAdapter.getData());
+           selectionModel.forResult(PictureConfig.CHOOSE_REQUEST);
     }
 
     private void analyticalSelectResults(ArrayList<LocalMedia> result) {
@@ -132,8 +160,37 @@ public class ChangeMyActivity extends BaseActivity {
             Log.i(TAG, "文件大小: " + media.getSize());
         }
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            ArrayList<LocalMedia> selectorResult = PictureSelector.obtainSelectorList(data);
+            analyticalSelectResults(selectorResult);
+        } else if (resultCode == RESULT_CANCELED) {
+            Log.i(TAG, "onActivityResult PictureSelector Cancel");
+        }
+    }
+    private static class MeSandboxFileEngine implements SandboxFileEngine {
 
-    private void setTranslucentStatusBar() {
-        ImmersiveManager.translucentStatusBar(ChangeMyActivity.this, true);
+        @Override
+        public void onStartSandboxFileTransform(Context context, boolean isOriginalImage,
+                                                int index, LocalMedia media,
+                                                OnCallbackIndexListener<LocalMedia> listener) {
+            if (PictureMimeType.isContent(media.getAvailablePath())) {//沙盒文件
+                String sandboxPath = SandboxTransformUtils.copyPathToSandbox(context, media.getPath(),
+                        media.getMimeType());
+                media.setSandboxPath(sandboxPath);
+            }
+            if (isOriginalImage) {
+                String originalPath = SandboxTransformUtils.copyPathToSandbox(context, media.getPath(),
+                        media.getMimeType());
+                media.setOriginalPath(originalPath);
+                media.setOriginal(!TextUtils.isEmpty(originalPath));
+            }
+            listener.onCall(media, index);
+        }
+    }
+    private String[] getNotSupportCrop() {
+        return new String[]{PictureMimeType.ofGIF(), PictureMimeType.ofWEBP()};
     }
 }

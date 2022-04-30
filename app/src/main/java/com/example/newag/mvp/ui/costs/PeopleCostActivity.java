@@ -237,10 +237,6 @@ public class PeopleCostActivity extends BaseActivity {
         dialogWindow.setAttributes(lp);
         mCameraDialog.show();
     }
-    /**
-     * 显眼标记，写完删除
-     * @param allText
-     */
     private void showPopWindow(AllText allText,int position) {
         View view = LayoutInflater.from(PeopleCostActivity.this).inflate(R.layout.pop_pluspeople, null);
         EditText editText = view.findViewById(R.id.et_1);

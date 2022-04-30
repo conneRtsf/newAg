@@ -26,6 +26,7 @@ import com.example.newag.mvp.adapter.AllTextMasterAdapter;
 import com.example.newag.mvp.model.bean.AllText;
 import com.example.newag.mvp.model.bean.AllTextMaster;
 import com.example.newag.mvp.ui.change.DrugTemplate;
+import com.example.newag.mvp.ui.change.VegetableTemplate;
 import com.example.newag.mvp.ui.plus.TemplatePlus;
 
 import java.util.ArrayList;
@@ -171,7 +172,7 @@ public class VegetableTemplateActivity extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(VegetableTemplateActivity.this, DrugTemplate.class);
+                Intent intent=new Intent(VegetableTemplateActivity.this, VegetableTemplate.class);
                 Bundle bundle=new Bundle();
                 bundle.putSerializable("data",allText);
                 bundle.putSerializable("position",position);
