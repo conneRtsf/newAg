@@ -81,7 +81,7 @@ public class ChangeMyActivity extends BaseActivity {
     }
 
     public void openPhotoSelector(){
-<<<<<<< HEAD
+
            PictureSelectionModel selectionModel = PictureSelector.create(ChangeMyActivity.this)
                    .openGallery(SelectMimeType.TYPE_IMAGE)//0 TYPE ALL 1 Image
                    .setSelectorUIStyle(selectorStyle)
@@ -130,34 +130,11 @@ public class ChangeMyActivity extends BaseActivity {
                    .isGif(false);//是否显示gif false
 //                .setSelectedData(mAdapter.getData());
            selectionModel.forResult(PictureConfig.CHOOSE_REQUEST);
-=======
-       try {
-           PictureSelector.create(ChangeMyActivity.this)
-                   .openGallery(SelectMimeType.TYPE_IMAGE)
-                   .setImageEngine(GlideEngine.createGlideEngine())
-//                   .buildLaunch(R.id.fragment_container, new OnResultCallbackListener<LocalMedia>() {
-//                       @Override
-//                       public void onResult(ArrayList<LocalMedia> result) {
-//                           setTranslucentStatusBar();
-//                           analyticalSelectResults(result);
-//                       }
-//
-//                       @Override
-//                       public void onCancel() {
-//                           setTranslucentStatusBar();
-//                           Log.i(TAG, "PictureSelector Cancel");
-//                       }
-//                   })
-                   .forResult(PictureConfig.CHOOSE_REQUEST);
-           ;
-       }catch (Error error){
-           error.printStackTrace();
-       }
->>>>>>> dd547c0ce89243f58b818ba2734d1a1b972c0c95
+
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         try {
             if (resultCode == RESULT_OK) {
@@ -199,16 +176,7 @@ public class ChangeMyActivity extends BaseActivity {
             Log.i(TAG, "文件大小: " + media.getSize());
         }
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            ArrayList<LocalMedia> selectorResult = PictureSelector.obtainSelectorList(data);
-            analyticalSelectResults(selectorResult);
-        } else if (resultCode == RESULT_CANCELED) {
-            Log.i(TAG, "onActivityResult PictureSelector Cancel");
-        }
-    }
+
     private static class MeSandboxFileEngine implements SandboxFileEngine {
 
         @Override
