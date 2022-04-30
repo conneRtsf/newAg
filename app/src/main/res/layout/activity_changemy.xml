@@ -45,7 +45,7 @@
             android:textSize="@dimen/sp_15"
             android:gravity="center_vertical"
             android:textColor="@color/black" />
-        <ImageButton
+        <ImageView
             android:id="@+id/changeMy"
             android:layout_width="@dimen/dp_70"
             android:layout_height="@dimen/dp_70"
@@ -153,4 +153,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/line3"/>
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

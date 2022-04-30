@@ -22,6 +22,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.newag.MyApplication;
+import com.example.newag.di.component.AppComponent;
+import com.example.newag.utils.AppUtils;
+import com.example.newag.utils.ScreenUtils;
 import com.gyf.immersionbar.ImmersionBar;
 
 import java.io.BufferedReader;
@@ -31,11 +35,9 @@ import java.io.InputStreamReader;
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
-import com.example.newag.MyApplication;
+
 import com.example.newag.R;
-import com.example.newag.di.component.AppComponent;
-import com.example.newag.utils.AppUtils;
-import com.example.newag.utils.ScreenUtils;
+
 
 public abstract class BaseActivity<T1 extends BaseContract.BasePresenter> extends AppCompatActivity {
     @Inject

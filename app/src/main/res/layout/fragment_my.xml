@@ -14,7 +14,7 @@
         android:background="@drawable/bordernew">
 
 
-        <Button
+        <ImageButton
             android:id="@+id/changeMy"
             android:layout_width="@dimen/dp_70"
             android:layout_height="@dimen/dp_70"

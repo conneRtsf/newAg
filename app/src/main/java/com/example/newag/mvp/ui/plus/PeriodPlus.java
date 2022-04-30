@@ -49,7 +49,6 @@ public class PeriodPlus extends BaseActivity {
     protected void setActivityComponent(AppComponent appComponent) {
 
     }
-
     //下拉框选择事件
     private static class OnItemSelectedListenerImpl implements AdapterView.OnItemSelectedListener {
         @Override
