@@ -129,20 +129,23 @@
             android:name=".mvp.ui.inspection.InspectionActivity"
             android:exported="true"></activity>
         <activity
-            android:name=".mvp.ui.plus.ReducePlus"
-            android:exported="true"></activity>
+            android:name=".mvp.ui.plus.ReduceFishPlus"
+            android:exported="true" />
+        <activity
+            android:name=".mvp.ui.plus.ReduceFieldPlus"
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.my.ChangeMyActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.my.SafeMeActivity"
-            android:exported="true"></activity>
+            android:exported="true"/>
         <activity
             android:name=".mvp.ui.my.FarmChangeNameActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.my.AgreementPrivacyActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
 
         <meta-data
             android:name="UMENG_CHANNEL"

@@ -2,15 +2,18 @@ package com.example.newag.mvp.model.bean;
 //自定义小类
 public class AllText {
     private String name;
-    private int imageId;
+    private int id;
+    public AllText(String name,int id){
+        this.name=name;
+        this.id=id;
+    }
     public AllText(String name){
-//        this.imageId=imageId;
         this.name=name;
     }
     public String getName(){
         return name;
     }
-    public int getImageId(){
-        return imageId;
+    public int getNum(){
+        return id;
     }
 }

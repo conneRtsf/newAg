@@ -17,8 +17,11 @@ import java.util.List;
 
 public class AllTextAdapter extends RecyclerView.Adapter<AllTextAdapter.ViewHolder> {
     Boolean flag=false;
+
     private OnItemListener onItemListener;
-    private List<AllText> mAllTextList;//定义一个新的arraylist,数据类型为自定义的AllText
+
+    private final List<AllText> mAllTextList;//定义一个新的arraylist,数据类型为自定义的AllText
+
     //写获取布局中相关控件的方法
     static class ViewHolder extends RecyclerView.ViewHolder{
         CheckBox checkBox;
@@ -26,9 +29,9 @@ public class AllTextAdapter extends RecyclerView.Adapter<AllTextAdapter.ViewHold
         TextView textName;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            checkBox= (CheckBox) itemView.findViewById(R.id.cb);
-            testImage=(ImageView) itemView.findViewById(R.id.test_image);
-            textName=(TextView) itemView.findViewById(R.id.test_text);
+            checkBox= itemView.findViewById(R.id.cb);
+            testImage= itemView.findViewById(R.id.test_image);
+            textName= itemView.findViewById(R.id.test_text);
         }
     }
     public void setCheckbox(Boolean flag){
@@ -44,9 +47,7 @@ public class AllTextAdapter extends RecyclerView.Adapter<AllTextAdapter.ViewHold
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //获取具体布局
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_small_list,parent,false);
-        //LayoutInflater.from(parent.getContext()).inflate(R.layout.xxx,parent,false);重复
-        ViewHolder holder=new ViewHolder(view);//获取具体布局中的具体控件
-        return holder;
+        return new ViewHolder(view);
     }
     //中间过程触发事件（自动创建的构造）
     @Override
@@ -55,8 +56,7 @@ public class AllTextAdapter extends RecyclerView.Adapter<AllTextAdapter.ViewHold
         AllText allText=mAllTextList.get(position);//获取当前位置的数据，我的理解是for循环的游标
         //为控件添加数据
         holder.textName.setText(allText.getName());
-        holder.testImage.setImageResource(allText.getImageId());
-        if (flag==false){
+        if (!flag){
             holder.checkBox.setVisibility(View.INVISIBLE);
         }else holder.checkBox.setVisibility(View.VISIBLE);
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -74,6 +74,7 @@ public class AllTextAdapter extends RecyclerView.Adapter<AllTextAdapter.ViewHold
     public int getItemCount() {
         return mAllTextList.size();
     }
+
     public  interface OnItemListener{
         void OnItemClickListener(View view, int position);
         void OnItemLongClickListener(View view, int position,AllText allText);
@@ -82,4 +83,11 @@ public class AllTextAdapter extends RecyclerView.Adapter<AllTextAdapter.ViewHold
     public void setOnItemListenerListener(OnItemListener listener){
         this.onItemListener = listener;
     }
+
+
+    public boolean getBox(){
+        return flag;
+    }
+
+
 }

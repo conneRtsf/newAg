@@ -146,7 +146,7 @@ public class PeopleCostActivity extends BaseActivity {
                 showPopWindow();//展示popwindow的方法
             }
         });
-        //
+
         refreshLayout.setColorSchemeResources(R.color.blue,R.color.blue);//设置下拉刷新主题（最多支持三种颜色变换，这里两种）
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="match_parent"
+<FrameLayout android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/backnew"
+    android:paddingBottom="@dimen/dp_20"
+    android:paddingTop="@dimen/dp_2"
     >
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:background="@drawable/line"/>
     <CheckBox
         android:id="@+id/cb"
         android:layout_width="@dimen/dp_30"
@@ -15,11 +22,11 @@
         android:layout_width="wrap_content"
         android:layout_height="100dp"/>
     <TextView
+        android:layout_marginStart="@dimen/dp_40"
         android:id="@+id/test_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="10dp"/>
-
-</LinearLayout>
+</FrameLayout>

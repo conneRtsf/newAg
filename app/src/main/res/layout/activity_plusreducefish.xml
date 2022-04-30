@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="@dimen/dp_20"
     android:background="@color/white"
+    android:paddingTop="@dimen/dp_20"
     android:orientation="vertical">
 
     <FrameLayout
@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="添加"
+            android:text="添加鱼池"
             android:textColor="@color/black"
             android:layout_gravity="center"
             android:textSize="@dimen/sp_20"/>
@@ -34,80 +34,21 @@
             android:layout_height="@dimen/dp_50"
             android:layout_weight="1">
             <TextView
-                android:drawableTop="@drawable/id"
-                android:layout_width="@dimen/dp_40"
-                android:layout_height="wrap_content"
-                android:text="序号"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp_10"
-                android:layout_gravity="center_vertical"/>
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/dp_40"
-                android:hint="id"
-                android:paddingLeft="@dimen/dp_3"
-                android:paddingRight="@dimen/dp_3"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:textColorHint="@color/grey"/>
-        </FrameLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="@dimen/dp_10">
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50"
-            android:layout_weight="1"
-            >
-            <TextView
                 android:drawableTop="@drawable/rename"
                 android:layout_width="@dimen/dp_40"
                 android:layout_height="wrap_content"
-                android:text="生产单元选择"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp_10"
-                android:layout_gravity="center_vertical"/>
-            <Button
-                android:layout_width="@dimen/dp_50"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginStart="@dimen/dp_40"
-                android:paddingLeft="@dimen/dp_3"
-                android:background="@drawable/plus"
-                android:paddingRight="@dimen/dp_3"
-                android:gravity="center"/>
-        </FrameLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_10">
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50"
-            android:layout_weight="1">
-            <TextView
-                android:drawableTop="@drawable/date"
-                android:layout_width="@dimen/dp_50"
-                android:layout_height="wrap_content"
-                android:text="鱼类+月龄"
+                android:text="名称"
                 android:gravity="center"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_10"
                 android:layout_gravity="center_vertical"/>
 
             <EditText
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/dp_40"
-                android:hint="fish+date"
+                android:hint="name"
                 android:paddingLeft="@dimen/dp_3"
                 android:paddingRight="@dimen/dp_3"
                 android:textColor="@color/black"
@@ -115,37 +56,6 @@
                 android:textColorHint="@color/grey"/>
         </FrameLayout>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_10">
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50"
-            android:layout_weight="1">
-            <TextView
-                android:drawableTop="@drawable/weight"
-                android:layout_width="@dimen/dp_40"
-                android:layout_height="wrap_content"
-                android:text="投入量"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp_10"
-                android:layout_gravity="center_vertical"/>
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/dp_40"
-                android:hint="inputs"
-                android:paddingLeft="@dimen/dp_3"
-                android:paddingRight="@dimen/dp_3"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:textColorHint="@color/grey"/>
-        </FrameLayout>
-    </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -157,18 +67,143 @@
             <TextView
                 android:layout_width="@dimen/dp_40"
                 android:layout_height="wrap_content"
-                android:drawableTop="@drawable/time"
                 android:layout_gravity="center_vertical"
-                android:text="预估成熟期"
+                android:drawableTop="@drawable/quantity"
+                android:gravity="center"
+                android:text="长宽高"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_10" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginStart="@dimen/dp_40"
+                android:layout_height="match_parent">
+                <EditText
+                    android:id="@+id/length1"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:hint="length"
+                    android:inputType="number"
+                    android:paddingLeft="@dimen/dp_3"
+                    android:paddingRight="@dimen/dp_3"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textColorHint="@color/grey"/>
+                <EditText
+                    android:id="@+id/width1"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:hint="width"
+                    android:paddingLeft="@dimen/dp_3"
+                    android:inputType="number"
+                    android:paddingRight="@dimen/dp_3"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textColorHint="@color/grey"/>
+                <EditText
+                    android:id="@+id/height1"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:hint="height"
+                    android:paddingLeft="@dimen/dp_3"
+                    android:inputType="number"
+                    android:paddingRight="@dimen/dp_3"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textColorHint="@color/grey"/>
+
+            </LinearLayout>
+
+
+
+        </FrameLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="wrap_content"
+                android:text="实际使用\n长宽高"
+                android:drawableTop="@drawable/paid2"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:textSize="@dimen/sp_10"
+                android:layout_gravity="center_vertical"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginStart="@dimen/dp_40"
+                android:layout_height="match_parent">
+                <EditText
+                    android:id="@+id/length2"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:hint="length"
+                    android:inputType="number"
+                    android:paddingLeft="@dimen/dp_3"
+                    android:paddingRight="@dimen/dp_3"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textColorHint="@color/grey"/>
+                <EditText
+                    android:id="@+id/width2"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:hint="width"
+                    android:inputType="number"
+                    android:paddingLeft="@dimen/dp_3"
+                    android:paddingRight="@dimen/dp_3"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textColorHint="@color/grey"/>
+                <EditText
+                    android:id="@+id/height2"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:hint="height"
+                    android:paddingLeft="@dimen/dp_3"
+                    android:inputType="number"
+                    android:paddingRight="@dimen/dp_3"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textColorHint="@color/grey"/>
+
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:layout_weight="1">
+            <TextView
+                android:drawableTop="@drawable/orientation"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="wrap_content"
+                android:text="方向"
                 android:gravity="center"
                 android:textColor="@color/black"
-                android:textSize="@dimen/sp_8"/>
+                android:textSize="@dimen/sp_10"
+                android:layout_gravity="center_vertical"/>
 
             <EditText
+                android:id="@+id/orientation"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/dp_40"
-                android:hint="time"
+                android:hint="orientation"
                 android:paddingLeft="@dimen/dp_3"
                 android:paddingRight="@dimen/dp_3"
                 android:textColor="@color/black"
@@ -184,20 +219,52 @@
             android:layout_height="@dimen/dp_50"
             android:layout_weight="1">
             <TextView
+                android:drawableTop="@drawable/location"
                 android:layout_width="@dimen/dp_40"
-                android:drawableTop="@drawable/pending"
                 android:layout_height="wrap_content"
-                android:text="备注"
-                android:textColor="@color/black"
+                android:text="位置"
                 android:gravity="center"
+                android:textColor="@color/black"
                 android:textSize="@dimen/sp_10"
                 android:layout_gravity="center_vertical"/>
 
             <EditText
+                android:id="@+id/position"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/dp_40"
-                android:hint="more"
+                android:hint="position"
+                android:paddingLeft="@dimen/dp_3"
+                android:paddingRight="@dimen/dp_3"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:textColorHint="@color/grey"
+                tools:ignore="InvalidId" />
+        </FrameLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:layout_weight="1">
+            <TextView
+                android:drawableTop="@drawable/product"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="wrap_content"
+                android:text="产物"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_10"
+                android:layout_gravity="center_vertical"/>
+
+            <EditText
+                android:id="@+id/production"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/dp_40"
+                android:hint="production"
                 android:paddingLeft="@dimen/dp_3"
                 android:paddingRight="@dimen/dp_3"
                 android:textColor="@color/black"
