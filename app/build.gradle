@@ -71,4 +71,8 @@ dependencies {
     implementation "androidx.transition:transition:1.4.1"
     implementation project(':lib_selector')
     implementation project(':lib_ucrop')
+    // 友盟统计SDK
+    implementation  'com.umeng.umsdk:common:9.4.7'// 必选
+//    implementation  'com.umeng.umsdk:asms:1.6.0'// 必选
+//    implementation 'com.umeng.umsdk:apm:1.6.2'
 }

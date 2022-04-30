@@ -44,7 +44,10 @@
             android:name=".mvp.ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
-                <data android:scheme="6263f0ff30a4f67780b3137e" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="um.6263f0ff30a4f67780b3137e" />
             </intent-filter>
         </activity>
         <activity
