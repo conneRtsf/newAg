@@ -64,7 +64,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://ctos17.free.idcfengye.com/")
+                .baseUrl("http://124.222.111.61:9000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

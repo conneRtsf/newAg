@@ -55,11 +55,11 @@ public abstract class BaseActivity<T1 extends BaseContract.BasePresenter> extend
             contentView.setLayoutParams(layoutParams);
             FrameLayout frameLayout = view.findViewById(R.id.base_contentView);
             frameLayout.addView(contentView);
-            if (ImmersionBar.isSupportStatusBarDarkFont()) {
-                ImmersionBar.with(this).keyboardEnable(true).statusBarDarkFont(true).navigationBarEnable(false).init();
-            } else {
-                ImmersionBar.with(this).statusBarColor(R.color.gray).keyboardEnable(true).statusBarDarkFont(true).navigationBarEnable(false).init();
-            }
+//            if (ImmersionBar.isSupportStatusBarDarkFont()) {
+//                ImmersionBar.with(this).keyboardEnable(true).statusBarDarkFont(true).navigationBarEnable(false).init();
+//            } else {
+//                ImmersionBar.with(this).statusBarColor(R.color.gray).keyboardEnable(true).statusBarDarkFont(true).navigationBarEnable(false).init();
+//            }
             setContentView(view);
 //            setActivityComponent(MyApplication.getMyApplication().getAppComponent());
             if (mPresenter != null) mPresenter.attachView(this);
@@ -292,7 +292,7 @@ public abstract class BaseActivity<T1 extends BaseContract.BasePresenter> extend
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         // 如果你的 app 可以横竖屏切换，并且适配 4.4 或者 emui3 手机请务必在 onConfigurationChanged 方法里添加这句话
-        ImmersionBar.with(this).init();
+//        ImmersionBar.with(this).init();
     }
 
     @Override

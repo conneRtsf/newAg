@@ -1,6 +1,7 @@
 package com.example.newag.mvp.ui.login;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
@@ -46,19 +47,13 @@ public class LoginActivity extends BaseActivity {
     Button log;
     @BindView(R.id.btn2)
     Button Register;
-    @OnClick(R.id.pass)
-    void cl(){
-        Intent intent = new Intent();
-        intent.setClass(LoginActivity.this, MainActivity.class);
-        startActivity(intent);
-        finish();
-    }
 
     @Override
     protected void initBaseData() {
 
     }
 
+    @SuppressLint("HandlerLeak")
     @SuppressWarnings("deprecation")
     @Override
     protected void baseConfigView() {

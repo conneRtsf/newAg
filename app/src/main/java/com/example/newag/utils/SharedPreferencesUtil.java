@@ -1,10 +1,12 @@
 package com.example.newag.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 
 public class SharedPreferencesUtil {
 
+    @SuppressLint("StaticFieldLeak")
     private static SharedPreferencesUtil prefsUtil;
     public Context context;
     public SharedPreferences prefs;
@@ -96,7 +98,9 @@ public class SharedPreferencesUtil {
         editor.commit();
         return this;
     }
-
+    public void  delete(){
+        editor.clear().commit();
+    }
     public void commit() {
         editor.commit();
     }

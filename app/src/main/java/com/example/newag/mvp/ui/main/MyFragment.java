@@ -1,6 +1,9 @@
 package com.example.newag.mvp.ui.main;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +19,7 @@ import com.example.newag.mvp.ui.my.AgreementPrivacyActivity;
 import com.example.newag.mvp.ui.my.ChangeMyActivity;
 import com.example.newag.mvp.ui.my.FarmChangeNameActivity;
 import com.example.newag.mvp.ui.my.SafeMeActivity;
+import com.example.newag.utils.SharedPreferencesUtil;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -68,6 +72,7 @@ public class MyFragment extends BaseFragment {
     void onClick5(View view) {
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         startActivity(intent);
+        SharedPreferencesUtil.getInstance().delete();
         System.exit(0);
     }
 }

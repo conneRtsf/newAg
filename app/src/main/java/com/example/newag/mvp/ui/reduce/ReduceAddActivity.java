@@ -183,6 +183,7 @@ public class ReduceAddActivity extends BaseActivity implements View.OnClickListe
                     assert response.body() != null;
                     String responsePond=response.body().string();
                     ReduceAddActivity.this.runOnUiThread(new Runnable() {
+                        @SuppressLint("SetTextI18n")
                         @Override
                         public void run() {
                             JSONObject jsonObject = null;
@@ -219,6 +220,7 @@ public class ReduceAddActivity extends BaseActivity implements View.OnClickListe
                     assert response.body() != null;
                     String responseField=response.body().string();
                     ReduceAddActivity.this.runOnUiThread(new Runnable() {
+                        @SuppressLint("SetTextI18n")
                         @Override
                         public void run() {
                             JSONObject jsonObject = null;

@@ -39,7 +39,6 @@ public class MyApplication extends BaseApplication {
         super.onCreate();
         myApplication = this;
         SharedPreferencesUtil.init(this,"com.example.newag",MODE_PRIVATE);
-        UMInitUtil.init(this);
         SdkDelayInitUtil.getInstance().init();
         initComponent();
     }
