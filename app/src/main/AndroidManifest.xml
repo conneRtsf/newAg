@@ -8,9 +8,11 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
-    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
         tools:ignore="QueryAllPackagesPermission" />
     <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -21,6 +23,60 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar"
         tools:targetApi="n">
+        <activity
+            android:name=".mvp.ui.change.FeedingRecord"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.change.ProgramAdd"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.change.ReduceAdd"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.change.Inspection"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.change.OtherPeriod"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.change.VegetablePeriod"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.change.FishPeriod"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.change.OtherTemplate"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.change.VegetableTemplate"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.change.FishTemplate"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.change.FeedTemplate"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.change.DrugTemplate"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.change.SalesAccouting"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.change.AllCost"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.change.OtherCost"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.change.VegetableCost"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.change.FishCost"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.change.PeopleCost"
+            android:exported="false" />
         <activity
             android:name=".mvp.ui.login.LoginActivity"
             android:exported="false" />
@@ -36,99 +92,102 @@
         </activity>
         <activity
             android:name=".mvp.ui.login.RegisterActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.costs.FishCostActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="um.6263f0ff30a4f67780b3137e" />
             </intent-filter>
         </activity>
         <activity
             android:name=".mvp.ui.costs.VegetableCostActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.costs.OtherCostActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.costs.EnergyCostActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.reduce.ReduceAddActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.costs.PeopleCostActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.costs.AllCostActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.costs.FeedCostActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.plus.PeoplePlus"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.plus.FishVegetablePlus"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.accounting.SalesAccountingActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.inputperiod.FishPeriodActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.inputperiod.OtherPeriodActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.inputperiod.VegetablePeriodActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.plus.PeriodPlus"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.template.DrugTemplateActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.template.FeedTemplateActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.template.FishTemplateActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.template.OtherTemplateActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.template.VegetableTemplateActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.plus.TemplatePlus"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.program.FeedingRecordActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.program.ProgramAddActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.plus.ProgramPlus"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.plus.RecordPlus"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.plus.InspectionPlus"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".mvp.ui.inspection.InspectionActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
+
             android:name=".mvp.ui.plus.ReduceFishPlus"
             android:exported="true" />
         <activity
@@ -140,6 +199,7 @@
         <activity
             android:name=".mvp.ui.my.SafeMeActivity"
             android:exported="true"/>
+
         <activity
             android:name=".mvp.ui.my.FarmChangeNameActivity"
             android:exported="true" />

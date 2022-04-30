@@ -4,6 +4,7 @@ package com.example.newag;
 import com.example.newag.base.BaseApplication;
 
 import com.example.newag.di.component.AppComponent;
+
 import com.example.newag.di.component.DaggerAppComponent;
 import com.example.newag.di.module.AppModule;
 import com.example.newag.di.module.AquApiModule;

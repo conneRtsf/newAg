@@ -24,15 +24,16 @@
                 android:layout_gravity="center_vertical"/>
 
             <EditText
+                android:id="@+id/et_id"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/dp_30"
+                android:gravity="center"
                 android:hint="id"
                 android:paddingLeft="@dimen/dp_3"
                 android:paddingRight="@dimen/dp_3"
                 android:textColor="@color/black"
-                android:gravity="center"
-                android:textColorHint="@color/grey"/>
+                android:textColorHint="@color/grey" />
         </FrameLayout>
     </LinearLayout>
     <LinearLayout
@@ -214,6 +215,7 @@
         </FrameLayout>
     </LinearLayout>
     <Button
+        android:id="@+id/make_text"
         android:layout_width="320dp"
         android:layout_height="40dp"
         android:layout_gravity="center"

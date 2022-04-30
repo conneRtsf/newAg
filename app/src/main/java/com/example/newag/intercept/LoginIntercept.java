@@ -1,15 +1,11 @@
 package com.example.newag.intercept;
 
-import static com.umeng.commonsdk.stateless.UMSLEnvelopeBuild.mContext;
 
-import android.app.Activity;
-import android.content.SharedPreferences;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.newag.mvp.ui.login.LoginActivity;
-import com.example.newag.mvp.ui.login.LoginActivity_ViewBinding;
+
 import com.example.newag.utils.SharedPreferencesUtil;
 
 import java.io.IOException;

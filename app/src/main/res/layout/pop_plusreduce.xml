@@ -23,6 +23,7 @@
                 android:layout_gravity="center_vertical"/>
 
             <EditText
+                android:id="@+id/et_1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/dp_40"
@@ -94,4 +95,11 @@
                 android:textColorHint="@color/grey"/>
         </FrameLayout>
     </LinearLayout>
+    <Button
+        android:id="@+id/make_text"
+        android:layout_width="320dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="编辑"/>
 </LinearLayout>

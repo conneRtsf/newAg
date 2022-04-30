@@ -31,7 +31,20 @@ public class AllTextMasterAdapter extends BaseQuickAdapter<AllTextMaster, BaseVi
         super(R.layout.ltem_big_list, data);//传入边框布局，数据
         this.mContext=context;//传入上下文
     }
+
     @SuppressLint("NotifyDataSetChanged")
+
+    private MasterOnItemListener masterOnItemListener;
+    public  interface MasterOnItemListener {
+        void OnItemClickListener(View view, int position);
+        void OnItemLongClickListener(View view, int position,AllText allText);
+    }
+
+    public void setMasterOnItemListener(MasterOnItemListener masterOnItemListener) {
+        this.masterOnItemListener = masterOnItemListener;
+    }
+
+
     @Override
     protected void convert(BaseViewHolder helper, AllTextMaster item) {
         allTextList.clear();//除去旧数据
@@ -40,9 +53,20 @@ public class AllTextMasterAdapter extends BaseQuickAdapter<AllTextMaster, BaseVi
         }catch (Exception e){
             e.printStackTrace();
         }
-
+        int shu=helper.getLayoutPosition();
         allTextList.addAll(item.getAllTextList());//添加新数据
         allTextAdapter=new AllTextAdapter(allTextList);//创建小适配器，并传入数据
+        allTextAdapter.setOnItemListenerListener(new AllTextAdapter.OnItemListener() {
+            @Override
+            public void OnItemClickListener(View view, int position) {
+
+            }
+
+            @Override
+            public void OnItemLongClickListener(View view, int position, AllText allText) {
+                masterOnItemListener.OnItemLongClickListener(view,position,allText);
+            }
+        });
         ((RecyclerView)helper.getView(R.id.recyclerview)).setLayoutManager(new LinearLayoutManager(mContext,RecyclerView.VERTICAL,false));//传入布局
         ((RecyclerView) helper.getView(R.id.recyclerview)).setAdapter(allTextAdapter);//设置适配器
         if (flag){
