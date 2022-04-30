@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.newag.R;
 import com.example.newag.base.BaseFragment;
+import com.example.newag.mvp.ui.login.LoginActivity;
+import com.example.newag.mvp.ui.login.LoginActivity_ViewBinding;
 import com.example.newag.mvp.ui.my.AgreementPrivacyActivity;
 import com.example.newag.mvp.ui.my.ChangeMyActivity;
 import com.example.newag.mvp.ui.my.FarmChangeNameActivity;
@@ -61,5 +63,11 @@ public class MyFragment extends BaseFragment {
     void onClick4(View view) {
         Intent intent = new Intent(getActivity(), AgreementPrivacyActivity.class);
         startActivity(intent);
+    }
+    @OnClick(R.id.bt5)
+    void onClick5(View view) {
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        startActivity(intent);
+        System.exit(0);
     }
 }

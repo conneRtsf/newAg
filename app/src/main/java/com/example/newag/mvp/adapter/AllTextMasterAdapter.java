@@ -1,5 +1,6 @@
 package com.example.newag.mvp.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import androidx.annotation.Nullable;
@@ -18,11 +19,12 @@ import java.util.List;
 //基于BaseQuickAdapter
 public class AllTextMasterAdapter extends BaseQuickAdapter<AllTextMaster,BaseViewHolder> {
     Boolean flag=false;
-    private List<AllText> allTextList=new ArrayList<>();//用来传入数据
+    private final List<AllText> allTextList=new ArrayList<>();//用来传入数据
     public AllTextMasterAdapter(Context context, @Nullable List<AllTextMaster> data) {
         super(R.layout.ltem_big_list, data);//传入边框布局，数据
         this.mContext=context;//传入上下文
     }
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void convert(BaseViewHolder helper, AllTextMaster item) {
         allTextList.clear();//除去旧数据
@@ -37,7 +39,7 @@ public class AllTextMasterAdapter extends BaseQuickAdapter<AllTextMaster,BaseVie
         ((RecyclerView)helper.getView(R.id.recyclerview)).setLayoutManager(new LinearLayoutManager(mContext,RecyclerView.VERTICAL,false));//传入布局
         /*((RecyclerView)helper.getView(R.id.recyclerview)).addItemDecoration(new HomeSpaceItemDecoration(1,Screen));*/
         ((RecyclerView) helper.getView(R.id.recyclerview)).setAdapter(allTextAdapter);//设置适配器
-        if (flag==true){
+        if (flag){
             allTextAdapter.setCheckbox(true);
         }
         allTextAdapter.notifyDataSetChanged();//提醒数据发生改变

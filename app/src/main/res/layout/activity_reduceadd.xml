@@ -12,7 +12,14 @@
         android:layout_height="match_parent"
         android:background="@drawable/backcolor"
         tools:ignore="MissingConstraints">
-
+        <Button
+            android:id="@+id/fieldPlus"
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_75"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/dp_120"
+            android:background="@drawable/plus"/>
         <TextView
             android:id="@+id/textView2"
             android:layout_width="@dimen/dp_85"
@@ -20,9 +27,17 @@
             android:layout_marginStart="@dimen/dp_148"
             android:layout_marginTop="@dimen/dp_65"
             android:gravity="center"
-            android:text="菜地\n3个"
+            android:text="菜地\n0个"
             android:textColor="@color/white"
             android:textSize="@dimen/dp_15" />
+        <Button
+            android:id="@+id/fishPlus"
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_75"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/dp_0"
+            android:background="@drawable/plus"/>
 
         <TextView
             android:id="@+id/textView3"
@@ -32,7 +47,7 @@
             android:layout_marginTop="@dimen/dp_65"
             android:gravity="center"
             android:background="@color/green_new"
-            android:text="鱼池\n1个"
+            android:text="鱼池\n0个"
             android:textColor="@color/white"
             android:textSize="@dimen/dp_15" />
 
@@ -96,7 +111,7 @@
             android:background="@color/背景色"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/dp_180">
+            android:layout_marginTop="@dimen/dp_140">
 
             <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                 android:id="@+id/refresh"
@@ -108,14 +123,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
             </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-            <Button
-                android:id="@+id/plus"
-                android:layout_width="@dimen/dp_60"
-                android:layout_height="@dimen/dp_60"
-                android:layout_marginTop="@dimen/dp_300"
-                android:layout_gravity="right"
-                android:layout_marginRight="@dimen/dp_40"
-                android:background="@drawable/plus"/>
         </FrameLayout>
     </FrameLayout>
 
