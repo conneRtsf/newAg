@@ -158,18 +158,6 @@
             android:gravity="center"
             android:text="菜类投入"
             android:textColor="@color/black" />
-        <Button
-            android:id="@+id/ce3"
-            android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/dp_120"
-            android:layout_height="@dimen/dp_60"
-            android:text="其他投入"
-            android:drawableLeft="@drawable/other"
-            android:drawableTint="@color/black"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:background="@color/white"
-            />
 
     </RelativeLayout>
 

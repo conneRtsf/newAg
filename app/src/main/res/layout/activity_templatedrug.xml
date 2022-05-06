@@ -33,7 +33,7 @@
             android:background="@drawable/backnew"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
-            android:text="药品模板"
+            android:text="药品库存"
             android:textColor="@color/black"
             android:textSize="@dimen/sp_15" />
 
@@ -67,7 +67,7 @@
             android:layout_marginTop="@dimen/dp_180"/>
     </FrameLayout>
     <FrameLayout
-        android:layout_marginTop="@dimen/dp_131"
+        android:layout_marginTop="@dimen/dp_80"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/newBlue">
@@ -106,7 +106,7 @@
             android:drawableLeft="@drawable/medication"
             android:drawableTint="@color/black"
             android:gravity="center"
-            android:text="药品模板"
+            android:text="药品库存"
             android:textColor="@color/black" />
 
         <Button
@@ -118,14 +118,14 @@
             android:drawableLeft="@drawable/feed"
             android:drawableTint="@color/black"
             android:gravity="center"
-            android:text="饲料模板"
+            android:text="饲料库存"
             android:textColor="@color/black" />
         <Button
             android:id="@+id/ce3"
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/dp_120"
             android:layout_height="@dimen/dp_60"
-            android:text="鱼苗模板"
+            android:text="鱼苗库存"
             android:drawableLeft="@drawable/fish"
             android:drawableTint="@color/black"
             android:gravity="center"
@@ -137,7 +137,7 @@
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/dp_180"
             android:layout_height="@dimen/dp_60"
-            android:text="菜苗模板"
+            android:text="菜苗库存"
             android:drawableLeft="@drawable/vegetable"
             android:drawableTint="@color/black"
             android:gravity="center"
@@ -149,7 +149,7 @@
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/dp_240"
             android:layout_height="@dimen/dp_60"
-            android:text="其他投入品模板"
+            android:text="其他投入品库存"
             android:drawableLeft="@drawable/other"
             android:drawableTint="@color/black"
             android:gravity="center"

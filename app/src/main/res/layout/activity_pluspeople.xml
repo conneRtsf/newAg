@@ -43,6 +43,7 @@
                 android:layout_gravity="center_vertical"/>
 
             <EditText
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/dp_40"
@@ -61,82 +62,21 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_50"
             android:layout_weight="1">
-
-            <TextView
-                android:layout_width="@dimen/dp_40"
-                android:drawableTop="@drawable/quantity"
-                android:layout_height="wrap_content"
-                android:text="销售量"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp_10"
-                android:layout_gravity="center_vertical"/>
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/dp_40"
-                android:hint="quantity"
-                android:paddingLeft="@dimen/dp_3"
-                android:paddingRight="@dimen/dp_3"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:textColorHint="@color/grey"/>
-
-        </FrameLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50"
-            android:layout_weight="1">
             <TextView
                 android:layout_width="@dimen/dp_45"
                 android:layout_height="wrap_content"
-                android:text="销售金额"
+                android:text="投入费用"
                 android:drawableTop="@drawable/paid2"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_10"
                 android:layout_gravity="center_vertical"/>
 
             <EditText
+                android:id="@+id/money"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/dp_40"
-                android:hint="money"
-                android:paddingLeft="@dimen/dp_3"
-                android:paddingRight="@dimen/dp_3"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:textColorHint="@color/grey"/>
-        </FrameLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50"
-            android:layout_weight="1">
-
-            <TextView
-                android:layout_width="@dimen/dp_40"
-                android:layout_height="wrap_content"
-                android:drawableTop="@drawable/time"
-                android:layout_gravity="center_vertical"
-                android:text="时间"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp_10"/>
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/dp_40"
-                android:hint="time"
+                android:hint="（元）"
                 android:paddingLeft="@dimen/dp_3"
                 android:paddingRight="@dimen/dp_3"
                 android:textColor="@color/black"
@@ -162,10 +102,41 @@
                 android:layout_gravity="center_vertical"/>
 
             <EditText
+                android:id="@+id/more"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/dp_40"
                 android:hint="more"
+                android:paddingLeft="@dimen/dp_3"
+                android:paddingRight="@dimen/dp_3"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:textColorHint="@color/grey"/>
+        </FrameLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:layout_weight="1">
+            <TextView
+                android:drawableTop="@drawable/people_cost"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="wrap_content"
+                android:text="人数"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_10"
+                android:layout_gravity="center_vertical"/>
+
+            <EditText
+                android:id="@+id/people"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/dp_40"
+                android:hint="（人）"
                 android:paddingLeft="@dimen/dp_3"
                 android:paddingRight="@dimen/dp_3"
                 android:textColor="@color/black"

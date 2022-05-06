@@ -2,7 +2,9 @@ package com.example.newag.mvp.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,7 +24,8 @@ import java.util.List;
 //基于BaseQuickAdapter
 public class AllTextMasterAdapter extends BaseQuickAdapter<AllTextMaster, BaseViewHolder> {
     Boolean flag=false;
-
+    public final List<Integer> idList=new ArrayList<>();
+    public  List<String> numList=new ArrayList<>();
     public AllTextAdapter allTextAdapter;
 
     private final List<AllText> allTextList=new ArrayList<>();//用来传入数据
@@ -47,13 +50,13 @@ public class AllTextMasterAdapter extends BaseQuickAdapter<AllTextMaster, BaseVi
 
     @Override
     protected void convert(BaseViewHolder helper, AllTextMaster item) {
+        String num=item.getItem_Type();
         allTextList.clear();//除去旧数据
         try {
             helper.setText(R.id.tv_group_title,""+item.getItem_Type());//设置标题
         }catch (Exception e){
             e.printStackTrace();
         }
-        int shu=helper.getLayoutPosition();
         allTextList.addAll(item.getAllTextList());//添加新数据
         allTextAdapter=new AllTextAdapter(allTextList);//创建小适配器，并传入数据
         allTextAdapter.setOnItemListenerListener(new AllTextAdapter.OnItemListener() {
@@ -65,6 +68,25 @@ public class AllTextMasterAdapter extends BaseQuickAdapter<AllTextMaster, BaseVi
             @Override
             public void OnItemLongClickListener(View view, int position, AllText allText) {
                 masterOnItemListener.OnItemLongClickListener(view,position,allText);
+            }
+        });
+        allTextAdapter.setOnChangeListener(new AllTextAdapter.OnChangeListener() {
+            @Override
+            public void onChangeClickListener(CompoundButton compoundButton, int id) {
+                boolean flag=true;
+                for (int i = 0; i < idList.size(); i++) {
+                    if(idList.get(i).equals(id)){
+                        if(numList.get(i).equals(num)){
+                            flag=false;
+                        }
+                    }
+                }
+                if (flag){
+                    idList.add(id);
+                    numList.add(num);
+                }
+                Log.e( "id: ", idList.toString());
+                Log.e("num: ", numList.toString());
             }
         });
         ((RecyclerView)helper.getView(R.id.recyclerview)).setLayoutManager(new LinearLayoutManager(mContext,RecyclerView.VERTICAL,false));//传入布局

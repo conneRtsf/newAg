@@ -4,13 +4,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-
-import androidx.fragment.app.Fragment;
 
 import com.example.newag.MyApplication;
 import com.example.newag.R;
@@ -21,15 +17,13 @@ import com.example.newag.mvp.ui.dialog.WelcomeDialog;
 import com.example.newag.mvp.ui.inputperiod.FishPeriodActivity;
 import com.example.newag.mvp.ui.inspection.InspectionActivity;
 import com.example.newag.mvp.ui.program.ProgramAddActivity;
-import com.example.newag.mvp.ui.reduce.ReduceAddActivity;
-import com.example.newag.mvp.ui.template.DrugTemplateActivity;
+import com.example.newag.mvp.ui.reduce.ReduceFishAddActivity;
+import com.example.newag.mvp.ui.stock.DrugStockActivity;
 import com.example.newag.utils.SdkDelayInitUtil;
 import com.example.newag.utils.SharedPreferencesUtil;
 import com.example.newag.utils.UMInitUtil;
 
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 public class NourishFragment extends BaseFragment {
 
@@ -106,7 +100,7 @@ public class NourishFragment extends BaseFragment {
     }
     @OnClick(R.id.bt4)
     void onClick4(View view) {
-        Intent intent = new Intent(getActivity(), DrugTemplateActivity.class);
+        Intent intent = new Intent(getActivity(), DrugStockActivity.class);
         startActivity(intent);
     }
     @OnClick(R.id.bt5)
@@ -126,7 +120,7 @@ public class NourishFragment extends BaseFragment {
     }
     @OnClick(R.id.bt1)
     void onClick(View view) {
-        Intent intent = new Intent(getActivity(), ReduceAddActivity.class);
+        Intent intent = new Intent(getActivity(), ReduceFishAddActivity.class);
         startActivity(intent);
     }
 }

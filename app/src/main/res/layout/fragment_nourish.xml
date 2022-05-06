@@ -74,7 +74,7 @@
                 android:background="@drawable/backnew"
                 android:drawableStart="@drawable/template"
                 android:textColor="@color/black"
-                android:text="投入品模板定义"
+                android:text="库存"
                 android:gravity="center_vertical"
                 android:paddingLeft="@dimen/sp_20"
                 android:layout_gravity="center_horizontal"

@@ -155,6 +155,7 @@ public class LoginActivity extends BaseActivity {
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
+
                         }
                     }
                 });

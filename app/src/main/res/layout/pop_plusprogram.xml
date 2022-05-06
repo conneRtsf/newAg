@@ -13,162 +13,17 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_40"
             android:layout_weight="1">
-            <TextView
-                android:drawableTop="@drawable/id"
-                android:layout_width="@dimen/dp_30"
-                android:layout_height="wrap_content"
-                android:text="序号"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp_10"
-                android:layout_gravity="center_vertical"/>
 
-            <EditText
+            <TextView
+                android:id="@+id/et_1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/dp_30"
                 android:hint="id"
                 android:paddingLeft="@dimen/dp_3"
                 android:paddingRight="@dimen/dp_3"
                 android:textColor="@color/black"
                 android:gravity="center"
                 android:textColorHint="@color/grey"/>
-        </FrameLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="@dimen/dp_10">
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_40"
-            android:layout_weight="1"
-            >
-            <TextView
-                android:drawableTop="@drawable/rename"
-                android:layout_width="@dimen/dp_30"
-                android:layout_height="wrap_content"
-                android:text="名称"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp_10"
-                android:layout_gravity="center_vertical"/>
-            <EditText
-                android:id="@+id/et_1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/dp_30"
-                android:hint="name"
-                android:paddingLeft="@dimen/dp_3"
-                android:paddingRight="@dimen/dp_3"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:textColorHint="@color/grey"/>
-        </FrameLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_10">
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_40"
-            android:layout_weight="1">
-            <TextView
-                android:drawableTop="@drawable/grow"
-                android:layout_width="@dimen/dp_30"
-                android:layout_height="wrap_content"
-                android:text="生长月龄
-"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp_10"
-                android:layout_gravity="center_vertical"/>
-        </FrameLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_10">
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_40"
-            android:layout_weight="1">
-            <TextView
-                android:drawableTop="@drawable/weight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="生产单元id"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp_10"
-                android:layout_gravity="center_vertical"/>
-        </FrameLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_40"
-            android:layout_weight="1.5">
-            <TextView
-                android:layout_width="@dimen/dp_30"
-                android:layout_height="wrap_content"
-                android:text="饲料方案"
-                android:drawableTop="@drawable/paid2"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp_7"
-                android:layout_gravity="center_vertical"/>
-        </FrameLayout>
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/dp_30"
-                android:hint="名称"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:textColorHint="@color/grey"/>
-        </FrameLayout>
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/dp_30"
-                android:hint="量"
-                android:paddingLeft="@dimen/dp_3"
-                android:paddingRight="@dimen/dp_3"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:textColorHint="@color/grey"/>
-        </FrameLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_40"
-            android:layout_weight="1">
-            <TextView
-                android:layout_width="@dimen/dp_30"
-                android:layout_height="wrap_content"
-                android:drawableTop="@drawable/time"
-                android:layout_gravity="center_vertical"
-                android:text="投喂时间"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp_8"/>
         </FrameLayout>
     </LinearLayout>
     <Button
