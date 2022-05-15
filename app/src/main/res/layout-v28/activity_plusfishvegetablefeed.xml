@@ -17,13 +17,38 @@
             android:layout_gravity="center"
             android:textSize="@dimen/sp_20"/>
         <Button
-            android:id="@+id/commit"
-            android:layout_width="@dimen/dp_40"
-            android:layout_height="@dimen/dp_40"
-            android:background="@drawable/commit"
-            android:layout_gravity="right"
-            android:backgroundTint="@color/black"/>
+            android:id="@+id/tb2"
+            android:layout_width="@dimen/dp_35"
+            android:layout_height="@dimen/dp_35"
+            android:backgroundTint="@color/black"
+            android:background="@drawable/ic_baseline_arrow_back_24" />
     </FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="@dimen/dp_55"
+                android:layout_height="wrap_content"
+                android:text="添加到库存"
+                android:gravity="center"
+                android:drawableTop="@drawable/plus"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_10"
+                android:layout_gravity="center_vertical"/>
+
+            <Spinner
+                android:id="@+id/stock"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:background="@color/green"
+                android:layout_marginStart="@dimen/dp_70"/>
+        </FrameLayout>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,7 +73,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/dp_40"
                 android:gravity="center"
-                android:hint="（若添加到仓库可不填）"
+                android:hint="名称"
                 android:paddingLeft="@dimen/dp_3"
                 android:paddingRight="@dimen/dp_3"
                 android:textColor="@color/black"
@@ -81,7 +106,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="2"
                     android:layout_height="match_parent"
-                    android:hint="inventory"
+                    android:hint="购入量"
 
                     android:paddingLeft="@dimen/dp_3"
                     android:paddingRight="@dimen/dp_3"
@@ -92,9 +117,8 @@
                     android:id="@+id/inventoryUnit"
                     android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:textSize="@dimen/sp_8"
                     android:layout_height="match_parent"
-                    android:hint="单位（若添加到仓库可不填）"
+                    android:hint="单位"
                     android:paddingLeft="@dimen/dp_3"
                     android:paddingRight="@dimen/dp_3"
                     android:textColor="@color/black"
@@ -141,26 +165,26 @@
             android:layout_height="@dimen/dp_50"
             android:layout_weight="1">
             <TextView
-                android:layout_width="@dimen/dp_45"
+                android:drawableTop="@drawable/company"
+                android:layout_width="@dimen/dp_40"
                 android:layout_height="wrap_content"
-                android:text="总价"
+                android:text="厂商"
                 android:gravity="center"
-                android:drawableTop="@drawable/paid2"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_10"
                 android:layout_gravity="center_vertical"/>
 
             <EditText
-                android:id="@+id/cost"
+                android:id="@+id/factory"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/dp_40"
-                android:gravity="center"
-                android:hint="（选填，可后台计算）"
+                android:hint="厂商"
                 android:paddingLeft="@dimen/dp_3"
                 android:paddingRight="@dimen/dp_3"
                 android:textColor="@color/black"
-                android:textColorHint="@color/grey" />
+                android:gravity="center"
+                android:textColorHint="@color/grey"/>
         </FrameLayout>
     </LinearLayout>
     <LinearLayout
@@ -185,7 +209,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/dp_40"
-                android:hint="more"
+                android:hint="备注"
                 android:paddingLeft="@dimen/dp_3"
                 android:paddingRight="@dimen/dp_3"
                 android:textColor="@color/black"
@@ -193,30 +217,13 @@
                 android:textColorHint="@color/grey"/>
         </FrameLayout>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50"
-            android:layout_weight="1">
-            <TextView
-                android:layout_width="@dimen/dp_55"
-                android:layout_height="wrap_content"
-                android:text="添加到库存"
-                android:gravity="center"
-                android:drawableTop="@drawable/plus"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp_10"
-                android:layout_gravity="center_vertical"/>
 
-            <Spinner
-                android:id="@+id/stock"
-                android:layout_width="match_parent"
-                android:gravity="center"
-                android:layout_height="match_parent"
-                android:background="@color/green"
-                android:layout_marginStart="@dimen/dp_70"/>
-        </FrameLayout>
-    </LinearLayout>
+    <Button
+        android:id="@+id/commit"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_width="@dimen/dp_100"
+        android:background="@color/green_new"
+        android:text="确定"
+        android:layout_height="@dimen/dp_40"
+        android:layout_gravity="center_horizontal"/>
 </LinearLayout>

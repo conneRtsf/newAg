@@ -24,6 +24,7 @@
             android:layout_centerVertical="true"
             android:gravity="center_vertical"
             android:text="标题"
+            android:drawableBottom="@drawable/line3"
             android:textColor="#333333"
             android:textSize="16sp"
             android:textStyle="bold" />

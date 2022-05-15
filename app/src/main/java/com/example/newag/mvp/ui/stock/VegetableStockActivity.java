@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.SearchView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,6 +49,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class VegetableStockActivity extends BaseActivity {
+    @BindView(R.id.searchView)
+    SearchView searchView;
     @OnClick(R.id.tb1)
     void onClick(View view) {
         root.openDrawer(Gravity.LEFT);
@@ -87,6 +90,20 @@ public class VegetableStockActivity extends BaseActivity {
         startActivity(intent);
         finish();
     }
+    @OnClick(R.id.ce6)
+    void onClick6(View view) {
+        Intent intent = new Intent();
+        intent.setClass(VegetableStockActivity.this, AdultFishStockActivity.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce7)
+    void onClick7(View view) {
+        Intent intent = new Intent();
+        intent.setClass(VegetableStockActivity.this, AdultVegetableStockActivity.class);
+        startActivity(intent);
+        finish();
+    }
     @OnClick(R.id.plus)
     void onClick11(View view) {
         Intent intent = new Intent();
@@ -116,6 +133,38 @@ public class VegetableStockActivity extends BaseActivity {
 
     @Override
     protected void baseConfigView() {
+        searchView.setIconifiedByDefault(false);
+        searchView.setSubmitButtonEnabled(true);
+        searchView.setQueryHint("查找");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                data_1.clear();
+                VegetableStockActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+                postSync(query);
+                Log.e("onQueryTextSubmit1: ", query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                data_1.clear();
+                VegetableStockActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+                postSync(newText);
+                Log.e("onQueryTextSubmit2: ", newText);
+                return false;
+            }
+        });
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);//设置布局管理器，cv工程
         recyclerView.setLayoutManager(linearLayoutManager);//为recycleview添加布局管理器，cv
         adapter=new AllTextMasterAdapter(this,data_1);//定义一个新的大适配器（AllTextMasterAdapter），并且把数据传进去
@@ -171,7 +220,7 @@ public class VegetableStockActivity extends BaseActivity {
     private void showPopWindow(AllText allText,int position) {
         View view = LayoutInflater.from(VegetableStockActivity.this).inflate(R.layout.pop_plustemplate, null);
         TextView editText = view.findViewById(R.id.et_1);
-        editText.setText(allText.getName());
+        editText.setText(allText.getData());
         Button button=view.findViewById(R.id.make_text);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -302,14 +351,14 @@ public class VegetableStockActivity extends BaseActivity {
                             String note=jsonObject1.getString("note");
                             String type=jsonObject1.getString("type");
                             String inventoryUnit=jsonObject1.getString("inventoryUnit");
-                            String data="名称："+name+
-                                    "\n库存："+inventory+inventoryUnit+
+                            String data=
+                                    "库存："+inventory+inventoryUnit+
                                     "\n厂商："+factory+
                                     "\n添加时间："+time+
                                     "\n备注："+note;
                             mid=type;
                             if(type.equals("vegetable")){
-                                one1=new AllText(data,id);
+                                one1=new AllText(name,data,id);
                                 allTextList1.add(one1);
                             }
                             VegetableStockActivity.this.runOnUiThread(new Runnable() {
@@ -320,7 +369,76 @@ public class VegetableStockActivity extends BaseActivity {
                             });
                         }
                         if(mid.equals("vegetable")) {
-                            data_1.add(new AllTextMaster(mapKey, allTextList1));
+                            data_1.add(new AllTextMaster("菜苗（修改库存数量请长按）", allTextList1));
+                        }
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+    public void postSync(String data) {
+        OkHttpClient httpClient=new OkHttpClient.Builder()
+                .addInterceptor(new LoginIntercept())
+                .build();
+        Request requestField = new Request.Builder()
+                .get()
+                .url("http://124.222.111.61:9000/daily/input/queryAll?name="+data)
+                .build();
+        new Thread(new Runnable() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void run() {
+                try {
+                    Call call = httpClient.newCall(requestField);
+                    Response response=call.execute();
+                    assert response.body() != null;
+                    String responseData=response.body().string();
+                    data_1.clear();
+                    JSONObject jsonObject = new JSONObject(responseData);
+                    String json=jsonObject.getJSONObject("data").toString();
+                    Log.e("run: ", responseData);
+                    Map<String, JsonArray> map = new Gson()
+                            .fromJson(json, new TypeToken<Map<String, JsonArray>>() {}
+                                    .getType());
+                    String mid = null;
+                    for (Map.Entry<String, JsonArray> entry : map.entrySet()) {
+                        AllText one1;
+                        List<AllText> allTextList1=new ArrayList<>();
+                        String mapKey = entry.getKey();
+                        JsonArray mapValue = entry.getValue();
+                        JSONArray pond=new JSONArray(String.valueOf(mapValue));
+                        Log.e("pond: ", String.valueOf(pond));
+                        for (int i = 0; i < pond.length(); i++) {
+                            JSONObject jsonObject1= (JSONObject) pond.get(i);
+                            int id=jsonObject1.getInt("id");
+                            String name=jsonObject1.getString("name");
+                            double inventory=jsonObject1.getDouble("inventory");
+                            String factory=jsonObject1.getString("factory");
+                            String time=jsonObject1.getString("time");
+                            String note=jsonObject1.getString("note");
+                            String type=jsonObject1.getString("type");
+                            String inventoryUnit=jsonObject1.getString("inventoryUnit");
+                            String data=
+                                    "库存："+inventory+inventoryUnit+
+                                            "\n厂商："+factory+
+                                            "\n添加时间："+time+
+                                            "\n备注："+note;
+                            mid=type;
+                            if(type.equals("vegetable")){
+                                one1=new AllText(name,data,id);
+                                allTextList1.add(one1);
+                            }
+                            VegetableStockActivity.this.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    adapter.notifyDataSetChanged();
+                                }
+                            });
+                        }
+                        if(mid.equals("vegetable")) {
+                            data_1.add(new AllTextMaster("菜苗（修改库存数量请长按）", allTextList1));
                         }
                     }
                 }catch (Exception e){

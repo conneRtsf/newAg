@@ -3,6 +3,7 @@ package com.example.newag.mvp.model.api;
 import android.util.Log;
 
 import com.example.newag.base.Constant;
+import com.example.newag.intercept.LoginIntercept;
 import com.example.newag.mvp.model.api.support.LoggingInterceptor;
 import com.example.newag.mvp.model.api.support.LoggingProduction;
 import com.example.newag.mvp.model.api.support.LoggingSale;
@@ -34,6 +35,7 @@ public class HttpClientUtils {
                 .readTimeout(20 * 1000, TimeUnit.MILLISECONDS)
                 .retryOnConnectionFailure(true) // 失败重发 关闭
                 .addInterceptor(logging)
+                .addInterceptor(new LoginIntercept())
                 .hostnameVerifier(new HostnameVerifier() {
                     @Override
                     public boolean verify(String s, SSLSession sslSession) {

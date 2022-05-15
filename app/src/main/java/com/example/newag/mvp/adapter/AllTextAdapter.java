@@ -29,12 +29,14 @@ public class AllTextAdapter extends RecyclerView.Adapter<AllTextAdapter.ViewHold
     static class ViewHolder extends RecyclerView.ViewHolder{
         CheckBox checkBox;
         ImageView testImage;
+        TextView textData;
         TextView textName;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             checkBox= itemView.findViewById(R.id.cb);
             testImage= itemView.findViewById(R.id.test_image);
-            textName= itemView.findViewById(R.id.test_text);
+            textName= itemView.findViewById(R.id.test_name);
+            textData= itemView.findViewById(R.id.test_data);
         }
     }
     public void setCheckbox(Boolean flag){
@@ -60,6 +62,7 @@ public class AllTextAdapter extends RecyclerView.Adapter<AllTextAdapter.ViewHold
         //为控件添加数据
         int id=allText.getNum();
         holder.textName.setText(allText.getName());
+        holder.textData.setText(allText.getData());
         if (!flag){
             holder.checkBox.setVisibility(View.INVISIBLE);
         }else holder.checkBox.setVisibility(View.VISIBLE);
@@ -83,6 +86,7 @@ public class AllTextAdapter extends RecyclerView.Adapter<AllTextAdapter.ViewHold
             }
         });
     }
+
     //返回recycleview的行数，这里返回mAllTextList数据个数
     @Override
     public int getItemCount() {
@@ -98,10 +102,6 @@ public class AllTextAdapter extends RecyclerView.Adapter<AllTextAdapter.ViewHold
         this.onItemListener = listener;
     }
 
-
-    public boolean getBox(){
-        return flag;
-    }
     public interface OnChangeListener{
         void  onChangeClickListener(CompoundButton compoundButton,int id);
     }

@@ -1,6 +1,5 @@
 package com.example.newag.mvp.model.api.service;
 
-import com.example.newag.mvp.model.bean.LoginTranslation;
 import com.example.newag.mvp.model.bean.RegisterTranslation;
 
 import retrofit2.Call;

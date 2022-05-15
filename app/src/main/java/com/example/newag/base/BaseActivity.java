@@ -132,10 +132,7 @@ public abstract class BaseActivity<T1 extends BaseContract.BasePresenter> extend
         });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
+
 
     @Override
     protected void onPause() {
@@ -321,4 +318,5 @@ public abstract class BaseActivity<T1 extends BaseContract.BasePresenter> extend
         }
         return sb.toString().trim();
     }
+
 }

@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.Objects;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -32,6 +33,10 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class ReduceFieldPlusActivity extends BaseActivity {
+    @OnClick(R.id.tb2)
+    void  onClick2(){
+        finish();
+    }
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.name)
     EditText name;

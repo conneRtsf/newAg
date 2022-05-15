@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.SearchView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,6 +27,7 @@ import com.example.newag.mvp.adapter.AllTextMasterAdapter;
 import com.example.newag.mvp.model.bean.AllText;
 import com.example.newag.mvp.model.bean.AllTextMaster;
 import com.example.newag.mvp.ui.change.FishStorkChangeActivity;
+import com.example.newag.mvp.ui.plus.StorkAdultFishPlusActivity;
 import com.example.newag.mvp.ui.plus.StorkFishPlusActivity;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -48,6 +50,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class FishStockActivity extends BaseActivity {
+    @BindView(R.id.searchView)
+    SearchView searchView;
     @OnClick(R.id.tb1)
     void onClick(View view) {
         root.openDrawer(Gravity.LEFT);
@@ -87,6 +91,20 @@ public class FishStockActivity extends BaseActivity {
         startActivity(intent);
         finish();
     }
+    @OnClick(R.id.ce6)
+    void onClick6(View view) {
+        Intent intent = new Intent();
+        intent.setClass(FishStockActivity.this, AdultFishStockActivity.class);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.ce7)
+    void onClick7(View view) {
+        Intent intent = new Intent();
+        intent.setClass(FishStockActivity.this, AdultVegetableStockActivity.class);
+        startActivity(intent);
+        finish();
+    }
     @OnClick(R.id.plus)
     void onClick11(View view) {
         Intent intent = new Intent();
@@ -115,6 +133,38 @@ public class FishStockActivity extends BaseActivity {
 
     @Override
     protected void baseConfigView() {
+        searchView.setIconifiedByDefault(false);
+        searchView.setSubmitButtonEnabled(true);
+        searchView.setQueryHint("查找");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                data_1.clear();
+                FishStockActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+                postSync(query);
+                Log.e("onQueryTextSubmit1: ", query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                data_1.clear();
+                FishStockActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+                postSync(newText);
+                Log.e("onQueryTextSubmit2: ", newText);
+                return false;
+            }
+        });
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);//设置布局管理器，cv工程
         recyclerView.setLayoutManager(linearLayoutManager);//为recycleview添加布局管理器，cv
         adapter=new AllTextMasterAdapter(this,data_1);//定义一个新的大适配器（AllTextMasterAdapter），并且把数据传进去
@@ -122,7 +172,73 @@ public class FishStockActivity extends BaseActivity {
         Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showPopWindow();//展示popwindow的方法
+                View rootView;
+                View view2=LayoutInflater.from(FishStockActivity.this).inflate(R.layout.ppw_delete,null);
+                newPopWindow=new PopupWindow(view2,RecyclerView.LayoutParams.MATCH_PARENT,
+                        RecyclerView.LayoutParams.WRAP_CONTENT,false);
+                adapter.setCheckbox(true);
+                adapter.notifyDataSetChanged();
+                rootView= LayoutInflater.from(FishStockActivity.this).inflate(R.layout.activity_reduce_field_add,null);
+                newPopWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);
+                Button button_cancel=view2.findViewById(R.id.cancel);
+                button_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        newPopWindow.dismiss();
+                        data_1.clear();
+                        postSync();
+                        FishStockActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
+                        adapter.setCheckbox(false);
+                    }
+                });
+                Button button_delete=(Button) view2.findViewById(R.id.delete);
+                button_delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        adapter.setCheckbox(false);
+                        OkHttpClient httpClient=new OkHttpClient.Builder()
+                                .addInterceptor(new LoginIntercept()).build();
+                        for (int i = 0; i < adapter.idList.size(); i++) {
+                            Request request=new Request.Builder()
+                                    .delete()
+                                    .url("http://124.222.111.61:9000/daily/input/delete/"+adapter.idList.get(i))
+                                    .build();
+                            Log.e("onClick: ", "http://124.222.111.61:9000/daily/field/delete/"+adapter.idList.get(i));
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        Call call = httpClient.newCall(request);
+                                        Response response = call.execute();
+                                        assert response.body() != null;
+                                        String responsePond = response.body().string();
+                                        JSONObject jsonObject = new JSONObject(responsePond);
+                                        String fd=jsonObject.getString("msg");
+                                        FishStockActivity.this.runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                Toast.makeText(FishStockActivity.this, fd,Toast.LENGTH_SHORT).show();
+                                                adapter.notifyDataSetChanged();
+                                            }
+                                        });
+                                    } catch (IOException | JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }).start();
+                        }
+                        data_1.clear();
+                        adapter.idList.clear();
+                        adapter.notifyDataSetChanged();
+                        Log.e("onClick: ", String.valueOf(data_1));
+                        newPopWindow.dismiss();
+                    }
+                });
             }
         });
         postSync();
@@ -170,7 +286,9 @@ public class FishStockActivity extends BaseActivity {
     private void showPopWindow(AllText allText,int position) {
         View view = LayoutInflater.from(FishStockActivity.this).inflate(R.layout.pop_plustemplate, null);
         TextView editText = view.findViewById(R.id.et_1);
-        editText.setText(allText.getName());
+        editText.setText(allText.getData());
+        TextView editText2 = view.findViewById(R.id.name);
+        editText2.setText(allText.getName());
         Button button=view.findViewById(R.id.make_text);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,79 +303,6 @@ public class FishStockActivity extends BaseActivity {
         popupWindow = new PopupWindow(view, RecyclerView.LayoutParams.MATCH_PARENT,
                 RecyclerView.LayoutParams.WRAP_CONTENT, true);//设置popwindow的属性（布局，x，y，true）
         popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);//展示自定义的popwindow，（放哪个布局里，放布局里的位置，x，y），cv工程
-    }
-    private void showPopWindow() {
-        //定义一个view，其中包含popwindow的布局文件
-        View view1= LayoutInflater.from(FishStockActivity.this).inflate(R.layout.footer_batch,null);
-        popupWindow =new PopupWindow(view1, RecyclerView.LayoutParams.MATCH_PARENT,
-                RecyclerView.LayoutParams.WRAP_CONTENT,true);//设置popwindow的属性（布局，x，y，true）
-        TextView make_text=(TextView)view1.findViewById(R.id.make_text);
-        TextView back_test=(TextView)view1.findViewById(R.id.back_test);
-        make_text.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                adapter.setCheckbox(true);
-                adapter.notifyDataSetChanged();
-                popupWindow.dismiss();//销毁popwindow
-                View rootView= LayoutInflater.from(FishStockActivity.this).inflate(R.layout.activity_templatefish,null);
-                newPopWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);
-            }
-        });
-        back_test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                popupWindow.dismiss();
-            }
-        });
-        //定义一个view，其中包含main4的布局文件
-        View rootView=LayoutInflater.from(FishStockActivity.this).inflate(R.layout.activity_templatefish,null);
-        popupWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);//展示自定义的popwindow，（放哪个布局里，放布局里的位置，x，y），cv工程
-        View view2=LayoutInflater.from(FishStockActivity.this).inflate(R.layout.ppw_delete,null);
-        newPopWindow=new PopupWindow(view2,RecyclerView.LayoutParams.MATCH_PARENT,
-                RecyclerView.LayoutParams.WRAP_CONTENT,false);
-        Button button_delete=(Button) view2.findViewById(R.id.delete);
-        button_delete.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("NotifyDataSetChanged")
-            @Override
-            public void onClick(View view) {
-                adapter.setCheckbox(false);
-                OkHttpClient httpClient=new OkHttpClient.Builder()
-                        .addInterceptor(new LoginIntercept()).build();
-                for (int i = 0; i < adapter.idList.size(); i++) {
-                    Request request=new Request.Builder()
-                            .delete()
-                            .url("http://124.222.111.61:9000/daily/input/delete/"+adapter.idList.get(i))
-                            .build();
-                    Log.e("onClick: ", "http://124.222.111.61:9000/daily/input/delete/"+adapter.idList.get(i));
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                Call call = httpClient.newCall(request);
-                                Response response = call.execute();
-                                assert response.body() != null;
-                                String responsePond = response.body().string();
-                                JSONObject jsonObject = new JSONObject(responsePond);
-                                String fd=jsonObject.getString("msg");
-                                FishStockActivity.this.runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(FishStockActivity.this, fd,Toast.LENGTH_SHORT).show();
-                                        adapter.notifyDataSetChanged();
-                                    }
-                                });
-                            } catch (IOException | JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }).start();
-                }
-                data_1.clear();
-                adapter.idList.clear();
-                adapter.notifyDataSetChanged();
-                newPopWindow.dismiss();
-            }
-        });
     }
     public void postSync() {
         OkHttpClient httpClient=new OkHttpClient.Builder()
@@ -301,14 +346,14 @@ public class FishStockActivity extends BaseActivity {
                             String note=jsonObject1.getString("note");
                             String type=jsonObject1.getString("type");
                             String inventoryUnit=jsonObject1.getString("inventoryUnit");
-                            String data="名称："+name+
+                            String data=
                                     "\n库存："+inventory+inventoryUnit+
                                     "\n厂商："+factory+
                                     "\n添加时间："+time+
                                     "\n备注："+note;
                             mid=type;
                             if(type.equals("fish")){
-                                one1=new AllText(data,id);
+                                one1=new AllText(name,data,id);
                                 allTextList1.add(one1);
                             }
                             FishStockActivity.this.runOnUiThread(new Runnable() {
@@ -319,7 +364,76 @@ public class FishStockActivity extends BaseActivity {
                             });
                         }
                         if(mid.equals("fish")) {
-                            data_1.add(new AllTextMaster(mapKey, allTextList1));
+                            data_1.add(new AllTextMaster("鱼苗（修改库存数量请长按）", allTextList1));
+                        }
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+    public void postSync(String data) {
+        OkHttpClient httpClient=new OkHttpClient.Builder()
+                .addInterceptor(new LoginIntercept())
+                .build();
+        Request requestField = new Request.Builder()
+                .get()
+                .url("http://124.222.111.61:9000/daily/input/queryAll?name="+data)
+                .build();
+        new Thread(new Runnable() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void run() {
+                try {
+                    Call call = httpClient.newCall(requestField);
+                    Response response=call.execute();
+                    assert response.body() != null;
+                    String responseData=response.body().string();
+                    data_1.clear();
+                    JSONObject jsonObject = new JSONObject(responseData);
+                    String json=jsonObject.getJSONObject("data").toString();
+                    Log.e("run: ", responseData);
+                    Map<String, JsonArray> map = new Gson()
+                            .fromJson(json, new TypeToken<Map<String, JsonArray>>() {}
+                                    .getType());
+                    String mid = null;
+                    for (Map.Entry<String, JsonArray> entry : map.entrySet()) {
+                        AllText one1;
+                        List<AllText> allTextList1=new ArrayList<>();
+                        String mapKey = entry.getKey();
+                        JsonArray mapValue = entry.getValue();
+                        JSONArray pond=new JSONArray(String.valueOf(mapValue));
+                        Log.e("pond: ", String.valueOf(pond));
+                        for (int i = 0; i < pond.length(); i++) {
+                            JSONObject jsonObject1= (JSONObject) pond.get(i);
+                            int id=jsonObject1.getInt("id");
+                            String name=jsonObject1.getString("name");
+                            double inventory=jsonObject1.getDouble("inventory");
+                            String factory=jsonObject1.getString("factory");
+                            String time=jsonObject1.getString("time");
+                            String note=jsonObject1.getString("note");
+                            String type=jsonObject1.getString("type");
+                            String inventoryUnit=jsonObject1.getString("inventoryUnit");
+                            String data=
+                                    "\n库存："+inventory+inventoryUnit+
+                                            "\n厂商："+factory+
+                                            "\n添加时间："+time+
+                                            "\n备注："+note;
+                            mid=type;
+                            if(type.equals("fish")){
+                                one1=new AllText(name,data,id);
+                                allTextList1.add(one1);
+                            }
+                            FishStockActivity.this.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    adapter.notifyDataSetChanged();
+                                }
+                            });
+                        }
+                        if(mid.equals("fish")) {
+                            data_1.add(new AllTextMaster("鱼苗（修改库存数量请长按）", allTextList1));
                         }
                     }
                 }catch (Exception e){

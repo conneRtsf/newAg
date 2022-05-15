@@ -29,6 +29,7 @@ import com.example.newag.mvp.adapter.AllTextMasterAdapter;
 import com.example.newag.mvp.model.bean.AllText;
 import com.example.newag.mvp.model.bean.AllTextMaster;
 import com.example.newag.mvp.ui.plus.CostFishPlusActivity;
+import com.example.newag.mvp.ui.reduce.ReduceFishAddActivity;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
@@ -63,6 +64,10 @@ public class FishCostActivity extends BaseActivity {
         Intent intent = new Intent();
         intent.setClass(FishCostActivity.this, PeopleCostActivity.class);
         startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.tb2)
+    void  onClick2123(){
         finish();
     }
     @OnClick(R.id.ce2)
@@ -151,7 +156,73 @@ public class FishCostActivity extends BaseActivity {
         Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showPopWindow();//展示popwindow的方法
+                View rootView;
+                View view2=LayoutInflater.from(FishCostActivity.this).inflate(R.layout.ppw_delete,null);
+                newPopWindow=new PopupWindow(view2,RecyclerView.LayoutParams.MATCH_PARENT,
+                        RecyclerView.LayoutParams.WRAP_CONTENT,false);
+                adapter.setCheckbox(true);
+                adapter.notifyDataSetChanged();
+                rootView= LayoutInflater.from(FishCostActivity.this).inflate(R.layout.activity_costfish,null);
+                newPopWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);
+                Button button_cancel=view2.findViewById(R.id.cancel);
+                button_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        newPopWindow.dismiss();
+                        data_1.clear();
+                        postSync();
+                        FishCostActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
+                        adapter.setCheckbox(false);
+                    }
+                });
+                Button button_delete=(Button) view2.findViewById(R.id.delete);
+                button_delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        adapter.setCheckbox(false);
+                        OkHttpClient httpClient=new OkHttpClient.Builder()
+                                .addInterceptor(new LoginIntercept()).build();
+                        for (int i = 0; i < adapter.idList.size(); i++) {
+                            Request request=new Request.Builder()
+                                    .delete()
+                                    .url("http://124.222.111.61:9000/daily/cost/delete/"+adapter.idList.get(i))
+                                    .build();
+                            Log.e("onClick: ", "http://124.222.111.61:9000/daily/field/delete/"+adapter.idList.get(i));
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        Call call = httpClient.newCall(request);
+                                        Response response = call.execute();
+                                        assert response.body() != null;
+                                        String responsePond = response.body().string();
+                                        JSONObject jsonObject = new JSONObject(responsePond);
+                                        String fd=jsonObject.getString("msg");
+                                        FishCostActivity.this.runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                Toast.makeText(FishCostActivity.this, fd,Toast.LENGTH_SHORT).show();
+                                                adapter.notifyDataSetChanged();
+                                            }
+                                        });
+                                    } catch (IOException | JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }).start();
+                        }
+                        data_1.clear();
+                        adapter.idList.clear();
+                        adapter.notifyDataSetChanged();
+                        Log.e("onClick: ", String.valueOf(data_1));
+                        newPopWindow.dismiss();
+                    }
+                });
             }
         });
         postSync();
@@ -275,13 +346,14 @@ public class FishCostActivity extends BaseActivity {
                                     String note = jsonObject1.getString("note");
                                     String time = jsonObject1.getString("time");
                                     String weightUnit = jsonObject1.getString("weightUnit");
-                                    String data = "名称：" + name + "鱼苗成本" +
-                                            "\n单件：" + price +
-                                            "\n总价：" + cost +
+                                    String data =
+                                            "单价：" + price +"元/"+weightUnit+
+                                            "\n数量：" + weight +weightUnit+
+                                            "\n总价：" + cost +"元"+
                                             "\n备注：" + note +
                                             "\n添加时间：" + time;
                                     if(type.equals("fish")){
-                                        one1 = new AllText(data, id);
+                                        one1 = new AllText(name,data,id);
                                         allTextList1.add(one1);
                                     }
                                     FishCostActivity.this.runOnUiThread(new Runnable() {
@@ -310,78 +382,6 @@ public class FishCostActivity extends BaseActivity {
                 , calendar.get(Calendar.YEAR)
                 , calendar.get(Calendar.MONTH)
                 , calendar.get(Calendar.DAY_OF_MONTH)).show();
-    }
-    private void showPopWindow() {
-        //定义一个view，其中包含popwindow的布局文件
-        View view1= LayoutInflater.from(FishCostActivity.this).inflate(R.layout.footer_batch,null);
-        popupWindow =new PopupWindow(view1, RecyclerView.LayoutParams.MATCH_PARENT,
-                RecyclerView.LayoutParams.WRAP_CONTENT,true);//设置popwindow的属性（布局，x，y，true）
-        TextView make_text=(TextView)view1.findViewById(R.id.make_text);
-        TextView back_test=(TextView)view1.findViewById(R.id.back_test);
-        make_text.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                adapter.setCheckbox(true);
-                adapter.notifyDataSetChanged();
-                popupWindow.dismiss();//销毁popwindow
-                View rootView= LayoutInflater.from(FishCostActivity.this).inflate(R.layout.activity_costfish,null);
-                newPopWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);
-            }
-        });
-        back_test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                popupWindow.dismiss();
-            }
-        });
-        //定义一个view，其中包含main4的布局文件
-        View rootView=LayoutInflater.from(FishCostActivity.this).inflate(R.layout.activity_costfish,null);
-        popupWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);//展示自定义的popwindow，（放哪个布局里，放布局里的位置，x，y），cv工程
-        View view2=LayoutInflater.from(FishCostActivity.this).inflate(R.layout.ppw_delete,null);
-        newPopWindow=new PopupWindow(view2,RecyclerView.LayoutParams.MATCH_PARENT,
-                RecyclerView.LayoutParams.WRAP_CONTENT,false);
-        Button button_delete=(Button) view2.findViewById(R.id.delete);
-        button_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                adapter.setCheckbox(false);
-                OkHttpClient httpClient=new OkHttpClient.Builder()
-                        .addInterceptor(new LoginIntercept()).build();
-                for (int i = 0; i < adapter.idList.size(); i++) {
-                    Request request=new Request.Builder()
-                            .delete()
-                            .url("http://124.222.111.61:9000/daily/cost/delete/"+adapter.idList.get(i))
-                            .build();
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                data_1.clear();
-                                Call call = httpClient.newCall(request);
-                                Response response = call.execute();
-                                assert response.body() != null;
-                                String responsePond = response.body().string();
-                                JSONObject jsonObject = new JSONObject(responsePond);
-                                String fd=jsonObject.getString("msg");
-                                FishCostActivity.this.runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(FishCostActivity.this, fd,Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                            } catch (IOException | JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }).start();
-                }
-                data_1.clear();
-                adapter.idList.clear();
-                adapter.notifyDataSetChanged();
-                Log.e("onClick: ", String.valueOf(data_1));
-                newPopWindow.dismiss();
-            }
-        });
     }
     public void postSync() {
         OkHttpClient httpClient = new OkHttpClient.Builder()
@@ -426,13 +426,14 @@ public class FishCostActivity extends BaseActivity {
                             String note = jsonObject1.getString("note");
                             String time = jsonObject1.getString("time");
                             String weightUnit = jsonObject1.getString("weightUnit");
-                            String data = "名称：" + name + "鱼苗成本" +
-                                    "\n单件：" + price +
-                                    "\n总价：" + cost +
+                            String data =
+                                    "单价：" + price +"元/"+weightUnit+
+                                    "\n数量：" + weight +weightUnit+
+                                    "\n总价：" + cost +"元"+
                                     "\n备注：" + note +
                                     "\n添加时间：" + time;
                             if(type.equals("fish")){
-                                one1 = new AllText(data, id);
+                                one1 = new AllText(name,data,id);
                                 allTextList1.add(one1);
                             }
                             FishCostActivity.this.runOnUiThread(new Runnable() {

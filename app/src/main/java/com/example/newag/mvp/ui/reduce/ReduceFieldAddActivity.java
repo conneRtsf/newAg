@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -71,6 +72,10 @@ public class ReduceFieldAddActivity extends BaseActivity implements View.OnClick
         intent.setClass(ReduceFieldAddActivity.this, ReduceFieldPlusActivity.class);
         startActivity(intent);
     }
+    @OnClick(R.id.tb2)
+    void  onClick2(){
+        finish();
+    }
     @OnClick(R.id.tb1)
     public void onClick123(View v) {
         root.openDrawer(Gravity.LEFT);
@@ -98,16 +103,13 @@ public class ReduceFieldAddActivity extends BaseActivity implements View.OnClick
     private PopupWindow newPopWindow;
     private AllTextMasterAdapter adapter;
 
+
     @Override
     protected void initBaseData() {
 
     }
-
     @Override
     protected void baseConfigView() {
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat   formatter   =   new   SimpleDateFormat   ("yyyy年\nM月 ");
-        Date curDate =  new Date(System.currentTimeMillis());
-        String   str   =   formatter.format(curDate);
         btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -130,7 +132,75 @@ public class ReduceFieldAddActivity extends BaseActivity implements View.OnClick
         Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showPopWindow();//展示popWindow的方法
+                View rootView;
+                View view2=LayoutInflater.from(ReduceFieldAddActivity.this).inflate(R.layout.ppw_delete,null);
+                newPopWindow=new PopupWindow(view2,RecyclerView.LayoutParams.MATCH_PARENT,
+                        RecyclerView.LayoutParams.WRAP_CONTENT,false);
+                adapter.setCheckbox(true);
+                adapter.notifyDataSetChanged();
+                rootView= LayoutInflater.from(ReduceFieldAddActivity.this).inflate(R.layout.activity_reduce_field_add,null);
+                newPopWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);
+                Button button_cancel=view2.findViewById(R.id.cancel);
+                button_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        newPopWindow.dismiss();
+                        data_1.clear();
+                        postSync();
+                        ReduceFieldAddActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
+                        adapter.setCheckbox(false);
+                    }
+                });
+                Button button_delete=(Button) view2.findViewById(R.id.delete);
+                button_delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        adapter.setCheckbox(false);
+                        OkHttpClient httpClient=new OkHttpClient.Builder()
+                                .addInterceptor(new LoginIntercept()).build();
+                        for (int i = 0; i < adapter.idList.size(); i++) {
+                            Request request=new Request.Builder()
+                                    .delete()
+                                    .url("http://124.222.111.61:9000/daily/field/delete/"+adapter.idList.get(i))
+                                    .build();
+                            Log.e("onClick: ", "http://124.222.111.61:9000/daily/field/delete/"+adapter.idList.get(i));
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        Call call = httpClient.newCall(request);
+                                        Response response = call.execute();
+                                        assert response.body() != null;
+                                        String responsePond = response.body().string();
+                                        JSONObject jsonObject = new JSONObject(responsePond);
+                                        String fd=jsonObject.getString("msg");
+                                        ReduceFieldAddActivity.this.runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                Toast.makeText(ReduceFieldAddActivity.this, fd,Toast.LENGTH_SHORT).show();
+                                                adapter.notifyDataSetChanged();
+                                            }
+                                        });
+                                    } catch (IOException | JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }).start();
+                        }
+                        data_1.clear();
+                        adapter.idList.clear();
+                        adapter.notifyDataSetChanged();
+                        postSync();
+                        InquireField();
+                        Log.e("onClick: ", String.valueOf(data_1));
+                        newPopWindow.dismiss();
+                    }
+                });
             }
         });
         adapter.setMasterOnItemListener(new AllTextMasterAdapter.MasterOnItemListener() {
@@ -160,62 +230,9 @@ public class ReduceFieldAddActivity extends BaseActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         int id=v.getId();
-        switch (id){
-            case R.id.make_text:{
-                adapter.setCheckbox(true);
-                adapter.notifyDataSetChanged();
-                popupWindow.dismiss();//销毁popWindow
-                @SuppressLint("InflateParams") View rootView= LayoutInflater.from(ReduceFieldAddActivity.this).inflate(R.layout.activity_reduce_fish_add,null);
-                newPopWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);
-            }
-            break;
-            case R.id.btn_Date:{
-                showDatePickerDialog(this,  2, btnDate, calendar);;
-                break;
-            }
-            case R.id.back_test:
-                popupWindow.dismiss();
-                break;
-            case R.id.delete:
-                adapter.setCheckbox(false);
-                OkHttpClient httpClient=new OkHttpClient.Builder()
-                        .addInterceptor(new LoginIntercept()).build();
-                for (int i = 0; i < adapter.idList.size(); i++) {
-                    Request request=new Request.Builder()
-                            .delete()
-                            .url("http://124.222.111.61:9000/daily/field/delete/"+adapter.idList.get(i))
-                            .build();
-                    Log.e("onClick: ", "http://124.222.111.61:9000/daily/field/delete/"+adapter.idList.get(i));
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                Call call = httpClient.newCall(request);
-                                Response response = call.execute();
-                                assert response.body() != null;
-                                String responsePond = response.body().string();
-                                JSONObject jsonObject = new JSONObject(responsePond);
-                                String fd=jsonObject.getString("msg");
-                                ReduceFieldAddActivity.this.runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(ReduceFieldAddActivity.this, fd,Toast.LENGTH_SHORT).show();
-                                        adapter.notifyDataSetChanged();
-                                    }
-                                });
-                            } catch (IOException | JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }).start();
-                }
-                data_1.clear();
-                adapter.idList.clear();
-                adapter.notifyDataSetChanged();
-                InquireField();
-                Log.e("onClick: ", String.valueOf(data_1));
-                newPopWindow.dismiss();
-                break;
+        if (id == R.id.btn_Date) {
+            showDatePickerDialog(this, 2, btnDate, calendar);
+            ;
         }
     }
 
@@ -302,19 +319,18 @@ public class ReduceFieldAddActivity extends BaseActivity implements View.OnClick
                             String location=jsonObject1.getString("location");
                             String product=jsonObject1.getString("product");
                             String username=jsonObject1.getString("username");
-                            String data="名称："+name+"菜地"+
-                                    "\n位置："+location+
-                                    "\n长："+length+
-                                    "\n宽："+width+
-                                    "\n已用长："+lengthUsed+
-                                    "\n已用宽："+widthUsed+
-                                    "\n面积："+area+
-                                    "\n已用面积："+areaUsed+
+                            String data=
+                                    "位置："+location+
+                                    "\n长："+length+"米"+
+                                    "\n宽："+width+"米"+
+                                    "\n已用长："+lengthUsed+"米"+
+                                    "\n已用宽："+widthUsed+"米"+
+                                    "\n面积："+area+"平方米"+
+                                    "\n已用面积："+areaUsed+"平方米"+
                                     "\n方向："+orientation+
                                     "\n添加时间："+time+
-                                    "\n产品："+product+
-                                    "\n用户名："+username;
-                            one1=new AllText(data,id);
+                                    "\n产品："+product;
+                            one1=new AllText(name,data,id);
                             allTextList1.add(one1);
                             ReduceFieldAddActivity.this.runOnUiThread(new Runnable() {
                                 @Override
@@ -404,19 +420,18 @@ public class ReduceFieldAddActivity extends BaseActivity implements View.OnClick
                                     String location=jsonObject1.getString("location");
                                     String product=jsonObject1.getString("product");
                                     String username=jsonObject1.getString("username");
-                                    String data="名称："+name+"菜地"+
-                                            "\n位置："+location+
-                                            "\n长："+length+
-                                            "\n宽："+width+
-                                            "\n已用长："+lengthUsed+
-                                            "\n已用宽："+widthUsed+
-                                            "\n面积："+area+
-                                            "\n已用面积："+areaUsed+
+                                    String data=
+                                            "位置："+location+
+                                            "\n长："+length+"米"+
+                                            "\n宽："+width+"米"+
+                                            "\n已用长："+lengthUsed+"米"+
+                                            "\n已用宽："+widthUsed+"米"+
+                                            "\n面积："+area+"平方米"+
+                                            "\n已用面积："+areaUsed+"平方米"+
                                             "\n方向："+orientation+
                                             "\n添加时间："+time+
-                                            "\n产品："+product+
-                                            "\n用户名："+username;
-                                    one1=new AllText(data,id);
+                                            "\n产品："+product;
+                                    one1=new AllText(name,data,id);
                                     allTextList1.add(one1);
                                     ReduceFieldAddActivity.this.runOnUiThread(new Runnable() {
                                         @Override
@@ -449,8 +464,11 @@ public class ReduceFieldAddActivity extends BaseActivity implements View.OnClick
     }
     private void showPopWindow(AllText allText,int position) {
         View view = LayoutInflater.from(ReduceFieldAddActivity.this).inflate(R.layout.pop_plusreduce, null);
-        TextView textView = view.findViewById(R.id.et_1);
-        textView.setText(allText.getName());
+        TextView editText = view.findViewById(R.id.et_1);
+        editText.setText(allText.getName());
+        TextView editText2 = view.findViewById(R.id.data);
+        editText2.setText(allText.getData());
+
         Button button=view.findViewById(R.id.make_text);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -465,26 +483,6 @@ public class ReduceFieldAddActivity extends BaseActivity implements View.OnClick
         popupWindow = new PopupWindow(view, RecyclerView.LayoutParams.MATCH_PARENT,
                 RecyclerView.LayoutParams.WRAP_CONTENT, true);//设置popwindow的属性（布局，x，y，true）
         popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);//展示自定义的popwindow，（放哪个布局里，放布局里的位置，x，y），cv工程
-    }
-
-    private void showPopWindow() {
-        //定义一个view，其中包含popwindow的布局文件
-        View view1= LayoutInflater.from(ReduceFieldAddActivity.this).inflate(R.layout.footer_batch,null);
-        popupWindow =new PopupWindow(view1, RecyclerView.LayoutParams.MATCH_PARENT,
-                RecyclerView.LayoutParams.WRAP_CONTENT,true);//设置popwindow的属性（布局，x，y，true）
-        //定义一个view，其中包含main4的布局文件
-        View rootView=LayoutInflater.from(ReduceFieldAddActivity.this).inflate(R.layout.activity_reduce_field_add,null);
-        popupWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);//展示自定义的popwindow，（放哪个布局里，放布局里的位置，x，y），cv工程
-        View view2=LayoutInflater.from(ReduceFieldAddActivity.this).inflate(R.layout.ppw_delete,null);
-        newPopWindow=new PopupWindow(view2,RecyclerView.LayoutParams.MATCH_PARENT,
-                RecyclerView.LayoutParams.WRAP_CONTENT,false);
-        TextView make_text=(TextView)view1.findViewById(R.id.make_text);
-        TextView back_test=(TextView)view1.findViewById(R.id.back_test);
-        Button button_delete=(Button) view2.findViewById(R.id.delete);
-        make_text.setOnClickListener(this);
-        back_test.setOnClickListener(this);
-        button_delete.setOnClickListener(this);
-
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {

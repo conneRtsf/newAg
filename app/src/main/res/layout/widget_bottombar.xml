@@ -19,18 +19,6 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/share"
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/dp_0"
-        android:layout_weight="1"
-        android:textColor="@color/grey"
-        android:drawableTop="@drawable/share"
-        android:layout_height="@dimen/dp_65"
-        android:text="@string/share"
-        android:textSize="20sp"
-        android:gravity="center"/>
-
-    <TextView
         android:id="@+id/my"
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/dp_0"

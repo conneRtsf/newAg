@@ -16,6 +16,14 @@ public class LoginTranslation {
     @Data
     public static class DataDTO {
         private String token;
+
+        public String getToken() {
+            return token;
+        }
+
+        public void setToken(String token) {
+            this.token = token;
+        }
     }
 
     public Integer getCode() {

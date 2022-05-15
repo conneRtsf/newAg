@@ -82,7 +82,7 @@ public class FishStorkChangeActivity extends BaseActivity {
         paramsMap.put("inventoryUnit", String.valueOf(inventoryUnit.getText()));
         paramsMap.put("factory", String.valueOf(factory.getText()));
         paramsMap.put("note", String.valueOf(note.getText()));
-        paramsMap.put("type", "fish");
+        paramsMap.put("type", "adultFish");
         FormBody.Builder builder = new FormBody.Builder();
         for (String key : paramsMap.keySet()) {
             builder.add(key, Objects.requireNonNull(paramsMap.get(key)));
@@ -112,7 +112,7 @@ public class FishStorkChangeActivity extends BaseActivity {
                         Looper.prepare();
                         JSONObject jsonObject1 = new JSONObject(ResponseData);
                         Toast.makeText(FishStorkChangeActivity.this, jsonObject1.getString("msg"), Toast.LENGTH_SHORT).show();
-                        if(jsonObject1.getString("msg").equals("修改成功")){
+                        if(jsonObject1.getString("msg").equals("更新成功")){
                             FishStorkChangeActivity.this.finish();
                         }
                         Looper.loop();

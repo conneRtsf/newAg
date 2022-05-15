@@ -30,11 +30,9 @@ import okhttp3.Response;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener{
     private TextView nourish;
-    private TextView share;
     private TextView my;
 
     private Fragment nourishFragment;
-    private Fragment shareFragment;
     private Fragment myFragment;
 
     @Override
@@ -68,22 +66,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
             case R.id.nourish:
                 setFragment(0);
                 break;
-            case R.id.share:
-                setFragment(1);
-                break;
             case R.id.my:
-                setFragment(2);
+                setFragment(1);
                 break;
         }
     }
 
     private void init(){
         nourish = (TextView)findViewById(R.id.nourish);
-        share = (TextView)findViewById(R.id.share);
         my = (TextView)findViewById(R.id.my);
 
         nourish.setOnClickListener(this);
-        share.setOnClickListener(this);
         my.setOnClickListener(this);
     }
 
@@ -106,19 +99,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 }
                 break;
             case 1:
-                share.setTextColor(getResources()
-                        .getColor(R.color.press));
-                share.setCompoundDrawablesWithIntrinsicBounds(0,
-                        R.drawable.share_press,0,0);
-                if(shareFragment == null){
-                    shareFragment = new ShareFragment();
-                    mTransaction.add(R.id.container, shareFragment,
-                            "food_fragment");
-                }else {
-                    mTransaction.show(shareFragment);
-                }
-                break;
-            case 2:
                 my.setTextColor(getResources()
                         .getColor(R.color.press));
                 my.setCompoundDrawablesWithIntrinsicBounds(0,
@@ -142,13 +122,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                     .getColor(R.color.grey));
             nourish.setCompoundDrawablesWithIntrinsicBounds(0,
                     R.drawable.farm,0,0);
-        }
-        if(shareFragment != null){
-            transaction.hide(shareFragment);
-            share.setTextColor(getResources()
-                    .getColor(R.color.grey));
-            share.setCompoundDrawablesWithIntrinsicBounds(0,
-                    R.drawable.share,0,0);
         }
         if(myFragment!= null){
             transaction.hide(myFragment);

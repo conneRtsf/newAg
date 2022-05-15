@@ -32,6 +32,36 @@
             android:layout_height="@dimen/dp_50"
             android:layout_weight="1">
             <TextView
+                android:drawableTop="@drawable/rename"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="wrap_content"
+                android:text="名称"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_10"
+                android:layout_gravity="center_vertical"/>
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/dp_40"
+                android:hint="名称"
+                android:paddingLeft="@dimen/dp_3"
+                android:paddingRight="@dimen/dp_3"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:textColorHint="@color/grey"/>
+        </FrameLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:layout_weight="1">
+            <TextView
                 android:layout_width="@dimen/dp_40"
                 android:drawableTop="@drawable/pending"
                 android:layout_height="wrap_content"
@@ -49,7 +79,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="2"
                     android:layout_height="match_parent"
-                    android:hint="inventory"
+                    android:hint="库存量"
                     android:paddingLeft="@dimen/dp_3"
                     android:paddingRight="@dimen/dp_3"
                     android:textColor="@color/black"
@@ -69,36 +99,7 @@
             </LinearLayout>
         </FrameLayout>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50"
-            android:layout_weight="1">
-            <TextView
-                android:drawableTop="@drawable/rename"
-                android:layout_width="@dimen/dp_40"
-                android:layout_height="wrap_content"
-                android:text="名称"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp_10"
-                android:layout_gravity="center_vertical"/>
 
-            <EditText
-                android:id="@+id/name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/dp_40"
-                android:hint="name"
-                android:paddingLeft="@dimen/dp_3"
-                android:paddingRight="@dimen/dp_3"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:textColorHint="@color/grey"/>
-        </FrameLayout>
-    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -121,7 +122,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/dp_40"
-                android:hint="company"
+                android:hint="厂商"
                 android:paddingLeft="@dimen/dp_3"
                 android:paddingRight="@dimen/dp_3"
                 android:textColor="@color/black"
@@ -151,7 +152,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/dp_40"
-                android:hint="note"
+                android:hint="备注"
                 android:paddingLeft="@dimen/dp_3"
                 android:paddingRight="@dimen/dp_3"
                 android:textColor="@color/black"

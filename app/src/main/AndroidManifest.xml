@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.newag" >
+    package="com.example.newag">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -22,7 +22,55 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar"
-        tools:targetApi="n" >
+        tools:targetApi="n">
+        <activity
+            android:name=".mvp.ui.plus.HarvestFishingPlusActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.plus.RaisePlusActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.farmwork.RaiseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.plus.MedicationPlusActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.farmwork.MedicationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.farmwork.HarvestFishingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.plus.SowingPlusActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.farmwork.SowingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.change.AdultVegetableStorkChangeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.change.AdultFishStorkChangeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.plus.VegetableSalesAccountingPlusActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.accounting.VegetableSalesAccountingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.plus.StorkAdultVegetablePlusActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.stock.AdultVegetableStockActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.stock.AdultFishStockActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.plus.StorkAdultFishPlusActivity"
+            android:exported="false" />
         <activity
             android:name=".mvp.ui.reduce.ReduceFieldAddActivity"
             android:exported="false" />
@@ -44,7 +92,7 @@
         <activity
             android:name=".mvp.ui.main.SplashActivity"
             android:exported="true"
-            android:launchMode="singleTask" >
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -59,7 +107,7 @@
             android:exported="true" />
         <activity
             android:name=".mvp.ui.main.MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -112,16 +160,10 @@
             android:name=".mvp.ui.change.DrugStorkChangeActivity"
             android:exported="true" />
         <activity
-            android:name=".mvp.ui.accounting.SalesAccountingActivity"
+            android:name=".mvp.ui.accounting.FishSalesAccountingActivity"
             android:exported="true" />
         <activity
             android:name=".mvp.ui.change.FeedStorkChangeActivity"
-            android:exported="true" />
-        <activity
-            android:name=".mvp.ui.inputperiod.FishPeriodActivity"
-            android:exported="true" />
-        <activity
-            android:name=".mvp.ui.inputperiod.VegetablePeriodActivity"
             android:exported="true" />
         <activity
             android:name=".mvp.ui.plus.FishPeriodPlusActivity"
@@ -157,16 +199,10 @@
             android:name=".mvp.ui.stock.VegetableStockActivity"
             android:exported="true" />
         <activity
-            android:name=".mvp.ui.program.FeedingRecordActivity"
-            android:exported="true" />
-        <activity
             android:name=".mvp.ui.program.ProgramAddActivity"
             android:exported="true" />
         <activity
             android:name=".mvp.ui.plus.ProgramPlusActivity"
-            android:exported="true" />
-        <activity
-            android:name=".mvp.ui.plus.RecordPlusActivity"
             android:exported="true" />
         <activity
             android:name=".mvp.ui.plus.InspectionPlusActivity"
@@ -184,7 +220,7 @@
             android:name=".mvp.ui.change.VegetableStorkChangeActivity"
             android:exported="true" />
         <activity
-            android:name=".mvp.ui.plus.SalesAccountingPlusActivity"
+            android:name=".mvp.ui.plus.FishSalesAccountingPlusActivity"
             android:exported="true" />
         <activity
             android:name=".mvp.ui.plus.ReduceFishPlusActivity"
@@ -207,8 +243,9 @@
         <activity
             android:name=".mvp.ui.my.AgreementPrivacyActivity"
             android:exported="true" />
-        <activity android:name=".mvp.ui.change.ReduceFieldChangeActivity"
-            android:exported="true"/>
+        <activity
+            android:name=".mvp.ui.change.ReduceFieldChangeActivity"
+            android:exported="true" />
 
         <meta-data
             android:name="UMENG_CHANNEL"

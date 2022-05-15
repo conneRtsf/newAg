@@ -10,21 +10,32 @@
         android:layout_marginTop="@dimen/dp_10">
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_150"
+            android:layout_height="@dimen/dp_50"
             android:layout_weight="1">
 
             <TextView
                 android:id="@+id/et_1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="@dimen/dp_40"
                 android:hint="name"
                 android:paddingLeft="@dimen/dp_3"
                 android:paddingRight="@dimen/dp_3"
-                android:textColor="@color/black"
+                android:textSize="@dimen/dp_30"
+                android:textColor="@color/green_new"
                 android:gravity="center"
                 android:textColorHint="@color/grey"/>
+
         </FrameLayout>
     </LinearLayout>
+    <TextView
+        android:id="@+id/data"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_100"
+        android:paddingLeft="@dimen/dp_3"
+        android:paddingRight="@dimen/dp_3"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textColorHint="@color/grey"/>
     <Button
         android:id="@+id/make_text"
         android:layout_width="320dp"

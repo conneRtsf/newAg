@@ -112,7 +112,7 @@ public class OtherStorkChangeActivity extends BaseActivity {
                         Looper.prepare();
                         JSONObject jsonObject1 = new JSONObject(ResponseData);
                         Toast.makeText(OtherStorkChangeActivity.this, jsonObject1.getString("msg"), Toast.LENGTH_SHORT).show();
-                        if(jsonObject1.getString("msg").equals("修改成功")){
+                        if(jsonObject1.getString("msg").equals("更新成功")){
                             OtherStorkChangeActivity.this.finish();
                         }
                         Looper.loop();

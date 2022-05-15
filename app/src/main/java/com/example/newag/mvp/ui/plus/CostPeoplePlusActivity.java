@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.Objects;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -41,6 +42,10 @@ public class CostPeoplePlusActivity extends BaseActivity {
     EditText more;
     @BindView(R.id.people)
     EditText num;
+    @OnClick(R.id.tb2)
+    void  onClick2(){
+        finish();
+    }
     @Override
     protected void initBaseData() {
 

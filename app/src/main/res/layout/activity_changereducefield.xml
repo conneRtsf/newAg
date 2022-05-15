@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:paddingTop="@dimen/dp_20"
     android:orientation="vertical">
 
     <FrameLayout
@@ -12,17 +13,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="编辑"
+            android:text="修改菜地信息"
             android:textColor="@color/black"
             android:layout_gravity="center"
             android:textSize="@dimen/sp_20"/>
         <Button
-            android:id="@+id/commit"
-            android:layout_width="@dimen/dp_40"
-            android:layout_height="@dimen/dp_40"
-            android:background="@drawable/commit"
-            android:layout_gravity="right"
-            android:backgroundTint="@color/black"/>
+            android:id="@+id/tb2"
+            android:layout_width="@dimen/dp_35"
+            android:layout_height="@dimen/dp_35"
+            android:backgroundTint="@color/black"
+            android:background="@drawable/ic_baseline_arrow_back_24" />
     </FrameLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,7 +47,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/dp_40"
-                android:hint="name"
+                android:hint="名称"
+                android:paddingLeft="@dimen/dp_3"
+                android:paddingRight="@dimen/dp_3"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:textColorHint="@color/grey"/>
+        </FrameLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:layout_weight="1">
+            <TextView
+                android:drawableTop="@drawable/product"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="wrap_content"
+                android:text="产物"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_10"
+                android:layout_gravity="center_vertical"/>
+
+            <EditText
+                android:id="@+id/production"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/dp_40"
+                android:hint="产物（如小麦）"
                 android:paddingLeft="@dimen/dp_3"
                 android:paddingRight="@dimen/dp_3"
                 android:textColor="@color/black"
@@ -81,7 +111,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:hint="length"
+                    android:hint="长（米）"
                     android:inputType="number"
                     android:paddingLeft="@dimen/dp_3"
                     android:paddingRight="@dimen/dp_3"
@@ -93,7 +123,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:hint="width"
+                    android:hint="宽（米）"
                     android:paddingLeft="@dimen/dp_3"
                     android:inputType="number"
                     android:paddingRight="@dimen/dp_3"
@@ -133,7 +163,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:hint="length"
+                    android:hint="长（米）"
                     android:inputType="number"
                     android:paddingLeft="@dimen/dp_3"
                     android:paddingRight="@dimen/dp_3"
@@ -145,7 +175,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:hint="width"
+                    android:hint="宽（米）"
                     android:inputType="number"
                     android:paddingLeft="@dimen/dp_3"
                     android:paddingRight="@dimen/dp_3"
@@ -178,7 +208,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/dp_40"
-                android:hint="orientation"
+                android:hint="方向"
                 android:paddingLeft="@dimen/dp_3"
                 android:paddingRight="@dimen/dp_3"
                 android:textColor="@color/black"
@@ -208,7 +238,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/dp_40"
-                android:hint="position"
+                android:hint="位置（如南京）"
                 android:paddingLeft="@dimen/dp_3"
                 android:paddingRight="@dimen/dp_3"
                 android:textColor="@color/black"
@@ -217,34 +247,12 @@
                 tools:ignore="InvalidId" />
         </FrameLayout>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50"
-            android:layout_weight="1">
-            <TextView
-                android:drawableTop="@drawable/product"
-                android:layout_width="@dimen/dp_40"
-                android:layout_height="wrap_content"
-                android:text="产物"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp_10"
-                android:layout_gravity="center_vertical"/>
 
-            <EditText
-                android:id="@+id/production"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/dp_40"
-                android:hint="production"
-                android:paddingLeft="@dimen/dp_3"
-                android:paddingRight="@dimen/dp_3"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:textColorHint="@color/grey"/>
-        </FrameLayout>
-    </LinearLayout>
+    <Button
+        android:id="@+id/commit"
+        android:layout_width="@dimen/dp_100"
+        android:background="@color/green_new"
+        android:text="确定"
+        android:layout_height="@dimen/dp_40"
+        android:layout_gravity="center_horizontal"/>
 </LinearLayout>

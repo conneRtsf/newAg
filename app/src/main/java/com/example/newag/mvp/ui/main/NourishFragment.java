@@ -11,10 +11,10 @@ import android.view.WindowManager;
 import com.example.newag.MyApplication;
 import com.example.newag.R;
 import com.example.newag.base.BaseFragment;
-import com.example.newag.mvp.ui.accounting.SalesAccountingActivity;
+import com.example.newag.mvp.ui.accounting.FishSalesAccountingActivity;
 import com.example.newag.mvp.ui.costs.PeopleCostActivity;
 import com.example.newag.mvp.ui.dialog.WelcomeDialog;
-import com.example.newag.mvp.ui.inputperiod.FishPeriodActivity;
+import com.example.newag.mvp.ui.farmwork.SowingActivity;
 import com.example.newag.mvp.ui.inspection.InspectionActivity;
 import com.example.newag.mvp.ui.program.ProgramAddActivity;
 import com.example.newag.mvp.ui.reduce.ReduceFishAddActivity;
@@ -95,7 +95,7 @@ public class NourishFragment extends BaseFragment {
     }
     @OnClick(R.id.bt3)
     void onClick3(View view) {
-        Intent intent = new Intent(getActivity(), SalesAccountingActivity.class);
+        Intent intent = new Intent(getActivity(), FishSalesAccountingActivity.class);
         startActivity(intent);
     }
     @OnClick(R.id.bt4)
@@ -105,7 +105,7 @@ public class NourishFragment extends BaseFragment {
     }
     @OnClick(R.id.bt5)
     void onClick5(View view) {
-        Intent intent = new Intent(getActivity(), FishPeriodActivity.class);
+        Intent intent = new Intent(getActivity(), SowingActivity.class);
         startActivity(intent);
     }
     @OnClick(R.id.bt6)

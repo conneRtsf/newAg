@@ -1,5 +1,7 @@
-package com.example.newag.mvp.ui.plus;
+package com.example.newag.mvp.ui.change;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
@@ -30,19 +32,20 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class SalesAccountingPlusActivity extends BaseActivity {
+public class AdultVegetableStorkChangeActivity extends BaseActivity {
     @BindView(R.id.name)
     EditText name;
-    @BindView(R.id.sale)
-    EditText sale;
-    @BindView(R.id.price)
-    EditText price;
-    @BindView(R.id.saleAmount)
-    EditText saleAmount;
+    @BindView(R.id.inventory)
+    EditText inventory;
+    @BindView(R.id.inventoryUnit)
+    EditText inventoryUnit;
+    @BindView(R.id.factory)
+    EditText factory;
     @BindView(R.id.note)
     EditText note;
     @BindView(R.id.commit)
     Button commit;
+
     @Override
     protected void initBaseData() {
         commit.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +63,7 @@ public class SalesAccountingPlusActivity extends BaseActivity {
 
     @Override
     protected int layoutId() {
-        return R.layout.activity_salesaccountingplus;
+        return R.layout.activity_changestork;
     }
 
     @Override
@@ -68,12 +71,18 @@ public class SalesAccountingPlusActivity extends BaseActivity {
 
     }
     public void postSync() {
+        Intent intent=getIntent();
+        Bundle bundle=intent.getExtras();
+        int id= (int) bundle.getSerializable("data");
+        String Id=String.valueOf(id);
         HashMap<String, String> paramsMap = new HashMap<>();
+        paramsMap.put("id", Id);
         paramsMap.put("name", String.valueOf(name.getText()));
-        paramsMap.put("price", String.valueOf(price.getText()));
-        paramsMap.put("saleAmount", String.valueOf(saleAmount.getText()));
-        paramsMap.put("sales", String.valueOf(sale.getText()));
+        paramsMap.put("inventory", String.valueOf(inventory.getText()));
+        paramsMap.put("inventoryUnit", String.valueOf(inventoryUnit.getText()));
+        paramsMap.put("factory", String.valueOf(factory.getText()));
         paramsMap.put("note", String.valueOf(note.getText()));
+        paramsMap.put("type", "adultVegetable");
         FormBody.Builder builder = new FormBody.Builder();
         for (String key : paramsMap.keySet()) {
             builder.add(key, Objects.requireNonNull(paramsMap.get(key)));
@@ -83,8 +92,8 @@ public class SalesAccountingPlusActivity extends BaseActivity {
                 .addInterceptor(new LoginIntercept())
                 .build();
         Request request = new Request.Builder()
-                .post(formBody)
-                .url("http://124.222.111.61:9000/daily/sales/addSales")
+                .put(formBody)
+                .url("http://124.222.111.61:9000/daily/input/update")
                 .build();
         Call call = httpClient.newCall(request);
         call.enqueue(new Callback() {
@@ -102,9 +111,9 @@ public class SalesAccountingPlusActivity extends BaseActivity {
                     try {
                         Looper.prepare();
                         JSONObject jsonObject1 = new JSONObject(ResponseData);
-                        Toast.makeText(SalesAccountingPlusActivity.this, jsonObject1.getString("msg"), Toast.LENGTH_SHORT).show();
-                        if(jsonObject1.getString("msg").equals("添加成功")){
-                            SalesAccountingPlusActivity.this.finish();
+                        Toast.makeText(AdultVegetableStorkChangeActivity.this, jsonObject1.getString("msg"), Toast.LENGTH_SHORT).show();
+                        if(jsonObject1.getString("msg").equals("更新成功")){
+                            AdultVegetableStorkChangeActivity.this.finish();
                         }
                         Looper.loop();
                     } catch (JSONException e) {

@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.Objects;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -48,6 +49,10 @@ public class ReduceFishPlusActivity extends BaseActivity {
     EditText production;
     @BindView(R.id.commit)
     Button commit;
+    @OnClick(R.id.tb2)
+    void  onClick2(){
+        finish();
+    }
     @Override
     protected void initBaseData() {
 

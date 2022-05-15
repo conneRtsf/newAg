@@ -1,177 +1,279 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".mvp.ui.main.NourishFragment"
-    android:background="@color/背景色">
+    android:orientation="vertical"
+    android:background="@color/white">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <FrameLayout
+        android:layout_height="@dimen/dp_140"
+        android:orientation="vertical"
+        android:background="@drawable/maintitle">
+
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/white"
+            android:text="***农场"
+            android:paddingTop="@dimen/dp_10"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/sp_20"
+            android:layout_height="@dimen/dp_0"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:text="农场概况"
+            android:paddingTop="@dimen/dp_10"
+            android:textStyle="bold"
+            android:layout_marginStart="@dimen/dp_20"
+            android:textSize="@dimen/sp_18"
+            android:layout_height="@dimen/dp_0"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0"
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:layout_weight="2">
             <TextView
-                android:layout_width="@dimen/dp_100"
-                android:layout_gravity="center_horizontal"
-                android:textColor="@color/black"
-                android:background="@drawable/backnew"
-                android:text="农场养殖"
-                android:gravity="center"
-                android:layout_marginTop="@dimen/dp_20"
-                android:textSize="@dimen/sp_20"
-                android:layout_height="@dimen/dp_40"/>
+
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="match_parent"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_12"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                android:text="地块使用率\n100%"
+                tools:ignore="NestedWeights" />
+            <TextView
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="match_parent"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_12"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                android:text="地块总面积\n1000亩"/>
+            <TextView
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="match_parent"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_12"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                android:text="当前种养面积\n100%"/>
+            <TextView
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="match_parent"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_12"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                android:text="种养品种\n4种"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/shadow"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_10"
+        android:layout_height="@dimen/dp_140"
+        android:layout_margin="@dimen/dp_20">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:text="农场管理"
+            android:paddingTop="@dimen/dp_10"
+            android:textSize="@dimen/sp_18"
+            android:layout_height="@dimen/dp_0"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0"
+            android:padding="@dimen/dp_5"
+            android:layout_weight="2">
 
             <Button
-                android:id="@+id/bt7"
-                android:layout_width="@dimen/dp_300"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/backnew"
-                android:gravity="center_vertical"
-                android:paddingLeft="@dimen/sp_20"
-                android:layout_marginTop="@dimen/dp_135"
-                android:drawableStart="@drawable/put_in"
-                android:text="投入成本记录"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp_15"
-                android:textStyle="bold"
-                android:layout_height="@dimen/dp_40"/>
-
-            z<Button
                 android:id="@+id/bt1"
-                android:layout_width="@dimen/dp_300"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/backnew"
-                android:gravity="center_vertical"
-                android:paddingLeft="@dimen/sp_20"
-                android:layout_marginTop="@dimen/dp_75"
-                android:drawableStart="@drawable/ic_baseline_notes_24"
-                android:text="生产单元添加"
+                android:drawableTop="@drawable/ic_baseline_notes_24"
+                android:gravity="center"
+                android:text="地块管理"
                 android:textColor="@color/black"
-                android:textSize="@dimen/sp_15"
-                android:textStyle="bold"
-                android:layout_height="@dimen/dp_40"/>
-
+                android:textSize="@dimen/sp_12"
+                android:textStyle="bold" />
             <Button
-                android:id="@+id/bt3"
-                android:layout_width="@dimen/dp_300"
-                android:background="@drawable/backnew"
+                android:id="@+id/bt6"
+                android:background="@color/white"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:drawableTop="@drawable/plan"
                 android:textColor="@color/black"
-                android:text="销售记账"
-                android:gravity="center_vertical"
-                android:textSize="@dimen/sp_15"
+                android:text="投喂方案"
+                android:gravity="center"
+                android:textSize="@dimen/sp_12"
                 android:textStyle="bold"
-                android:drawableStart="@drawable/sale"
-                android:paddingLeft="@dimen/sp_20"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/dp_195"
-                android:layout_height="@dimen/dp_40"/>
+                android:layout_height="match_parent"/>
+            <Button
+                android:id="@+id/bt5"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:textColor="@color/black"
+                android:drawableTop="@drawable/producemain"
+                android:text="农事操作"
+                android:textSize="@dimen/sp_12"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="match_parent"/>
+            <Button
+                android:id="@+id/bt9"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:textColor="@color/black"
+                android:text="巡视检查"
+                android:drawableTop="@drawable/eye"
+                android:gravity="center"
+                android:textSize="@dimen/sp_12"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/shadow"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_10"
+        android:layout_height="@dimen/dp_140"
+        android:layout_margin="@dimen/dp_20">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:text="农场经营"
+            android:paddingTop="@dimen/dp_10"
+            android:textSize="@dimen/sp_18"
+            android:layout_height="@dimen/dp_0"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0"
+            android:padding="@dimen/dp_5"
+            android:layout_weight="2">
+
 
             <Button
                 android:id="@+id/bt4"
-                android:layout_width="@dimen/dp_300"
-                android:background="@drawable/backnew"
-                android:drawableStart="@drawable/template"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:drawableTop="@drawable/template"
                 android:textColor="@color/black"
                 android:text="库存"
-                android:gravity="center_vertical"
-                android:paddingLeft="@dimen/sp_20"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/dp_255"
-                android:textSize="@dimen/sp_15"
+                android:gravity="center"
+                android:textSize="@dimen/sp_12"
                 android:textStyle="bold"
-                android:layout_height="@dimen/dp_40"/>
-
+                android:layout_height="match_parent"/>
             <Button
-                android:id="@+id/bt5"
-                android:layout_width="@dimen/dp_300"
-                android:background="@drawable/backnew"
-                android:textColor="@color/black"
-                android:drawableStart="@drawable/product"
-                android:text="生产投入期"
-                android:textSize="@dimen/sp_15"
-                android:textStyle="bold"
-                android:gravity="center_vertical"
-                android:paddingLeft="@dimen/sp_20"
+                android:id="@+id/bt7"
+                android:layout_width="0dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/dp_315"
-                android:layout_height="@dimen/dp_40"/>
-
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:drawableTop="@drawable/put_in"
+                android:text="投入成本"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_12"
+                android:textStyle="bold"
+                android:layout_height="match_parent"/>
             <Button
-                android:id="@+id/bt6"
-                android:layout_width="@dimen/dp_300"
-                android:drawableStart="@drawable/plan"
-                android:background="@drawable/backnew"
+                android:id="@+id/bt3"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:background="@color/white"
                 android:textColor="@color/black"
-                android:text="投喂方案"
-                android:gravity="center_vertical"
-                android:paddingLeft="@dimen/sp_20"
-                android:textSize="@dimen/sp_15"
+                android:text="销售记账"
+                android:gravity="center"
+                android:textSize="@dimen/sp_12"
                 android:textStyle="bold"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/dp_375"
-                android:layout_height="@dimen/dp_40"/>
-
-            <Button
-                android:id="@+id/bt9"
-                android:layout_width="@dimen/dp_300"
-                android:background="@drawable/backnew"
-                android:textColor="@color/black"
-                android:text="巡视检查"
-                android:drawableStart="@drawable/eye"
-                android:gravity="center_vertical"
-                android:paddingLeft="@dimen/sp_20"
-                android:textSize="@dimen/sp_15"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/dp_435"
-                android:layout_height="@dimen/dp_40"/>
-
-            <Button
-                android:id="@+id/bt8"
-                android:layout_width="@dimen/dp_300"
-                android:background="@drawable/backnew"
-                android:drawableStart="@drawable/sensor"
-                android:textColor="@color/black"
-                android:text="传感器添加"
-                android:gravity="center_vertical"
-                android:paddingLeft="@dimen/sp_20"
-                android:textSize="@dimen/sp_15"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/dp_495"
-                android:layout_height="@dimen/dp_40"/>
-
-            <Button
-                android:layout_width="@dimen/dp_300"
-                android:background="@drawable/backnew"
-                android:textColor="@color/black"
-                android:drawableStart="@drawable/warning"
-                android:textSize="@dimen/sp_15"
-                android:textStyle="bold"
-                android:text="异常预警"
-                android:gravity="center_vertical"
-                android:paddingLeft="@dimen/sp_20"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/dp_555"
-                android:layout_height="@dimen/dp_40"/>
-            <Button
-                android:layout_width="@dimen/dp_300"
-                android:background="@drawable/backnew"
-                android:textColor="@color/black"
-                android:text="智能控制"
-                android:textSize="@dimen/sp_15"
-                android:textStyle="bold"
-                android:gravity="center_vertical"
-                android:paddingLeft="@dimen/sp_20"
-                android:layout_gravity="center_horizontal"
-                android:drawableStart="@drawable/control"
-                android:layout_marginTop="@dimen/dp_615"
-                android:layout_height="@dimen/dp_40"/>
-        </FrameLayout>
-
-    </ScrollView>
+                android:drawableTop="@drawable/sale"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+    </LinearLayout>
 
 
-</FrameLayout>
+
+
+
+
+
+
+
+
+
+
+<!--            <Button-->
+<!--                android:id="@+id/bt8"-->
+<!--                android:layout_width="@dimen/dp_300"-->
+<!--                android:background="@drawable/backnew"-->
+<!--                android:drawableStart="@drawable/sensor"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:text="传感器添加"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:paddingLeft="@dimen/sp_20"-->
+<!--                android:textSize="@dimen/sp_15"-->
+<!--                android:textStyle="bold"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:layout_marginTop="@dimen/dp_495"-->
+<!--                android:layout_height="@dimen/dp_40"/>-->
+
+<!--            <Button-->
+<!--                android:layout_width="@dimen/dp_300"-->
+<!--                android:background="@drawable/backnew"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:drawableStart="@drawable/warning"-->
+<!--                android:textSize="@dimen/sp_15"-->
+<!--                android:textStyle="bold"-->
+<!--                android:text="异常预警"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:paddingLeft="@dimen/sp_20"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:layout_marginTop="@dimen/dp_555"-->
+<!--                android:layout_height="@dimen/dp_40"/>-->
+<!--            <Button-->
+<!--                android:layout_width="@dimen/dp_300"-->
+<!--                android:background="@drawable/backnew"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:text="智能控制"-->
+<!--                android:textSize="@dimen/sp_15"-->
+<!--                android:textStyle="bold"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:paddingLeft="@dimen/sp_20"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:drawableStart="@drawable/control"-->
+<!--                android:layout_marginTop="@dimen/dp_615"-->
+<!--                android:layout_height="@dimen/dp_40"/>-->
+</LinearLayout>

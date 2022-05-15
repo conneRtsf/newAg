@@ -5,13 +5,32 @@
     android:background="#C8C8C8"
     android:id="@+id/root"
     android:layout_height="match_parent">
-
+    <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:focusableInTouchMode="true"/>
     <FrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/backcolor"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
         tools:ignore="MissingConstraints">
+        <Button
+            android:id="@+id/tb1"
+            android:layout_width="@dimen/dp_25"
+            android:layout_height="@dimen/dp_35"
+            android:backgroundTint="@color/black"
+            android:layout_marginStart="@dimen/dp_245"
+            android:layout_marginTop="@dimen/dp_20"
+            android:background="@drawable/list_view" />
+
+        <Button
+            android:id="@+id/tb2"
+            android:layout_width="@dimen/dp_35"
+            android:layout_height="@dimen/dp_35"
+            android:backgroundTint="@color/black"
+            android:layout_marginTop="@dimen/dp_20"
+            android:background="@drawable/ic_baseline_arrow_back_24" />
 
 
         <Button
@@ -28,68 +47,62 @@
             android:layout_width="@dimen/dp_140"
             android:layout_height="@dimen/dp_35"
             android:layout_marginTop="@dimen/dp_20"
-            android:drawableLeft="@drawable/medication"
-            android:drawableTint="@color/投入成本记录"
-            android:background="@drawable/backnew"
+            android:background="@drawable/backold"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
+
             android:text="药品库存"
             android:textColor="@color/black"
             android:textSize="@dimen/sp_15" />
-
-        <Button
-            android:id="@+id/tb1"
-            android:layout_width="@dimen/dp_32"
-            android:layout_height="@dimen/dp_40"
-            android:layout_marginStart="@dimen/dp_15"
-            android:layout_marginTop="@dimen/dp_20"
-            android:background="@drawable/list_view" />
-
-        <Button
-            android:id="@+id/right"
-            android:layout_width="@dimen/dp_40"
-            android:layout_height="@dimen/dp_29"
-            android:layout_gravity="right"
-            android:layout_marginTop="@dimen/dp_20"
-            android:background="@drawable/more_left" />
         <Button
             android:id="@+id/left"
             android:layout_width="@dimen/dp_40"
             android:layout_height="@dimen/dp_30"
             android:layout_gravity="right"
-            android:layout_marginRight="@dimen/dp_40"
+            android:textColor="@color/black"
+            android:outlineProvider="none"
+            android:background="@color/white"
             android:layout_marginTop="@dimen/dp_20"
-            android:background="@drawable/more_right"/>
-        <FrameLayout
-            android:background="@color/背景色"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/dp_180"/>
-    </FrameLayout>
-    <FrameLayout
-        android:layout_marginTop="@dimen/dp_80"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/newBlue">
-
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/refresh"
-            android:layout_width="@dimen/dp_320"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/view_one"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            android:text="编辑"/>
         <Button
             android:id="@+id/plus"
-            android:layout_width="@dimen/dp_60"
-            android:layout_height="@dimen/dp_60"
-            android:layout_marginTop="@dimen/dp_300"
-            android:layout_gravity="right"
+            android:layout_marginTop="@dimen/dp_20"
+            android:background="@color/white"
+            android:outlineProvider="none"
+            android:layout_width="@dimen/dp_50"
+            android:textColor="@color/black"
             android:layout_marginRight="@dimen/dp_40"
-            android:background="@drawable/plus"/>
+            android:layout_height="@dimen/dp_30"
+            android:layout_gravity="right"
+            android:text="新添加"/>
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_marginTop="@dimen/dp_60"
+            android:background="@color/grey"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <FrameLayout
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dp_100">
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/refresh"
+                android:layout_width="@dimen/dp_340"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/view_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        </FrameLayout>
     </FrameLayout>
     <RelativeLayout
         android:layout_width="250dp"
@@ -120,37 +133,59 @@
             android:gravity="center"
             android:text="饲料库存"
             android:textColor="@color/black" />
+
         <Button
             android:id="@+id/ce3"
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/dp_120"
             android:layout_height="@dimen/dp_60"
+            android:layout_marginTop="@dimen/dp_120"
+            android:background="@color/white"
+            android:drawableLeft="@drawable/fish"
+            android:drawableTint="@color/black"
+            android:gravity="center"
             android:text="鱼苗库存"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/ce4"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_60"
+            android:layout_marginTop="@dimen/dp_180"
+            android:background="@color/white"
+            android:drawableLeft="@drawable/vegetable"
+            android:drawableTint="@color/black"
+            android:gravity="center"
+            android:text="菜苗库存"
+            android:textColor="@color/black" />
+        <Button
+            android:id="@+id/ce5"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dp_360"
+            android:layout_height="@dimen/dp_60"
+            android:text="其他投入品库存"
+            android:drawableLeft="@drawable/other"
+            android:drawableTint="@color/black"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:background="@color/white"/>
+        <Button
+            android:id="@+id/ce6"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dp_300"
+            android:layout_height="@dimen/dp_60"
+            android:text="成鱼库存"
             android:drawableLeft="@drawable/fish"
             android:drawableTint="@color/black"
             android:gravity="center"
             android:textColor="@color/black"
-            android:background="@color/white"
-            />
+            android:background="@color/white"/>
         <Button
-            android:id="@+id/ce4"
-            android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/dp_180"
-            android:layout_height="@dimen/dp_60"
-            android:text="菜苗库存"
-            android:drawableLeft="@drawable/vegetable"
-            android:drawableTint="@color/black"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:background="@color/white"
-            />
-        <Button
-            android:id="@+id/ce5"
+            android:id="@+id/ce7"
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/dp_240"
             android:layout_height="@dimen/dp_60"
-            android:text="其他投入品库存"
-            android:drawableLeft="@drawable/other"
+            android:text="蔬菜库存"
+            android:drawableLeft="@drawable/vegetable2"
             android:drawableTint="@color/black"
             android:gravity="center"
             android:textColor="@color/black"

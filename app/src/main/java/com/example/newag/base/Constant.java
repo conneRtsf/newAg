@@ -8,7 +8,7 @@ public class Constant {
 
     public final static String CRASH_FILE_DIR = getCrashFilePath();
 
-    public static String API_BASE_URL = "http://124.222.59.40:7000/";
+    public static String API_BASE_URL = "http://124.222.111.61:9000/";
 
     public static final String PRIVACY_URL = API_BASE_URL + "question/{qid}.html";
 

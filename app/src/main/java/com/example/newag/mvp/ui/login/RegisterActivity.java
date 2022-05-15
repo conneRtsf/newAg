@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.newag.R;
+import com.example.newag.mvp.model.api.HttpClientUtils;
 import com.example.newag.mvp.model.api.service.LoginApiService;
 import com.example.newag.mvp.model.api.service.RegisterApiService;
 import com.example.newag.mvp.model.bean.LoginTranslation;
@@ -63,10 +64,7 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://124.222.111.61:9000/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        Retrofit retrofit = HttpClientUtils.getRetrofitWithGsonAdapter();
 
         RegisterApiService postRequest = retrofit.create(RegisterApiService.class);
 

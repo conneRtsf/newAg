@@ -31,6 +31,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -44,8 +45,6 @@ public class CostVegetablePlusActivity extends BaseActivity {
     EditText name;
     @BindView(R.id.commit)
     Button commit;
-    @BindView(R.id.cost)
-    EditText cost;
     @BindView(R.id.more)
     EditText more;
     @BindView(R.id.inventory)
@@ -56,6 +55,12 @@ public class CostVegetablePlusActivity extends BaseActivity {
     EditText price;
     @BindView(R.id.stock)
     Spinner stock;
+    @BindView(R.id.factory)
+    EditText factory;
+    @OnClick(R.id.tb2)
+    void  onClick2(){
+        finish();
+    }
     public int[] midIn;
     public String[] db;
 
@@ -74,7 +79,15 @@ public class CostVegetablePlusActivity extends BaseActivity {
     public void setMidIn(int[] midIn) {
         this.midIn = midIn;
     }
+    public String[] unit;
 
+    public String[] getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String[] unit) {
+        this.unit = unit;
+    }
     private ArrayAdapter<CharSequence> adapter;
     @Override
     protected void initBaseData() {
@@ -108,6 +121,7 @@ public class CostVegetablePlusActivity extends BaseActivity {
                     int t=0;
                     int[] midI=new int[1000];
                     String[] midS=new String[2];
+                    String[] midw=new String[1000];
                     midS[0]="不添加";
                     midS[1]="新添加到库存";
                     String type2 = null;
@@ -119,21 +133,24 @@ public class CostVegetablePlusActivity extends BaseActivity {
                         for (int i = 0; i < pond.length(); i++) {
                             JSONObject jsonObject1 = (JSONObject) pond.get(i);
                             int id = jsonObject1.getInt("id");
+                            String unit=jsonObject1.getString("inventoryUnit");
                             String type = jsonObject1.getString("type");
                             type2=type;
-                            if (type.equals("vegetable")){
+                            if (type.equals("vegetable")||type.equals("adultVegetable")){
                                 midI[t] = id;
+                                midw[t]=unit;
                                 t++;
                                 String name = jsonObject1.getString("name");
                                 newone[i] = name;
                             }
                         }
-                        if (type2.equals("vegetable")) {
+                        if (type2.equals("vegetable")||type2.equals("adultVegetable")) {
                             midS = insert(midS, newone);
                         }
                     }
                     setMidIn(midI);
                     setDb(midS);
+                    setUnit(midw);
                     String[] finalMidS = midS;
                     CostVegetablePlusActivity.this.runOnUiThread(new Runnable() {
                         @Override
@@ -155,15 +172,40 @@ public class CostVegetablePlusActivity extends BaseActivity {
                                    int position, long id) {
             String city = (String) parent.getItemAtPosition(position);
             Log.e( "onItemSelected: ", String.valueOf(id));
+            String[] BS=getDb();
+            int[] BC=getMidIn();
+            String[] Unit=getUnit();
+            if (city.equals("新添加到库存")) {
+                inventoryUnit.setText("");
+                name.setText("");
+                inventoryUnit.setEnabled(true);
+                name.setEnabled(true);
+            }else if(city.equals("不添加")) {
+                inventoryUnit.setText("");
+                name.setText("");
+                inventoryUnit.setEnabled(true);
+                name.setEnabled(true);
+            }else{
+                for (int i = 2; i < BS.length; i++) {
+                    if(city.equals(BS[i])){
+                        inventoryUnit.setText(Unit[i-2]);
+                        name.setText(city);
+                        inventoryUnit.setEnabled(false);
+                        name.setEnabled(false);
+                        break;
+                    }
+                }
+            }
             commit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (city.equals("新添加到库存")) {
+                        postSync();
                         HashMap<String, String> paramsMap = new HashMap<>();
                         paramsMap.put("name", String.valueOf(name.getText()));
                         paramsMap.put("inventory", String.valueOf(inventory.getText()));
                         paramsMap.put("inventoryUnit", String.valueOf(inventoryUnit.getText()));
-                        paramsMap.put("factory", "消费添加");
+                        paramsMap.put("factory", String.valueOf(factory.getText()));
                         paramsMap.put("note", String.valueOf(more.getText()));
                         paramsMap.put("type", "vegetable");
                         FormBody.Builder builder = new FormBody.Builder();
@@ -208,8 +250,6 @@ public class CostVegetablePlusActivity extends BaseActivity {
                     }else if(city.equals("不添加")){
                         postSync();
                     }else{
-                        String[] BS=getDb();
-                        int[] BC=getMidIn();
                         for (int i = 2; i < BS.length; i++) {
                             if(city.equals(BS[i])){
                                 postSync(BC[i-2]);
@@ -241,7 +281,6 @@ public class CostVegetablePlusActivity extends BaseActivity {
         paramsMap.put("inputId", id1);
         paramsMap.put("price", String.valueOf(price.getText()));
         paramsMap.put("note", String.valueOf(more.getText()));
-        paramsMap.put("cost", String.valueOf(cost.getText()));
         paramsMap.put("weight", String.valueOf(inventory.getText()));
         paramsMap.put("type", "vegetable");
         FormBody.Builder builder = new FormBody.Builder();
@@ -289,7 +328,6 @@ public class CostVegetablePlusActivity extends BaseActivity {
         paramsMap.put("name", String.valueOf(name.getText()));
         paramsMap.put("price", String.valueOf(price.getText()));
         paramsMap.put("note", String.valueOf(more.getText()));
-        paramsMap.put("cost", String.valueOf(cost.getText()));
         paramsMap.put("weight", String.valueOf(inventory.getText()));
         paramsMap.put("weightUnit", String.valueOf(inventoryUnit.getText()));
         paramsMap.put("type", "vegetable");
@@ -316,7 +354,7 @@ public class CostVegetablePlusActivity extends BaseActivity {
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 assert response.body() != null;
                 String ResponseData = response.body().string();
-                Log.e("onResponse: ", ResponseData);
+                Log.e("onResponse123: ", ResponseData);
                 new Thread(() -> {
                     try {
                         Looper.prepare();

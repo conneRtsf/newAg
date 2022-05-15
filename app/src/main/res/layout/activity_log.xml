@@ -49,10 +49,10 @@
 
     <Button
         android:id="@+id/btn2"
+        android:layout_marginTop="@dimen/dp_20"
         android:layout_width="71dp"
         android:layout_height="37dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="@dimen/dp_100"
         android:background="@color/white"
         android:text="注册"
         android:textColor="@color/black" />
@@ -68,14 +68,6 @@
         android:layout_height="20dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/dp_3"
-        android:text="金陵科技学院"
-        android:textColor="@color/black" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/dp_3"
-        android:text="南京软件研究院"
+        android:text="流云蔬乡团队"
         android:textColor="@color/black" />
 </LinearLayout>

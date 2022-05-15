@@ -31,6 +31,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -44,8 +45,6 @@ public class CostFishPlusActivity extends BaseActivity {
     EditText name;
     @BindView(R.id.commit)
     Button commit;
-    @BindView(R.id.cost)
-    EditText cost;
     @BindView(R.id.more)
     EditText more;
     @BindView(R.id.inventory)
@@ -56,6 +55,12 @@ public class CostFishPlusActivity extends BaseActivity {
     EditText price;
     @BindView(R.id.stock)
     Spinner stock;
+    @BindView(R.id.factory)
+    EditText factory;
+    @OnClick(R.id.tb2)
+    void  onClick2(){
+        finish();
+    }
     public int[] midIn;
     public String[] db;
 
@@ -76,6 +81,15 @@ public class CostFishPlusActivity extends BaseActivity {
     }
 
     private ArrayAdapter<CharSequence> adapter;
+    public String[] unit;
+
+    public String[] getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String[] unit) {
+        this.unit = unit;
+    }
     @Override
     protected void initBaseData() {
 
@@ -108,6 +122,7 @@ public class CostFishPlusActivity extends BaseActivity {
                     int t=0;
                     int[] midI=new int[1000];
                     String[] midS=new String[2];
+                    String[] midw=new String[1000];
                     midS[0]="不添加";
                     midS[1]="新添加到库存";
                     String type2 = null;
@@ -120,9 +135,11 @@ public class CostFishPlusActivity extends BaseActivity {
                             JSONObject jsonObject1 = (JSONObject) pond.get(i);
                             int id = jsonObject1.getInt("id");
                             String type = jsonObject1.getString("type");
+                            String unit=jsonObject1.getString("inventoryUnit");
                             type2=type;
                             if (type.equals("fish")){
                                 midI[t] = id;
+                                midw[t]=unit;
                                 t++;
                                 String name = jsonObject1.getString("name");
                                 newone[i] = name;
@@ -134,6 +151,7 @@ public class CostFishPlusActivity extends BaseActivity {
                     }
                     setMidIn(midI);
                     setDb(midS);
+                    setUnit(midw);
                     String[] finalMidS = midS;
                     CostFishPlusActivity.this.runOnUiThread(new Runnable() {
                         @Override
@@ -155,16 +173,39 @@ public class CostFishPlusActivity extends BaseActivity {
                                    int position, long id) {
             String city = (String) parent.getItemAtPosition(position);
             Log.e( "onItemSelected: ", String.valueOf(id));
+            String[] BS=getDb();
+            int[] BC=getMidIn();
+            String[] Unit=getUnit();
+            if (city.equals("新添加到库存")) {
+                inventoryUnit.setText("");
+                name.setText("");
+                inventoryUnit.setEnabled(true);
+                name.setEnabled(true);
+            }else if(city.equals("不添加")) {
+                inventoryUnit.setText("");
+                name.setText("");
+                inventoryUnit.setEnabled(true);
+                name.setEnabled(true);
+            }else{
+                for (int i = 2; i < BS.length; i++) {
+                    if(city.equals(BS[i])){
+                        inventoryUnit.setText(Unit[i-2]);
+                        name.setText(city);
+                        inventoryUnit.setEnabled(false);
+                        name.setEnabled(false);
+                        break;
+                    }
+                }
+            }
             commit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
                     if (city.equals("新添加到库存")) {
                         HashMap<String, String> paramsMap = new HashMap<>();
                         paramsMap.put("name", String.valueOf(name.getText()));
                         paramsMap.put("inventory", String.valueOf(inventory.getText()));
                         paramsMap.put("inventoryUnit", String.valueOf(inventoryUnit.getText()));
-                        paramsMap.put("factory", "消费添加");
+                        paramsMap.put("factory", String.valueOf(factory.getText()));
                         paramsMap.put("note", String.valueOf(more.getText()));
                         paramsMap.put("type", "fish");
                         FormBody.Builder builder = new FormBody.Builder();
@@ -206,11 +247,10 @@ public class CostFishPlusActivity extends BaseActivity {
                                 }).start();
                             }
                         });
+                        postSync();
                     }else if(city.equals("不添加")){
                         postSync();
                     }else{
-                        String[] BS=getDb();
-                        int[] BC=getMidIn();
                         for (int i = 2; i < BS.length; i++) {
                             if(city.equals(BS[i])){
                                 postSync(BC[i-2]);
@@ -242,7 +282,6 @@ public class CostFishPlusActivity extends BaseActivity {
         paramsMap.put("inputId", id1);
         paramsMap.put("price", String.valueOf(price.getText()));
         paramsMap.put("note", String.valueOf(more.getText()));
-        paramsMap.put("cost", String.valueOf(cost.getText()));
         paramsMap.put("weight", String.valueOf(inventory.getText()));
         paramsMap.put("type", "fish");
         FormBody.Builder builder = new FormBody.Builder();
@@ -290,7 +329,6 @@ public class CostFishPlusActivity extends BaseActivity {
         paramsMap.put("name", String.valueOf(name.getText()));
         paramsMap.put("price", String.valueOf(price.getText()));
         paramsMap.put("note", String.valueOf(more.getText()));
-        paramsMap.put("cost", String.valueOf(cost.getText()));
         paramsMap.put("weight", String.valueOf(inventory.getText()));
         paramsMap.put("weightUnit", String.valueOf(inventoryUnit.getText()));
         paramsMap.put("type", "fish");
