@@ -64,6 +64,10 @@ public class FeedStockActivity extends BaseActivity {
     void onClick(View view) {
         root.openDrawer(Gravity.LEFT);
     }
+    @OnClick(R.id.tb2)
+    void  onClick2(){
+        finish();
+    }
     @OnClick(R.id.ce1)
     void onClick1(View view) {
         Intent intent = new Intent();
@@ -353,6 +357,7 @@ public class FeedStockActivity extends BaseActivity {
                             String factory=jsonObject1.getString("factory");
                             String time=jsonObject1.getString("time");
                             String note=jsonObject1.getString("note");
+                            String information=jsonObject1.getString("information");
                             String type=jsonObject1.getString("type");
                             String inventoryUnit=jsonObject1.getString("inventoryUnit");
                             String data=
@@ -362,7 +367,7 @@ public class FeedStockActivity extends BaseActivity {
                                     "\n备注："+note;
                             mid=type;
                             if(type.equals("feed")){
-                                one1=new AllText(name,data,id);
+                                one1=new AllText(name,data,id,returnBitMap(information));
                                 allTextList1.add(one1);
                             }
                             FeedStockActivity.this.runOnUiThread(new Runnable() {
@@ -422,6 +427,7 @@ public class FeedStockActivity extends BaseActivity {
                             String factory=jsonObject1.getString("factory");
                             String time=jsonObject1.getString("time");
                             String note=jsonObject1.getString("note");
+                            String information=jsonObject1.getString("information");
                             String type=jsonObject1.getString("type");
                             String inventoryUnit=jsonObject1.getString("inventoryUnit");
                             String data=
@@ -431,7 +437,7 @@ public class FeedStockActivity extends BaseActivity {
                                             "\n备注："+note;
                             mid=type;
                             if(type.equals("feed")){
-                                one1=new AllText(name,data,id);
+                                one1=new AllText(name,data,id,returnBitMap(information));
                                 allTextList1.add(one1);
                             }
                             FeedStockActivity.this.runOnUiThread(new Runnable() {

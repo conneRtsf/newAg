@@ -181,7 +181,7 @@ public class MedicationPlusActivity extends BaseActivity {
                     for (Map.Entry<String, JsonArray> entry : map.entrySet()) {
                         JsonArray mapValue = entry.getValue();
                         JSONArray pond=new JSONArray(String.valueOf(mapValue));
-                        midString=new String[pond.length()];
+                        midString=new String[1];
                         for (int i = 0; i < pond.length(); i++) {
                             JSONObject jsonObject1= (JSONObject) pond.get(i);
                             int id=jsonObject1.getInt("id");
@@ -191,7 +191,7 @@ public class MedicationPlusActivity extends BaseActivity {
                             if (type.equals(data)){
                                 midId[t] = id;
                                 t++;
-                                midString[i] = name;
+                                midString[0] = name;
                                 midA = insert(midString,midA);
                             }
                         }
@@ -339,7 +339,7 @@ public class MedicationPlusActivity extends BaseActivity {
                 .build();
         Request request = new Request.Builder()
                 .post(formBody)
-                .url("http://124.222.111.61:9000/daily/addOperation")
+                .url("http://124.222.111.61:9000/daily/operation/addOperation")
                 .build();
         Call call = httpClient.newCall(request);
         call.enqueue(new Callback() {

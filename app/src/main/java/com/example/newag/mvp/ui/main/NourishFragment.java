@@ -14,9 +14,12 @@ import com.example.newag.base.BaseFragment;
 import com.example.newag.mvp.ui.accounting.FishSalesAccountingActivity;
 import com.example.newag.mvp.ui.costs.PeopleCostActivity;
 import com.example.newag.mvp.ui.dialog.WelcomeDialog;
+import com.example.newag.mvp.ui.farmwork.HarvestFishingActivity;
 import com.example.newag.mvp.ui.farmwork.SowingActivity;
 import com.example.newag.mvp.ui.inspection.InspectionActivity;
+import com.example.newag.mvp.ui.monitor.BucketManagementActivity;
 import com.example.newag.mvp.ui.program.ProgramAddActivity;
+import com.example.newag.mvp.ui.reduce.ReduceFieldAddActivity;
 import com.example.newag.mvp.ui.reduce.ReduceFishAddActivity;
 import com.example.newag.mvp.ui.stock.DrugStockActivity;
 import com.example.newag.utils.SdkDelayInitUtil;
@@ -83,7 +86,11 @@ public class NourishFragment extends BaseFragment {
     protected void initData() {
 
     }
-
+    @OnClick(R.id.bt10)
+    void onClick8(View view) {
+        Intent intent = new Intent(getActivity(), BucketManagementActivity.class);
+        startActivity(intent);
+    }
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -105,14 +112,14 @@ public class NourishFragment extends BaseFragment {
     }
     @OnClick(R.id.bt5)
     void onClick5(View view) {
-        Intent intent = new Intent(getActivity(), SowingActivity.class);
+        Intent intent = new Intent(getActivity(), HarvestFishingActivity.class);
         startActivity(intent);
     }
-    @OnClick(R.id.bt6)
-    void onClick6(View view) {
-        Intent intent = new Intent(getActivity(), ProgramAddActivity.class);
-        startActivity(intent);
-    }
+//    @OnClick(R.id.bt6)
+//    void onClick6(View view) {
+//        Intent intent = new Intent(getActivity(), ProgramAddActivity.class);
+//        startActivity(intent);
+//    }
     @OnClick(R.id.bt9)
     void onClick9(View view) {
         Intent intent = new Intent(getActivity(), InspectionActivity.class);
@@ -120,7 +127,12 @@ public class NourishFragment extends BaseFragment {
     }
     @OnClick(R.id.bt1)
     void onClick(View view) {
-        Intent intent = new Intent(getActivity(), ReduceFishAddActivity.class);
+        Intent intent = new Intent(getActivity(), ReduceFieldAddActivity.class);
         startActivity(intent);
     }
+//    @OnClick(R.id.test)
+//    void test(){
+//        Intent intent = new Intent(getActivity(), test.class);
+//        startActivity(intent);
+//    }
 }

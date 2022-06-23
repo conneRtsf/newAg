@@ -118,6 +118,13 @@ public class FeedCostActivity extends BaseActivity {
         startActivity(intent);
         finish();
     }
+    @OnClick(R.id.ce8)
+    void onClick8(View view) {
+        Intent intent = new Intent();
+        intent.setClass(FeedCostActivity.this, DrugCostActivity.class);
+        startActivity(intent);
+        finish();
+    }
     @OnClick(R.id.plus)
     void onClick11(View view) {
         Intent intent = new Intent();
@@ -198,7 +205,7 @@ public class FeedCostActivity extends BaseActivity {
                                     .delete()
                                     .url("http://124.222.111.61:9000/daily/cost/delete/"+adapter.idList.get(i))
                                     .build();
-                            Log.e("onClick: ", "http://124.222.111.61:9000/daily/field/delete/"+adapter.idList.get(i));
+                            System.out.println("http://124.222.111.61:9000/daily/cost/delete/"+adapter.idList.get(i));
                             new Thread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -209,6 +216,7 @@ public class FeedCostActivity extends BaseActivity {
                                         String responsePond = response.body().string();
                                         JSONObject jsonObject = new JSONObject(responsePond);
                                         String fd=jsonObject.getString("msg");
+                                        Log.e("run: ", fd);
                                         FeedCostActivity.this.runOnUiThread(new Runnable() {
                                             @Override
                                             public void run() {
@@ -223,6 +231,7 @@ public class FeedCostActivity extends BaseActivity {
                             }).start();
                         }
                         data_1.clear();
+                        postSync();
                         adapter.idList.clear();
                         adapter.notifyDataSetChanged();
                         Log.e("onClick: ", String.valueOf(data_1));
@@ -347,12 +356,14 @@ public class FeedCostActivity extends BaseActivity {
                                     String type = jsonObject1.getString("type");
                                     double price = jsonObject1.getDouble("price");
                                     double cost = jsonObject1.getDouble("cost");
+                                    String factory=jsonObject1.getString("factory");
                                     double weight = jsonObject1.getDouble("weight");
                                     String note = jsonObject1.getString("note");
                                     String time = jsonObject1.getString("time");
                                     String weightUnit = jsonObject1.getString("weightUnit");
                                     String data =
                                             "单价：" + price +"元/"+weightUnit+
+                                                    "\n购买厂商：" + factory+
                                             "\n数量：" + weight +weightUnit+
                                             "\n总价：" + cost +"元"+
                                             "\n备注：" + note +
@@ -424,6 +435,7 @@ public class FeedCostActivity extends BaseActivity {
                             JSONObject jsonObject1 = (JSONObject) pond.get(i);
                             int id = jsonObject1.getInt("id");
                             String name = jsonObject1.getString("name");
+                            String factory=jsonObject1.getString("factory");
                             String type = jsonObject1.getString("type");
                             double price= jsonObject1.getDouble("price");
                             double cost= jsonObject1.getDouble("cost");
@@ -433,6 +445,7 @@ public class FeedCostActivity extends BaseActivity {
                             String weightUnit = jsonObject1.getString("weightUnit");
                             String data =
                                     "单价：" + price +"元/"+weightUnit+
+                                            "\n购买厂商：" + factory+
                                     "\n数量：" + weight +weightUnit+
                                     "\n总价：" + cost +"元"+
                                     "\n备注：" + note +

@@ -23,169 +23,238 @@
             android:backgroundTint="@color/black"
             android:background="@drawable/ic_baseline_arrow_back_24" />
     </FrameLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line3"
+        />
     <LinearLayout
         android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/dp_20"
         android:layout_height="wrap_content">
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50"
-            android:layout_weight="1">
-            <TextView
-                android:layout_width="@dimen/dp_55"
-                android:layout_height="wrap_content"
-                android:text="添加到库存"
-                android:gravity="center"
-                android:drawableTop="@drawable/plus"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp_10"
-                android:layout_gravity="center_vertical"/>
+            android:layout_height="wrap_content">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="@dimen/dp_100"
+                    android:layout_height="wrap_content"
+                    android:text="添加方式:"
+                    android:gravity="center"
+                    android:textColor="@color/grey_wa"
+                    android:textSize="@dimen/sp_15"
+                    android:layout_gravity="center_vertical"/>
 
-            <Spinner
-                android:id="@+id/stock"
-                android:layout_width="match_parent"
-                android:gravity="center"
-                android:layout_height="match_parent"
-                android:background="@color/green"
-                android:layout_marginStart="@dimen/dp_70"/>
-        </FrameLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50"
-            android:layout_weight="1">
-            <TextView
-                android:drawableTop="@drawable/rename"
-                android:layout_width="@dimen/dp_40"
-                android:layout_height="wrap_content"
-                android:text="名称"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp_10"
-                android:layout_gravity="center_vertical"/>
-
-            <EditText
-                android:id="@+id/name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/dp_40"
-                android:hint="名称"
-                android:paddingLeft="@dimen/dp_3"
-                android:paddingRight="@dimen/dp_3"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:textColorHint="@color/grey"/>
-        </FrameLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50"
-            android:layout_weight="1">
-            <TextView
-                android:layout_width="@dimen/dp_40"
-                android:drawableTop="@drawable/pending"
-                android:layout_height="wrap_content"
-                android:text="库存量"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:textSize="@dimen/sp_10"
-                android:layout_gravity="center_vertical"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_marginStart="@dimen/dp_40"
-                android:layout_height="match_parent">
-                <EditText
-                    android:id="@+id/inventory"
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:inputType="number"
+                <Spinner
+                    android:id="@+id/stock"
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:backgroundTint="@color/grey_w"
                     android:layout_height="match_parent"
-                    android:hint="库存量"
+                    android:background="@color/white"
+                    android:layout_marginStart="@dimen/dp_100"/>
+                <ImageView
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_marginEnd="@dimen/dp_10"
+                    android:layout_marginTop="@dimen/dp_14"
+                    android:layout_gravity="right"
+                    android:background="@drawable/ic_baseline_keyboard_arrow_down_24"/>
+            </FrameLayout>
+        </LinearLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/line3"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="@dimen/dp_100"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:text="名称:"
+                    android:textColor="@color/grey_wa"
+                    android:textSize="@dimen/sp_15" />
+
+                <EditText
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/dp_100"
                     android:paddingLeft="@dimen/dp_3"
                     android:paddingRight="@dimen/dp_3"
                     android:textColor="@color/black"
                     android:gravity="center"
                     android:textColorHint="@color/grey"/>
+            </FrameLayout>
+        </LinearLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/line3"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="@dimen/dp_100"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:text="储存量:"
+                    android:textColor="@color/grey_wa"
+                    android:textSize="@dimen/sp_15" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/dp_100"
+                    android:layout_height="match_parent">
+                    <EditText
+                        android:id="@+id/inventory"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:inputType="number"
+                        android:layout_height="match_parent"
+                        android:hint="量"
+                        android:paddingLeft="@dimen/dp_3"
+                        android:paddingRight="@dimen/dp_3"
+                        android:textColor="@color/black"
+                        android:gravity="center"
+                        android:textColorHint="@color/grey"/>
+
+                    <EditText
+                        android:id="@+id/inventoryUnit"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="单位"
+                        android:paddingLeft="@dimen/dp_3"
+                        android:paddingRight="@dimen/dp_3"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey" />
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/line3"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="@dimen/dp_100"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:text="厂商:"
+                    android:textColor="@color/grey_wa"
+                    android:textSize="@dimen/sp_15" />
 
                 <EditText
-                    android:id="@+id/inventoryUnit"
-                    android:layout_width="0dp"
+                    android:id="@+id/factory"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:hint="单位"
+                    android:layout_marginStart="@dimen/dp_100"
                     android:paddingLeft="@dimen/dp_3"
                     android:paddingRight="@dimen/dp_3"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/grey" />
-            </LinearLayout>
-        </FrameLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <FrameLayout
+                    android:gravity="center"
+                    android:textColorHint="@color/grey"/>
+            </FrameLayout>
+        </LinearLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/line3"
+            />
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50"
-            android:layout_weight="1">
-            <TextView
-                android:drawableTop="@drawable/company"
-                android:layout_width="@dimen/dp_40"
-                android:layout_height="wrap_content"
-                android:text="厂商"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp_10"
-                android:layout_gravity="center_vertical"/>
-
-            <EditText
-                android:id="@+id/factory"
+            android:layout_height="wrap_content">
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/dp_40"
-                android:hint="厂商"
-                android:paddingLeft="@dimen/dp_3"
-                android:paddingRight="@dimen/dp_3"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:textColorHint="@color/grey"/>
-        </FrameLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <FrameLayout
+                android:layout_height="@dimen/dp_50"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="@dimen/dp_100"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:text="备注:"
+                    android:textColor="@color/grey_wa"
+                    android:textSize="@dimen/sp_15" />
+
+                <EditText
+                    android:id="@+id/note"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/dp_100"
+                    android:hint="(非新增不填)"
+                    android:paddingLeft="@dimen/dp_3"
+                    android:paddingRight="@dimen/dp_3"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textColorHint="@color/grey"/>
+            </FrameLayout>
+        </LinearLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/line3"
+            />
+        <LinearLayout
+            android:paddingTop="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_10"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50"
-            android:layout_weight="1">
-            <TextView
-                android:layout_width="@dimen/dp_40"
-                android:drawableTop="@drawable/more"
-                android:layout_height="wrap_content"
-                android:text="备注"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:textSize="@dimen/sp_10"
-                android:layout_gravity="center_vertical"/>
-
-            <EditText
-                android:id="@+id/note"
+            android:layout_height="wrap_content">
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/dp_40"
-                android:hint="备注(非新增不填)"
-                android:paddingLeft="@dimen/dp_3"
-                android:paddingRight="@dimen/dp_3"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:textColorHint="@color/grey"/>
-        </FrameLayout>
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="@dimen/dp_100"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:text="地块图片"
+                    android:textColor="@color/grey_wa"
+                    android:textSize="@dimen/sp_15" />
+
+                <ImageButton
+                    android:id="@+id/plus2"
+                    android:background="@drawable/plus3"
+                    android:layout_marginLeft="@dimen/dp_150"
+                    android:layout_width="@dimen/dp_100"
+                    android:layout_height="@dimen/dp_100"/>
+            </FrameLayout>
+        </LinearLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/line3"
+            />
     </LinearLayout>
     <Button
         android:id="@+id/commit"

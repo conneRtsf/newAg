@@ -111,6 +111,13 @@ public class AllCostActivity extends BaseActivity {
         startActivity(intent);
         finish();
     }
+    @OnClick(R.id.ce8)
+    void onClick8(View view) {
+        Intent intent = new Intent();
+        intent.setClass(AllCostActivity.this, DrugCostActivity.class);
+        startActivity(intent);
+        finish();
+    }
     @BindView(R.id.left)
     Button Button;
 

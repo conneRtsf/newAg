@@ -111,6 +111,13 @@ public class EnergyCostActivity extends BaseActivity {
         startActivity(intent);
         finish();
     }
+    @OnClick(R.id.ce8)
+    void onClick8(View view) {
+        Intent intent = new Intent();
+        intent.setClass(EnergyCostActivity.this, DrugCostActivity.class);
+        startActivity(intent);
+        finish();
+    }
     @OnClick(R.id.plus)
     void onClick11(View view) {
         Intent intent = new Intent();

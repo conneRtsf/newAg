@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/white"
-            android:text="***农场"
+            android:text="鱼菜共生农场"
             android:paddingTop="@dimen/dp_10"
             android:layout_weight="1"
             android:gravity="center_horizontal"
@@ -81,14 +81,33 @@
                 android:text="种养品种\n4种"/>
         </LinearLayout>
     </LinearLayout>
-
+<!--    <LinearLayout-->
+<!--        android:layout_width="@dimen/dp_50"-->
+<!--        android:background="@drawable/shadow"-->
+<!--        android:orientation="vertical"-->
+<!--        android:padding="@dimen/dp_10"-->
+<!--        android:layout_height="@dimen/dp_80"-->
+<!--        android:layout_margin="@dimen/dp_20">-->
+<!--        <Button-->
+<!--            android:id="@+id/test"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@color/white"-->
+<!--            android:drawableTop="@drawable/template"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:text="测试"-->
+<!--            android:gravity="center"-->
+<!--            android:textSize="@dimen/sp_12"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_height="match_parent"/>-->
+<!--    </LinearLayout>-->
     <LinearLayout
         android:layout_width="match_parent"
         android:background="@drawable/shadow"
         android:orientation="vertical"
         android:padding="@dimen/dp_10"
         android:layout_height="@dimen/dp_140"
-        android:layout_margin="@dimen/dp_20">
+        android:layout_margin="@dimen/dp_10">
 
         <TextView
             android:layout_width="match_parent"
@@ -118,19 +137,19 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_12"
                 android:textStyle="bold" />
-            <Button
-                android:id="@+id/bt6"
-                android:background="@color/white"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:drawableTop="@drawable/plan"
-                android:textColor="@color/black"
-                android:text="投喂方案"
-                android:gravity="center"
-                android:textSize="@dimen/sp_12"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal"
-                android:layout_height="match_parent"/>
+<!--            <Button-->
+<!--                android:id="@+id/bt6"-->
+<!--                android:background="@color/white"-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:drawableTop="@drawable/plan"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:text="投喂方案"-->
+<!--                android:gravity="center"-->
+<!--                android:textSize="@dimen/sp_12"-->
+<!--                android:textStyle="bold"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:layout_height="match_parent"/>-->
             <Button
                 android:id="@+id/bt5"
                 android:layout_width="0dp"
@@ -152,6 +171,20 @@
                 android:textColor="@color/black"
                 android:text="巡视检查"
                 android:drawableTop="@drawable/eye"
+                android:gravity="center"
+                android:textSize="@dimen/sp_12"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="match_parent"/>
+            <Button
+                android:id="@+id/bt10"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:textColor="@color/black"
+                android:text="鱼池管理"
+                android:drawableTop="@drawable/fish_one"
+                android:drawableTint="@color/blue"
                 android:gravity="center"
                 android:textSize="@dimen/sp_12"
                 android:textStyle="bold"

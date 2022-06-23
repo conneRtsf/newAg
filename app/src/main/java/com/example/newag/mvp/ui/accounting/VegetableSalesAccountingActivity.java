@@ -33,7 +33,9 @@ import com.example.newag.mvp.model.bean.AllTextMaster;
 import com.example.newag.mvp.model.bean.SalesAccountingTranslation;
 import com.example.newag.mvp.ui.plus.FishSalesAccountingPlusActivity;
 import com.example.newag.mvp.ui.plus.VegetableSalesAccountingPlusActivity;
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -105,6 +107,7 @@ public class VegetableSalesAccountingActivity extends BaseActivity {
                 showDatePickerDialog(VegetableSalesAccountingActivity.this,  2, btnDate, calendar);;
             }
         });
+        postSync();
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);//设置布局管理器，cv工程
         recyclerView.setLayoutManager(linearLayoutManager);//为recycleview添加布局管理器，cv
         adapter=new AllTextMasterAdapter(this,data_1);//定义一个新的大适配器（AllTextMasterAdapter），并且把数据传进去
@@ -146,7 +149,7 @@ public class VegetableSalesAccountingActivity extends BaseActivity {
                         for (int i = 0; i < adapter.idList.size(); i++) {
                             Request request=new Request.Builder()
                                     .delete()
-                                    .url("http://124.222.111.61:9000/daily/field/delete/"+adapter.idList.get(i))
+                                    .url("http://124.222.111.61:9000/daily/sales/deleteSale/"+adapter.idList.get(i))
                                     .build();
                             Log.e("onClick: ", "http://124.222.111.61:9000/daily/field/delete/"+adapter.idList.get(i));
                             new Thread(new Runnable() {
@@ -175,6 +178,7 @@ public class VegetableSalesAccountingActivity extends BaseActivity {
                         data_1.clear();
                         adapter.idList.clear();
                         adapter.notifyDataSetChanged();
+                        postSync();
                         Log.e("onClick: ", String.valueOf(data_1));
                         newPopWindow.dismiss();
                     }
@@ -255,18 +259,29 @@ public class VegetableSalesAccountingActivity extends BaseActivity {
                 , calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
     public void postSync() {
-        Retrofit retrofit = HttpClientUtils.getRetrofitWithGsonAdapter();
-        SalesAccountingApiService salesAccountingApiService =retrofit.create(SalesAccountingApiService.class);
-        retrofit2.Call<SalesAccountingTranslation> call=salesAccountingApiService.SalesAccounting();
-        call.enqueue(new Callback<SalesAccountingTranslation>() {
+        OkHttpClient httpClient=new OkHttpClient.Builder()
+                .addInterceptor(new LoginIntercept())
+                .build();
+        Request requestField = new Request.Builder()
+                .get()
+                .url("http://124.222.111.61:9000/daily/sales/querySales")
+                .build();
+        new Thread(new Runnable() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
-            public void onResponse(@NonNull retrofit2.Call<SalesAccountingTranslation> call, @NonNull retrofit2.Response<SalesAccountingTranslation> response) {
-                try{
+            public void run() {
+                try {
+                    Call call = httpClient.newCall(requestField);
+                    Response response=call.execute();
+                    assert response.body() != null;
+                    String responseData=response.body().string();
                     data_1.clear();
-                    String mid = null;
-                    SalesAccountingTranslation salesAccountingTranslation=response.body();
-                    assert salesAccountingTranslation != null;
-                    Map<String, JsonArray> map =salesAccountingTranslation.getData();
+                    JSONObject jsonObject = new JSONObject(responseData);
+                    String json=jsonObject.getJSONObject("data").toString();
+                    Log.e("run: ", responseData);
+                    Map<String, JsonArray> map = new Gson()
+                            .fromJson(json, new TypeToken<Map<String, JsonArray>>() {}
+                                    .getType());
                     for (Map.Entry<String, JsonArray> entry : map.entrySet()) {
                         AllText one1;
                         List<AllText> allTextList1 = new ArrayList<>();
@@ -284,14 +299,13 @@ public class VegetableSalesAccountingActivity extends BaseActivity {
                             double saleAmount= jsonObject1.getDouble("saleAmount");
                             String note = jsonObject1.getString("note");
                             String time = jsonObject1.getString("time");
-                            mid=type;
                             String data =
                                     "单价：" + price +"元"+
                                             "\n销售量：" + sales+
                                             "\n备注：" + note +
                                             "\n总价：" + saleAmount +"元"+
                                             "\n添加时间：" + time;
-                            if (type.equals("adultVegetable")) {
+                            if (type.equals("adultvegetable")) {
                                 one1 = new AllText(name,data, id);
                                 allTextList1.add(one1);
                             }
@@ -302,35 +316,41 @@ public class VegetableSalesAccountingActivity extends BaseActivity {
                                 }
                             });
                         }
-                        if (mid.equals("adultVegetable")) {
                             data_1.add(new AllTextMaster(mapKey, allTextList1));
-                        }
 
                     }
                 }catch (Exception e){
                     e.printStackTrace();
                 }
             }
-            @Override
-            public void onFailure(retrofit2.Call<SalesAccountingTranslation> call, Throwable throwable) {
-                Log.e(TAG, "info：" + throwable.getMessage() + "," + throwable.toString());
-                Toast.makeText(VegetableSalesAccountingActivity.this, "error", Toast.LENGTH_SHORT).show();
-            }
-        });
+        }).start();
     }
     public void postSync(String startTime,String endTime) {
-        Retrofit retrofit = HttpClientUtils.getRetrofitWithGsonAdapter();
-        SalesAccountingApiService salesAccountingApiService =retrofit.create(SalesAccountingApiService.class);
-        retrofit2.Call<SalesAccountingTranslation> call=salesAccountingApiService.SalesAccounting(endTime,startTime);
-        call.enqueue(new Callback<SalesAccountingTranslation>() {
+        OkHttpClient httpClient=new OkHttpClient.Builder()
+                .addInterceptor(new LoginIntercept())
+                .build();
+        Request requestField = new Request.Builder()
+                .get()
+                .url("http://124.222.111.61:9000/daily/sales/querySales?endTime=" + endTime + "&startTime=" + startTime)
+                .build();
+        new Thread(new Runnable() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
-            public void onResponse(@NonNull retrofit2.Call<SalesAccountingTranslation> call, @NonNull retrofit2.Response<SalesAccountingTranslation> response) {
-                try{
+            public void run() {
+                try {
+                    Call call = httpClient.newCall(requestField);
+                    Response response=call.execute();
+                    assert response.body() != null;
+                    assert response.body() != null;
+                    String responseData=response.body().string();
                     data_1.clear();
+                    JSONObject jsonObject = new JSONObject(responseData);
+                    String json=jsonObject.getJSONObject("data").toString();
+                    Log.e("run: ", responseData);
                     String mid = null;
-                    SalesAccountingTranslation salesAccountingTranslation=response.body();
-                    assert salesAccountingTranslation != null;
-                    Map<String, JsonArray> map =salesAccountingTranslation.getData();
+                    Map<String, JsonArray> map = new Gson()
+                            .fromJson(json, new TypeToken<Map<String, JsonArray>>() {}
+                                    .getType());
                     for (Map.Entry<String, JsonArray> entry : map.entrySet()) {
                         AllText one1;
                         List<AllText> allTextList1 = new ArrayList<>();
@@ -355,7 +375,7 @@ public class VegetableSalesAccountingActivity extends BaseActivity {
                                             "\n备注：" + note +
                                             "\n总价：" + saleAmount +"元"+
                                             "\n添加时间：" + time;
-                            if (type.equals("adultVegetable")) {
+                            if (type.equals("adultvegetable")) {
                                 one1 = new AllText(name,data, id);
                                 allTextList1.add(one1);
                             }
@@ -366,20 +386,13 @@ public class VegetableSalesAccountingActivity extends BaseActivity {
                                 }
                             });
                         }
-                        if (mid.equals("adultVegetable")) {
                             data_1.add(new AllTextMaster(mapKey, allTextList1));
-                        }
 
                     }
                 }catch (Exception e){
                     e.printStackTrace();
                 }
             }
-            @Override
-            public void onFailure(retrofit2.Call<SalesAccountingTranslation> call, Throwable throwable) {
-                Log.e(TAG, "info：" + throwable.getMessage() + "," + throwable.toString());
-                Toast.makeText(VegetableSalesAccountingActivity.this, "error", Toast.LENGTH_SHORT).show();
-            }
-        });
+        }).start();
     }
 }

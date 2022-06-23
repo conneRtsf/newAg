@@ -45,7 +45,16 @@
         android:hint="邀请码"
         android:inputType=""
         android:textColorHint="#95a1aa" />
-
+    <EditText
+        android:id="@+id/enter4"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:textColor="@color/black"
+        android:layout_gravity="center_horizontal"
+        android:autofillHints=""
+        android:hint="农场名称"
+        android:inputType=""
+        android:textColorHint="#95a1aa" />
     <Button
         android:id="@+id/btn1"
         android:background="@color/white"

@@ -6,14 +6,13 @@
     android:background="@color/white"
     android:paddingTop="@dimen/dp_20"
     android:orientation="vertical">
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="添加鱼池"
+            android:text="添加桶"
             android:textColor="@color/black"
             android:layout_gravity="center"
             android:textSize="@dimen/sp_20"/>
@@ -24,194 +23,243 @@
             android:backgroundTint="@color/black"
             android:background="@drawable/ic_baseline_arrow_back_24" />
     </FrameLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_10">
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50"
-            android:layout_weight="1">
-            <TextView
-                android:drawableTop="@drawable/rename"
-                android:layout_width="@dimen/dp_40"
-                android:layout_height="wrap_content"
-                android:text="名称"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp_10"
-                android:layout_gravity="center_vertical"/>
-
-            <EditText
-                android:id="@+id/name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/dp_40"
-                android:hint="名称"
-                android:paddingLeft="@dimen/dp_3"
-                android:paddingRight="@dimen/dp_3"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:textColorHint="@color/grey"/>
-        </FrameLayout>
-    </LinearLayout>
+        android:background="@drawable/line3"
+        />
     <LinearLayout
+        android:layout_margin="@dimen/dp_20"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50"
-            android:layout_weight="1">
-            <TextView
-                android:drawableTop="@drawable/product"
-                android:layout_width="@dimen/dp_40"
-                android:layout_height="wrap_content"
-                android:text="产物"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp_10"
-                android:layout_gravity="center_vertical"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/production"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/dp_40"
-                android:hint="产物"
-                android:paddingLeft="@dimen/dp_3"
-                android:paddingRight="@dimen/dp_3"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:textColorHint="@color/grey"/>
-        </FrameLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50"
-            android:layout_weight="1">
-
-            <TextView
-                android:layout_width="@dimen/dp_40"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:drawableTop="@drawable/quantity"
-                android:gravity="center"
-                android:text="半径和高"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp_10" />
-            <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10">
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_marginStart="@dimen/dp_40"
-                android:layout_height="match_parent">
+                android:layout_height="@dimen/dp_50"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="@dimen/dp_100"
+                    android:layout_height="wrap_content"
+                    android:text="桶的编号(如1号)"
+                    android:gravity="center"
+                    android:textColor="@color/grey_wa"
+                    android:textSize="@dimen/sp_12"
+                    android:layout_gravity="center_vertical"/>
+
                 <EditText
-                    android:id="@+id/radius"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="半径（米）"
+                    android:layout_marginStart="@dimen/dp_100"
                     android:paddingLeft="@dimen/dp_3"
-                    android:inputType="number"
                     android:paddingRight="@dimen/dp_3"
                     android:textColor="@color/black"
                     android:gravity="center"
                     android:textColorHint="@color/grey"/>
+            </FrameLayout>
+        </LinearLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/line3"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_0"
+                android:layout_weight="1">
+                <TextView
+                    android:drawableTop="@drawable/product"
+                    android:layout_width="@dimen/dp_40"
+                    android:layout_height="wrap_content"
+                    android:text="产物"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_10"
+                    android:layout_gravity="center_vertical"/>
+
                 <EditText
-                    android:id="@+id/height1"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:id="@+id/production"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="高（米）"
+                    android:layout_marginStart="@dimen/dp_40"
+                    android:hint="产物（如小麦）"
                     android:paddingLeft="@dimen/dp_3"
-                    android:inputType="number"
                     android:paddingRight="@dimen/dp_3"
                     android:textColor="@color/black"
                     android:gravity="center"
                     android:textColorHint="@color/grey"/>
-
-            </LinearLayout>
-
-
-
-        </FrameLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <FrameLayout
+            </FrameLayout>
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50"
-            android:layout_weight="1">
-            <TextView
-                android:layout_width="@dimen/dp_40"
-                android:layout_height="wrap_content"
-                android:text="实际使用\n高"
-                android:drawableTop="@drawable/paid2"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:textSize="@dimen/sp_10"
-                android:layout_gravity="center_vertical"/>
-
-            <LinearLayout
+            android:layout_height="wrap_content">
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_marginStart="@dimen/dp_40"
-                android:layout_height="match_parent">
+                android:layout_height="@dimen/dp_50"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="@dimen/dp_100"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:text="半径和高"
+                    android:textColor="@color/grey_wa"
+                    android:textSize="@dimen/sp_15" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/dp_100"
+                    android:layout_height="match_parent">
+                    <EditText
+                        android:id="@+id/radius"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="match_parent"
+                        android:hint=""
+                        android:inputType="numberDecimal"
+                        android:paddingLeft="@dimen/dp_3"
+                        android:paddingRight="@dimen/dp_3"
+                        android:textColor="@color/black"
+                        android:gravity="center"
+                        android:textColorHint="@color/grey"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="米"
+                        android:textSize="@dimen/sp_15"
+                        android:gravity="center"
+                        android:textColor="@color/grey_wa"
+                        android:layout_height="match_parent"/>
+                    <EditText
+                        android:id="@+id/height1"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="match_parent"
+                        android:paddingLeft="@dimen/dp_3"
+                        android:inputType="numberDecimal"
+                        android:paddingRight="@dimen/dp_3"
+                        android:textColor="@color/black"
+                        android:gravity="center"
+                        android:textColorHint="@color/grey"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="米"
+                        android:textSize="@dimen/sp_15"
+                        android:gravity="center"
+                        android:textColor="@color/grey_wa"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+
+
+
+            </FrameLayout>
+        </LinearLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/line3"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="@dimen/dp_100"
+                    android:layout_height="wrap_content"
+                    android:text="实际使用高"
+                    android:textColor="@color/grey_wa"
+                    android:gravity="center"
+                    android:textSize="@dimen/sp_15"
+                    android:layout_gravity="center_vertical"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/dp_100"
+                    android:layout_height="match_parent">
+                    <EditText
+                        android:id="@+id/height2"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="match_parent"
+                        android:hint=""
+                        android:inputType="number"
+                        android:paddingLeft="@dimen/dp_3"
+                        android:paddingRight="@dimen/dp_3"
+                        android:textColor="@color/black"
+                        android:gravity="center"
+                        android:textColorHint="@color/grey"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="米"
+                        android:textSize="@dimen/sp_15"
+                        android:gravity="center"
+                        android:textColor="@color/grey_wa"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/line3"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="@dimen/dp_100"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:text="地块位置"
+                    android:textColor="@color/grey_wa"
+                    android:textSize="@dimen/sp_15" />
 
                 <EditText
-                    android:id="@+id/height2"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:id="@+id/position"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="高（米）"
+                    android:layout_marginStart="@dimen/dp_100"
+                    android:hint="（如南京）"
                     android:paddingLeft="@dimen/dp_3"
-                    android:inputType="number"
                     android:paddingRight="@dimen/dp_3"
                     android:textColor="@color/black"
                     android:gravity="center"
-                    android:textColorHint="@color/grey"/>
-
-            </LinearLayout>
-        </FrameLayout>
+                    android:textColorHint="@color/grey"
+                    tools:ignore="InvalidId" />
+            </FrameLayout>
+        </LinearLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/line3"
+            />
+        <Button
+            android:id="@+id/commit"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_width="@dimen/dp_100"
+            android:background="@color/green_new"
+            android:text="确定"
+            android:layout_height="@dimen/dp_40"
+            android:layout_gravity="center_horizontal"/>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50"
-            android:layout_weight="1">
-            <TextView
-                android:drawableTop="@drawable/location"
-                android:layout_width="@dimen/dp_40"
-                android:layout_height="wrap_content"
-                android:text="位置"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp_10"
-                android:layout_gravity="center_vertical"/>
-
-            <EditText
-                android:id="@+id/position"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/dp_40"
-                android:hint="位置（如南京）"
-                android:paddingLeft="@dimen/dp_3"
-                android:paddingRight="@dimen/dp_3"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:textColorHint="@color/grey"
-                tools:ignore="InvalidId" />
-        </FrameLayout>
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/commit"
-        android:layout_width="@dimen/dp_100"
-        android:background="@color/green_new"
-        android:text="确定"
-        android:layout_height="@dimen/dp_40"
-        android:layout_gravity="center_horizontal"/>
 </LinearLayout>

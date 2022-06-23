@@ -57,6 +57,10 @@ public class AdultFishStockActivity extends BaseActivity {
     void onClick(View view) {
         root.openDrawer(Gravity.LEFT);
     }
+    @OnClick(R.id.tb2)
+    void  onClick2(){
+        finish();
+    }
     @OnClick(R.id.ce1)
     void onClick1(View view) {
         Intent intent = new Intent();
@@ -346,6 +350,7 @@ public class AdultFishStockActivity extends BaseActivity {
                             String factory=jsonObject1.getString("factory");
                             String time=jsonObject1.getString("time");
                             String note=jsonObject1.getString("note");
+                            String information=jsonObject1.getString("information");
                             String type=jsonObject1.getString("type");
                             String inventoryUnit=jsonObject1.getString("inventoryUnit");
                             String data=
@@ -354,8 +359,8 @@ public class AdultFishStockActivity extends BaseActivity {
                                             "\n添加时间："+time+
                                             "\n备注："+note;
                             mid=type;
-                            if(type.equals("adultFish")){
-                                one1=new AllText(name,data,id);
+                            if(type.equals("adultfish")){
+                                one1=new AllText(name,data,id,returnBitMap(information));
                                 allTextList1.add(one1);
                             }
                             AdultFishStockActivity.this.runOnUiThread(new Runnable() {
@@ -365,7 +370,7 @@ public class AdultFishStockActivity extends BaseActivity {
                                 }
                             });
                         }
-                        if(mid.equals("adultFish")) {
+                        if(mid.equals("adultfish")) {
                             data_1.add(new AllTextMaster("成鱼（修改库存数量请长按）", allTextList1));
                         }
                     }
@@ -415,6 +420,7 @@ public class AdultFishStockActivity extends BaseActivity {
                             String factory=jsonObject1.getString("factory");
                             String time=jsonObject1.getString("time");
                             String note=jsonObject1.getString("note");
+                            String information=jsonObject1.getString("information");
                             String type=jsonObject1.getString("type");
                             String inventoryUnit=jsonObject1.getString("inventoryUnit");
                             String data=
@@ -423,8 +429,8 @@ public class AdultFishStockActivity extends BaseActivity {
                                             "\n添加时间："+time+
                                             "\n备注："+note;
                             mid=type;
-                            if(type.equals("adultFish")){
-                                one1=new AllText(name,data,id);
+                            if(type.equals("adultfish")){
+                                one1=new AllText(name,data,id,returnBitMap(information));
                                 allTextList1.add(one1);
                             }
                             AdultFishStockActivity.this.runOnUiThread(new Runnable() {

@@ -1,9 +1,13 @@
 package com.example.newag.base;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.SparseArray;
@@ -29,8 +33,13 @@ import com.example.newag.utils.ScreenUtils;
 import com.gyf.immersionbar.ImmersionBar;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import javax.inject.Inject;
 
@@ -40,14 +49,70 @@ import com.example.newag.R;
 
 
 public abstract class BaseActivity<T1 extends BaseContract.BasePresenter> extends AppCompatActivity {
+    private String[] midM;
+    private int midId;
+
+    public int getMidId() {
+        return midId;
+    }
+
+    public void setMidId(int midId) {
+        this.midId = midId;
+    }
+
+    public String[] getMidM() {
+        return midM;
+    }
+
+    public void setMidM(String[] midM) {
+        this.midM = midM;
+    }
+
+    private String paths;
+
+    public String getPaths() {
+        return paths;
+    }
+
+    public void setPaths(String paths) {
+        this.paths = paths;
+    }
+
+    public File png;
+
+    public File getPng() {
+        return png;
+    }
+
+    public void setPng(File png) {
+        this.png = png;
+    }
     @Inject
     protected T1 mPresenter;
     private View contentView;
 
-
+    @Override
+    public void onRequestPermissionsResult
+            (int requestCode,String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                //权限获取成功
+            } else {
+                //权限被拒绝
+            }
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+        StrictMode.VmPolicy.Builder builder =new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+        builder.detectFileUriExposure();
         try {
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = inflater.inflate(R.layout.base_view, null, false);
@@ -317,6 +382,30 @@ public abstract class BaseActivity<T1 extends BaseContract.BasePresenter> extend
             sb.delete(0, sb.length());
         }
         return sb.toString().trim();
+    }
+    public Bitmap returnBitMap(String url) {
+        System.out.println(url);
+        if (url==null){
+            return null;
+        }
+        URL myFileUrl = null;
+        Bitmap bitmap = null;
+        try {
+            myFileUrl = new URL(url);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        try {
+            HttpURLConnection conn = (HttpURLConnection) myFileUrl.openConnection();
+            conn.setDoInput(true);
+            conn.connect();
+            InputStream is = conn.getInputStream();
+            bitmap = BitmapFactory.decodeStream(is);
+            is.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bitmap;
     }
 
 }

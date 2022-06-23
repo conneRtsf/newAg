@@ -201,17 +201,28 @@
             android:background="@color/white"
             />
         <Button
+            android:id="@+id/ce8"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_60"
+            android:layout_marginTop="@dimen/dp_360"
+            android:background="@color/white"
+            android:drawableStart="@drawable/medication"
+            android:drawableTint="@color/black"
+            android:gravity="center"
+            android:text="药品成本"
+            android:textColor="@color/black" />
+
+        <Button
             android:id="@+id/ce7"
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/dp_360"
             android:layout_height="@dimen/dp_60"
-            android:text="总成本"
+            android:layout_marginTop="@dimen/dp_420"
+            android:background="@color/white"
             android:drawableStart="@drawable/all"
             android:drawableTint="@color/black"
             android:gravity="center"
-            android:textColor="@color/black"
-            android:background="@color/white"
-            />
+            android:text="总成本"
+            android:textColor="@color/black" />
     </RelativeLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>

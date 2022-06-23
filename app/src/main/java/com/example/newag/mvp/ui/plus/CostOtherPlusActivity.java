@@ -40,8 +40,6 @@ public class CostOtherPlusActivity extends BaseActivity {
     EditText money;
     @BindView(R.id.more)
     EditText more;
-    @BindView(R.id.num)
-    EditText num;
     @OnClick(R.id.tb2)
     void  onClick2(){
         finish();
@@ -75,7 +73,7 @@ public class CostOtherPlusActivity extends BaseActivity {
         paramsMap.put("name", String.valueOf(name.getText()));
         paramsMap.put("price", String.valueOf(money.getText()));
         paramsMap.put("note", String.valueOf(more.getText()));
-        paramsMap.put("weight", String.valueOf(num.getText()));
+        paramsMap.put("weight", String.valueOf(1));
         paramsMap.put("weightUnit", "null");
         paramsMap.put("type", "other");
         FormBody.Builder builder = new FormBody.Builder();

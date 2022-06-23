@@ -63,6 +63,7 @@ public class AllTextAdapter extends RecyclerView.Adapter<AllTextAdapter.ViewHold
         int id=allText.getNum();
         holder.textName.setText(allText.getName());
         holder.textData.setText(allText.getData());
+        holder.testImage.setImageBitmap(allText.getBm());
         if (!flag){
             holder.checkBox.setVisibility(View.INVISIBLE);
         }else holder.checkBox.setVisibility(View.VISIBLE);

@@ -47,6 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/sow2"
+                android:visibility="gone"
                 android:textColor="@color/black"
                 android:text="养殖"/>
         </RadioGroup>
@@ -63,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:text="种类"
                 android:gravity="center"
-                android:drawableTop="@drawable/plus"
+                android:drawableTop="@drawable/plus2"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_10"
                 android:layout_gravity="center_vertical"/>
@@ -103,34 +104,6 @@
                 android:layout_height="match_parent"
                 android:background="@color/green_main"
                 android:layout_marginStart="@dimen/dp_50"/>
-        </FrameLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/dp_10"
-        android:layout_height="wrap_content">
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50"
-            android:layout_weight="1"
-            >
-            <TextView
-                android:layout_width="@dimen/dp_40"
-                android:drawableTop="@drawable/pending"
-                android:layout_height="wrap_content"
-                android:text="计划选择"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:textSize="@dimen/sp_10"
-                android:layout_gravity="center_vertical"/>
-                <Spinner
-                    android:id="@+id/plan"
-                    android:layout_width="match_parent"
-                    android:gravity="center"
-                    android:layout_height="match_parent"
-                    android:background="@color/green_main"
-                    android:layout_marginStart="@dimen/dp_50"/>
         </FrameLayout>
     </LinearLayout>
     <LinearLayout
@@ -179,7 +152,7 @@
                 android:drawableTop="@drawable/product"
                 android:layout_width="@dimen/dp_40"
                 android:layout_height="wrap_content"
-                android:text="预计亩产"
+                android:text="投入量"
                 android:gravity="center"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_10"

@@ -127,9 +127,8 @@ public class InspectionActivity extends BaseActivity {
                         for (int i = 0; i < adapter.idList.size(); i++) {
                             Request request=new Request.Builder()
                                     .delete()
-                                    .url("http://124.222.111.61:9000/daily/field/delete/"+adapter.idList.get(i))
+                                    .url("http://124.222.111.61:9000/daily/patrol/deletePatrol/"+adapter.idList.get(i))
                                     .build();
-                            Log.e("onClick: ", "http://124.222.111.61:9000/daily/field/delete/"+adapter.idList.get(i));
                             new Thread(new Runnable() {
                                 @Override
                                 public void run() {

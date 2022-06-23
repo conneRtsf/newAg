@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:text="添加到库存"
                 android:gravity="center"
-                android:drawableTop="@drawable/plus"
+                android:drawableTop="@drawable/plus2"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_10"
                 android:layout_gravity="center_vertical"/>

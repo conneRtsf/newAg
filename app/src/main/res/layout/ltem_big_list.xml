@@ -22,11 +22,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:drawableBottom="@drawable/line3"
             android:gravity="center_vertical"
             android:text="标题"
-            android:drawableBottom="@drawable/line3"
             android:textColor="#333333"
-            android:textSize="16sp"
+            android:textSize="25sp"
             android:textStyle="bold" />
 
         <RelativeLayout

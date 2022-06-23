@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
@@ -20,6 +21,7 @@ import com.example.newag.R;
 import com.example.newag.base.BaseActivity;
 import com.example.newag.di.component.AppComponent;
 import com.example.newag.intercept.LoginIntercept;
+import com.example.newag.mvp.ui.monitor.Item.DataActivity;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
@@ -44,6 +46,24 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class RaisePlusActivity extends BaseActivity {
+    public String names;
+    public String period;
+
+    public String getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(String period) {
+        this.period = period;
+    }
+
+    public String getNames() {
+        return names;
+    }
+
+    public void setNames(String names) {
+        this.names = names;
+    }
     @OnClick(R.id.tb2)
     void click1(){
         finish();
@@ -52,8 +72,6 @@ public class RaisePlusActivity extends BaseActivity {
     Button commit;
     @BindView(R.id.stock)
     Spinner stock;
-    @BindView(R.id.field)
-    Spinner field;
     @BindView(R.id.inventory)
     EditText inventory;
     @BindView(R.id.inventoryUnit)
@@ -63,7 +81,6 @@ public class RaisePlusActivity extends BaseActivity {
     public int[] proId;
     public int[] fieldId;
     public int FPro;
-    private ArrayAdapter<CharSequence> adapterField;
     private ArrayAdapter<CharSequence> adapterPro;
     public String[] getProMid() {
         return proMid;
@@ -130,8 +147,12 @@ public class RaisePlusActivity extends BaseActivity {
 
     @Override
     protected void baseConfigView() {
+        Intent intent=getIntent();
+        Bundle bundle=intent.getExtras();
+        int ID=bundle.getInt("ID");
+        setMidId(ID);
+        getItemW(ID);getItem(ID);
         postSyncPro("feed");
-        postSyncPond("ponds");
         commit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -142,7 +163,7 @@ public class RaisePlusActivity extends BaseActivity {
 
     @Override
     protected int layoutId() {
-        return R.layout.activity_medication_plus;
+        return R.layout.activity_raise_plus;
     }
 
     @Override
@@ -234,100 +255,42 @@ public class RaisePlusActivity extends BaseActivity {
 
         }
     }
-    public void postSyncPond(String data) {
-        String URL=null;
-        if(data.equals("ponds")){
-            URL="http://124.222.111.61:9000/daily/"+data+"/query";
-        }else{
-            URL="http://124.222.111.61:9000/daily/"+data+"/queryAll";
-        }
-        OkHttpClient httpClient=new OkHttpClient.Builder()
+    private void getItem(int id) {
+        OkHttpClient httpClient = new OkHttpClient.Builder()
                 .addInterceptor(new LoginIntercept())
                 .build();
         Request requestPond = new Request.Builder()
                 .get()
-                .url(URL)
+                .url("http://124.222.111.61:9000/daily/ponds/query/"+id)
                 .build();
         new Thread(new Runnable() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void run() {
                 try {
-                    int t=0;
-                    int[] midId=new int[1000];
-                    String[] midString ;
-                    String[] midA=new String[1];
-                    midA[0]="无";
                     Call call = httpClient.newCall(requestPond);
-                    Response response=call.execute();
+                    Response response = call.execute();
                     assert response.body() != null;
-                    String responseData=response.body().string();
-                    System.out.println(responseData);
+                    String responseData = response.body().string();
                     JSONObject jsonObject = new JSONObject(responseData);
-                    String json=jsonObject.getJSONObject("data").toString();
+                    JSONObject fin=jsonObject.getJSONObject("data");
+                    setNames(fin.getString("name"));
+                    setMidId(fin.getInt("id"));
                     Log.e("run: ", responseData);
-                    Map<String, JsonArray> map = new Gson()
-                            .fromJson(json, new TypeToken<Map<String, JsonArray>>() {}
-                                    .getType());
-                    for (Map.Entry<String, JsonArray> entry : map.entrySet()) {
-                        JsonArray mapValue = entry.getValue();
-                        JSONArray pond=new JSONArray(String.valueOf(mapValue));
-                        Log.e("pond: ", String.valueOf(pond));
-                        midString=new String[pond.length()];
-                        for (int i = 0; i < pond.length(); i++) {
-                            JSONObject jsonObject1= (JSONObject) pond.get(i);
-                            int id=jsonObject1.getInt("id");
-                            String name=jsonObject1.getString("name");
-                            midId[t] = id;
-                            t++;
-                            midString[i] = name;
-                        }
-                        midA = insert(midString,midA);
-                    }
-                    setFieldId(midId);
-                    setPondMid(midA);
-                    RaisePlusActivity.this.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            adapterField = new ArrayAdapter<CharSequence>(RaisePlusActivity.this,android.R.layout.simple_spinner_item, getPondMid());
-                            field.setAdapter(adapterField);
-                            field.setOnItemSelectedListener(new RaisePlusActivity.OnItemSelectedListenerImplField());
-                        }
-                    });
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }).start();
     }
-    private class OnItemSelectedListenerImplField implements AdapterView.OnItemSelectedListener {
-
-        @Override
-        public void onItemSelected(AdapterView<?> parent, View view,
-                                   int position, long id) {
-            String pro = (String) parent.getItemAtPosition(position);
-            String[] finalPro=getPondMid();
-            int[] finalProID=getFieldId();
-            for (int i = 0; i < finalPro.length; i++) {
-                if(pro.equals(finalPro[i])){
-                    setFPond(finalProID[i]);
-                    setFPondName(pro);
-                }
-            }
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> adapterView) {
-
-        }
-    }
     public void postSyncPlus() {
-        System.out.println(getFPro()+"   "+getFPondName());
+        System.out.println(getFPro()+"   "+getNames()+getPeriod());
         HashMap<String, String> paramsMap = new HashMap<>();
         paramsMap.put("num", String.valueOf(inventory.getText()));
         paramsMap.put("id", String.valueOf(getFPro()));
-        paramsMap.put("productionName",getFPondName());
-        paramsMap.put("operation","投喂");
+        paramsMap.put("operation","feed");
+        paramsMap.put("periodId",getPeriod());
+        paramsMap.put("productionName", String.valueOf(getNames()));
         paramsMap.put("PlusOrSub","sub");
         FormBody.Builder builder = new FormBody.Builder();
         for (String key : paramsMap.keySet()) {
@@ -339,7 +302,7 @@ public class RaisePlusActivity extends BaseActivity {
                 .build();
         Request request = new Request.Builder()
                 .post(formBody)
-                .url("http://124.222.111.61:9000/daily/addOperation")
+                .url("http://124.222.111.61:9000/daily/operation/addOperation")
                 .build();
         Call call = httpClient.newCall(request);
         call.enqueue(new Callback() {
@@ -368,6 +331,33 @@ public class RaisePlusActivity extends BaseActivity {
                 }).start();
             }
         });
+    }
+    private void getItemW(int id){
+        OkHttpClient httpClient = new OkHttpClient.Builder()
+                .addInterceptor(new LoginIntercept())
+                .build();
+        Request requestPond = new Request.Builder()
+                .get()
+                .url("http://124.222.111.61:9000/daily/period/queryPeriodById/"+id)
+                .build();
+        new Thread(new Runnable() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void run() {
+                try {
+                    Call call = httpClient.newCall(requestPond);
+                    Response response = call.execute();
+                    assert response.body() != null;
+                    String responseData = response.body().string();
+                    JSONObject jsonObject = new JSONObject(responseData);
+                    System.out.println(jsonObject);
+                    JSONObject fin = jsonObject.getJSONObject("data");
+                    setPeriod(fin.getString("id"));
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
     protected static String[] insert(String[] arr, String... str) {
         int size = arr.length; // 获取原数组长度

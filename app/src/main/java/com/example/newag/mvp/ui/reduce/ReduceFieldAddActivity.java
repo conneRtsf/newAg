@@ -59,13 +59,6 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class ReduceFieldAddActivity extends BaseActivity implements View.OnClickListener{
-    @OnClick(R.id.ce1)
-    void onClick1(View view) {
-        Intent intent = new Intent();
-        intent.setClass(ReduceFieldAddActivity.this, ReduceFishAddActivity.class);
-        startActivity(intent);
-        finish();
-    }
     @OnClick(R.id.fieldPlus)
     void onClick12(View view) {
         Intent intent = new Intent();
@@ -75,10 +68,6 @@ public class ReduceFieldAddActivity extends BaseActivity implements View.OnClick
     @OnClick(R.id.tb2)
     void  onClick2(){
         finish();
-    }
-    @OnClick(R.id.tb1)
-    public void onClick123(View v) {
-        root.openDrawer(Gravity.LEFT);
     }
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.root)

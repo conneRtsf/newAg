@@ -763,6 +763,8 @@
     	
     <dimen name="dp_410">683.3333dp</dimen>
     	
+    <dimen name="dp_420">700.0000dp</dimen>
+    	
     <dimen name="dp_422">703.3333dp</dimen>
     	
     <dimen name="dp_425">708.3333dp</dimen>

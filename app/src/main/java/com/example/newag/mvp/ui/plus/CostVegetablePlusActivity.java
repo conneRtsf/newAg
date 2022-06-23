@@ -280,6 +280,7 @@ public class CostVegetablePlusActivity extends BaseActivity {
         String id1=String.valueOf(id);
         paramsMap.put("inputId", id1);
         paramsMap.put("price", String.valueOf(price.getText()));
+        paramsMap.put("factory", String.valueOf(factory.getText()));
         paramsMap.put("note", String.valueOf(more.getText()));
         paramsMap.put("weight", String.valueOf(inventory.getText()));
         paramsMap.put("type", "vegetable");
@@ -327,6 +328,7 @@ public class CostVegetablePlusActivity extends BaseActivity {
         HashMap<String, String> paramsMap = new HashMap<>();
         paramsMap.put("name", String.valueOf(name.getText()));
         paramsMap.put("price", String.valueOf(price.getText()));
+        paramsMap.put("factory", String.valueOf(factory.getText()));
         paramsMap.put("note", String.valueOf(more.getText()));
         paramsMap.put("weight", String.valueOf(inventory.getText()));
         paramsMap.put("weightUnit", String.valueOf(inventoryUnit.getText()));

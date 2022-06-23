@@ -89,13 +89,6 @@ public class SowingActivity extends BaseActivity {
         startActivity(intent);
         finish();
     }
-    @OnClick(R.id.ce4)
-    void click4(){
-        Intent intent = new Intent();
-        intent.setClass(SowingActivity.this, RaiseActivity.class);
-        startActivity(intent);
-        finish();
-    }
     @BindView(R.id.root)
     DrawerLayout root;
     @OnClick(R.id.tb1)
@@ -172,7 +165,7 @@ public class SowingActivity extends BaseActivity {
                         for (int i = 0; i < adapter.idList.size(); i++) {
                             Request request=new Request.Builder()
                                     .delete()
-                                    .url("http://124.222.111.61:9000/daily/deleteOperation/"+adapter.idList.get(i))
+                                    .url("http://124.222.111.61:9000/daily/operation/deleteOperation/"+adapter.idList.get(i))
                                     .build();
                             new Thread(new Runnable() {
                                 @Override
@@ -286,7 +279,7 @@ public class SowingActivity extends BaseActivity {
                 .build();
         Request requestField = new Request.Builder()
                 .get()
-                .url("http://124.222.111.61:9000/daily/queryOperation")
+                .url("http://124.222.111.61:9000/daily/operation/queryOperation")
                 .build();
         new Thread(new Runnable() {
             @SuppressLint("NotifyDataSetChanged")
@@ -329,7 +322,7 @@ public class SowingActivity extends BaseActivity {
                                             "\n投入量：" + num + numUnit +
                                             "\n投入地块：" + productionName +
                                             "\n添加时间：" + time;
-                            if (type.equals("vegetable") || type.equals("fish")) {
+                            if (type.equals("vegetable")) {
                                 if(operationType.equals("sub")) {
                                     one1 = new AllText(name, data, id);
                                     allTextList1.add(one1);
@@ -358,7 +351,7 @@ public class SowingActivity extends BaseActivity {
                 .build();
         Request requestField = new Request.Builder()
                 .get()
-                .url("http://124.222.111.61:9000/daily/queryOperation?endTime=" + endTime + "&startTime=" + startTime)
+                .url("http://124.222.111.61:9000/daily/operation/queryOperation?endTime=" + endTime + "&startTime=" + startTime)
                 .build();
         new Thread(new Runnable() {
             @SuppressLint("NotifyDataSetChanged")
@@ -401,7 +394,7 @@ public class SowingActivity extends BaseActivity {
                                             "\n投入量：" + num + numUnit +
                                             "\n投入地块：" + productionName +
                                             "\n添加时间：" + time;
-                            if (type.equals("vegetable") || type.equals("fish")) {
+                            if (type.equals("vegetable")) {
                                 if(operationType.equals("sub")) {
                                     one1 = new AllText(name, data, id);
                                     allTextList1.add(one1);

@@ -4,7 +4,9 @@
     package="com.example.newag">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
@@ -23,6 +25,39 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar"
         tools:targetApi="n">
+        <activity
+            android:name=".mvp.ui.monitor.Item.FeedSowActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.plus.SowPlusActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.monitor.Item.SowActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.plus.DeadFishPlusActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.monitor.Item.DeadFishActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.monitor.Item.DataActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.monitor.ItemActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.monitor.BucketManagementActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.main.test"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.plus.CostDrugPlusActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mvp.ui.costs.DrugCostActivity"
+            android:exported="false" />
         <activity
             android:name=".mvp.ui.plus.HarvestFishingPlusActivity"
             android:exported="false" />

@@ -112,6 +112,13 @@ public class VegetableCostActivity extends BaseActivity {
         startActivity(intent);
         finish();
     }
+    @OnClick(R.id.ce8)
+    void onClick8(View view) {
+        Intent intent = new Intent();
+        intent.setClass(VegetableCostActivity.this, DrugCostActivity.class);
+        startActivity(intent);
+        finish();
+    }
     @OnClick(R.id.plus)
     void onClick11(View view) {
         Intent intent = new Intent();
@@ -341,6 +348,7 @@ public class VegetableCostActivity extends BaseActivity {
                                     String name = jsonObject1.getString("name");
                                     String type = jsonObject1.getString("type");
                                     double price = jsonObject1.getDouble("price");
+                                    String factory=jsonObject1.getString("factory");
                                     double cost = jsonObject1.getDouble("cost");
                                     double weight = jsonObject1.getDouble("weight");
                                     String note = jsonObject1.getString("note");
@@ -348,7 +356,8 @@ public class VegetableCostActivity extends BaseActivity {
                                     String weightUnit = jsonObject1.getString("weightUnit");
                                     String data =
                                             "单价：" + price +"元/"+weightUnit+
-                                            "\n数量：" + weight +weightUnit+
+                                                    "\n购买厂商：" + factory+
+                                                    "\n数量：" + weight +weightUnit+
                                             "\n总价：" + cost +"元"+
                                             "\n备注：" + note +
                                             "\n添加时间：" + time;
@@ -422,6 +431,7 @@ public class VegetableCostActivity extends BaseActivity {
                             String name = jsonObject1.getString("name");
                             String type = jsonObject1.getString("type");
                             double price= jsonObject1.getDouble("price");
+                            String factory=jsonObject1.getString("factory");
                             double cost= jsonObject1.getDouble("cost");
                             double weight = jsonObject1.getDouble("weight");
                             String note = jsonObject1.getString("note");
@@ -429,7 +439,8 @@ public class VegetableCostActivity extends BaseActivity {
                             String weightUnit = jsonObject1.getString("weightUnit");
                             String data =
                                     "单价：" + price +"元/"+weightUnit+
-                                    "\n数量：" + weight +weightUnit+
+                                            "\n购买厂商：" + factory+
+                                            "\n数量：" + weight +weightUnit+
                                     "\n总价：" + cost +"元"+
                                     "\n备注：" + note +
                                     "\n添加时间：" + time;

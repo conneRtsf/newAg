@@ -79,7 +79,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/dp_40"
                 android:paddingLeft="@dimen/dp_3"
-                android:background="@drawable/plus"
+                android:background="@drawable/plus2"
                 android:paddingRight="@dimen/dp_3"
                 android:gravity="center"/>
         </FrameLayout>

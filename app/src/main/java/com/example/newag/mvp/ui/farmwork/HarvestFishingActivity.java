@@ -61,18 +61,18 @@ import retrofit2.Callback;
 import retrofit2.Retrofit;
 
 public class HarvestFishingActivity extends BaseActivity {
-    @OnClick(R.id.plus)
-    void onClick1(View view) {
-        Intent intent = new Intent();
-        intent.setClass(HarvestFishingActivity.this, HarvestFishingPlusActivity.class);
-        startActivity(intent);
-    }
     @OnClick(R.id.ce1)
     void click3(){
         Intent intent = new Intent();
         intent.setClass(HarvestFishingActivity.this, SowingActivity.class);
         startActivity(intent);
         finish();
+    }
+    @OnClick(R.id.plus)
+    void onClick1(View view) {
+        Intent intent = new Intent();
+        intent.setClass(HarvestFishingActivity.this, HarvestFishingPlusActivity.class);
+        startActivity(intent);
     }
     @OnClick(R.id.ce2)
     void click1(){
@@ -85,13 +85,6 @@ public class HarvestFishingActivity extends BaseActivity {
     void click2(){
         Intent intent = new Intent();
         intent.setClass(HarvestFishingActivity.this, MedicationActivity.class);
-        startActivity(intent);
-        finish();
-    }
-    @OnClick(R.id.ce4)
-    void click4(){
-        Intent intent = new Intent();
-        intent.setClass(HarvestFishingActivity.this, RaiseActivity.class);
         startActivity(intent);
         finish();
     }
@@ -171,7 +164,7 @@ public class HarvestFishingActivity extends BaseActivity {
                         for (int i = 0; i < adapter.idList.size(); i++) {
                             Request request=new Request.Builder()
                                     .delete()
-                                    .url("http://124.222.111.61:9000/daily/deleteOperation/"+adapter.idList.get(i))
+                                    .url("http://124.222.111.61:9000/daily/operation/deleteOperation/"+adapter.idList.get(i))
                                     .build();
                             System.out.println(adapter.idList.get(i));
                             new Thread(new Runnable() {
@@ -285,7 +278,7 @@ public class HarvestFishingActivity extends BaseActivity {
                 .build();
         Request requestField = new Request.Builder()
                 .get()
-                .url("http://124.222.111.61:9000/daily/queryOperation")
+                .url("http://124.222.111.61:9000/daily/operation/queryOperation")
                 .build();
         new Thread(new Runnable() {
             @SuppressLint("NotifyDataSetChanged")
@@ -356,7 +349,7 @@ public class HarvestFishingActivity extends BaseActivity {
                 .build();
         Request requestField = new Request.Builder()
                 .get()
-                .url("http://124.222.111.61:9000/daily/daily/queryOperation?endTime=" + endTime + "&startTime=" + startTime)
+                .url("http://124.222.111.61:9000/daily/daily/operation/queryOperation?endTime=" + endTime + "&startTime=" + startTime)
                 .build();
         new Thread(new Runnable() {
             @SuppressLint("NotifyDataSetChanged")

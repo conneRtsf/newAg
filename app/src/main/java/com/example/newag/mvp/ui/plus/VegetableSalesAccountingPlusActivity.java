@@ -145,7 +145,7 @@ public class VegetableSalesAccountingPlusActivity extends BaseActivity {
                             String type = jsonObject1.getString("type");
                             String unit=jsonObject1.getString("inventoryUnit");
                             type2=type;
-                            if (type.equals("adultVegetable")){
+                            if (type.equals("adultvegetable")){
                                 midI[t] = id;
                                 midw[t]=unit;
                                 t++;
@@ -153,7 +153,7 @@ public class VegetableSalesAccountingPlusActivity extends BaseActivity {
                                 newone[i] = name;
                             }
                         }
-                        if (type2.equals("adultVegetable")) {
+                        if (type2.equals("adultvegetable")) {
                             midS = insert(midS, newone);
                         }
                     }

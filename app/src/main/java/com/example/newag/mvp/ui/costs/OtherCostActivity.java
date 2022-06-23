@@ -112,6 +112,13 @@ public class OtherCostActivity extends BaseActivity {
         startActivity(intent);
         finish();
     }
+    @OnClick(R.id.ce8)
+    void onClick8(View view) {
+        Intent intent = new Intent();
+        intent.setClass(OtherCostActivity.this, DrugCostActivity.class);
+        startActivity(intent);
+        finish();
+    }
     @OnClick(R.id.plus)
     void onClick11(View view) {
         Intent intent = new Intent();
@@ -346,9 +353,7 @@ public class OtherCostActivity extends BaseActivity {
                                     String time = jsonObject1.getString("time");
                                     String weightUnit = jsonObject1.getString("weightUnit");
                                     String data =
-                                            "单价：" + price +"元/"+weightUnit+
-                                            "\n数量：" + weight +weightUnit+
-                                            "\n总价：" + cost +"元"+
+                                            "总价：" + cost +"元"+
                                             "\n备注：" + note +
                                             "\n添加时间：" + time;
                                     if (type.equals("other")) {
@@ -427,9 +432,7 @@ public class OtherCostActivity extends BaseActivity {
                             String time = jsonObject1.getString("time");
                             String weightUnit = jsonObject1.getString("weightUnit");
                             String data =
-                                    "单价：" + price +"元/"+weightUnit+
-                                    "\n数量：" + weight +weightUnit+
-                                    "\n总价：" + cost +"元"+
+                                    "总价：" + cost +"元"+
                                     "\n备注：" + note +
                                     "\n添加时间：" + time;
                             if(type.equals("other")){

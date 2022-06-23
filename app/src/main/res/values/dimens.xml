@@ -382,6 +382,7 @@
     <dimen name="dp_370">370dp</dimen>
     <dimen name="dp_400">400dp</dimen>
     <dimen name="dp_410">410dp</dimen>
+    <dimen name="dp_420">420dp</dimen>
     <dimen name="dp_422">422dp</dimen>
     <dimen name="dp_425">425dp</dimen>
     <dimen name="dp_435">435dp</dimen>
@@ -425,4 +426,5 @@
     <dimen name="sp_42">42sp</dimen>
     <dimen name="sp_48">48sp</dimen>
     <dimen name="_sp_50">-50sp</dimen>
+
 </resources>

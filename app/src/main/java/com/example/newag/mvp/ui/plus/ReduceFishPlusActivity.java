@@ -1,24 +1,53 @@
 package com.example.newag.mvp.ui.plus;
 
+import static com.luck.picture.lib.config.PictureSelectionConfig.selectorStyle;
+
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Looper;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
+import com.example.newag.Engine.GlideEngine;
+import com.example.newag.Engine.ImageCropEngine;
 import com.example.newag.R;
 import com.example.newag.base.BaseActivity;
 import com.example.newag.di.component.AppComponent;
 import com.example.newag.intercept.LoginIntercept;
+import com.luck.picture.lib.animators.AnimationType;
+import com.luck.picture.lib.app.PictureAppMaster;
+import com.luck.picture.lib.basic.PictureSelectionModel;
+import com.luck.picture.lib.basic.PictureSelector;
+import com.luck.picture.lib.config.PictureConfig;
+import com.luck.picture.lib.config.PictureMimeType;
+import com.luck.picture.lib.config.SelectMimeType;
+import com.luck.picture.lib.config.SelectModeConfig;
+import com.luck.picture.lib.engine.SandboxFileEngine;
+import com.luck.picture.lib.entity.LocalMedia;
+import com.luck.picture.lib.entity.MediaExtraInfo;
+import com.luck.picture.lib.interfaces.OnCallbackIndexListener;
+import com.luck.picture.lib.utils.MediaUtils;
+import com.luck.picture.lib.utils.SandboxTransformUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -45,8 +74,6 @@ public class ReduceFishPlusActivity extends BaseActivity {
     EditText height2;
     @BindView(R.id.position)
     EditText position;
-    @BindView(R.id.production)
-    EditText production;
     @BindView(R.id.commit)
     Button commit;
     @OnClick(R.id.tb2)
@@ -84,7 +111,6 @@ public class ReduceFishPlusActivity extends BaseActivity {
         paramsMap.put("heightUsed", String.valueOf(height2.getText()));
         paramsMap.put("radius", String.valueOf(radius.getText()));
         paramsMap.put("location", String.valueOf(position.getText()));
-        paramsMap.put("product", String.valueOf(production.getText()));
         FormBody.Builder builder = new FormBody.Builder();
         for (String key : paramsMap.keySet()) {
             builder.add(key, Objects.requireNonNull(paramsMap.get(key)));

@@ -11,6 +11,6 @@ public interface RegisterApiService {
 
     @FormUrlEncoded
     @POST("basic/user/register")
-    Call<RegisterTranslation> register(@Field("username") String username, @Field("password") String password, @Field("icode") String icode);
+    Call<RegisterTranslation> register(@Field("username") String username, @Field("password") String password, @Field("icode") String icode, @Field("farm") String farm);
 
 }

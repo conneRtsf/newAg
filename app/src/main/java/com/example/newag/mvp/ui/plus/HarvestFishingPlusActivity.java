@@ -22,6 +22,7 @@ import com.example.newag.R;
 import com.example.newag.base.BaseActivity;
 import com.example.newag.di.component.AppComponent;
 import com.example.newag.intercept.LoginIntercept;
+import com.example.newag.mvp.model.bean.Icon;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
@@ -31,6 +32,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -139,7 +141,7 @@ public class HarvestFishingPlusActivity extends BaseActivity {
     @Override
     protected void baseConfigView() {
         postSyncPro("vegetable");
-        postSyncPond("field");
+        postSyncPond();
         commit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -151,7 +153,7 @@ public class HarvestFishingPlusActivity extends BaseActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 switch (i){
                     case R.id.sow1:
-                        postSyncPond("field");
+                        postSyncPond();
                         postSyncPro("vegetable");
                         commit.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -161,8 +163,10 @@ public class HarvestFishingPlusActivity extends BaseActivity {
                         });
                         break;
                     case R.id.sow2:
-                        postSyncPond("ponds");
+                        System.out.println("a");
+                        postW();
                         postSyncPro("fish");
+                        System.out.println("b");
                         commit.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -190,7 +194,7 @@ public class HarvestFishingPlusActivity extends BaseActivity {
                 .build();
         Request requestField = new Request.Builder()
                 .get()
-                .url("http://124.222.111.61:9000/daily/queryOperation")
+                .url("http://124.222.111.61:9000/daily/operation/queryOperation")
                 .build();
         new Thread(new Runnable() {
             @SuppressLint("NotifyDataSetChanged")
@@ -202,7 +206,6 @@ public class HarvestFishingPlusActivity extends BaseActivity {
                     String[] midString ;
                     String[] midA=new String[1];
                     midA[0]="无";
-                    String type1 = null;
                     Call call = httpClient.newCall(requestField);
                     Response response=call.execute();
                     assert response.body() != null;
@@ -222,11 +225,12 @@ public class HarvestFishingPlusActivity extends BaseActivity {
                             int id=jsonObject1.getInt("associatedId");
                             String name=jsonObject1.getString("name");
                             String type=jsonObject1.getString("type");
-                            if (type.equals(data)){
-                                midId[t] = id;
+                            String operationType=jsonObject1.getString("operationType");
+                            if (type.equals(data)&&operationType.equals("sub")){
+                                midId[t+1] = id;
                                 t++;
                                 midString[0] = name;
-                                midA = insert(midString,midA);
+                                midA = insert(midA,midString);
                             }
                         }
                     }
@@ -267,19 +271,61 @@ public class HarvestFishingPlusActivity extends BaseActivity {
 
         }
     }
-    public void postSyncPond(String data) {
-        String URL=null;
-        if(data.equals("ponds")){
-            URL="http://124.222.111.61:9000/daily/"+data+"/query";
-        }else{
-            URL="http://124.222.111.61:9000/daily/"+data+"/queryAll";
-        }
+    public void postW() {
+        OkHttpClient httpClient = new OkHttpClient.Builder()
+                .addInterceptor(new LoginIntercept())
+                .build();
+        Request requestPond = new Request.Builder()
+                .get()
+                .url("http://124.222.111.61:9000/daily/ponds/query")
+                .build();
+        new Thread(new Runnable() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void run() {
+                try {
+                    String[] midA=new String[1];
+                    midA[0]="无";
+                    int[] midId=new int[1000];
+                    String[] midString = new String[1];
+                    Call call = httpClient.newCall(requestPond);
+                    Response response = call.execute();
+                    assert response.body() != null;
+                    String responseData = response.body().string();
+                    JSONObject jsonObject = new JSONObject(responseData);
+                    JSONArray pond = jsonObject.getJSONArray("data");
+                    Log.e("run: ", responseData);
+                    for (int i = 0; i < pond.length(); i++) {
+                        JSONObject jsonObject1 = (JSONObject) pond.get(i);
+                        int id = jsonObject1.getInt("id");
+                        String name = jsonObject1.getString("name");
+                        midString[0]=name;
+                        midA=insert(midA,midString);
+                        midId[i]=id;
+                    }
+                    setFieldId(midId);
+                    setPondMid(midA);
+                    HarvestFishingPlusActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            adapterField = new ArrayAdapter<CharSequence>(HarvestFishingPlusActivity.this,android.R.layout.simple_spinner_item, getPondMid());
+                            field.setAdapter(adapterField);
+                            field.setOnItemSelectedListener(new OnItemSelectedListenerImplField());
+                        }
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+    public void postSyncPond() {
         OkHttpClient httpClient=new OkHttpClient.Builder()
                 .addInterceptor(new LoginIntercept())
                 .build();
         Request requestPond = new Request.Builder()
                 .get()
-                .url(URL)
+                .url("http://124.222.111.61:9000/daily/field/queryAll")
                 .build();
         new Thread(new Runnable() {
             @SuppressLint("NotifyDataSetChanged")
@@ -311,11 +357,11 @@ public class HarvestFishingPlusActivity extends BaseActivity {
                             JSONObject jsonObject1= (JSONObject) pond.get(i);
                             int id=jsonObject1.getInt("id");
                             String name=jsonObject1.getString("name");
-                            midId[t] = id;
+                            midId[t+1] = id;
                             t++;
                             midString[i] = name;
                         }
-                        midA = insert(midString,midA);
+                        midA = insert(midA,midString);
                     }
                     setFieldId(midId);
                     setPondMid(midA);
@@ -372,7 +418,7 @@ public class HarvestFishingPlusActivity extends BaseActivity {
                 .build();
         Request request = new Request.Builder()
                 .post(formBody)
-                .url("http://124.222.111.61:9000/daily/addOperation")
+                .url("http://124.222.111.61:9000/daily/operation/addOperation")
                 .build();
         Call call = httpClient.newCall(request);
         call.enqueue(new Callback() {

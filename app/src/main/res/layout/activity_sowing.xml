@@ -59,7 +59,7 @@
             android:background="@drawable/backold"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
-            android:text="播种投放"
+            android:text="播种"
             android:textColor="@color/black"
             android:textSize="@dimen/sp_15" />
         <Button
@@ -127,7 +127,7 @@
             android:drawableLeft="@drawable/vegetable"
             android:drawableTint="@color/black"
             android:gravity="center"
-            android:text="播种投放"
+            android:text="播种"
             android:textColor="@color/black" />
 
         <Button
@@ -141,6 +141,7 @@
             android:gravity="center"
             android:text="采收捕捞"
             android:textColor="@color/black" />
+
         <Button
             android:id="@+id/ce3"
             android:layout_width="match_parent"
@@ -151,17 +152,6 @@
             android:drawableTint="@color/black"
             android:gravity="center"
             android:text="用药"
-            android:textColor="@color/black" />
-        <Button
-            android:id="@+id/ce4"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_60"
-            android:layout_marginTop="@dimen/dp_180"
-            android:background="@color/white"
-            android:drawableLeft="@drawable/feed"
-            android:drawableTint="@color/black"
-            android:gravity="center"
-            android:text="饲养"
             android:textColor="@color/black" />
     </RelativeLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

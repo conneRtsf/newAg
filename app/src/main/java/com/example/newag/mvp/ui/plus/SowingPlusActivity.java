@@ -96,8 +96,6 @@ public class SowingPlusActivity extends BaseActivity {
     Spinner classes;
     @BindView(R.id.field)
     Spinner field;
-    @BindView(R.id.plan)
-    Spinner plan;
     @BindView(R.id.commit)
     Button commit;
     @BindView(R.id.tv1)
@@ -207,7 +205,6 @@ public class SowingPlusActivity extends BaseActivity {
     protected void baseConfigView() {
         postSyncPro("vegetable");
         postSyncPond("field");
-        postSync();
         commit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -227,11 +224,10 @@ public class SowingPlusActivity extends BaseActivity {
                     case R.id.sow1:
                         tv1.setText("种植地块");
                         tv2.setText("预计采收时间");
-                        tv3.setText("预计亩产");
+                        tv3.setText("投入量");
                         tv4.setText("公斤/亩");
                         postSyncPond("field");
                         postSyncPro("vegetable");
-                        postSync();
                         commit.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -242,11 +238,10 @@ public class SowingPlusActivity extends BaseActivity {
                     case R.id.sow2:
                         tv1.setText("养殖地块");
                         tv2.setText("预计捕捞时间");
-                        tv3.setText("预计产量");
+                        tv3.setText("投入量");
                         tv4.setText("公斤/条");
                         postSyncPond("ponds");
                         postSyncPro("fish");
-                        postSync();
                         commit.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -315,17 +310,17 @@ public class SowingPlusActivity extends BaseActivity {
                     for (Map.Entry<String, JsonArray> entry : map.entrySet()) {
                         JsonArray mapValue = entry.getValue();
                         JSONArray pond=new JSONArray(String.valueOf(mapValue));
-                        midString=new String[pond.length()];
+                        midString=new String[1];
                         for (int i = 0; i < pond.length(); i++) {
                             JSONObject jsonObject1= (JSONObject) pond.get(i);
                             int id=jsonObject1.getInt("id");
                             String name=jsonObject1.getString("name");
                             String type=jsonObject1.getString("type");
                             if (type.equals(data)){
-                                midId[t] = id;
+                                midId[t+1] = id;
                                 t++;
-                                midString[i] = name;
-                                midA = insert(midString,midA);
+                                midString[0] = name;
+                                midA = insert(midA,midString);
                             }
                         }
                     }
@@ -412,11 +407,11 @@ public class SowingPlusActivity extends BaseActivity {
                             JSONObject jsonObject1= (JSONObject) pond.get(i);
                             int id=jsonObject1.getInt("id");
                             String name=jsonObject1.getString("name");
-                            midId[t] = id;
+                            midId[t+1] = id;
                             t++;
                             midString[i] = name;
                         }
-                        midA = insert(midString,midA);
+                        midA = insert(midA,midString);
                     }
                     setFieldId(midId);
                     setPondMid(midA);
@@ -434,89 +429,7 @@ public class SowingPlusActivity extends BaseActivity {
             }
         }).start();
     }
-    public void postSync() {
-        OkHttpClient httpClient = new OkHttpClient.Builder()
-                .addInterceptor(new LoginIntercept())
-                .build();
-        Request requestField = new Request.Builder()
-                .get()
-                .url("http://124.222.111.61:9000/daily/plan/queryAll")
-                .build();
-        new Thread(new Runnable() {
-            @SuppressLint("NotifyDataSetChanged")
-            @Override
-            public void run() {
-                try {
-                    int t=0;
-                    int[] midId=new int[1000];
-                    String[] midString ;
-                    String[] midA=new String[1];
-                    midA[0]="无";
-                    Call call = httpClient.newCall(requestField);
-                    Response response = call.execute();
-                    assert response.body() != null;
-                    String responseData = response.body().string();
-                    JSONObject jsonObject = new JSONObject(responseData);
-                    String json = jsonObject.getJSONObject("data").toString();
-                    Log.e("run: ", responseData);
-                    Map<String, JsonArray> map = new Gson()
-                            .fromJson(json, new TypeToken<Map<String, JsonArray>>() {
-                            }
-                                    .getType());
-                    for (Map.Entry<String, JsonArray> entry : map.entrySet()) {
-                        JsonArray mapValue = entry.getValue();
-                        JSONArray pond = new JSONArray(String.valueOf(mapValue));
-                        Log.e("pond: ", String.valueOf(pond));
-                        midString=new String[pond.length()];
-                        for (int i = 0; i < pond.length(); i++) {
-                            JSONObject jsonObject1 = (JSONObject) pond.get(i);
-                            int id = jsonObject1.getInt("id");
-                            String name = jsonObject1.getString("name");
-                            midId[t] = id;
-                            t++;
-                            midString[i] = name;
-                        }
-                        midA = insert(midString,midA);
-                    }
-                    setPlanId(midId);
-                    setPlanMid(midA);
-                    SowingPlusActivity.this.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            adapterPlan = new ArrayAdapter<CharSequence>(SowingPlusActivity.this,android.R.layout.simple_spinner_item, getPlanMid());
-                            plan.setAdapter(adapterPlan);
-                            plan.setOnItemSelectedListener(new OnItemSelectedListenerImplPlan());
-                        }
-                    });
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-    }
-    private class OnItemSelectedListenerImplPlan implements AdapterView.OnItemSelectedListener {
 
-        @Override
-        public void onItemSelected(AdapterView<?> parent, View view,
-                                   int position, long id) {
-            String pro = (String) parent.getItemAtPosition(position);
-            String[] finalPlan=getPlanMid();
-            int[] finalPlanID=getPlanId();
-            for (int i = 0; i < finalPlan.length; i++) {
-                if(pro.equals(finalPlan[i])){
-                    setFPlan(finalPlanID[i]);
-                    setFPlanName(pro);
-                    System.out.println(finalPlanID[i]);
-                    break;
-                }
-            }
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> adapterView) {
-
-        }
-    }
     private class OnItemSelectedListenerImplField implements AdapterView.OnItemSelectedListener {
 
         @Override
@@ -539,14 +452,14 @@ public class SowingPlusActivity extends BaseActivity {
         }
     }
     public void postSyncPlus(String type) {
-        System.out.println(getFPlan()+getFPlanName()+"\n"+getFPond()+getFPondName()+"\n"+getFPro());
+        System.out.println(getFPro());
         HashMap<String, String> paramsMap = new HashMap<>();
         paramsMap.put("num", String.valueOf(num.getText()));
         paramsMap.put("unitId", String.valueOf(getFPond()));
         paramsMap.put("except", String.valueOf(time.getText()));
-        paramsMap.put("planName",getFPlanName());
         paramsMap.put("nameId", String.valueOf(getFPro()));
-        paramsMap.put("type", type);
+        paramsMap.put("associatedId", "1");
+        paramsMap.put("type", "field");
         paramsMap.put("unitName",getFPondName());
         FormBody.Builder builder = new FormBody.Builder();
         for (String key : paramsMap.keySet()) {
@@ -588,7 +501,7 @@ public class SowingPlusActivity extends BaseActivity {
             }
         });
     }
-    protected static String[] insert(String[] arr, String... str) {
+    private static String[] insert(String[] arr, String... str) {
         int size = arr.length; // 获取原数组长度
         int newSize = size + str.length; // 原数组长度加上追加的数据的总长度
 

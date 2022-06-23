@@ -68,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         RegisterApiService postRequest = retrofit.create(RegisterApiService.class);
 
-        Call<RegisterTranslation> call = postRequest.register(username, password, icode);
+        Call<RegisterTranslation> call = postRequest.register(username, password, icode,"1234");
 
         call.enqueue(new Callback<RegisterTranslation>() {
 

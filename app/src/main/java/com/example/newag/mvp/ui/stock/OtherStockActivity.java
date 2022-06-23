@@ -2,6 +2,8 @@ package com.example.newag.mvp.ui.stock;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -37,6 +39,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -54,6 +60,10 @@ public class OtherStockActivity extends BaseActivity {
     @OnClick(R.id.tb1)
     void onClick(View view) {
         root.openDrawer(Gravity.LEFT);
+    }
+    @OnClick(R.id.tb2)
+    void  onClick2(){
+        finish();
     }
     @OnClick(R.id.ce1)
     void onClick1(View view) {
@@ -343,6 +353,7 @@ public class OtherStockActivity extends BaseActivity {
                             String time=jsonObject1.getString("time");
                             String note=jsonObject1.getString("note");
                             String type=jsonObject1.getString("type");
+                            String information=jsonObject1.getString("information");
                             String inventoryUnit=jsonObject1.getString("inventoryUnit");
                             String data=
                                     "库存："+inventory+inventoryUnit+
@@ -351,7 +362,7 @@ public class OtherStockActivity extends BaseActivity {
                                     "\n备注："+note;
                             mid=type;
                             if(type.equals("other")){
-                                one1=new AllText(name,data,id);
+                                one1=new AllText(name,data,id,returnBitMap(information));
                                 allTextList1.add(one1);
                             }
                             OtherStockActivity.this.runOnUiThread(new Runnable() {
@@ -399,7 +410,6 @@ public class OtherStockActivity extends BaseActivity {
                     for (Map.Entry<String, JsonArray> entry : map.entrySet()) {
                         AllText one1;
                         List<AllText> allTextList1=new ArrayList<>();
-                        String mapKey = entry.getKey();
                         JsonArray mapValue = entry.getValue();
                         JSONArray pond=new JSONArray(String.valueOf(mapValue));
                         Log.e("pond: ", String.valueOf(pond));
@@ -412,7 +422,9 @@ public class OtherStockActivity extends BaseActivity {
                             String time=jsonObject1.getString("time");
                             String note=jsonObject1.getString("note");
                             String type=jsonObject1.getString("type");
+                            String information=jsonObject1.getString("information");
                             String inventoryUnit=jsonObject1.getString("inventoryUnit");
+                            System.out.println("haha"+information);
                             String data=
                                     "库存："+inventory+inventoryUnit+
                                             "\n厂商："+factory+
@@ -420,7 +432,7 @@ public class OtherStockActivity extends BaseActivity {
                                             "\n备注："+note;
                             mid=type;
                             if(type.equals("other")){
-                                one1=new AllText(name,data,id);
+                                one1=new AllText(name,data,id,returnBitMap(information));
                                 allTextList1.add(one1);
                             }
                             OtherStockActivity.this.runOnUiThread(new Runnable() {
@@ -456,4 +468,5 @@ public class OtherStockActivity extends BaseActivity {
                 }
         }
     }
+
 }

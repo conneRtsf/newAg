@@ -534,7 +534,7 @@ public class FishPeriodChangeActivity extends BaseActivity {
     protected int layoutId() {
         return R.layout.activity_changeperiod;
     }
-    private static String[] insert(String[] arr, String... str) {
+    public static String[] insert(String[] arr, String... str) {
         int size = arr.length; // 获取原数组长度
         int newSize = size + str.length; // 原数组长度加上追加的数据的总长度
 
